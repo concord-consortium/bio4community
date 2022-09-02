@@ -1,6 +1,6 @@
-# Starter Projects Localization
+# Bio4community Localization
 
-The modules within `utils/translation` can be used to add text localization to a starter-projects based application.
+The modules within `utils/translation` can be used to add text localization to a bio4community based application.
 
 ### How to use
 
