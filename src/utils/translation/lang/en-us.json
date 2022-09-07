@@ -1,4 +1,10 @@
 {
+  "HEART.BASIC": "heart",
+  "NOSE.BASIC": "nose",
+  "BRAIN.BASIC": "brain",
+  "HEART.ANIMATIONTITLE": "Plaque Animation",
+  "NOSE.ANIMATIONTITLE": "Immune Response Animation",
+  "BRAIN.ANIMATIONTITLE": "Focus Animation",
   "TEXT": "text",
   "INTRO.HELLO": "Hello World"
 }

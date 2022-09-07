@@ -1,51 +1,15 @@
 import React from "react";
+import { Animation } from "./animation";
+import { AppContainer } from "./app-container";
+import { ControlOption } from "./control-option";
 import { Title } from "./title";
-
-interface AppContainerProps {
-  title: string;
-  children: any;
-}
-const AppContainer = ({title, children}: AppContainerProps) => {
-  return (
-    <div className="app-popup">
-      <Title text={title} />
-      {children}
-    </div>
-  );
-};
-
-interface AnimationProps {
-  title: string;
-}
-const Animation = ({ title }: AnimationProps) => {
-  return (
-    <div className="animation">
-      <div className="animation-pane">
-        <div className="animation-title">{title}</div>
-      </div>
-      <div className="animation-controls">Animation Controls</div>
-    </div>
-  );
-};
-
-interface ControlOptionProps {
-  label: string;
-  options: [string, string];
-}
-const ControlOption = ({ label, options }: ControlOptionProps) => {
-  return (
-    <div className="control-option">
-      <div className="control-option-label">{`${label}:`}</div>
-      <div>{`${options[0]} or ${options[1]}`}</div>
-    </div>
-  );
-};
 
 interface AnimationAppProps {
   organ: string;
+  t: (textKey: string) => string;
 }
-export const AnimationApp = ({ organ }: AnimationAppProps) => {
-  const title = "Plaque Animation";
+export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
+  const title = t("ANIMATIONTITLE");
   return (
     <div className="app">
       <AppContainer title={title}>
