@@ -1,4 +1,16 @@
 {
+  "HEART.BASIC": "heart",
+  "NOSE.BASIC": "nose",
+  "BRAIN.BASIC": "brain",
+  "HEART.ANIMATIONTITLE": "Plaque Animation",
+  "NOSE.ANIMATIONTITLE": "Immune Response Animation",
+  "BRAIN.ANIMATIONTITLE": "Focus Animation",
+  "HEART.LEFTANIMATIONTITLE": "Artery View",
+  "HEART.RIGHTANIMATIONTITLE": "Cell View",
+  "NOSE.LEFTANIMATIONTITLE": "Inside of Nose View",
+  "NOSE.RIGHTANIMATIONTITLE": "Cell View",
+  "BRAIN.LEFTANIMATIONTITLE": "Attention Network View",
+  "BRAIN.RIGHTANIMATIONTITLE": "Prefrontal Cortex Neurons View",
   "TEXT": "text",
   "INTRO.HELLO": "Hello World"
 }
