@@ -11,7 +11,7 @@
   background-color: #dfdfdf;
 }
 
-.app-popup {
+.app-container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -51,6 +51,19 @@
     border-radius: 14px;
   }
 
+  .control-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .control-option-label {
+      display: flex;
+      justify-content: flex-end;
+      font-weight: 700;
+    }
+  }
+
   .controls-pane {
     display: flex;
     flex-direction: column;
@@ -58,19 +71,6 @@
     align-items: stretch;
 
     width: 300px;
-
-    .control-option {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      .control-option-label {
-        display: flex;
-        justify-content: flex-end;
-        font-weight: 700;
-      }
-    }
 
     .divider {
       // width: 280px;

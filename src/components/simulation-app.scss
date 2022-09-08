@@ -1,0 +1,23 @@
+.options-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80px;
+  background-color: #b7e2ec;
+  font-weight: bold;
+}
+
+.options-header {
+  height: 60px;
+}
+
+.results-header {
+  height: 151px;
+  padding-left: 10px;
+}

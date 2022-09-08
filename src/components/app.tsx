@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimationApp } from "./animation-app";
+import { SimulationApp } from "./simulation-app";
 import { useTranslator } from "../hooks/use-translator";
 
 import "./app.scss";
@@ -11,6 +12,6 @@ export const App = () => {
   const t = useTranslator({organ});
 
   return mode === "animation" ? <AnimationApp organ={organ} t={t} />
-    : mode === "simulation" ? <div>Simulation not yet implemented.</div>
+    : mode === "simulation" ? <SimulationApp organ={organ} t={t} />
     : <div>Unknown mode.</div>;
 };

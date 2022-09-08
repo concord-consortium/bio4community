@@ -7,7 +7,7 @@ interface AppContainerProps {
 }
 export const AppContainer = ({title, children}: AppContainerProps) => {
   return (
-    <div className="app-popup">
+    <div className="app-container">
       <Title text={title} />
       {children}
     </div>
