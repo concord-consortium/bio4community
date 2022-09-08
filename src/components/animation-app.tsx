@@ -3,13 +3,14 @@ import { Animation } from "./animation";
 import { AppContainer } from "./app-container";
 import { ControlOption } from "./control-option";
 import { Title } from "./title";
+import { Translator } from "../hooks/use-translator";
 
 interface AnimationAppProps {
   organ: string;
-  t: (textKey: string) => string;
+  t: Translator;
 }
 export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
-  const title = t("ANIMATIONTITLE");
+  const title = t.o("ANIMATIONTITLE");
   return (
     <div className="app">
       <AppContainer title={title}>
@@ -35,8 +36,8 @@ export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
           </div>
         </div>
         <div className="app-row">
-          <Animation title="Artery View" />
-          <Animation title="Cell View" />
+          <Animation title={t.o("LEFTANIMATIONTITLE")} />
+          <Animation title={t.o("RIGHTANIMATIONTITLE")} />
         </div>
       </AppContainer>
     </div>
