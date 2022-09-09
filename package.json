@@ -86,7 +86,6 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.7",
-    "caniuse-lite": "^1.0.30001388",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "cypress": "^9.7.0",

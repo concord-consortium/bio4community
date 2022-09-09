@@ -1,11 +1,11 @@
 context("Test the overall app", () => {
   beforeEach(() => {
-    cy.visit("");
+    cy.visit("/?mode=animation&organ=heart");
   });
 
   describe("Desktop functionalities", () => {
     it("renders with text", () => {
-      cy.get(".app").should("have.text", "Hello World");
+      cy.get(".app .title-box").first().should("have.text", "Plaque Animation");
     });
   });
 });
