@@ -1,6 +1,7 @@
 .options-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .row-header {
@@ -20,4 +21,15 @@
 .results-header {
   height: 151px;
   padding-left: 10px;
+}
+
+.key-box {
+  width: 65px;
+  height: 141px;
+  background-color: #f0f9fb;
+}
+
+.vertical-divider {
+  width: 1px;
+  background-color: #0592af;
 }

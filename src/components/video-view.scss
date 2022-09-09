@@ -36,6 +36,9 @@
     align-items: center;
     justify-content: center;
 
+    position: relative;
+    top: -2px;
+
     &.animation {
       background-color: #f9efff;
       border: 2px solid #aa2ff0;
