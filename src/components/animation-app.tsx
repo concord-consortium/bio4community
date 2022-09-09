@@ -1,23 +1,22 @@
 import React from "react";
-import { Animation } from "./animation";
+import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
 import { ControlOption } from "./control-option";
 import { Title } from "./title";
-import { Translator } from "../hooks/use-translator";
+import { AppContext } from "../hooks/use-app-context";
 
 interface AnimationAppProps {
-  organ: string;
-  t: Translator;
+  ac: AppContext;
 }
-export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
-  const title = t.o("ANIMATIONTITLE");
+export const AnimationApp = ({ ac }: AnimationAppProps) => {
+  const title = ac.o("ANIMATIONTITLE");
   return (
     <div className="app">
-      <AppContainer title={title}>
+      <AppContainer ac={ac} title={title}>
         <div className="app-row">
           <div className="silhouette">Silhouette View</div>
           <div className="controls-pane">
-            <Title text="Controls" />
+            <Title ac={ac} text="Controls" />
             <ControlOption label="Stress Level" options={["Low", "High"]} />
             <div className="divider"></div>
             <ControlOption label="Cholesterol in Diet" options={["Low", "High"]} />
@@ -26,7 +25,7 @@ export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
             </div>
           </div>
           <div className="details-pane">
-            <Title text="Stress Input" />
+            <Title ac={ac} text="Stress Input" />
             <div className="details-box">
               <p>Text text text more text</p>
               <p>Another paragraph with more text</p>
@@ -36,8 +35,8 @@ export const AnimationApp = ({ organ, t }: AnimationAppProps) => {
           </div>
         </div>
         <div className="app-row">
-          <Animation title={t.o("LEFTANIMATIONTITLE")} />
-          <Animation title={t.o("RIGHTANIMATIONTITLE")} />
+          <VideoView ac={ac} title={ac.o("LEFTANIMATIONTITLE")} />
+          <VideoView ac={ac} title={ac.o("RIGHTANIMATIONTITLE")} />
         </div>
       </AppContainer>
     </div>
