@@ -1,0 +1,39 @@
+.sim-graph-container {
+  display: flex;
+  height: 141px;
+  background-color: #f0f9fb;
+
+  .vertical-label {
+    width: 39px;
+    height: 125px;
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sim-graph-right {
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 15px;
+    padding-right: 20px;
+
+    .sim-graph {
+      width: 307px;
+      height: 95px;
+      background-color: white;
+    }
+
+    .horizontal-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 307px;
+      height: 31px;
+    }
+  }
+}

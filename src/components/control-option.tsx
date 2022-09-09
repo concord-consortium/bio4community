@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ControlOptionProps {
+export interface ControlOptionProps {
   label: string;
   options: [string, string];
 }
