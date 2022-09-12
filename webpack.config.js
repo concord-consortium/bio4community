@@ -63,9 +63,13 @@ module.exports = (env, argv) => {
           ]
         },
         {
-          test: /\.(png|woff|woff2|eot|ttf)$/,
+          test: /\.(png|woff|woff2|eot|ttf|mp4)$/,
           type: 'asset',
         },
+        // {
+        //   test: /\.mp4$/,
+        //   type: 'asset/source',
+        // },
         { // disable svgo optimization for files ending in .nosvgo.svg
           test: /\.nosvgo\.svg$/i,
           loader: '@svgr/webpack',
