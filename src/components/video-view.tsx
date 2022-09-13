@@ -133,10 +133,17 @@ export const VideoView = ({ ac, title }: IVideoView) => {
   return (
     <div className="video-view">
       <div className={clsx("video-pane", ac.mode)}>
-        <video ref={videoRef} onLoadedMetadata={handleLoadedMetadata} onEnded={(event: any) => pause()} >
+        <video
+          ref={videoRef}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={(event: any) => pause()}
+          className="video-view-video"
+        >
           <source src={BloodVesselMP4} type={"video/mp4"} />
         </video>
-        <div className="video-title">{title}</div>
+        <div className="video-title">
+          {title}
+        </div>
       </div>
       <div className={clsx("video-controls", ac.mode)}>
         <PlayButton playing={playing} onClick={onButtonClick} ac={ac} />
