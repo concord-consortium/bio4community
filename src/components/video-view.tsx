@@ -10,13 +10,14 @@ import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
 import "./video-view.scss";
 
 interface IPlayButton {
+  ac: AppContext;
   playing: boolean;
   onClick: (event: any) => void;
 }
-const PlayButton = ({ playing, onClick }: IPlayButton) => {
+const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
   const label = playing ? "Pause" : "Play";
   return (
-    <button onClick={onClick}>{label}</button>
+    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{label}</button>
   );
 };
 
@@ -84,7 +85,7 @@ export const VideoView = ({ ac, title }: IVideoView) => {
       return () => {
         clearInterval(tickInterval);
       };
-    }, 100);
+    }, 30);
   }, [duration]);
 
   useEffect(() => {
@@ -138,7 +139,8 @@ export const VideoView = ({ ac, title }: IVideoView) => {
         <div className="video-title">{title}</div>
       </div>
       <div className={clsx("video-controls", ac.mode)}>
-        <PlayButton playing={playing} onClick={onButtonClick} />
+        <PlayButton playing={playing} onClick={onButtonClick} ac={ac} />
+        <div className="vertical-divider" />
         <TimeTrack
           jumpToPosition={jumpToPosition}
           percentComplete={percentComplete}
