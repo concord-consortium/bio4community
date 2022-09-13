@@ -2,66 +2,21 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
-import Slider from "rc-slider";
+import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
 import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
 
 import "./video-view.scss";
 
-interface IPlayButton {
-  ac: AppContext;
-  playing: boolean;
-  onClick: (event: any) => void;
+interface IVideoTitle {
+  title: string;
 }
-const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
-  const label = playing ? "Pause" : "Play";
-  return (
-    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{label}</button>
-  );
-};
-
-interface ITimeTrack {
-  jumpToPosition: (position: number) => void;
-  percentComplete: number;
-  marks?: Record<number, string>;
-}
-const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
-  const [sliderValue, setSliderValue] = useState(0);
-  const [dragging, setDragging] = useState(false);
-
-  const onBeforeChange = (value: number | number[]) => {
-    if (Array.isArray(value)) return;
-    setSliderValue(value);
-    setDragging(true);
-  };
-
-  const onChange = (value: number | number[]) => {
-    if (Array.isArray(value)) return;
-    setSliderValue(value);
-    jumpToPosition(value);
-  };
-
-  const onAfterChange = (value: number | number[]) => {
-    if (Array.isArray(value)) return;
-    setSliderValue(value);
-    setDragging(false);
-  };
-
-  return (
-    <div>
-      <div className="slider-container">
-        <Slider min={0} max={1} step={.001} defaultValue={0}
-          onBeforeChange={onBeforeChange}
-          onChange={onChange}
-          onAfterChange={onAfterChange}
-          value={dragging ? sliderValue : percentComplete}
-          marks={marks}
-        />
-      </div>
-    </div>
-  );
-};
+const VideoTitle = ({ title }: IVideoTitle) => (
+  <div className="video-title">
+    {title}
+  </div>
+);
 
 interface IVideoView {
   ac: AppContext;
@@ -73,9 +28,6 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
   const [playing, setPlaying] = useState(false);
-
-  // Default including marks at the end of the timeline
-  const marks = timelineMarks || { 0: " ", 1: " " };
 
   useEffect(() => {
     const tickInterval = setInterval(() => {
@@ -111,7 +63,7 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
     }
   };
 
-  const onButtonClick = (event: any) => {
+  const onPlayButtonClick = (event: any) => {
     if (videoRef.current) {
       if (playing) {
         pause();
@@ -142,19 +94,16 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
         >
           <source src={BloodVesselMP4} type={"video/mp4"} />
         </video>
-        <div className="video-title">
-          {title}
-        </div>
+        <VideoTitle title={title} />
       </div>
-      <div className={clsx("video-controls", ac.mode)}>
-        <PlayButton playing={playing} onClick={onButtonClick} ac={ac} />
-        <div className="vertical-divider" />
-        <TimeTrack
-          jumpToPosition={jumpToPosition}
-          percentComplete={percentComplete}
-          marks={ marks }
-        />
-      </div>
+      <VideoControls
+        ac={ac}
+        jumpToPosition={jumpToPosition}
+        onPlayButtonClick={onPlayButtonClick}
+        percentComplete={percentComplete}
+        playing={playing}
+        timelineMarks={timelineMarks}
+      />
     </div>
   );
 };
