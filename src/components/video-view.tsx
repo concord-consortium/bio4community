@@ -24,9 +24,9 @@ const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
 interface ITimeTrack {
   jumpToPosition: (position: number) => void;
   percentComplete: number;
-  labels: any[];
+  marks?: Record<number, string>;
 }
-const TimeTrack = ({ jumpToPosition, percentComplete, labels }: ITimeTrack) => {
+const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [dragging, setDragging] = useState(false);
 
@@ -55,12 +55,9 @@ const TimeTrack = ({ jumpToPosition, percentComplete, labels }: ITimeTrack) => {
           onBeforeChange={onBeforeChange}
           onChange={onChange}
           onAfterChange={onAfterChange}
-          value={dragging ? sliderValue : percentComplete} />
-      </div>
-      <div>
-        {labels.forEach((label: any, index: number) => {
-          return label;
-        })}
+          value={dragging ? sliderValue : percentComplete}
+          marks={marks}
+        />
       </div>
     </div>
   );
@@ -68,13 +65,17 @@ const TimeTrack = ({ jumpToPosition, percentComplete, labels }: ITimeTrack) => {
 
 interface IVideoView {
   ac: AppContext;
+  timelineMarks?: Record<number, string>;
   title: string;
 }
-export const VideoView = ({ ac, title }: IVideoView) => {
+export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
   const [playing, setPlaying] = useState(false);
+
+  // Default including marks at the end of the timeline
+  const marks = timelineMarks || { 0: " ", 1: " " };
 
   useEffect(() => {
     const tickInterval = setInterval(() => {
@@ -151,7 +152,7 @@ export const VideoView = ({ ac, title }: IVideoView) => {
         <TimeTrack
           jumpToPosition={jumpToPosition}
           percentComplete={percentComplete}
-          labels={[<span key="sty"><b>Simulated Time</b> (years)</span>]}
+          marks={ marks }
         />
       </div>
     </div>
