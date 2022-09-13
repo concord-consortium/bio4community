@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
+import Slider from "rc-slider";
 import { AppContext } from "../hooks/use-app-context";
 
 import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
@@ -19,6 +20,51 @@ const PlayButton = ({ playing, onClick }: IPlayButton) => {
   );
 };
 
+interface ITimeTrack {
+  jumpToPosition: (position: number) => void;
+  percentComplete: number;
+  labels: any[];
+}
+const TimeTrack = ({ jumpToPosition, percentComplete, labels }: ITimeTrack) => {
+  const [sliderValue, setSliderValue] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  const onBeforeChange = (value: number | number[]) => {
+    if (Array.isArray(value)) return;
+    setSliderValue(value);
+    setDragging(true);
+  };
+
+  const onChange = (value: number | number[]) => {
+    if (Array.isArray(value)) return;
+    setSliderValue(value);
+    jumpToPosition(value);
+  };
+
+  const onAfterChange = (value: number | number[]) => {
+    if (Array.isArray(value)) return;
+    setSliderValue(value);
+    setDragging(false);
+  };
+
+  return (
+    <div>
+      <div className="slider-container">
+        <Slider min={0} max={1} step={.001} defaultValue={0}
+          onBeforeChange={onBeforeChange}
+          onChange={onChange}
+          onAfterChange={onAfterChange}
+          value={dragging ? sliderValue : percentComplete} />
+      </div>
+      <div>
+        {labels.forEach((label: any, index: number) => {
+          return label;
+        })}
+      </div>
+    </div>
+  );
+};
+
 interface IVideoView {
   ac: AppContext;
   title: string;
@@ -26,7 +72,6 @@ interface IVideoView {
 export const VideoView = ({ ac, title }: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [percentComplete, setPercentComplete] = useState(0);
   const [playing, setPlaying] = useState(false);
 
@@ -74,6 +119,16 @@ export const VideoView = ({ ac, title }: IVideoView) => {
     }
   };
 
+  const jumpToPosition = (position: number) => {
+    if (position >= 0 && position <= 1) {
+      const video = videoRef.current;
+      if (video) {
+        video.currentTime = position * duration;
+      }
+      setPercentComplete(position);
+    }
+  };
+
   return (
     <div className="video-view">
       <div className={clsx("video-pane", ac.mode)}>
@@ -84,6 +139,11 @@ export const VideoView = ({ ac, title }: IVideoView) => {
       </div>
       <div className={clsx("video-controls", ac.mode)}>
         <PlayButton playing={playing} onClick={onButtonClick} />
+        <TimeTrack
+          jumpToPosition={jumpToPosition}
+          percentComplete={percentComplete}
+          labels={[<span key="sty"><b>Simulated Time</b> (years)</span>]}
+        />
       </div>
     </div>
   );
