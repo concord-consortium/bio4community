@@ -3,8 +3,10 @@
   flex-direction: column;
 
   .video-pane {
-    width: 460px;
+    position: relative;
+    width: 456px;
     height: 284px;
+    padding: 2px;
 
     display: flex;
     flex-direction: column;
@@ -14,39 +16,28 @@
       background-color: #f9efff;
       border: 2px solid #aa2ff0;
       border-radius: 14px;
+
+      .video-view-video {
+        border-radius: 11px;
+      }
     }
     &.simulation {
       background-color: #f0f9fb;
       border: 2px solid #0481a0;
+    }
+
+    .video-view-video {
+      width: 456px;
+      margin-top: 1px;
     }
 
     .video-title {
-      background-color: white;
+      position: absolute;
+      top: 10px;
+
+      background: rgba(255, 255, 255, .8);
       border-radius: 14px;
       padding: 5px 15px;
-      margin-top: 10px;
-    }
-  }
-
-  .video-controls {
-    width: 460px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-    top: -2px;
-
-    &.animation {
-      background-color: #f9efff;
-      border: 2px solid #aa2ff0;
-      border-radius: 14px;
-    }
-    &.simulation {
-      background-color: #f0f9fb;
-      border: 2px solid #0481a0;
     }
   }
 }

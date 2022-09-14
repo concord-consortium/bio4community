@@ -1,20 +1,109 @@
-import React from "react";
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react/no-unknown-property */
+import React, { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
+import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
+
+import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
 
 import "./video-view.scss";
 
-interface IVideoView {
-  ac: AppContext;
+interface IVideoTitle {
   title: string;
 }
-export const VideoView = ({ ac, title }: IVideoView) => {
+const VideoTitle = ({ title }: IVideoTitle) => (
+  <div className="video-title">
+    {title}
+  </div>
+);
+
+interface IVideoView {
+  ac: AppContext;
+  timelineMarks?: Record<number, string>;
+  title: string;
+}
+export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [duration, setDuration] = useState(0);
+  const [percentComplete, setPercentComplete] = useState(0);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const tickInterval = setInterval(() => {
+      if (videoRef.current && duration > 0) {
+        const pc = videoRef.current.currentTime / duration;
+        setPercentComplete(pc);
+      }
+      return () => {
+        clearInterval(tickInterval);
+      };
+    }, 30);
+  }, [duration]);
+
+  useEffect(() => {
+    videoRef.current?.load();
+  }, [videoRef]);
+
+  const handleLoadedMetadata = () => {
+    setDuration(videoRef.current?.duration || 0);
+  };
+
+  const pause = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      setPlaying(false);
+    }
+  };
+
+  const play = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  };
+
+  const onPlayButtonClick = (event: any) => {
+    if (videoRef.current) {
+      if (playing) {
+        pause();
+      } else {
+        play();
+      }
+    }
+  };
+
+  const jumpToPosition = (position: number) => {
+    if (position >= 0 && position <= 1) {
+      const video = videoRef.current;
+      if (video) {
+        video.currentTime = position * duration;
+      }
+      setPercentComplete(position);
+    }
+  };
+
   return (
     <div className="video-view">
       <div className={clsx("video-pane", ac.mode)}>
-        <div className="video-title">{title}</div>
+        <video
+          ref={videoRef}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={(event: any) => pause()}
+          className="video-view-video"
+        >
+          <source src={BloodVesselMP4} type={"video/mp4"} />
+        </video>
+        <VideoTitle title={title} />
       </div>
-      <div className={clsx("video-controls", ac.mode)}>Animation Controls</div>
+      <VideoControls
+        ac={ac}
+        jumpToPosition={jumpToPosition}
+        onPlayButtonClick={onPlayButtonClick}
+        percentComplete={percentComplete}
+        playing={playing}
+        timelineMarks={timelineMarks}
+      />
     </div>
   );
 };

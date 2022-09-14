@@ -72,8 +72,16 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           )) }
         </div>
         <div className="app-row">
-          <VideoView ac={ac} title={ac.o("LEFTSIMULATIONTITLE")} />
-          <VideoView ac={ac} title={ac.o("RIGHTSIMULATIONTITLE")} />
+          <VideoView
+            ac={ac}
+            title={ac.o("LEFTSIMULATIONTITLE")}
+            timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
+          />
+          <VideoView
+            ac={ac}
+            title={ac.o("RIGHTSIMULATIONTITLE")}
+            timelineMarks={{ 0: " ", 1: " " }}
+          />
         </div>
         <div className="options-row">
           <div className="row-header results-header">
