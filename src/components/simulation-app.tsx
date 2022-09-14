@@ -83,6 +83,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           />
           <VideoView
             ac={ac}
+            extraClass="cell-view"
             loop={true}
             title={ac.o("RIGHTSIMULATIONTITLE")}
             timelineMarks={{ 0: " ", 1: " " }}

@@ -61,6 +61,7 @@ const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
 
 interface IVideoControls {
   ac: AppContext;
+  extraClass?: string;
   jumpToPosition: (pos: number) => void;
   onPlayButtonClick: (event: any) => void;
   percentComplete: number;
@@ -68,13 +69,13 @@ interface IVideoControls {
   timelineMarks?: Record<number, string>;
 }
 export const VideoControls = ({
-  ac, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
+  ac, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
 }: IVideoControls) => {
   // Default including marks at the end of the timeline
   const marks = timelineMarks || { 0: " ", 1: " " };
 
   return (
-    <div className={clsx("video-controls", ac.mode)}>
+    <div className={clsx("video-controls", ac.mode, extraClass)}>
       <PlayButton playing={playing} onClick={onPlayButtonClick} ac={ac} />
       <div className="vertical-divider" />
       <TimeTrack

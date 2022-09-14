@@ -35,8 +35,16 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           </div>
         </div>
         <div className="app-row">
-          <VideoView ac={ac} title={ac.o("LEFTANIMATIONTITLE")} />
-          <VideoView ac={ac} title={ac.o("RIGHTANIMATIONTITLE")} />
+          <VideoView
+            ac={ac}
+            title={ac.o("LEFTANIMATIONTITLE")}
+          />
+          <VideoView
+            ac={ac}
+            extraClass="cell-view"
+            loop={true}
+            title={ac.o("RIGHTANIMATIONTITLE")}
+          />
         </div>
       </AppContainer>
     </div>

@@ -26,6 +26,10 @@
     background-color: #f0f9fb;
     border: 2px solid #0481a0;
 
+    &.cell-view {
+      border-radius: 10px 10px 0 0;
+    }
+
     .rc-slider-handle {
       border: 2px solid #0481a0;
     }

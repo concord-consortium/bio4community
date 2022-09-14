@@ -1,6 +1,6 @@
 .video-view {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   .video-pane {
     position: relative;
@@ -17,6 +17,10 @@
       border: 2px solid #aa2ff0;
       border-radius: 14px;
 
+      &.cell-view {
+        border: 2px solid #ff8415;
+      }
+
       .video-view-video {
         border-radius: 11px;
       }
@@ -24,6 +28,15 @@
     &.simulation {
       background-color: #f0f9fb;
       border: 2px solid #0481a0;
+
+      &.cell-view {
+        border: 2px solid #ff8415;
+        border-radius: 10px;
+
+        .video-view-video {
+          border-radius: 7px;
+        }
+      }
     }
 
     .video-view-video {
