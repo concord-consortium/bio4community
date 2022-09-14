@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
 import { ControlOption, ControlOptionProps } from "./control-option";
@@ -14,6 +14,8 @@ interface SimulationAppProps {
   ac: AppContext;
 }
 export const SimulationApp = ({ ac }: SimulationAppProps) => {
+  const [playingTissue, setPlayingTissue] = useState(false);
+  const [playingCell, setPlayingCell] = useState(false);
   const title = ac.o("SIMULATIONTITLE");
 
   const allControls: Record<string, (ControlOptionProps | string)[]> = {
@@ -78,16 +80,20 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
         <div className="app-row">
           <VideoView
             ac={ac}
+            playing={playingTissue}
+            setPlaying={setPlayingTissue}
             title={ac.o("LEFTSIMULATIONTITLE")}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
             videoFile={BloodVesselMP4}
           />
           <VideoView
             ac={ac}
-            disabled={true}
+            disabled={playingTissue}
             disabledMessage={disabledMessage}
             extraClass="cell-view"
             loop={true}
+            playing={playingCell}
+            setPlaying={setPlayingCell}
             title={ac.o("RIGHTSIMULATIONTITLE")}
             timelineMarks={{ 0: " ", 1: " " }}
             videoFile={BloodCellCase1MP4}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
 import { ControlOption } from "./control-option";
@@ -9,7 +9,11 @@ interface AnimationAppProps {
   ac: AppContext;
 }
 export const AnimationApp = ({ ac }: AnimationAppProps) => {
+  const [playingTissue, setPlayingTissue] = useState(false);
+  const [playingCell, setPlayingCell] = useState(false);
+
   const title = ac.o("ANIMATIONTITLE");
+
   return (
     <div className="app">
       <AppContainer ac={ac} title={title}>
@@ -37,13 +41,17 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
         <div className="app-row">
           <VideoView
             ac={ac}
+            playing={playingTissue}
+            setPlaying={setPlayingTissue}
             title={ac.o("LEFTANIMATIONTITLE")}
           />
           <VideoView
             ac={ac}
-            disabled={true}
+            disabled={playingTissue}
             extraClass="cell-view"
             loop={true}
+            playing={playingCell}
+            setPlaying={setPlayingCell}
             title={ac.o("RIGHTANIMATIONTITLE")}
           />
         </div>
