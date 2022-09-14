@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import { AppContext } from "../hooks/use-app-context";
 
+import "./disabled-overlay.scss";
 import "./video-controls.scss";
 
 interface IPlayButton {
@@ -61,6 +62,7 @@ const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
 
 interface IVideoControls {
   ac: AppContext;
+  disabled?: boolean;
   extraClass?: string;
   jumpToPosition: (pos: number) => void;
   onPlayButtonClick: (event: any) => void;
@@ -69,7 +71,7 @@ interface IVideoControls {
   timelineMarks?: Record<number, string>;
 }
 export const VideoControls = ({
-  ac, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
+  ac, disabled, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
 }: IVideoControls) => {
   // Default including marks at the end of the timeline
   const marks = timelineMarks || { 0: " ", 1: " " };
@@ -83,6 +85,7 @@ export const VideoControls = ({
         percentComplete={percentComplete}
         marks={ marks }
       />
+      {disabled && <div className="disabled-overlay" />}
     </div>
   );
 };

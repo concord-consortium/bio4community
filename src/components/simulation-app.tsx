@@ -63,6 +63,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
   };
   const controls = allControls[ac.organ];
 
+  const disabledMessage = "Pause the Simulated Artery to see what happens in the cells";
   return (
     <div className="app">
       <AppContainer ac={ac} title={title}>
@@ -83,6 +84,8 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           />
           <VideoView
             ac={ac}
+            disabled={true}
+            disabledMessage={disabledMessage}
             extraClass="cell-view"
             loop={true}
             title={ac.o("RIGHTSIMULATIONTITLE")}

@@ -12,6 +12,10 @@
     flex-direction: column;
     align-items: center;
 
+    .disabled-overlay {
+      top: -.5px;
+    }
+
     &.animation {
       background-color: #f9efff;
       border: 2px solid #aa2ff0;
@@ -19,6 +23,10 @@
 
       &.cell-view {
         border: 2px solid #ff8415;
+      }
+
+      .disabled-overlay {
+        border-radius: 14px;
       }
 
       .video-view-video {
@@ -32,6 +40,10 @@
       &.cell-view {
         border: 2px solid #ff8415;
         border-radius: 10px;
+
+        .disabled-overlay {
+          border-radius: 10px;
+        }
 
         .video-view-video {
           border-radius: 7px;

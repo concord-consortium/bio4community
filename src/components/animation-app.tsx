@@ -41,6 +41,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           />
           <VideoView
             ac={ac}
+            disabled={true}
             extraClass="cell-view"
             loop={true}
             title={ac.o("RIGHTANIMATIONTITLE")}

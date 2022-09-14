@@ -7,6 +7,7 @@ import { AppContext } from "../hooks/use-app-context";
 
 import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
 
+import "./disabled-overlay.scss";
 import "./video-view.scss";
 
 interface IVideoTitle {
@@ -20,13 +21,17 @@ const VideoTitle = ({ title }: IVideoTitle) => (
 
 interface IVideoView {
   ac: AppContext;
+  disabled?: boolean;
+  disabledMessage?: string;
   extraClass?: string;
   loop?: boolean; // If true, video restarts when it reaches the end
   timelineMarks?: Record<number, string>;
   title: string;
   videoFile?: any;
 }
-export const VideoView = ({ ac, extraClass, loop, timelineMarks, title, videoFile }: IVideoView) => {
+export const VideoView = ({
+  ac, disabled, disabledMessage, extraClass, loop, timelineMarks, title, videoFile
+}: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
@@ -99,6 +104,7 @@ export const VideoView = ({ ac, extraClass, loop, timelineMarks, title, videoFil
     <div className={clsx("video-view", extraClass)}>
       <VideoControls
         ac={ac}
+        disabled={disabled}
         extraClass={extraClass}
         jumpToPosition={jumpToPosition}
         onPlayButtonClick={onPlayButtonClick}
@@ -116,6 +122,11 @@ export const VideoView = ({ ac, extraClass, loop, timelineMarks, title, videoFil
           <source src={videoFile || BloodVesselMP4} type={"video/mp4"} />
         </video>
         <VideoTitle title={title} />
+        {disabled && (
+          <div className="disabled-overlay">
+            {disabledMessage && <div className="disabled-message">{disabledMessage}</div>}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
-  }
+  };
   const getPlayButton = (first: boolean) => {
     const gpb = () => cy.get(".app .video-view .video-view-button");
     if (first) {
