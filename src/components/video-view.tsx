@@ -20,10 +20,12 @@ const VideoTitle = ({ title }: IVideoTitle) => (
 
 interface IVideoView {
   ac: AppContext;
+  loop?: boolean; // If true, video restarts when it reaches the end
   timelineMarks?: Record<number, string>;
   title: string;
+  videoFile?: any;
 }
-export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
+export const VideoView = ({ ac, loop, timelineMarks, title, videoFile }: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
@@ -83,16 +85,25 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
     }
   };
 
+  const onEnded = (event: any) => {
+    if (loop) {
+      jumpToPosition(0);
+      play();
+    } else {
+      pause();
+    }
+  };
+
   return (
     <div className="video-view">
       <div className={clsx("video-pane", ac.mode)}>
         <video
           ref={videoRef}
           onLoadedMetadata={handleLoadedMetadata}
-          onEnded={(event: any) => pause()}
+          onEnded={onEnded}
           className="video-view-video"
         >
-          <source src={BloodVesselMP4} type={"video/mp4"} />
+          <source src={videoFile || BloodVesselMP4} type={"video/mp4"} />
         </video>
         <VideoTitle title={title} />
       </div>
