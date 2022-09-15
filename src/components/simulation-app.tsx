@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { clsx } from "clsx";
+
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
-import { ControlOption, PartialControlOptionProps } from "./control-option";
 import { SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
+import { renderControls } from "../utils/app-data";
 
 import { videos } from "../assets/videos/video-data";
 
@@ -18,66 +20,13 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
   const title = ac.o("SIMULATIONTITLE");
 
-  const allControls: Record<string, (PartialControlOptionProps | string)[]> = {
-    "heart": [
-      {
-        label: ac.o("SIMCONTROL1LABEL"),
-        options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
-      },
-      "divider1",
-      {
-        label: ac.o("SIMCONTROL2LABEL"),
-        options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
-      },
-      "divider2",
-      {
-        label: ac.o("SIMCONTROL3LABEL"),
-        options: [ac.o("SIMCONTROL3OPTION1"), ac.o("SIMCONTROL3OPTION2")]
-      }
-    ],
-    "nose": [
-      {
-        label: ac.o("SIMCONTROL1LABEL"),
-        options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
-      },
-      "divider1",
-      {
-        label: ac.o("SIMCONTROL2LABEL"),
-        options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
-      },
-      "divider2",
-      {
-        label: ac.o("SIMCONTROL3LABEL"),
-        options: [ac.o("SIMCONTROL3OPTION1"), ac.o("SIMCONTROL3OPTION2")]
-      }
-    ],
-    "brain": [
-      {
-        label: ac.o("SIMCONTROL1LABEL"),
-        options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
-      },
-      "divider1",
-      {
-        label: ac.o("SIMCONTROL2LABEL"),
-        options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
-      }
-    ]
-  };
-  const controls = allControls[ac.organ];
-
-  const VerticalDivider = () => <div className="vertical-divider" style={{height: 40}} />;
-
   const disabledMessage = "Pause the Simulated Artery to see what happens in the cells";
   return (
     <div className="app">
       <AppContainer ac={ac} title={title}>
         <div className="options-row">
           <div className="row-header options-header">Options</div>
-          { controls.map((control: PartialControlOptionProps | string) => (
-            typeof control === "string"
-              ? <VerticalDivider key={control} />
-              : <ControlOption ac={ac} key={control.label} label={control.label} options={control.options} />
-          )) }
+          { renderControls(ac) }
         </div>
         <div className="app-row">
           <VideoView
@@ -108,7 +57,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           </div>
           <SimGraph ac={ac} />
           <SimGraph ac={ac} />
-          <div className="vertical-divider" style={{height: 141}}></div>
+          <div className={clsx("divider", ac.mode)} style={{height: 141}} />
           <div className="key-box">
             <button>Key</button>
           </div>

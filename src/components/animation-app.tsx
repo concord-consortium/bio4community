@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
-import { ControlOption } from "./control-option";
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
+import { renderControls } from "../utils/app-data";
 
 import { videos } from "../assets/videos/video-data";
+
+import "./animation-app.scss";
 
 interface AnimationAppProps {
   ac: AppContext;
@@ -23,9 +26,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           <div className="silhouette">Silhouette View</div>
           <div className="controls-pane">
             <Title ac={ac} text="Controls" />
-            <ControlOption ac={ac} label="Stress Level" options={["Low", "High"]} />
-            <div className="divider"></div>
-            <ControlOption ac={ac} label="Cholesterol in Diet" options={["Low", "High"]} />
+            { renderControls(ac) }
             <div className="details-box">
               <button>Show Key</button>
             </div>
