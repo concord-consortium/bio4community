@@ -15,6 +15,7 @@ interface SimulationAppProps {
 export const SimulationApp = ({ ac }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
+  const [targetVideoIndex, setTargetVideoIndex] = useState(0);
   const title = ac.o("SIMULATIONTITLE");
 
   const allControls: Record<string, (ControlOptionProps | string)[]> = {
@@ -23,12 +24,12 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
         label: ac.o("SIMCONTROL1LABEL"),
         options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
       },
-      "divider",
+      "divider1",
       {
         label: ac.o("SIMCONTROL2LABEL"),
         options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
       },
-      "divider",
+      "divider2",
       {
         label: ac.o("SIMCONTROL3LABEL"),
         options: [ac.o("SIMCONTROL3OPTION1"), ac.o("SIMCONTROL3OPTION2")]
@@ -39,12 +40,12 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
         label: ac.o("SIMCONTROL1LABEL"),
         options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
       },
-      "divider",
+      "divider1",
       {
         label: ac.o("SIMCONTROL2LABEL"),
         options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
       },
-      "divider",
+      "divider2",
       {
         label: ac.o("SIMCONTROL3LABEL"),
         options: [ac.o("SIMCONTROL3OPTION1"), ac.o("SIMCONTROL3OPTION2")]
@@ -55,7 +56,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
         label: ac.o("SIMCONTROL1LABEL"),
         options: [ac.o("SIMCONTROL1OPTION1"), ac.o("SIMCONTROL1OPTION2")]
       },
-      "divider",
+      "divider1",
       {
         label: ac.o("SIMCONTROL2LABEL"),
         options: [ac.o("SIMCONTROL2OPTION1"), ac.o("SIMCONTROL2OPTION2")]
@@ -63,6 +64,8 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
     ]
   };
   const controls = allControls[ac.organ];
+
+  const VerticalDivider = () => <div className="vertical-divider" style={{height: 40}} />;
 
   const disabledMessage = "Pause the Simulated Artery to see what happens in the cells";
   return (
@@ -72,7 +75,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           <div className="row-header options-header">Options</div>
           { controls.map((control: ControlOptionProps | string) => (
             typeof control === "string"
-              ? <div className="vertical-divider" style={{height: 40}}></div>
+              ? <VerticalDivider key={control} />
               : <ControlOption key={control.label} label={control.label} options={control.options} />
           )) }
         </div>
@@ -81,6 +84,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             ac={ac}
             playing={playingTissue}
             setPlaying={setPlayingTissue}
+            setTargetVideoIndex={setTargetVideoIndex}
             title={ac.o("LEFTSIMULATIONTITLE")}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
             videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
@@ -95,7 +99,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             setPlaying={setPlayingCell}
             title={ac.o("RIGHTSIMULATIONTITLE")}
             timelineMarks={{ 0: " ", 1: " " }}
-            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][0]}
+            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
           />
         </div>
         <div className="options-row">

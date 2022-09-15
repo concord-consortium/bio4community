@@ -27,17 +27,20 @@ interface IVideoView {
   loop?: boolean; // If true, video restarts when it reaches the end
   playing: boolean;
   setPlaying: (value: boolean) => void;
+  setTargetVideoIndex?: (index: number) => void;
   timelineMarks?: Record<number, string>;
   title: string;
   videoFile?: any;
 }
 export const VideoView = ({
-  ac, disabled, disabledMessage, extraClass, loop, playing, setPlaying, timelineMarks, title, videoFile
+  ac, disabled, disabledMessage, extraClass, loop, playing, setPlaying, setTargetVideoIndex,
+  timelineMarks, title, videoFile
 }: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
 
+  // Keep percentComplete updated based on the video's state
   useEffect(() => {
     const tickInterval = setInterval(() => {
       if (videoRef.current && duration > 0) {
@@ -50,10 +53,24 @@ export const VideoView = ({
     }, 30);
   }, [duration]);
 
+  // Update the target index (timelineMark) to be the closest to the percent complete
   useEffect(() => {
-    videoRef.current?.load();
-  }, [videoRef]);
+    if (timelineMarks && setTargetVideoIndex) {
+      let closestMark = 0;
+      let shortestDistance = 1;
+      for (const [key] of Object.entries(timelineMarks)) {
+        const mark = +key;
+        const distance = Math.abs(mark - percentComplete);
+        if (distance < shortestDistance) {
+          shortestDistance = distance;
+          closestMark = mark;
+        }
+      }
+      setTargetVideoIndex(closestMark);
+    }
+  }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
+  // Set the duration of the video when its length is known
   const handleLoadedMetadata = () => {
     setDuration(videoRef.current?.duration || 0);
   };
@@ -65,6 +82,12 @@ export const VideoView = ({
       setPlaying(false);
     }
   }, [videoRef, setPlaying]);
+
+  // Reload the video when it changes
+  useEffect(() => {
+    pause();
+    videoRef.current?.load();
+  }, [pause, videoRef, videoFile]);
 
   // Pause the video when it becomes disabled
   useEffect(() => {

@@ -14,7 +14,7 @@ import NoseCellCase2 from "./cell/nose/NoseCellCase2.mp4";
 import NoseCellCase3 from "./cell/nose/NoseCellCase3.mp4";
 import NoseCellCase4 from "./cell/nose/NoseCellCase4.mp4";
 
-export const videos = {
+export const videos: any = {
   "tissue": {
     "heart": BloodVesselMP4,
     "nose": BloodVesselMP4,
@@ -23,20 +23,20 @@ export const videos = {
   "cell": {
     "heart": {
       0: BloodCellCase1MP4,
-      .33: BloodCellCase2MP4,
-      .67: BloodCellCase3MP4,
+      .333: BloodCellCase2MP4,
+      .667: BloodCellCase3MP4,
       1: BloodCellCase3MP4
     },
     "nose": {
       0: NoseCellCase1,
-      .33: NoseCellCase2,
-      .67: NoseCellCase3,
+      .333: NoseCellCase2,
+      .667: NoseCellCase3,
       1: NoseCellCase4
     },
     "brain": {
       0: SynapseCase1,
-      .33: SynapseCase2,
-      .67: SynapseCase3,
+      .333: SynapseCase2,
+      .667: SynapseCase3,
       1: SynapseCase4
     }
   }
