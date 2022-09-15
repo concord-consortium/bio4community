@@ -18,7 +18,7 @@ const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
   const icon = playing ? PauseIcon : PlayIcon;
   const label = playing ? "Pause" : "Play";
   return (
-    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{icon} {label}</button>
+    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{label}</button>
   );
 };
 
