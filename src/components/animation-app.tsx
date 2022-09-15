@@ -5,6 +5,8 @@ import { ControlOption } from "./control-option";
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
 
+import { videos } from "../assets/videos/video-data";
+
 interface AnimationAppProps {
   ac: AppContext;
 }
@@ -44,6 +46,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             playing={playingTissue}
             setPlaying={setPlayingTissue}
             title={ac.o("LEFTANIMATIONTITLE")}
+            videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
           />
           <VideoView
             ac={ac}
@@ -53,6 +56,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             playing={playingCell}
             setPlaying={setPlayingCell}
             title={ac.o("RIGHTANIMATIONTITLE")}
+            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][0]}
           />
         </div>
       </AppContainer>

@@ -5,8 +5,7 @@ import { ControlOption, ControlOptionProps } from "./control-option";
 import { SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
 
-import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
-import BloodCellCase1MP4 from "../assets/videos/BloodCellCase1.mp4";
+import { videos } from "../assets/videos/video-data";
 
 import "./simulation-app.scss";
 
@@ -84,7 +83,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             setPlaying={setPlayingTissue}
             title={ac.o("LEFTSIMULATIONTITLE")}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-            videoFile={BloodVesselMP4}
+            videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
           />
           <VideoView
             ac={ac}
@@ -96,7 +95,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             setPlaying={setPlayingCell}
             title={ac.o("RIGHTSIMULATIONTITLE")}
             timelineMarks={{ 0: " ", 1: " " }}
-            videoFile={BloodCellCase1MP4}
+            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][0]}
           />
         </div>
         <div className="options-row">

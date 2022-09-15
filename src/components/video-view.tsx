@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
-import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
+import { videos } from "../assets/videos/video-data";
 
 import "./disabled-overlay.scss";
 import "./video-view.scss";
@@ -128,7 +128,7 @@ export const VideoView = ({
           onEnded={onEnded}
           className={clsx("video-view-video", extraClass)}
         >
-          <source src={videoFile || BloodVesselMP4} type={"video/mp4"} />
+          <source src={videoFile || videos.tissue.heart} type={"video/mp4"} />
         </video>
         <VideoTitle title={title} />
         {disabled && (
