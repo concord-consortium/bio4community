@@ -1,12 +1,13 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
-import BloodVesselMP4 from "../assets/videos/BloodVessel.mp4";
+import { videos } from "../assets/videos/video-data";
 
+import "./disabled-overlay.scss";
 import "./video-view.scss";
 
 interface IVideoTitle {
@@ -20,15 +21,26 @@ const VideoTitle = ({ title }: IVideoTitle) => (
 
 interface IVideoView {
   ac: AppContext;
+  disabled?: boolean;
+  disabledMessage?: string;
+  extraClass?: string;
+  loop?: boolean; // If true, video restarts when it reaches the end
+  playing: boolean;
+  setPlaying: (value: boolean) => void;
+  setTargetVideoIndex?: (index: number) => void;
   timelineMarks?: Record<number, string>;
   title: string;
+  videoFile?: any;
 }
-export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
+export const VideoView = ({
+  ac, disabled, disabledMessage, extraClass, loop, playing, setPlaying, setTargetVideoIndex,
+  timelineMarks, title, videoFile
+}: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [percentComplete, setPercentComplete] = useState(0);
-  const [playing, setPlaying] = useState(false);
 
+  // Keep percentComplete updated based on the video's state
   useEffect(() => {
     const tickInterval = setInterval(() => {
       if (videoRef.current && duration > 0) {
@@ -41,20 +53,48 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
     }, 30);
   }, [duration]);
 
+  // Update the target index (timelineMark) to be the closest to the percent complete
   useEffect(() => {
-    videoRef.current?.load();
-  }, [videoRef]);
+    if (timelineMarks && setTargetVideoIndex) {
+      let closestMark = 0;
+      let shortestDistance = 1;
+      for (const [key] of Object.entries(timelineMarks)) {
+        const mark = +key;
+        const distance = Math.abs(mark - percentComplete);
+        if (distance < shortestDistance) {
+          shortestDistance = distance;
+          closestMark = mark;
+        }
+      }
+      setTargetVideoIndex(closestMark);
+    }
+  }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
+  // Set the duration of the video when its length is known
   const handleLoadedMetadata = () => {
     setDuration(videoRef.current?.duration || 0);
   };
 
-  const pause = () => {
+  // pause() is a callback so it can be used in an effect
+  const pause = useCallback(() => {
     if (videoRef.current) {
       videoRef.current.pause();
       setPlaying(false);
     }
-  };
+  }, [videoRef, setPlaying]);
+
+  // Reload the video when it changes
+  useEffect(() => {
+    pause();
+    videoRef.current?.load();
+  }, [pause, videoRef, videoFile]);
+
+  // Pause the video when it becomes disabled
+  useEffect(() => {
+    if (disabled) {
+      pause();
+    }
+  }, [disabled, pause]);
 
   const play = () => {
     if (videoRef.current) {
@@ -83,27 +123,43 @@ export const VideoView = ({ ac, timelineMarks, title }: IVideoView) => {
     }
   };
 
+  const onEnded = (event: any) => {
+    if (loop) {
+      jumpToPosition(0);
+      play();
+    } else {
+      pause();
+    }
+  };
+
   return (
-    <div className="video-view">
-      <div className={clsx("video-pane", ac.mode)}>
-        <video
-          ref={videoRef}
-          onLoadedMetadata={handleLoadedMetadata}
-          onEnded={(event: any) => pause()}
-          className="video-view-video"
-        >
-          <source src={BloodVesselMP4} type={"video/mp4"} />
-        </video>
-        <VideoTitle title={title} />
-      </div>
+    <div className={clsx("video-view", extraClass)}>
       <VideoControls
         ac={ac}
+        disabled={disabled}
+        extraClass={extraClass}
         jumpToPosition={jumpToPosition}
         onPlayButtonClick={onPlayButtonClick}
         percentComplete={percentComplete}
         playing={playing}
         timelineMarks={timelineMarks}
       />
+      <div className={clsx("video-pane", ac.mode, extraClass)}>
+        <video
+          ref={videoRef}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={onEnded}
+          className={clsx("video-view-video", extraClass)}
+        >
+          <source src={videoFile || videos.tissue.heart} type={"video/mp4"} />
+        </video>
+        <VideoTitle title={title} />
+        {disabled && (
+          <div className="disabled-overlay">
+            {disabledMessage && <div className="disabled-message">{disabledMessage}</div>}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

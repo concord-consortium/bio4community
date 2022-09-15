@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
 import { ControlOption } from "./control-option";
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
 
+import { videos } from "../assets/videos/video-data";
+
 interface AnimationAppProps {
   ac: AppContext;
 }
 export const AnimationApp = ({ ac }: AnimationAppProps) => {
+  const [playingTissue, setPlayingTissue] = useState(false);
+  const [playingCell, setPlayingCell] = useState(false);
+
   const title = ac.o("ANIMATIONTITLE");
+
   return (
     <div className="app">
       <AppContainer ac={ac} title={title}>
@@ -35,8 +41,23 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           </div>
         </div>
         <div className="app-row">
-          <VideoView ac={ac} title={ac.o("LEFTANIMATIONTITLE")} />
-          <VideoView ac={ac} title={ac.o("RIGHTANIMATIONTITLE")} />
+          <VideoView
+            ac={ac}
+            playing={playingTissue}
+            setPlaying={setPlayingTissue}
+            title={ac.o("LEFTANIMATIONTITLE")}
+            videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
+          />
+          <VideoView
+            ac={ac}
+            disabled={playingTissue}
+            extraClass="cell-view"
+            loop={true}
+            playing={playingCell}
+            setPlaying={setPlayingCell}
+            title={ac.o("RIGHTANIMATIONTITLE")}
+            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][0]}
+          />
         </div>
       </AppContainer>
     </div>

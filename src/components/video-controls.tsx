@@ -3,6 +3,10 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import { AppContext } from "../hooks/use-app-context";
 
+// import { PauseIcon } from "../assets/icons/pause-icon.svg";
+// import { PlayIcon } from "../assets/icons/play-icon.svg";
+
+import "./disabled-overlay.scss";
 import "./video-controls.scss";
 
 interface IPlayButton {
@@ -11,6 +15,7 @@ interface IPlayButton {
   onClick: (event: any) => void;
 }
 const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
+  // const icon = playing ? PauseIcon : PlayIcon;
   const label = playing ? "Pause" : "Play";
   return (
     <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{label}</button>
@@ -61,6 +66,8 @@ const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
 
 interface IVideoControls {
   ac: AppContext;
+  disabled?: boolean;
+  extraClass?: string;
   jumpToPosition: (pos: number) => void;
   onPlayButtonClick: (event: any) => void;
   percentComplete: number;
@@ -68,13 +75,13 @@ interface IVideoControls {
   timelineMarks?: Record<number, string>;
 }
 export const VideoControls = ({
-  ac, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
+  ac, disabled, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
 }: IVideoControls) => {
   // Default including marks at the end of the timeline
   const marks = timelineMarks || { 0: " ", 1: " " };
 
   return (
-    <div className={clsx("video-controls", ac.mode)}>
+    <div className={clsx("video-controls", ac.mode, extraClass)}>
       <PlayButton playing={playing} onClick={onPlayButtonClick} ac={ac} />
       <div className="vertical-divider" />
       <TimeTrack
@@ -82,6 +89,7 @@ export const VideoControls = ({
         percentComplete={percentComplete}
         marks={ marks }
       />
+      {disabled && <div className="disabled-overlay" />}
     </div>
   );
 };
