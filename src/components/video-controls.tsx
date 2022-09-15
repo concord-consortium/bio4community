@@ -3,8 +3,8 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import { AppContext } from "../hooks/use-app-context";
 
-// import { PauseIcon } from "../assets/icons/pause-icon.svg";
-// import { PlayIcon } from "../assets/icons/play-icon.svg";
+import PauseIcon from "../assets/icons/pause-icon.svg";
+import PlayIcon from "../assets/icons/play-icon.svg";
 
 import "./disabled-overlay.scss";
 import "./video-controls.scss";
@@ -15,10 +15,19 @@ interface IPlayButton {
   onClick: (event: any) => void;
 }
 const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
-  // const icon = playing ? PauseIcon : PlayIcon;
+  const icon = playing
+    ? <PauseIcon className="button-icon pause-button-icon" />
+    : <PlayIcon className="button-icon play-button-icon" />;
   const label = playing ? "Pause" : "Play";
   return (
-    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >{label}</button>
+    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >
+      <div className="button-icon-container">
+        {icon}
+      </div>
+      <div className="button-label">
+        {label}
+      </div>
+    </button>
   );
 };
 
