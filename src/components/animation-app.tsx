@@ -23,9 +23,9 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           <div className="silhouette">Silhouette View</div>
           <div className="controls-pane">
             <Title ac={ac} text="Controls" />
-            <ControlOption label="Stress Level" options={["Low", "High"]} />
+            <ControlOption ac={ac} label="Stress Level" options={["Low", "High"]} />
             <div className="divider"></div>
-            <ControlOption label="Cholesterol in Diet" options={["Low", "High"]} />
+            <ControlOption ac={ac} label="Cholesterol in Diet" options={["Low", "High"]} />
             <div className="details-box">
               <button>Show Key</button>
             </div>

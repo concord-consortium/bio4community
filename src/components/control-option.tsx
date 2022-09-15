@@ -1,14 +1,25 @@
 import React from "react";
+import ToggleControl from "./toggle-control";
+import { AppContext } from "../hooks/use-app-context";
 
-export interface ControlOptionProps {
+import "./control-option.scss";
+
+export interface PartialControlOptionProps {
   label: string;
   options: [string, string];
 }
-export const ControlOption = ({ label, options }: ControlOptionProps) => {
+export interface ControlOptionProps extends PartialControlOptionProps{
+  ac: AppContext;
+}
+export const ControlOption = ({ ac, label, options }: ControlOptionProps) => {
   return (
     <div className="control-option">
       <div className="control-option-label">{`${label}:`}</div>
-      <div>{`${options[0]} or ${options[1]}`}</div>
+      <div className="control-option-main">
+        {options[0]}
+        <ToggleControl ac={ac} />
+        {options[1]}
+      </div>
     </div>
   );
 };

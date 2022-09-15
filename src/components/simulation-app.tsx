@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
-import { ControlOption, ControlOptionProps } from "./control-option";
+import { ControlOption, PartialControlOptionProps } from "./control-option";
 import { SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
 
@@ -18,7 +18,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
   const title = ac.o("SIMULATIONTITLE");
 
-  const allControls: Record<string, (ControlOptionProps | string)[]> = {
+  const allControls: Record<string, (PartialControlOptionProps | string)[]> = {
     "heart": [
       {
         label: ac.o("SIMCONTROL1LABEL"),
@@ -73,10 +73,10 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
       <AppContainer ac={ac} title={title}>
         <div className="options-row">
           <div className="row-header options-header">Options</div>
-          { controls.map((control: ControlOptionProps | string) => (
+          { controls.map((control: PartialControlOptionProps | string) => (
             typeof control === "string"
               ? <VerticalDivider key={control} />
-              : <ControlOption key={control.label} label={control.label} options={control.options} />
+              : <ControlOption ac={ac} key={control.label} label={control.label} options={control.options} />
           )) }
         </div>
         <div className="app-row">
