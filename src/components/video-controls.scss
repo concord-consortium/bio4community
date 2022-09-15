@@ -59,6 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 
     height: 32px;
     margin: 0 8px;
@@ -94,11 +95,25 @@
       background-color: #ecc9ff;
       border: 2px solid #aa2ff0;
       border-radius: 16px;
+      
+      &:hover {
+        background-color: #e3b1ff;
+      }
+      &:active {
+        background-color: #d68cff;
+      }
     }
     &.simulation {
       background-color: #b7e2ec;
       border: 2px solid #0481a0;
       border-radius: 5px;
+      
+      &:hover {
+        background-color: #93d5e4;
+      }
+      &:active {
+        background-color: #6fc6da;
+      }
     }
   }
 
