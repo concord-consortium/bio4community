@@ -6,7 +6,7 @@ import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
 import { renderControls } from "../utils/app-data";
 
-import { videos } from "../assets/videos/video-data";
+import { aniVideos } from "../assets/videos/video-data";
 
 import "./animation-app.scss";
 
@@ -16,6 +16,7 @@ interface AnimationAppProps {
 export const AnimationApp = ({ ac }: AnimationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
+  const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
@@ -29,6 +30,8 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
   }, [ac, control2]);
 
   const title = ac.o("ANIMATIONTITLE");
+
+  const bti = (bool: boolean) => bool ? 1 : 0;
 
   return (
     <div className="app">
@@ -57,8 +60,12 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             ac={ac}
             playing={playingTissue}
             setPlaying={setPlayingTissue}
+            setTargetVideoIndex={setTargetVideoIndex}
+            timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
             title={ac.o("LEFTANIMATIONTITLE")}
-            videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
+            videoFile={(
+              aniVideos.tissue as Record<string, any[][]>)[ac.organ][bti(control1)][bti(control2)]
+            }
           />
           <VideoView
             ac={ac}
@@ -68,7 +75,10 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             playing={playingCell}
             setPlaying={setPlayingCell}
             title={ac.o("RIGHTANIMATIONTITLE")}
-            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][0]}
+            videoFile={
+              (aniVideos.cell as
+                Record<string, Record<number, any>[][]>)[ac.organ][bti(control1)][bti(control2)][targetVideoIndex]
+            }
           />
         </div>
       </AppContainer>

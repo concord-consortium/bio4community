@@ -7,7 +7,7 @@ import { SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
 import { renderControls } from "../utils/app-data";
 
-import { videos } from "../assets/videos/video-data";
+import { simVideos } from "../assets/videos/video-data";
 
 import "./simulation-app.scss";
 
@@ -52,7 +52,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             setTargetVideoIndex={setTargetVideoIndex}
             title={ac.o("LEFTSIMULATIONTITLE")}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-            videoFile={(videos.tissue as Record<string, any>)[ac.organ]}
+            videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
           />
           <VideoView
             ac={ac}
@@ -64,7 +64,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             setPlaying={setPlayingCell}
             title={ac.o("RIGHTSIMULATIONTITLE")}
             timelineMarks={{ 0: " ", 1: " " }}
-            videoFile={(videos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
+            videoFile={(simVideos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
           />
         </div>
         <div className="options-row">
