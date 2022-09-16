@@ -8,6 +8,8 @@ import { AppContext } from "../hooks/use-app-context";
 import { renderControls } from "../utils/app-data";
 
 import { simVideos } from "../assets/videos/video-data";
+import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
+import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
 
@@ -32,14 +34,34 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
     console.log(`${ac.o("SIMCONTROL3LABEL")}: ${ac.o(control3 ? "SIMCONTROL3OPTION2" : "SIMCONTROL3OPTION1")}`);
   }, [ac, control3]);
 
+  interface IRowHeader {
+    backgroundSvg: any;
+    headerText: string;
+    headerTextSub?: string;
+  }
+  const RowHeader = ({ backgroundSvg, headerText, headerTextSub }: IRowHeader) => (
+    <div className="row-header">
+      {backgroundSvg}
+      <div className="row-header-text">
+        {headerText}
+        {headerTextSub && (
+          <div className="row-header-text-sub">
+            {headerTextSub}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
     <div className="app">
       <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
         <div className="options-row">
-          <div className="row-header options-header">Options</div>
+          <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
           { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
+          <div />
         </div>
         <div className="app-row">
           <VideoView
@@ -65,9 +87,11 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           />
         </div>
         <div className="options-row">
-          <div className="row-header results-header">
-            Results: Response over time
-          </div>
+          <RowHeader
+            backgroundSvg={<ResultsLabelBack />}
+            headerText={ac.t("SIMRESULTSHEADER")}
+            headerTextSub={ac.t("SIMRESULTSSUB")}
+          />
           <SimGraph ac={ac} />
           <SimGraph ac={ac} />
           <div className={clsx("divider", ac.mode)} style={{height: 141}} />

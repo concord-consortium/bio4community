@@ -70,5 +70,8 @@
   "BRAIN.ANICONTROL2OPTION1": "Low",
   "BRAIN.ANICONTROL2OPTION2": "High",
 
-  "DISABLEDCELLMESSAGE": "Pause the VIDEOTITLE to see what happens in the cells"
+  "DISABLEDCELLMESSAGE": "Pause the VIDEOTITLE to see what happens in the cells",
+  "SIMOPTIONSHEADER": "Options",
+  "SIMRESULTSHEADER": "Results:",
+  "SIMRESULTSSUB": "Response over time"
 }
