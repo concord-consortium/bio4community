@@ -20,22 +20,18 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
 
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
-
   useEffect(() => {
     console.log(`${ac.o("ANICONTROL1LABEL")}: ${ac.o(control1 ? "ANICONTROL1OPTION2" : "ANICONTROL1OPTION1")}`);
   }, [ac, control1]);
-
   useEffect(() => {
     console.log(`${ac.o("ANICONTROL2LABEL")}: ${ac.o(control2 ? "ANICONTROL2OPTION2" : "ANICONTROL2OPTION1")}`);
   }, [ac, control2]);
 
-  const title = ac.o("ANIMATIONTITLE");
-
-  const bti = (bool: boolean) => bool ? 1 : 0;
-
+  const tissueTitle = ac.o("LEFTANIMATIONTITLE");
+  const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
     <div className="app">
-      <AppContainer ac={ac} title={title}>
+      <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
         <div className="app-row">
           <div className="silhouette">Silhouette View</div>
           <div className="controls-pane">
@@ -62,14 +58,15 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             setPlaying={setPlayingTissue}
             setTargetVideoIndex={setTargetVideoIndex}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-            title={ac.o("LEFTANIMATIONTITLE")}
+            title={tissueTitle}
             videoFile={(
-              aniVideos.tissue as Record<string, any[][]>)[ac.organ][bti(control1)][bti(control2)]
+              aniVideos.tissue as Record<string, any[][]>)[ac.organ][+control1][+control2]
             }
           />
           <VideoView
             ac={ac}
             disabled={playingTissue}
+            disabledMessage={disabledMessage}
             extraClass="cell-view"
             loop={true}
             playing={playingCell}
@@ -77,7 +74,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             title={ac.o("RIGHTANIMATIONTITLE")}
             videoFile={
               (aniVideos.cell as
-                Record<string, Record<number, any>[][]>)[ac.organ][bti(control1)][bti(control2)][targetVideoIndex]
+                Record<string, Record<number, any>[][]>)[ac.organ][+control1][+control2][targetVideoIndex]
             }
           />
         </div>

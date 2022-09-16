@@ -18,28 +18,25 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
-  const title = ac.o("SIMULATIONTITLE");
 
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
   const [control3, setControl3] = useState(false);
-
   useEffect(() => {
     console.log(`${ac.o("SIMCONTROL1LABEL")}: ${ac.o(control1 ? "SIMCONTROL1OPTION2" : "SIMCONTROL1OPTION1")}`);
   }, [ac, control1]);
-
   useEffect(() => {
     console.log(`${ac.o("SIMCONTROL2LABEL")}: ${ac.o(control2 ? "SIMCONTROL2OPTION2" : "SIMCONTROL2OPTION1")}`);
   }, [ac, control2]);
-
   useEffect(() => {
     console.log(`${ac.o("SIMCONTROL3LABEL")}: ${ac.o(control3 ? "SIMCONTROL3OPTION2" : "SIMCONTROL3OPTION1")}`);
   }, [ac, control3]);
 
-  const disabledMessage = "Pause the Simulated Artery to see what happens in the cells";
+  const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
+  const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
     <div className="app">
-      <AppContainer ac={ac} title={title}>
+      <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
         <div className="options-row">
           <div className="row-header options-header">Options</div>
           { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
@@ -50,7 +47,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
             playing={playingTissue}
             setPlaying={setPlayingTissue}
             setTargetVideoIndex={setTargetVideoIndex}
-            title={ac.o("LEFTSIMULATIONTITLE")}
+            title={tissueTitle}
             timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
             videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
           />
