@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
 import { VideoView } from "./video-view";
@@ -20,13 +20,29 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
   const title = ac.o("SIMULATIONTITLE");
 
+  const [control1, setControl1] = useState(false);
+  const [control2, setControl2] = useState(false);
+  const [control3, setControl3] = useState(false);
+
+  useEffect(() => {
+    console.log(`${ac.o("SIMCONTROL1LABEL")}: ${ac.o(control1 ? "SIMCONTROL1OPTION2" : "SIMCONTROL1OPTION1")}`);
+  }, [ac, control1]);
+
+  useEffect(() => {
+    console.log(`${ac.o("SIMCONTROL2LABEL")}: ${ac.o(control2 ? "SIMCONTROL2OPTION2" : "SIMCONTROL2OPTION1")}`);
+  }, [ac, control2]);
+
+  useEffect(() => {
+    console.log(`${ac.o("SIMCONTROL3LABEL")}: ${ac.o(control3 ? "SIMCONTROL3OPTION2" : "SIMCONTROL3OPTION1")}`);
+  }, [ac, control3]);
+
   const disabledMessage = "Pause the Simulated Artery to see what happens in the cells";
   return (
     <div className="app">
       <AppContainer ac={ac} title={title}>
         <div className="options-row">
           <div className="row-header options-header">Options</div>
-          { renderControls(ac) }
+          { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
         </div>
         <div className="app-row">
           <VideoView

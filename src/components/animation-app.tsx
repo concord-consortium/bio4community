@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { VideoView } from "./video-view";
 import { AppContainer } from "./app-container";
@@ -17,6 +17,17 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
 
+  const [control1, setControl1] = useState(false);
+  const [control2, setControl2] = useState(false);
+
+  useEffect(() => {
+    console.log(`${ac.o("ANICONTROL1LABEL")}: ${ac.o(control1 ? "ANICONTROL1OPTION2" : "ANICONTROL1OPTION1")}`);
+  }, [ac, control1]);
+
+  useEffect(() => {
+    console.log(`${ac.o("ANICONTROL2LABEL")}: ${ac.o(control2 ? "ANICONTROL2OPTION2" : "ANICONTROL2OPTION1")}`);
+  }, [ac, control2]);
+
   const title = ac.o("ANIMATIONTITLE");
 
   return (
@@ -26,7 +37,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           <div className="silhouette">Silhouette View</div>
           <div className="controls-pane">
             <Title ac={ac} text="Controls" />
-            { renderControls(ac) }
+            { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
             <div className="details-box">
               <button>Show Key</button>
             </div>

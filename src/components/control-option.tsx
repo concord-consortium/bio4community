@@ -10,14 +10,15 @@ export interface PartialControlOptionProps {
 }
 export interface ControlOptionProps extends PartialControlOptionProps{
   ac: AppContext;
+  onChange?: (value: boolean) => void;
 }
-export const ControlOption = ({ ac, label, options }: ControlOptionProps) => {
+export const ControlOption = ({ ac, label, onChange, options }: ControlOptionProps) => {
   return (
     <div className="control-option">
       <div className="control-option-label">{`${label}:`}</div>
       <div className="control-option-main">
         {options[0]}
-        <ToggleControl ac={ac} />
+        <ToggleControl ac={ac} onChange={onChange} />
         {options[1]}
       </div>
     </div>

@@ -52,12 +52,23 @@ export const getControls = (ac: AppContext): (PartialControlOptionProps | string
   }
   return controls;
 };
-export const renderControls = (ac: AppContext) => {
+interface IRenderControls {
+  ac: AppContext;
+  onChanges?: ((value: boolean) => void)[]; // A list of change functions that will be assigned to the controls in order
+}
+export const renderControls = ({ ac, onChanges }: IRenderControls) => {
   const Divider = () => <div className={clsx("divider", ac.mode)} />;
 
+  let onChangeIndex = 0;
   return getControls(ac).map((control: PartialControlOptionProps | string) => {
     return typeof control === "string"
       ? <Divider key={control} />
-      : <ControlOption ac={ac} key={control.label} label={control.label} options={control.options} />;
+      : <ControlOption
+        ac={ac}
+        key={control.label}
+        label={control.label}
+        onChange={onChanges && onChangeIndex < onChanges.length ? onChanges[onChangeIndex++] : undefined}
+        options={control.options}
+      />;
   });
 };
