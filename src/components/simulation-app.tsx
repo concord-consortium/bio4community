@@ -95,7 +95,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           <SimGraph ac={ac} />
           <SimGraph ac={ac} />
           <div className={clsx("divider", ac.mode)} style={{height: 141}} />
-          <div className="key-box">
+          <div className="key-box simulation">
             <button>Key</button>
           </div>
         </div>

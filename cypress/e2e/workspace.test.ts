@@ -1,3 +1,4 @@
+import textDict from "../../src/utils/translation/lang/en-us.json";
 
 context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
@@ -54,6 +55,36 @@ context("Test the overall app", () => {
       getPlayButton(true).should("have.text", "Pause");
       getLastLabel().click();
       getPlayButton(true).should("have.text", "Play");
+    });
+  });
+
+  describe("Animation stress input", () => {
+    // Only works for brain animation! Other animations should get the first toggle-control.
+    const getStressControl = () => cy.get(".app .toggle-control").last(); 
+
+    beforeEach(() => {
+      visitPage("animation", "brain");
+    });
+    it(`renders the correct stress text`, () => {
+      const getStressExampleText = () => cy.get(".app .stress-example");
+      getStressExampleText().should("have.text", textDict.LOWSTRESSEXAMPLE);
+      getStressControl().click();
+      getStressExampleText().should("have.text", textDict.HIGHSTRESSEXAMPLE);
+    });
+    it(`saves examples`, () => {
+      const getTextArea = () => cy.get(".app .stress-pane textarea");
+      const exampleText = "example text";
+      const exampleText2 = "example2";
+      getTextArea().type(exampleText);
+      getTextArea().blur();
+      getTextArea().should("have.text", exampleText);
+      getStressControl().click();
+      getTextArea().should("have.text", "");
+      getTextArea().type(exampleText2);
+      getStressControl().click();
+      getTextArea().should("have.text", exampleText);
+      getStressControl().click();
+      getTextArea().should("have.text", exampleText2);
     });
   });
 });
