@@ -3,6 +3,27 @@
   background-color: #c765ff;
 }
 
+.silhouette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 230px;
+  height: 216px;
+
+  border: 2px solid #aa2ff0;
+  border-radius: 14px;
+}
+
+.controls-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+
+  width: 300px;
+}
+
 .key-box.animation {
   display: flex;
   flex-direction: column;
@@ -30,10 +51,10 @@
   margin-top: 5px;
 
   div {
-    margin: 0 20px;
+    margin: 0 10px;
 
     &.stress-example {
-      margin: 0 30px;
+      margin: 0 20px;
     }
   }
 }
