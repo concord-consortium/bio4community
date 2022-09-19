@@ -68,9 +68,9 @@ context("Test the overall app", () => {
     });
     it(`renders the correct stress text`, () => {
       const getStressExampleText = () => cy.get(".app .stress-example");
-      getStressExampleText().should("have.text", textDict["LOWSTRESSEXAMPLE"]);
+      getStressExampleText().should("have.text", textDict.LOWSTRESSEXAMPLE);
       getStressControl().click();
-      getStressExampleText().should("have.text", textDict["HIGHSTRESSEXAMPLE"]);
+      getStressExampleText().should("have.text", textDict.HIGHSTRESSEXAMPLE);
     });
     it(`saves examples`, () => {
       const getTextArea = () => cy.get(".app .stress-pane textarea");
