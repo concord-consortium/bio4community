@@ -73,5 +73,9 @@
   "DISABLEDCELLMESSAGE": "Pause the VIDEOTITLE to see what happens in the cells",
   "SIMOPTIONSHEADER": "Options",
   "SIMRESULTSHEADER": "Results:",
-  "SIMRESULTSSUB": "Response over time"
+  "SIMRESULTSSUB": "Response over time",
+
+  "HIGHSTRESSINTRO": "A possible high stress situation may be something like:",
+  "HIGHSTRESSEXAMPLE": "Not having enough time to eat lunch in the cafeteria",
+  "HIGHSTRESSPROMPT": "If you would like to describe a different high stress situation, type it here:"
 }

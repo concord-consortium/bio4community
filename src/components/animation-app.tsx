@@ -27,6 +27,25 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
     console.log(`${ac.o("ANICONTROL2LABEL")}: ${ac.o(control2 ? "ANICONTROL2OPTION2" : "ANICONTROL2OPTION1")}`);
   }, [ac, control2]);
 
+  interface IStressPane {
+    high: boolean;
+  }
+  const StressPane = ({ high }: IStressPane) => {
+    return (
+      <div className="stress-pane">
+        <Title ac={ac} text="Stress Input" />
+        <div className="details-box">
+          <div>{ ac.t(high ? "HIGHSTRESSINTRO" : "LOWSTRESSINTRO") }</div>
+          <div className="stress-example">{ ac.t(high ? "HIGHSTRESSEXAMPLE" : "LOWSTRESSEXAMPLE") }</div>
+          <div className="stress-prompt">{ ac.t(high ? "HIGHSTRESSPROMPT" : "HIGHSTRESSPROMPT") }</div>
+          <textarea className="stress-entry" cols={54} rows={3} >
+            Sample text
+          </textarea>
+        </div>
+      </div>
+    );
+  };
+
   const tissueTitle = ac.o("LEFTANIMATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
@@ -37,19 +56,11 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
           <div className="controls-pane">
             <Title ac={ac} text="Controls" />
             { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
-            <div className="details-box">
+            <div className="key-box animation">
               <button>Show Key</button>
             </div>
           </div>
-          <div className="details-pane">
-            <Title ac={ac} text="Stress Input" />
-            <div className="details-box">
-              <p>Text text text more text</p>
-              <p>Another paragraph with more text</p>
-              <p>Keep the text coming</p>
-              <p>And one more for good measure</p>
-            </div>
-          </div>
+          <StressPane high={true} />
         </div>
         <div className="app-row">
           <VideoView
