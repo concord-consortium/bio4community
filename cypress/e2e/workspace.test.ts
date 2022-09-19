@@ -1,4 +1,3 @@
-import { createYield } from "typescript";
 import textDict from "../../src/utils/translation/lang/en-us.json";
 
 context("Test the overall app", () => {
