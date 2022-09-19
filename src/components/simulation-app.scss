@@ -6,11 +6,9 @@
 
 .row-header {
   display: flex;
-  justify-content: center;
   align-items: center;
 
   width: 80px;
-  background-color: #b7e2ec;
   font-weight: bold;
 }
 
@@ -18,9 +16,17 @@
   height: 60px;
 }
 
-.results-header {
-  height: 151px;
+.row-header-text {
+  position: absolute;
+  width: 54px;
   padding-left: 10px;
+
+  font-weight: bold;
+  font-size: 14px;
+
+  .row-header-text-sub {
+    font-size: 12px;
+  }
 }
 
 .key-box {
@@ -29,7 +35,8 @@
   background-color: #f0f9fb;
 }
 
-.vertical-divider {
+.divider.simulation {
   width: 1px;
+  height: 40px;
   background-color: #0592af;
 }

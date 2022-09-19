@@ -1,0 +1,65 @@
+// Taken from the CLUE codebase
+
+.toggle-control {
+  box-sizing: content-box;
+  width: 34px;
+  height: 14px;
+  cursor: pointer;
+
+  .track {
+    width: 31px;
+    height: 11px;
+    border-radius: 7px;
+    background-color: white;
+    border: 1.5px solid #949494;
+
+    &.toggle-on {
+      &.animation {
+        background-color: #aa2ff0;
+        border-color: #aa2ff0;
+      }
+      &.simulation {
+        background-color: #0481a0;
+        border-color: #0481a0;
+      }
+    }
+  }
+
+  .ball {
+    position: relative;
+    top: -17.5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #979797;
+    transition-property: transform;
+    transition-duration: .25s;
+
+    &.animation {
+      background-color: #f4e0ff;
+      
+      &:hover {
+        background-color: #e3b1ff;
+      }
+      &:active {
+        background-color: #d68cff;
+      }
+    }
+
+    &.simulation {
+      border-color: #949494;
+      background-color: #e2f4f8;
+      
+      &:hover {
+        background-color: #b7e2ec;
+      }
+      &:active {
+        background-color: #6fc6da;
+      }
+    }
+
+    &.toggle-on {
+      transform: translate(14px, 0);
+    }
+  }
+}

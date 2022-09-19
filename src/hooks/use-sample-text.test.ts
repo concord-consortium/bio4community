@@ -4,8 +4,8 @@ import { useSampleText } from "./use-sample-text";
 const HookWrapper = () => useSampleText();
 
 describe("useSampleText", () => {
-  it("returns Hello World", () => {
+  it("returns heart", () => {
     const { result } = renderHook(HookWrapper);
-    expect(result.current).toEqual("Hello World");
+    expect(result.current).toEqual("heart");
   });
 });

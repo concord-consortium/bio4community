@@ -1,0 +1,19 @@
+.control-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+
+  .control-option-label {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 700;
+  }
+
+  .control-option-main {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

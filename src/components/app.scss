@@ -32,7 +32,7 @@
   .app-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .silhouette {
@@ -47,19 +47,6 @@
     border-radius: 14px;
   }
 
-  .control-option {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    .control-option-label {
-      display: flex;
-      justify-content: flex-end;
-      font-weight: 700;
-    }
-  }
-
   .controls-pane {
     display: flex;
     flex-direction: column;
@@ -67,12 +54,6 @@
     align-items: stretch;
 
     width: 300px;
-
-    .divider {
-      // width: 280px;
-      height: 1px;
-      background-color: #c765ff;
-    }
   }
 
   .details-box {
