@@ -74,13 +74,17 @@ context("Test the overall app", () => {
     it(`saves examples`, () => {
       const getTextArea = () => cy.get(".app .stress-pane textarea");
       const exampleText = "example text";
+      const exampleText2 = "example2";
       getTextArea().type(exampleText);
       getTextArea().blur();
       getTextArea().should("have.text", exampleText);
       getStressControl().click();
       getTextArea().should("have.text", "");
+      getTextArea().type(exampleText2);
       getStressControl().click();
       getTextArea().should("have.text", exampleText);
+      getStressControl().click();
+      getTextArea().should("have.text", exampleText2);
     });
   });
 });
