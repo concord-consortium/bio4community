@@ -12,11 +12,14 @@ export const App = () => {
   const organ: string = params.get("organ") || "heart";
   const ac = useAppContext({ mode, organ });
 
+  // Key state
   const [keyVisible, setKeyVisible] = useState(false);
-  const [keyPosition, setKeyPosition] = useState([0, 0]);
+  // Starts approximately centered based on hard coded size of app and key
+  const [keyPosition, setKeyPosition] = useState([(940 - 255) / 2, (598 - 439) / 2]);
   const [keyDragging, setKeyDragging] = useState(false);
   const [keyOffset, setKeyOffset] = useState([0, 0]);
 
+  // Key movement is handled in the app so fast mouse movement is captured
   const handleMouseMove = (event: any) => {
     if (keyDragging) {
       setKeyPosition([event.clientX - keyOffset[0], event.clientY - keyOffset[1]]);
