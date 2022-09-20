@@ -19,7 +19,7 @@ export const App = () => {
       { mode === "animation" ? <AnimationApp ac={ac} setKeyVisible={setKeyVisible} />
         : mode === "simulation" ? <SimulationApp ac={ac} setKeyVisible={setKeyVisible} />
         : <div>Unknown mode.</div> }
-      <AppKey ac={ac} visible={keyVisible} />
+      <AppKey ac={ac} handleClose={() => setKeyVisible(false)} visible={keyVisible} />
     </div>
   );
 };

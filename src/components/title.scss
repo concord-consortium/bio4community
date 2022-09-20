@@ -1,15 +1,56 @@
 .title-box {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 4px;
   font-weight: 700;
   
   &.animation {
     border-radius: 14px;
     background-color: #f0d5ff;
+
+    .title-close-button {
+      background-color: #f0d5ff;
+    
+      &:hover {
+        background-color: #e3b1ff;
+      }
+      &:active {
+        background-color: #d68cff;
+      }
+    }
   }
   &.simulation {
     background-color: #cdebf2;
+
+    .title-close-button {
+      background-color: #cdebf2;
+    
+      &:hover {
+        background-color: #93d5e4;
+      }
+      &:active {
+        background-color: #6fc6da;
+      }
+    }
+  }
+
+  .title-close-box {
+    width: 20px;
+    height: 20px;
+
+    .title-close-button {
+      width: 20px;
+      height: 20px;
+      border: 0px;
+      padding: 0;
+      background-color: rbga(0, 0, 0, 0);
+
+      .title-close-icon {
+        position: relative;
+        left: -2px;
+        top: -2px;
+      }
+    }
   }
 }

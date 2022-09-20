@@ -8,9 +8,10 @@ import "./app-key.scss";
 
 interface IAppKey {
   ac: AppContext;
+  handleClose?: () => void;
   visible: boolean;
 }
-export const AppKey = ({ ac, visible }: IAppKey) => {
+export const AppKey = ({ ac, handleClose, visible }: IAppKey) => {
   const [position, setPosition] = useState([0, 0]);
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState([0, 0]);
@@ -42,7 +43,7 @@ export const AppKey = ({ ac, visible }: IAppKey) => {
         top: position[1]
       }}
     >
-      <Title ac={ac} text="Key" />
+      <Title ac={ac} handleClose={handleClose} text="Key" />
     </div>
   );
 };
