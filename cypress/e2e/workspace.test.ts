@@ -5,7 +5,7 @@ context("Test the overall app", () => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
   };
   const getPlayButton = (first: boolean) => {
-    const gpb = () => cy.get(".app .video-view .video-view-button");
+    const gpb = () => cy.get(".app .video-view .app-button.play-button");
     if (first) {
       return gpb().first();
     } else {

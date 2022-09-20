@@ -61,7 +61,7 @@ export const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
   const label = playing ? "Pause" : "Play";
   return (
     <AppButton
-      buttonClass={clsx("app-button", ac.mode)}
+      buttonClass={clsx("app-button", "play-button", ac.mode)}
       icon={icon}
       label={label}
       onClick={onClick}
