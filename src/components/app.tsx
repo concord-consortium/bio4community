@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AnimationApp } from "./animation-app";
+import { AppKey } from "./app-key";
 import { SimulationApp } from "./simulation-app";
 import { useAppContext } from "../hooks/use-app-context";
 
@@ -12,11 +13,13 @@ export const App = () => {
   const ac = useAppContext({ mode, organ });
 
   const [keyVisible, setKeyVisible] = useState(false);
-  useEffect(() => {
-    console.log(`key visible`, keyVisible);
-  }, [keyVisible]);
 
-  return mode === "animation" ? <AnimationApp ac={ac} setKeyVisible={setKeyVisible} />
-    : mode === "simulation" ? <SimulationApp ac={ac} setKeyVisible={setKeyVisible} />
-    : <div>Unknown mode.</div>;
+  return (
+    <div className="app">
+      { mode === "animation" ? <AnimationApp ac={ac} setKeyVisible={setKeyVisible} />
+        : mode === "simulation" ? <SimulationApp ac={ac} setKeyVisible={setKeyVisible} />
+        : <div>Unknown mode.</div> }
+      <AppKey ac={ac} visible={keyVisible} />
+    </div>
+  );
 };

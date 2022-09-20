@@ -58,50 +58,48 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
-    <div className="app">
-      <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
-        <div className="options-row">
-          <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
-          { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
-          <div />
+    <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
+      <div className="options-row">
+        <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
+        { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
+        <div />
+      </div>
+      <div className="app-row">
+        <VideoView
+          ac={ac}
+          playing={playingTissue}
+          setPlaying={setPlayingTissue}
+          setTargetVideoIndex={setTargetVideoIndex}
+          title={tissueTitle}
+          timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
+          videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
+        />
+        <VideoView
+          ac={ac}
+          disabled={playingTissue}
+          disabledMessage={disabledMessage}
+          extraClass="cell-view"
+          loop={true}
+          playing={playingCell}
+          setPlaying={setPlayingCell}
+          title={ac.o("RIGHTSIMULATIONTITLE")}
+          timelineMarks={{ 0: " ", 1: " " }}
+          videoFile={(simVideos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
+        />
+      </div>
+      <div className="options-row">
+        <RowHeader
+          backgroundSvg={<ResultsLabelBack />}
+          headerText={ac.t("SIMRESULTSHEADER")}
+          headerTextSub={ac.t("SIMRESULTSSUB")}
+        />
+        <SimGraph ac={ac} />
+        <SimGraph ac={ac} />
+        <div className={clsx("divider", ac.mode)} style={{height: 141}} />
+        <div className="key-box simulation">
+          <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
         </div>
-        <div className="app-row">
-          <VideoView
-            ac={ac}
-            playing={playingTissue}
-            setPlaying={setPlayingTissue}
-            setTargetVideoIndex={setTargetVideoIndex}
-            title={tissueTitle}
-            timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-            videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
-          />
-          <VideoView
-            ac={ac}
-            disabled={playingTissue}
-            disabledMessage={disabledMessage}
-            extraClass="cell-view"
-            loop={true}
-            playing={playingCell}
-            setPlaying={setPlayingCell}
-            title={ac.o("RIGHTSIMULATIONTITLE")}
-            timelineMarks={{ 0: " ", 1: " " }}
-            videoFile={(simVideos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
-          />
-        </div>
-        <div className="options-row">
-          <RowHeader
-            backgroundSvg={<ResultsLabelBack />}
-            headerText={ac.t("SIMRESULTSHEADER")}
-            headerTextSub={ac.t("SIMRESULTSSUB")}
-          />
-          <SimGraph ac={ac} />
-          <SimGraph ac={ac} />
-          <div className={clsx("divider", ac.mode)} style={{height: 141}} />
-          <div className="key-box simulation">
-            <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
-          </div>
-        </div>
-      </AppContainer>
-    </div>
+      </div>
+    </AppContainer>
   );
 };

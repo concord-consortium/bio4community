@@ -70,47 +70,45 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const tissueTitle = ac.o("LEFTANIMATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   return (
-    <div className="app">
-      <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
-        <div className="app-row">
-          <div className="silhouette">Silhouette View</div>
-          <div className="controls-pane">
-            <Title ac={ac} text="Controls" />
-            { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
-            <div className="key-box animation">
-              <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
-            </div>
+    <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
+      <div className="app-row">
+        <div className="silhouette">Silhouette View</div>
+        <div className="controls-pane">
+          <Title ac={ac} text="Controls" />
+          { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
+          <div className="key-box animation">
+            <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
           </div>
-          <StressPane high={highStress} />
         </div>
-        <div className="app-row">
-          <VideoView
-            ac={ac}
-            playing={playingTissue}
-            setPlaying={setPlayingTissue}
-            setTargetVideoIndex={setTargetVideoIndex}
-            timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-            title={tissueTitle}
-            videoFile={(
-              aniVideos.tissue as Record<string, any[][]>)[ac.organ][+control1][+control2]
-            }
-          />
-          <VideoView
-            ac={ac}
-            disabled={playingTissue}
-            disabledMessage={disabledMessage}
-            extraClass="cell-view"
-            loop={true}
-            playing={playingCell}
-            setPlaying={setPlayingCell}
-            title={ac.o("RIGHTANIMATIONTITLE")}
-            videoFile={
-              (aniVideos.cell as
-                Record<string, Record<number, any>[][]>)[ac.organ][+control1][+control2][targetVideoIndex]
-            }
-          />
-        </div>
-      </AppContainer>
-    </div>
+        <StressPane high={highStress} />
+      </div>
+      <div className="app-row">
+        <VideoView
+          ac={ac}
+          playing={playingTissue}
+          setPlaying={setPlayingTissue}
+          setTargetVideoIndex={setTargetVideoIndex}
+          timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
+          title={tissueTitle}
+          videoFile={(
+            aniVideos.tissue as Record<string, any[][]>)[ac.organ][+control1][+control2]
+          }
+        />
+        <VideoView
+          ac={ac}
+          disabled={playingTissue}
+          disabledMessage={disabledMessage}
+          extraClass="cell-view"
+          loop={true}
+          playing={playingCell}
+          setPlaying={setPlayingCell}
+          title={ac.o("RIGHTANIMATIONTITLE")}
+          videoFile={
+            (aniVideos.cell as
+              Record<string, Record<number, any>[][]>)[ac.organ][+control1][+control2][targetVideoIndex]
+          }
+        />
+      </div>
+    </AppContainer>
   );
 };
