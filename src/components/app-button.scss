@@ -16,6 +16,13 @@
         width: 24px;
       }
     }
+    &.simulation {
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      height: auto;
+      padding: 8px 2px;
+    }
   }
 
   .button-icon-container {
@@ -38,6 +45,10 @@
       &.show-button-icon {
         left: 5px;
         top: -.5px;
+        &.simulation {
+          left: 0;
+          top: 0;
+        }
       }
     }
   }

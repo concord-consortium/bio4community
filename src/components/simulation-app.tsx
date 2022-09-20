@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
 import { VideoView } from "./video-view";
+import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
@@ -96,7 +97,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           <SimGraph ac={ac} />
           <div className={clsx("divider", ac.mode)} style={{height: 141}} />
           <div className="key-box simulation">
-            <button>Key</button>
+            <KeyButton ac={ac} onClick={() => ""} />
           </div>
         </div>
       </AppContainer>

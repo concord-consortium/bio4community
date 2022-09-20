@@ -42,7 +42,7 @@ export const KeyButton = ({ ac, onClick }: IKeyButton) => {
   return (
     <AppButton
       buttonClass={clsx("app-button", "key-button", ac.mode)}
-      icon={<ShowIcon className="button-icon show-button-icon" />}
+      icon={<ShowIcon className={clsx("button-icon", "show-button-icon", ac.mode)} />}
       label="Key"
       onClick={onClick}
     />
