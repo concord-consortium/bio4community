@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { VideoView } from "./video-view";
+import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
@@ -77,7 +78,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             <Title ac={ac} text="Controls" />
             { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
             <div className="key-box animation">
-              <button>Show Key</button>
+              <KeyButton ac={ac} onClick={() => { return ""; }} />
             </div>
           </div>
           <StressPane high={highStress} />
