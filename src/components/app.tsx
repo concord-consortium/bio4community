@@ -13,13 +13,32 @@ export const App = () => {
   const ac = useAppContext({ mode, organ });
 
   const [keyVisible, setKeyVisible] = useState(false);
+  const [keyPosition, setKeyPosition] = useState([0, 0]);
+  const [keyDragging, setKeyDragging] = useState(false);
+  const [keyOffset, setKeyOffset] = useState([0, 0]);
+
+  const handleMouseMove = (event: any) => {
+    if (keyDragging) {
+      setKeyPosition([event.clientX - keyOffset[0], event.clientY - keyOffset[1]]);
+    }
+  };
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      onMouseMove={handleMouseMove}
+    >
       { mode === "animation" ? <AnimationApp ac={ac} setKeyVisible={setKeyVisible} />
         : mode === "simulation" ? <SimulationApp ac={ac} setKeyVisible={setKeyVisible} />
         : <div>Unknown mode.</div> }
-      <AppKey ac={ac} handleClose={() => setKeyVisible(false)} visible={keyVisible} />
+      <AppKey
+        ac={ac}
+        handleClose={() => setKeyVisible(false)}
+        position={keyPosition}
+        setDragging={setKeyDragging}
+        setOffset={setKeyOffset}
+        visible={keyVisible}
+      />
     </div>
   );
 };
