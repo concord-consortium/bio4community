@@ -13,8 +13,9 @@ import "./animation-app.scss";
 
 interface AnimationAppProps {
   ac: AppContext;
+  setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const AnimationApp = ({ ac }: AnimationAppProps) => {
+export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
@@ -58,9 +59,8 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
                 setLowStressExample(event.target.value);
               }
             }}
-          >
-            {high ? highStressExample : lowStressExample}
-          </textarea>
+            defaultValue={high ? highStressExample : lowStressExample}
+          />
         </div>
       </div>
     );
@@ -78,7 +78,7 @@ export const AnimationApp = ({ ac }: AnimationAppProps) => {
             <Title ac={ac} text="Controls" />
             { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
             <div className="key-box animation">
-              <KeyButton ac={ac} onClick={() => { return ""; }} />
+              <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
             </div>
           </div>
           <StressPane high={highStress} />

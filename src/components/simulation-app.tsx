@@ -16,8 +16,9 @@ import "./simulation-app.scss";
 
 interface SimulationAppProps {
   ac: AppContext;
+  setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const SimulationApp = ({ ac }: SimulationAppProps) => {
+export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
@@ -97,7 +98,7 @@ export const SimulationApp = ({ ac }: SimulationAppProps) => {
           <SimGraph ac={ac} />
           <div className={clsx("divider", ac.mode)} style={{height: 141}} />
           <div className="key-box simulation">
-            <KeyButton ac={ac} onClick={() => ""} />
+            <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
           </div>
         </div>
       </AppContainer>
