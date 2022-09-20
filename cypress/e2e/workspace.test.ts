@@ -95,12 +95,19 @@ context("Test the overall app", () => {
   describe("Key works", () => {
     const getKeyButton = () => cy.get(".app .key-button");
     const getKey = () => cy.get(".app .app-key");
+    const getKeyTitle = () => cy.get(".app .app-key .title-box");
     const getCloseKeyButton = () => cy.get(".app .title-close-button");
     modePages.forEach(({ mode, organ }: PageInfo) => {
       it(`${mode} key can be displayed and hidden`, () => {
         visitPage(mode, organ);
         getKeyButton().click();
         getKey().should("be.visible");
+        // Move the key so it's not blocking the key button
+        const targetX = 700;
+        getKeyTitle()
+          .trigger("mousedown", {which: 1})
+          .trigger("mousemove", {clientX: targetX})
+          .trigger("mouseup", {force: true});
         getKeyButton().click();
         getKey().should("not.be.visible");
         getKeyButton().click();
