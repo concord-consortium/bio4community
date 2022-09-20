@@ -3,8 +3,11 @@ import { clsx } from "clsx";
 import { ControlOption, PartialControlOptionProps } from "../components/control-option";
 import { AppContext } from "../hooks/use-app-context";
 
+import CloseIcon from "../assets/icons/close-icon.svg";
+
 // Returns a list of control options and strings (which render as dividers)
-export const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => {
+// Used by renderControls(), which is how components should access this information
+const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => {
   let controls: (PartialControlOptionProps | string)[] = [];
   if (ac.mode === "simulation") {
     if (["heart", "nose"].includes(ac.organ)) {
@@ -71,4 +74,45 @@ export const renderControls = ({ ac, onChanges }: IRenderControls) => {
         options={control.options}
       />;
   });
+};
+
+// Returns a list of [image, label] to display in the key
+export const getKeyData = (ac: AppContext): [any, string][] => {
+  let keyData: [any, string][] = [];
+  const dummy = <CloseIcon />;
+  if (ac.organ === "heart") {
+    keyData = [
+      [dummy, ac.o("KEY1")],
+      [dummy, ac.o("KEY2")],
+      [dummy, ac.o("KEY3")],
+      [dummy, ac.o("KEY4")],
+      [dummy, ac.o("KEY5")],
+      [dummy, ac.o("KEY6")],
+      [dummy, ac.o("KEY7")],
+      [dummy, ac.o("KEY8")]
+    ];
+  } else if (ac.organ === "nose") {
+    keyData = [
+      [dummy, ac.o("KEY1")],
+      [dummy, ac.o("KEY2")],
+      [dummy, ac.o("KEY3")],
+      [dummy, ac.o("KEY4")],
+      [dummy, ac.o("KEY5")],
+      [dummy, ac.o("KEY6")],
+      [dummy, ac.o("KEY7")],
+      [dummy, ac.o("KEY8")]
+    ];
+  } else if (ac.organ === "brain") {
+    keyData = [
+      [dummy, ac.o("KEY1")],
+      [dummy, ac.o("KEY2")],
+      [dummy, ac.o("KEY3")],
+      [dummy, ac.o("KEY4")],
+      [dummy, ac.o("KEY5")],
+      [dummy, ac.o("KEY6")],
+      [dummy, ac.o("KEY7")],
+      [dummy, ac.o("KEY8")]
+    ];
+  }
+  return keyData;
 };

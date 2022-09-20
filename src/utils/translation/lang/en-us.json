@@ -81,5 +81,32 @@
   "LOWSTRESSPROMPT": "If you would like to describe a different low stress situation, type it here:",
   "HIGHSTRESSINTRO": "A possible high stress situation may be something like:",
   "HIGHSTRESSEXAMPLE": "Not having enough time to eat lunch in the cafeteria",
-  "HIGHSTRESSPROMPT": "If you would like to describe a different high stress situation, type it here:"
+  "HIGHSTRESSPROMPT": "If you would like to describe a different high stress situation, type it here:",
+
+  "HEART.KEY1": "Red blood cell",
+  "HEART.KEY2": "Immune cell",
+  "HEART.KEY3": "Cholesterol",
+  "HEART.KEY4": "Sticky protein",
+  "HEART.KEY5": "Vessel cells",
+  "HEART.KEY6": "Foam cell",
+  "HEART.KEY7": "Plaque",
+  "HEART.KEY8": "Smooth muscle cells",
+
+  "NOSE.KEY1": "Label1",
+  "NOSE.KEY2": "Label2",
+  "NOSE.KEY3": "Label3",
+  "NOSE.KEY4": "Label4",
+  "NOSE.KEY5": "Label5",
+  "NOSE.KEY6": "Label6",
+  "NOSE.KEY7": "Label7",
+  "NOSE.KEY8": "Label8",
+
+  "BRAIN.KEY1": "Label1",
+  "BRAIN.KEY2": "Label2",
+  "BRAIN.KEY3": "Label3",
+  "BRAIN.KEY4": "Label4",
+  "BRAIN.KEY5": "Label5",
+  "BRAIN.KEY6": "Label6",
+  "BRAIN.KEY7": "Label7",
+  "BRAIN.KEY8": "Label8"
 }
