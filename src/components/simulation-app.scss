@@ -1,3 +1,5 @@
+@use "./vars.scss";
+
 .options-row {
   display: flex;
   justify-content: space-between;
@@ -32,12 +34,12 @@
 .key-box.simulation {
   width: 65px;
   height: 141px;
-  background-color: #f0f9fb;
+  background-color: vars.$sim-light-8;
   padding-top: 8px;
 }
 
 .divider.simulation {
   width: 1px;
   height: 40px;
-  background-color: #0592af;
+  background-color: vars.$sim-basic;
 }

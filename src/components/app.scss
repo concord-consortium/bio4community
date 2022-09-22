@@ -1,3 +1,5 @@
+@use "./vars";
+
 #app {
   position: fixed;
   top: 0;
@@ -21,12 +23,12 @@
   background-color: white;
   padding: 5px;
   &.animation {
-    border: 2px solid #aa2ff0;
-    border-radius: 21px;
+    border: vars.$ani-border;
+    border-radius: vars.$ani-radius-container;
   }
   &.simulation {
-    border: 2px solid #0481a0;
-    border-radius: 5px;
+    border: vars.$sim-border;
+    border-radius: vars.$sim-radius-container;
   }
 
   .app-row {

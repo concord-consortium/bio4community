@@ -1,7 +1,9 @@
+@use "./vars.scss";
+
 .sim-graph-container {
   display: flex;
   height: 141px;
-  background-color: #f0f9fb;
+  background-color: vars.$sim-light-8;
 
   .vertical-label {
     width: 39px;

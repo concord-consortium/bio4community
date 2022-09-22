@@ -1,3 +1,5 @@
+@use "./vars.scss";
+
 .app-button {
   display: flex;
   align-items: center;
@@ -60,35 +62,35 @@
   }
 
   &.animation {
-    background-color: #ecc9ff;
-    border: 2px solid #aa2ff0;
-    border-radius: 16px;
+    background-color: vars.$ani-light-5;
+    border: vars.$ani-border;
+    border-radius: vars.$ani-radius-button;
     
     &:hover {
-      background-color: #e3b1ff;
+      background-color: vars.$ani-light-4;
     }
     &:active {
-      background-color: #d68cff;
+      background-color: vars.$ani-light-2;
     }
 
     .button-icon {
-      fill: #aa2ff0;
+      fill: vars.$ani-dark-1;
     }
   }
   &.simulation {
-    background-color: #b7e2ec;
-    border: 2px solid #0481a0;
-    border-radius: 5px;
+    background-color: vars.$sim-light-4;
+    border: vars.$sim-border;
+    border-radius: vars.$sim-radius-button;
     
     &:hover {
-      background-color: #93d5e4;
+      background-color: vars.$sim-light-3;
     }
     &:active {
-      background-color: #6fc6da;
+      background-color: vars.$sim-light-2;
     }
 
     .button-icon {
-      fill: #0481a0;
+      fill: vars.$sim-dark-1;
     }
   }
 }

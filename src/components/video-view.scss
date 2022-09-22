@@ -1,3 +1,5 @@
+@use "./vars.scss";
+
 .video-view {
   display: flex;
   flex-direction: column-reverse;
@@ -17,36 +19,36 @@
     }
 
     &.animation {
-      background-color: #f9efff;
-      border: 2px solid #aa2ff0;
-      border-radius: 14px;
+      background-color: vars.$ani-light-8;
+      border: vars.$ani-border;
+      border-radius: vars.$ani-radius-normal;
 
       &.cell-view {
-        border: 2px solid #ff8415;
+        border: vars.$cell-border;
       }
 
       .disabled-overlay {
-        border-radius: 14px;
+        border-radius: vars.$ani-radius-normal;
       }
 
       .video-view-video {
-        border-radius: 11px;
+        border-radius: vars.$ani-radius-video;
       }
     }
     &.simulation {
-      background-color: #f0f9fb;
-      border: 2px solid #0481a0;
+      background-color: vars.$sim-light-8;
+      border: vars.$sim-border;
 
       &.cell-view {
-        border: 2px solid #ff8415;
-        border-radius: 10px;
+        border: vars.$cell-border;
+        border-radius: vars.$sim-radius-cell;
 
         .disabled-overlay {
-          border-radius: 10px;
+          border-radius: vars.$sim-radius-cell;
         }
 
         .video-view-video {
-          border-radius: 7px;
+          border-radius: vars.$sim-radius-video;
         }
       }
     }
