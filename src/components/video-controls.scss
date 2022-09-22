@@ -1,3 +1,5 @@
+@use "./vars.scss";
+
 .video-controls {
   width: 460px;
   height: 48px;
@@ -10,110 +12,40 @@
   top: -2px;
 
   &.animation {
-    background-color: #f9efff;
-    border: 2px solid #aa2ff0;
-    border-radius: 14px;
+    background-color: vars.$ani-light-8;
+    border: vars.$ani-border;
+    border-radius: vars.$ani-radius-normal;
 
     .disabled-overlay {
-      border-radius: 14px;
-    }
-
-    .button-icon {
-      fill: #aa2ff0;
+      border-radius: vars.$ani-radius-normal;
     }
 
     .rc-slider-handle {
-      border: 2px solid #aa2ff0;
+      border: vars.$ani-border;
     }
 
     .rc-slider-dot {
-      background-color: #aa2ff0;
+      background-color: vars.$ani-dark-1;
     }
   }
   &.simulation {
-    background-color: #f0f9fb;
-    border: 2px solid #0481a0;
+    background-color: vars.$sim-light-8;
+    border: vars.$sim-border;
 
     &.cell-view {
-      border-radius: 10px 10px 0 0;
+      border-radius: vars.$sim-radius-cell vars.$sim-radius-cell 0 0;
 
       .disabled-overlay {
-        border-radius: 10px 10px 0 0;
+        border-radius: vars.$sim-radius-cell vars.$sim-radius-cell 0 0;
       }
-    }
-
-    .button-icon {
-      fill: #0481a0;
     }
 
     .rc-slider-handle {
-      border: 2px solid #0481a0;
+      border: vars.$sim-border;
     }
 
     .rc-slider-dot {
-      background-color: #0481a0;
-    }
-  }
-
-  .video-view-button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-
-    height: 32px;
-    margin: 0 8px;
-    padding-left: 0px;
-
-    .button-icon-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      
-      .button-icon {
-        position: relative;
-
-        &.play-button-icon {
-          left: 4px;
-          top: -1px;
-        }
-        &.pause-button-icon {
-          left: 2px;
-          top: -1px;
-        }
-      }
-    }
-
-    .button-label {
-      display: flex;
-      justify-content: center;
-      width: 40px;
-    }
-
-    &.animation {
-      background-color: #ecc9ff;
-      border: 2px solid #aa2ff0;
-      border-radius: 16px;
-      
-      &:hover {
-        background-color: #e3b1ff;
-      }
-      &:active {
-        background-color: #d68cff;
-      }
-    }
-    &.simulation {
-      background-color: #b7e2ec;
-      border: 2px solid #0481a0;
-      border-radius: 5px;
-      
-      &:hover {
-        background-color: #93d5e4;
-      }
-      &:active {
-        background-color: #6fc6da;
-      }
+      background-color: vars.$sim-dark-1;
     }
   }
 
@@ -140,6 +72,7 @@
       border-radius: 2px;
       touch-action: none;
       box-sizing: border-box;
+      cursor: pointer;
   
       &-rail {
         position: absolute;
@@ -211,7 +144,7 @@
       }
   
       &-dot {
-        // More handle styling is defined under .video-controls
+        // More dot styling is defined under .video-controls
         position: absolute;
         top: -9px;
         width: 8px;

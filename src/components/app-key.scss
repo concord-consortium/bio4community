@@ -1,0 +1,44 @@
+@use "./vars.scss";
+
+.app-key {
+  position: absolute;
+  z-index: 4;
+  width: 255px;
+  height: 439px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 0 0 2px white, 0 0 10px 0 rgba(0, 0, 0, .5);
+
+  &.animation {
+    border-radius: vars.$ani-radius-container;
+    border: vars.$ani-border;
+  }
+  &.simulation {
+    border-radius: vars.$sim-radius-container;
+    border: vars.$sim-border;
+  }
+
+  .key-row {
+    display: flex;
+    justify-content: space-between;
+
+    .key-image {
+      width: 125px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .key-text {
+      width: 115px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}

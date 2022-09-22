@@ -1,35 +1,12 @@
 import React, { useState } from "react";
 import { clsx } from "clsx";
 import Slider from "rc-slider";
-import { AppContext } from "../hooks/use-app-context";
 
-import PauseIcon from "../assets/icons/pause-icon.svg";
-import PlayIcon from "../assets/icons/play-icon.svg";
+import { PlayButton } from "./app-button";
+import { AppContext } from "../hooks/use-app-context";
 
 import "./disabled-overlay.scss";
 import "./video-controls.scss";
-
-interface IPlayButton {
-  ac: AppContext;
-  playing: boolean;
-  onClick: (event: any) => void;
-}
-const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
-  const icon = playing
-    ? <PauseIcon className="button-icon pause-button-icon" />
-    : <PlayIcon className="button-icon play-button-icon" />;
-  const label = playing ? "Pause" : "Play";
-  return (
-    <button onClick={onClick} className={clsx("video-view-button", ac.mode)} >
-      <div className="button-icon-container">
-        {icon}
-      </div>
-      <div className="button-label">
-        {label}
-      </div>
-    </button>
-  );
-};
 
 interface ITimeTrack {
   jumpToPosition: (position: number) => void;

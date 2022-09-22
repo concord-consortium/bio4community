@@ -1,15 +1,58 @@
+@use "./vars.scss";
+
 .title-box {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 4px;
   font-weight: 700;
   
   &.animation {
-    border-radius: 14px;
-    background-color: #f0d5ff;
+    border-radius: vars.$ani-radius-normal;
+    background-color: vars.$ani-light-6;
+
+    .title-close-button {
+      background-color: vars.$ani-light-6;
+    
+      &:hover {
+        background-color: vars.$ani-light-4;
+      }
+      &:active {
+        background-color: vars.$ani-light-2;
+      }
+    }
   }
   &.simulation {
-    background-color: #cdebf2;
+    background-color: vars.$sim-light-5;
+
+    .title-close-button {
+      background-color: vars.$sim-light-5;
+    
+      &:hover {
+        background-color: vars.$sim-light-3;
+      }
+      &:active {
+        background-color: vars.$sim-light-2;
+      }
+    }
+  }
+
+  .title-close-box {
+    width: 20px;
+    height: 20px;
+
+    .title-close-button {
+      width: 20px;
+      height: 20px;
+      border: 0px;
+      padding: 0;
+      cursor: pointer;
+
+      .title-close-icon {
+        position: relative;
+        left: -2px;
+        top: -2px;
+      }
+    }
   }
 }

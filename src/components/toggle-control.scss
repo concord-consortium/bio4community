@@ -1,4 +1,8 @@
+@use "./vars.scss";
+
 // Taken from the CLUE codebase
+
+$border-gray: #949494;
 
 .toggle-control {
   box-sizing: content-box;
@@ -11,16 +15,16 @@
     height: 11px;
     border-radius: 7px;
     background-color: white;
-    border: 1.5px solid #949494;
+    border: 1.5px solid $border-gray;
 
     &.toggle-on {
       &.animation {
-        background-color: #aa2ff0;
-        border-color: #aa2ff0;
+        background-color: vars.$ani-dark-1;
+        border-color: vars.$ani-dark-1;
       }
       &.simulation {
-        background-color: #0481a0;
-        border-color: #0481a0;
+        background-color: vars.$sim-dark-1;
+        border-color: vars.$sim-dark-1;
       }
     }
   }
@@ -31,30 +35,29 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    border: 2px solid #979797;
+    border: 2px solid $border-gray;
     transition-property: transform;
     transition-duration: .25s;
 
     &.animation {
-      background-color: #f4e0ff;
+      background-color: vars.$ani-light-7;
       
       &:hover {
-        background-color: #e3b1ff;
+        background-color: vars.$ani-light-4;
       }
       &:active {
-        background-color: #d68cff;
+        background-color: vars.$ani-light-2;
       }
     }
 
     &.simulation {
-      border-color: #949494;
-      background-color: #e2f4f8;
+      background-color: vars.$sim-light-7;
       
       &:hover {
-        background-color: #b7e2ec;
+        background-color: vars.$sim-light-4;
       }
       &:active {
-        background-color: #6fc6da;
+        background-color: vars.$sim-light-2;
       }
     }
 

@@ -5,7 +5,7 @@ context("Test the overall app", () => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
   };
   const getPlayButton = (first: boolean) => {
-    const gpb = () => cy.get(".app .video-view .video-view-button");
+    const gpb = () => cy.get(".app .video-view .app-button.play-button");
     if (first) {
       return gpb().first();
     } else {
@@ -13,12 +13,12 @@ context("Test the overall app", () => {
     }
   };
 
-  interface pageInfo {
+  interface PageInfo {
     mode: string;
     organ: string;
     title: string;
   }
-  const pages: pageInfo[] = [
+  const allPages: PageInfo[] = [
     {mode: "animation", organ: "heart", title: "Plaque Animation"},
     {mode: "animation", organ: "nose", title: "Immune Response Animation"},
     {mode: "animation", organ: "brain", title: "Focus Animation"},
@@ -26,8 +26,12 @@ context("Test the overall app", () => {
     {mode: "simulation", organ: "nose", title: "Immune Response Model Simulator"},
     {mode: "simulation", organ: "brain", title: "Focus Model Simulator"},
   ];
+  const modePages: PageInfo[] = [
+    {mode: "animation", organ: "heart", title: "Plaque Animation"},
+    {mode: "simulation", organ: "heart", title: "Plaque Model Simulator"}
+  ];
   describe("Titles are correct", () => {
-    pages.forEach(({ mode, organ, title }: pageInfo) => {
+    allPages.forEach(({ mode, organ, title }: PageInfo) => {
       it(`renders the title for the ${organ} ${mode}`, () => {
         visitPage(mode, organ);
         cy.get(".app .title-box").first().should("have.text", title);
@@ -85,6 +89,32 @@ context("Test the overall app", () => {
       getTextArea().should("have.text", exampleText);
       getStressControl().click();
       getTextArea().should("have.text", exampleText2);
+    });
+  });
+
+  describe("Key works", () => {
+    const getKeyButton = () => cy.get(".app .key-button");
+    const getKey = () => cy.get(".app .app-key");
+    const getKeyTitle = () => cy.get(".app .app-key .title-box");
+    const getCloseKeyButton = () => cy.get(".app .title-close-button");
+    modePages.forEach(({ mode, organ }: PageInfo) => {
+      it(`${mode} key can be displayed and hidden`, () => {
+        visitPage(mode, organ);
+        getKeyButton().click();
+        getKey().should("be.visible");
+        // Move the key so it's not blocking the key button
+        const targetX = 700;
+        getKeyTitle()
+          .trigger("mousedown", {which: 1})
+          .trigger("mousemove", {clientX: targetX})
+          .trigger("mouseup", {force: true});
+        getKeyButton().click();
+        getKey().should("not.be.visible");
+        getKeyButton().click();
+        getKey().should("be.visible");
+        getCloseKeyButton().click();
+        getKey().should("not.be.visible");
+      });
     });
   });
 });
