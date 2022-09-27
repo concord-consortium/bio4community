@@ -124,7 +124,7 @@ export const VideoView = ({
   };
 
   const onEnded = (event: any) => {
-    if (loop) {
+    if (loop && playing) {
       jumpToPosition(0);
       play();
     } else {
