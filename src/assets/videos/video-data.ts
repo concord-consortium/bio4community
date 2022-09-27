@@ -20,34 +20,269 @@ import NoseCellCase2 from "./cell/nose/NoseCellCase2.mp4";
 import NoseCellCase3 from "./cell/nose/NoseCellCase3.mp4";
 import NoseCellCase4 from "./cell/nose/NoseCellCase4.mp4";
 
+// Videos for sims
+// [tissue | cell][organ][control1][control2][control3][time (cell only)]
 export const simVideos: any = {
   "tissue": {
-    "heart": BloodVesselCase1MP4,
-    "nose": NoseCanals,
-    "brain": NeuronsCase3
+    "heart": [
+      [
+        [
+          BloodVesselCase2MP4,
+          BloodVesselCase4MP4
+        ],
+        [
+          BloodVesselCase1MP4,
+          BloodVesselCase3MP4
+        ]
+      ],
+      [
+        [
+          BloodVesselCase2MP4,
+          BloodVesselCase4MP4
+        ],
+        [
+          BloodVesselCase1MP4,
+          BloodVesselCase3MP4
+        ]
+      ]
+    ],
+    "nose": [
+      [
+        [
+          NoseCanals,
+          NoseCanals
+        ],
+        [
+          NoseCanals,
+          NoseCanals
+        ]
+      ],
+      [
+        [
+          NoseCanals,
+          NoseCanals
+        ],
+        [
+          NoseCanals,
+          NoseCanals
+        ]
+      ]
+    ],
+    "brain": [
+      [
+        [
+          NeuronsCase3,
+          NeuronsCase3
+        ],
+        [
+          NeuronsCase3,
+          NeuronsCase3
+        ]
+      ],
+      [
+        [
+          NeuronsCase3,
+          NeuronsCase3
+        ],
+        [
+          NeuronsCase3,
+          NeuronsCase3
+        ]
+      ]
+    ]
   },
   "cell": {
-    "heart": {
-      0: BloodCellCase1MP4,
-      .333: BloodCellCase2MP4,
-      .667: BloodCellCase3MP4,
-      1: BloodCellCase3MP4
-    },
-    "nose": {
-      0: NoseCellCase1,
-      .333: NoseCellCase2,
-      .667: NoseCellCase3,
-      1: NoseCellCase4
-    },
-    "brain": {
-      0: SynapseCase1,
-      .333: SynapseCase2,
-      .667: SynapseCase3,
-      1: SynapseCase4
-    }
+    "heart": [
+      [
+        [
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase2MP4,
+            1: BloodCellCase3MP4
+          },
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase2MP4,
+            .667: BloodCellCase3MP4,
+            1: BloodCellCase4MP4
+          }
+        ],
+        [
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase1MP4,
+            1: BloodCellCase2MP4
+          },
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase2MP4,
+            1: BloodCellCase3MP4
+          }
+        ]
+      ],
+      [
+        [
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase2MP4,
+            1: BloodCellCase3MP4
+          },
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase2MP4,
+            .667: BloodCellCase3MP4,
+            1: BloodCellCase4MP4
+          }
+        ],
+        [
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase1MP4,
+            1: BloodCellCase2MP4
+          },
+          {
+            0: BloodCellCase1MP4,
+            .333: BloodCellCase1MP4,
+            .667: BloodCellCase2MP4,
+            1: BloodCellCase3MP4
+          }
+        ]
+      ]
+    ],
+    "nose": [
+      [
+        [
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          },
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          }
+        ],
+        [
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          },
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          }
+        ]
+      ],
+      [
+        [
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          },
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          }
+        ],
+        [
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          },
+          {
+            0: NoseCellCase1,
+            .333: NoseCellCase2,
+            .667: NoseCellCase3,
+            1: NoseCellCase4
+          }
+        ]
+      ]
+    ],
+    "brain": [
+      [
+        [
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          },
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          }
+        ],
+        [
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          },
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          }
+        ]
+      ],
+      [
+        [
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          },
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          }
+        ],
+        [
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          },
+          {
+            0: SynapseCase1,
+            .333: SynapseCase2,
+            .667: SynapseCase3,
+            1: SynapseCase4
+          }
+        ]
+      ]
+    ]
   }
 };
 
+// Videos for animations
+// [tissue | cell][organ][control1][control2][time (cell only)]
 export const aniVideos: any = {
   "tissue": {
     "heart": [

@@ -72,7 +72,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setTargetVideoIndex={setTargetVideoIndex}
           title={tissueTitle}
           timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-          videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
+          videoFile={(simVideos.tissue as
+            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3]
+          }
         />
         <VideoView
           ac={ac}
@@ -84,7 +86,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}
           timelineMarks={{ 0: " ", 1: " " }}
-          videoFile={(simVideos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
+          videoFile={(simVideos.cell as
+            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3][targetVideoIndex]
+          }
         />
       </div>
       <div className="options-row">
