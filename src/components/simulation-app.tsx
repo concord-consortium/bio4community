@@ -81,7 +81,6 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           disabled={playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
-          loop={true}
           playing={playingCell}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}

@@ -99,7 +99,6 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           disabled={playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
-          loop={true}
           playing={playingCell}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTANIMATIONTITLE")}
