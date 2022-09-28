@@ -72,6 +72,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
 
   const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
+  const horizontalLabel = <><span className="bold">Simulated Time</span>&nbsp;(years)</>;
   return (
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="options-row">
@@ -120,7 +121,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           data={(graphData as
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={ac.o("LEFTXLABEL")}
+          horizontalLabel={horizontalLabel}
           verticalLabel={ac.o("LEFTYLABEL")}
           verticalRange={{min: 0, max: 100}}
           videoComplete={tissueComplete}
@@ -130,7 +131,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           data={(graphData as
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={ac.o("RIGHTXLABEL")}
+          horizontalLabel={horizontalLabel}
           verticalLabel={ac.o("RIGHTYLABEL")}
           verticalRange={{min: 0, max: 10}}
           videoComplete={tissueComplete}

@@ -67,7 +67,7 @@ interface ISimGraph {
   ac: AppContext;
   data: Coord[];
   percentComplete: number;
-  horizontalLabel?: string;
+  horizontalLabel?: any;
   horizontalRange?: Range;
   verticalLabel?: string;
   verticalRange?: Range;
