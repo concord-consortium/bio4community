@@ -4,9 +4,9 @@ import { clsx } from "clsx";
 import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-import { SimGraph } from "./sim-graph";
+import { Coord, SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
-import { renderControls } from "../utils/app-data";
+import { graphData, renderControls } from "../utils/app-data";
 
 import { simVideos } from "../assets/videos/video-data";
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
@@ -20,7 +20,9 @@ interface SimulationAppProps {
 }
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
+  const [tPercentComplete, setTPercentComplete] = useState(0);
   const [playingCell, setPlayingCell] = useState(false);
+  const [cPercentComplete, setCPercentComplete] = useState(0);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
   const [control1, setControl1] = useState(false);
@@ -67,24 +69,31 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
+          percentComplete={tPercentComplete}
           playing={playingTissue}
+          setPercentComplete={setTPercentComplete}
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
           title={tissueTitle}
           timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-          videoFile={(simVideos.tissue as Record<string, any>)[ac.organ]}
+          videoFile={(simVideos.tissue as
+            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3]
+          }
         />
         <VideoView
           ac={ac}
           disabled={playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
-          loop={true}
+          percentComplete={cPercentComplete}
           playing={playingCell}
+          setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}
           timelineMarks={{ 0: " ", 1: " " }}
-          videoFile={(simVideos.cell as Record<string, Record<number, any>>)[ac.organ][targetVideoIndex]}
+          videoFile={(simVideos.cell as
+            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3][targetVideoIndex]
+          }
         />
       </div>
       <div className="options-row">
@@ -93,8 +102,20 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           headerText={ac.t("SIMRESULTSHEADER")}
           headerTextSub={ac.t("SIMRESULTSSUB")}
         />
-        <SimGraph ac={ac} />
-        <SimGraph ac={ac} />
+        <SimGraph
+          ac={ac}
+          data={(graphData as
+            Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
+          percentComplete={tPercentComplete}
+          verticalRange={{min: 0, max: 100}}
+        />
+        <SimGraph
+          ac={ac}
+          data={(graphData as
+            Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
+          percentComplete={tPercentComplete}
+          verticalRange={{min: 0, max: 10}}
+        />
         <div className={clsx("divider", ac.mode)} style={{height: 141}} />
         <div className="key-box simulation">
           <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />

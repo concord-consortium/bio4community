@@ -25,7 +25,9 @@ interface IVideoView {
   disabledMessage?: string;
   extraClass?: string;
   loop?: boolean; // If true, video restarts when it reaches the end
+  percentComplete: number;
   playing: boolean;
+  setPercentComplete: (percent: number) => void;
   setPlaying: (value: boolean) => void;
   setTargetVideoIndex?: (index: number) => void;
   timelineMarks?: Record<number, string>;
@@ -33,12 +35,11 @@ interface IVideoView {
   videoFile?: any;
 }
 export const VideoView = ({
-  ac, disabled, disabledMessage, extraClass, loop, playing, setPlaying, setTargetVideoIndex,
-  timelineMarks, title, videoFile
+  ac, disabled, disabledMessage, extraClass, loop, percentComplete, playing, setPercentComplete, setPlaying,
+  setTargetVideoIndex, timelineMarks, title, videoFile
 }: IVideoView) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
-  const [percentComplete, setPercentComplete] = useState(0);
 
   // Keep percentComplete updated based on the video's state
   useEffect(() => {
@@ -51,7 +52,7 @@ export const VideoView = ({
         clearInterval(tickInterval);
       };
     }, 30);
-  }, [duration]);
+  }, [duration, setPercentComplete]);
 
   // Update the target index (timelineMark) to be the closest to the percent complete
   useEffect(() => {
@@ -124,7 +125,7 @@ export const VideoView = ({
   };
 
   const onEnded = (event: any) => {
-    if (loop) {
+    if (loop && playing) {
       jumpToPosition(0);
       play();
     } else {

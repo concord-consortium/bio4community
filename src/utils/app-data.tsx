@@ -122,3 +122,170 @@ export const getKeyData = (ac: AppContext): [any, string][] => {
   }
   return keyData;
 };
+
+const leftHeartCase1 = [
+  {x: 20, y: 1}, {x: 25, y: 1.5}, {x: 30, y: 2}, {x: 35, y: 2.5}, {x: 40, y: 3}, {x: 45, y: 4}, {x: 50, y: 10}
+];
+const leftHeartCase2 = [
+  {x: 20, y: 1}, {x: 25, y: 3}, {x: 30, y: 5}, {x: 35, y: 7.5}, {x: 40, y: 10}, {x: 45, y: 15}, {x: 50, y: 30}
+];
+const leftHeartCase3 = [
+  {x: 20, y: 1}, {x: 25, y: 4.5}, {x: 30, y: 8}, {x: 35, y: 11.5}, {x: 40, y: 15}, {x: 45, y: 25}, {x: 50, y: 50}
+];
+const leftHeartCase4 = [
+  {x: 20, y: 1}, {x: 25, y: 5.5}, {x: 30, y: 10}, {x: 35, y: 17.5}, {x: 40, y: 25}, {x: 45, y: 35}, {x: 50, y: 80}
+];
+
+const rightHeartCase1 = [
+  {x: 20, y: 3}, {x: 25, y: 3}, {x: 30, y: 3}, {x: 35, y: 3}, {x: 40, y: 3}, {x: 45, y: 3.5}, {x: 50, y: 4}
+];
+const rightHeartCase2 = [
+  {x: 20, y: 3}, {x: 25, y: 3}, {x: 30, y: 3}, {x: 35, y: 3.5}, {x: 40, y: 4}, {x: 45, y: 5}, {x: 50, y: 6}
+];
+const rightHeartCase3 = [
+  {x: 20, y: 3}, {x: 25, y: 3.5}, {x: 30, y: 4}, {x: 35, y: 4.5}, {x: 40, y: 5}, {x: 45, y: 6}, {x: 50, y: 7}
+];
+const rightHeartCase4 = [
+  {x: 20, y: 3}, {x: 25, y: 3.5}, {x: 30, y: 4}, {x: 35, y: 5}, {x: 40, y: 6}, {x: 45, y: 7.5}, {x: 50, y: 9}
+];
+
+export const graphData = {
+  "heart": {
+    "left": [
+      [
+        [
+          leftHeartCase2,
+          leftHeartCase4
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase3
+        ]
+      ],
+      [
+        [
+          leftHeartCase2,
+          leftHeartCase4
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase3
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          rightHeartCase2,
+          rightHeartCase4
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase3
+        ]
+      ],
+      [
+        [
+          rightHeartCase2,
+          rightHeartCase4
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase3
+        ]
+      ]
+    ]
+  },
+  "nose": {
+    "left": [
+      [
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ]
+      ],
+      [
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ]
+      ],
+      [
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ]
+      ]
+    ]
+  },
+  "brain": {
+    "left": [
+      [
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ]
+      ],
+      [
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ],
+        [
+          leftHeartCase1,
+          leftHeartCase1
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ]
+      ],
+      [
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ],
+        [
+          rightHeartCase1,
+          rightHeartCase1
+        ]
+      ]
+    ]
+  }
+};
