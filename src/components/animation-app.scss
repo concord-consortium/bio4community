@@ -5,16 +5,21 @@
   background-color: vars.$ani-basic;
 }
 
-.silhouette {
+.silhouette-pane {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   width: 230px;
   height: 216px;
 
   border: vars.$ani-border;
   border-radius: vars.$ani-radius-normal;
+}
+
+.silhouette-profile {
+  height: 216px;
 }
 
 .controls-pane {

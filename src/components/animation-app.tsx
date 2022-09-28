@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
-import { renderControls } from "../utils/app-data";
+import { ISilhouetteData, ISilhouetteOrganData, renderControls, silhouetteData, silhouetteOrganData }
+  from "../utils/app-data";
 
 import { aniVideos } from "../assets/videos/video-data";
 
@@ -31,6 +32,30 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
     console.log(`${ac.o("ANICONTROL2LABEL")}: ${ac.o(control2 ? "ANICONTROL2OPTION2" : "ANICONTROL2OPTION1")}`);
   }, [ac, control2]);
 
+  // State and components for silhouette pane
+  const sdIndex = useMemo(() => {
+    const index = Math.floor(Math.random() * silhouetteData.length);
+    return index < silhouetteData.length ? index : 0;
+  }, []);
+  const [sData, setSd] = useState<ISilhouetteData | undefined>();
+  const [soData, setSod] = useState<ISilhouetteOrganData | undefined>();
+  useEffect(() => {
+    setSd(silhouetteData[sdIndex]);
+    setSod(silhouetteOrganData[ac.organ][sdIndex]);
+  }, [ac, sdIndex]);
+  interface ISilhouettePane {
+    sd?: ISilhouetteData;
+    sod?: ISilhouetteOrganData;
+  }
+  const SilhouettePane = ({ sd, sod }: ISilhouettePane) => {
+    return (
+      <div className="silhouette-pane">
+        {sd && <img src={sd.image} className="silhouette-profile" />}
+      </div>
+    );
+  };
+
+  // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
   const [highStressExample, setHighStressExample] = useState("");
   interface IStressPane {
@@ -74,7 +99,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
       <div className="app-row">
-        <div className="silhouette">Silhouette View</div>
+        <SilhouettePane sd={sData} sod={soData} />
         <div className="controls-pane">
           <Title ac={ac} text="Controls" />
           { renderControls({ ac, onChanges: [setControl1, setControl2] }) }

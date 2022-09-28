@@ -6,6 +6,14 @@ import { AppContext } from "../hooks/use-app-context";
 import { keyImages } from "../assets/images/image-data";
 import CloseIcon from "../assets/icons/close-icon.svg";
 
+import profile1Image from "../assets/images/silhouettes/Profile1.png";
+import profile2Image from "../assets/images/silhouettes/Profile2.png";
+import profile3Image from "../assets/images/silhouettes/Profile3.png";
+import profile4Image from "../assets/images/silhouettes/Profile4.png";
+import profile5Image from "../assets/images/silhouettes/Profile5.png";
+import heartImage from "../assets/images/silhouettes/Heart.png";
+import brainImage from "../assets/images/silhouettes/Brain.png";
+
 // Returns a list of control options and strings (which render as dividers)
 // Used by renderControls(), which is how components should access this information
 const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => {
@@ -288,4 +296,81 @@ export const graphData = {
       ]
     ]
   }
+};
+
+export interface ISilhouetteData {
+  image: any;
+}
+export const silhouetteData: ISilhouetteData[] = [
+  {
+    image: profile1Image
+  },
+  {
+    image: profile2Image
+  },
+  {
+    image: profile3Image
+  },
+  {
+    image: profile4Image
+  },
+  {
+    image: profile5Image
+  }
+];
+export interface ISilhouetteOrganData {
+  image: any;
+}
+export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
+  "heart": [
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    }
+  ],
+  "nose": [
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    },
+    {
+      image: heartImage
+    }
+  ],
+  "brain": [
+    {
+      image: brainImage
+    },
+    {
+      image: brainImage
+    },
+    {
+      image: brainImage
+    },
+    {
+      image: brainImage
+    },
+    {
+      image: brainImage
+    }
+  ]
 };
