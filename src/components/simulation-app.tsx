@@ -21,6 +21,7 @@ interface SimulationAppProps {
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [tPercentComplete, setTPercentComplete] = useState(0);
+  const [tissueComplete, setTissueComplete] = useState(false);
   const [playingCell, setPlayingCell] = useState(false);
   const [cPercentComplete, setCPercentComplete] = useState(0);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
@@ -37,6 +38,18 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   useEffect(() => {
     console.log(`${ac.o("SIMCONTROL3LABEL")}: ${ac.o(control3 ? "SIMCONTROL3OPTION2" : "SIMCONTROL3OPTION1")}`);
   }, [ac, control3]);
+
+  // Mark the video as incomplete whenever a control changes
+  useEffect(() => {
+    setTissueComplete(false);
+  }, [control1, control2, control3]);
+
+  // Track whether the tissue video has been completed
+  useEffect(() => {
+    if (tPercentComplete === 1) {
+      setTissueComplete(true);
+    }
+  }, [tPercentComplete]);
 
   interface IRowHeader {
     backgroundSvg: any;
@@ -108,6 +121,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
           verticalRange={{min: 0, max: 100}}
+          videoComplete={tissueComplete}
         />
         <SimGraph
           ac={ac}
@@ -115,6 +129,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
           verticalRange={{min: 0, max: 10}}
+          videoComplete={tissueComplete}
         />
         <div className={clsx("divider", ac.mode)} style={{height: 141}} />
         <div className="key-box simulation">

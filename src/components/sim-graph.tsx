@@ -69,8 +69,9 @@ interface ISimGraph {
   percentComplete: number;
   horizontalRange?: Range;
   verticalRange?: Range;
+  videoComplete?: boolean;
 }
-export const SimGraph = ({ ac, data, percentComplete, horizontalRange, verticalRange }: ISimGraph) => {
+export const SimGraph = ({ ac, data, percentComplete, horizontalRange, verticalRange, videoComplete }: ISimGraph) => {
   const width = 307;
   const height = 95;
 
@@ -100,6 +101,8 @@ export const SimGraph = ({ ac, data, percentComplete, horizontalRange, verticalR
           <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" fill="blue">
             <Grid height={height} hLines={3} vLines={2} width={width} />
             <HalfBorder height={height} width={width} />
+            {videoComplete && <polyline points={polylinePoints(data, convertX, convertY)} fill="none"
+              stroke="#0481a0" strokeWidth={1.5} />}
             <polyline points={polylinePoints(polylineData, convertX, convertY)} fill="none" stroke="#0481a0"
               strokeWidth={3} />
             {percentComplete > 0 &&
