@@ -4,9 +4,9 @@ import { clsx } from "clsx";
 import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-import { SimGraph } from "./sim-graph";
+import { Coord, SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
-import { renderControls } from "../utils/app-data";
+import { graphData, renderControls } from "../utils/app-data";
 
 import { simVideos } from "../assets/videos/video-data";
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
@@ -102,8 +102,20 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           headerText={ac.t("SIMRESULTSHEADER")}
           headerTextSub={ac.t("SIMRESULTSSUB")}
         />
-        <SimGraph ac={ac} data={[]} percentComplete={tPercentComplete} verticalRange={{min: 0, max: 100}} />
-        <SimGraph ac={ac} data={[]} percentComplete={tPercentComplete} verticalRange={{min: 0, max: 100}} />
+        <SimGraph
+          ac={ac}
+          data={(graphData as
+            Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
+          percentComplete={tPercentComplete}
+          verticalRange={{min: 0, max: 100}}
+        />
+        <SimGraph
+          ac={ac}
+          data={(graphData as
+            Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
+          percentComplete={tPercentComplete}
+          verticalRange={{min: 0, max: 10}}
+        />
         <div className={clsx("divider", ac.mode)} style={{height: 141}} />
         <div className="key-box simulation">
           <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
