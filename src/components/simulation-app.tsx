@@ -120,6 +120,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           data={(graphData as
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
+          horizontalLabel={ac.o("LEFTXLABEL")}
+          verticalLabel={ac.o("LEFTYLABEL")}
           verticalRange={{min: 0, max: 100}}
           videoComplete={tissueComplete}
         />
@@ -128,6 +130,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           data={(graphData as
             Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
+          horizontalLabel={ac.o("RIGHTXLABEL")}
+          verticalLabel={ac.o("RIGHTYLABEL")}
           verticalRange={{min: 0, max: 10}}
           videoComplete={tissueComplete}
         />
