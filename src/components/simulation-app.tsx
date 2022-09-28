@@ -20,7 +20,9 @@ interface SimulationAppProps {
 }
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
+  const [tPercentComplete, setTPercentComplete] = useState(0);
   const [playingCell, setPlayingCell] = useState(false);
+  const [cPercentComplete, setCPercentComplete] = useState(0);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
   const [control1, setControl1] = useState(false);
@@ -67,7 +69,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
+          percentComplete={tPercentComplete}
           playing={playingTissue}
+          setPercentComplete={setTPercentComplete}
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
           title={tissueTitle}
@@ -81,7 +85,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           disabled={playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
+          percentComplete={cPercentComplete}
           playing={playingCell}
+          setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}
           timelineMarks={{ 0: " ", 1: " " }}
@@ -96,8 +102,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           headerText={ac.t("SIMRESULTSHEADER")}
           headerTextSub={ac.t("SIMRESULTSSUB")}
         />
-        <SimGraph ac={ac} />
-        <SimGraph ac={ac} />
+        <SimGraph ac={ac} data={[]} percentComplete={tPercentComplete} verticalRange={{min: 0, max: 100}} />
+        <SimGraph ac={ac} data={[]} percentComplete={tPercentComplete} verticalRange={{min: 0, max: 100}} />
         <div className={clsx("divider", ac.mode)} style={{height: 141}} />
         <div className="key-box simulation">
           <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />

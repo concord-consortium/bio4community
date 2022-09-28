@@ -17,7 +17,9 @@ interface AnimationAppProps {
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const [playingTissue, setPlayingTissue] = useState(false);
+  const [tPercentComplete, setTPercentComplete] = useState(0);
   const [playingCell, setPlayingCell] = useState(false);
+  const [cPercentComplete, setCPercentComplete] = useState(0);
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
   const [control1, setControl1] = useState(false);
@@ -85,7 +87,9 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
+          percentComplete={tPercentComplete}
           playing={playingTissue}
+          setPercentComplete={setTPercentComplete}
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
           timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
@@ -99,7 +103,9 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           disabled={playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
+          percentComplete={cPercentComplete}
           playing={playingCell}
+          setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTANIMATIONTITLE")}
           videoFile={
