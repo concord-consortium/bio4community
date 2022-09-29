@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { clsx } from "clsx";
 
 import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
@@ -51,6 +52,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
     return (
       <div className="silhouette-pane">
         {sd && <img src={sd.image} className="silhouette-profile" />}
+        <button className={clsx("silhouette-button", ac.organ)} />
       </div>
     );
   };

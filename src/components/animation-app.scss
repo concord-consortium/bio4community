@@ -6,6 +6,7 @@
 }
 
 .silhouette-pane {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +21,33 @@
 
 .silhouette-profile {
   height: 216px;
+}
+
+.silhouette-button {
+  position: absolute;
+
+  background-color: rgba(255, 255, 255, .25);
+  border-radius: 7px;
+  box-shadow: 0 0 0 1px vars.$ani-dark-1, 0 0 0 2.5px white, inset 0 0 0 2.5px white;
+
+  &.heart {
+    width: 58px;
+    height: 54px;
+    left: 75px;
+    top: 82px;
+  }
+  &.nose {
+    width: 29px;
+    height: 27px;
+    left: 56px;
+    top: 31px;
+  }
+  &.brain {
+    width: 54px;
+    height: 51px;
+    left: 71px;
+    top: 4px;
+  }
 }
 
 .controls-pane {
