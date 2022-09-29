@@ -5,68 +5,6 @@
   background-color: vars.$ani-basic;
 }
 
-.silhouette-pane {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  width: 230px;
-  height: 216px;
-
-  border: vars.$ani-border;
-  border-radius: vars.$ani-radius-normal;
-}
-
-.silhouette-profile {
-  height: 216px;
-}
-
-.silhouette-button {
-  position: absolute;
-  cursor: pointer;
-
-  background-color: rgba(255, 255, 255, .25);
-  border-radius: 7px;
-  box-shadow: 0 0 0 1px vars.$ani-dark-1, 0 0 0 2.5px white, inset 0 0 0 2.5px white;
-
-  &.heart {
-    width: 58px;
-    height: 54px;
-    left: 75px;
-    top: 82px;
-  }
-  &.nose {
-    width: 29px;
-    height: 27px;
-    left: 56px;
-    top: 31px;
-  }
-  &.brain {
-    width: 59px;
-    height: 51px;
-    left: 69px;
-    top: 2px;
-  }
-}
-
-.silhouette-organ {
-  position: absolute;
-  pointer-events: none;
-
-  &.heart {
-    height: 40px;
-    left: 90px;
-    top: 89px;
-  }
-  &.brain {
-    height: 35px;
-    left: 75px;
-    top: 10px;
-  }
-}
-
 .controls-pane {
   display: flex;
   flex-direction: column;
