@@ -14,6 +14,7 @@ interface ISilhouettePane {
 }
 export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane) => {
   const [silhouetteStyle, setSilhouetteStyle] = useState<Record<string, any>>({});
+  const [buttonStyle, setButtonStyle] = useState<Record<string, any>>({});
   const [organStyle, setOrganStyle] = useState<Record<string, any>>({});
 
   // Determine which silhouette to use
@@ -32,6 +33,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   useEffect(() => {
     if (!hasZoomed && sd && sod) {
       setSilhouetteStyle(sd.startStyle);
+      setButtonStyle(sod.buttonStartStyle);
       setOrganStyle(sod.startStyle);
     }
   }, [hasZoomed, sd, sod]);
@@ -41,6 +43,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
       setHasZoomed(true);
       if (sod) {
         setSilhouetteStyle(sod.silhouetteZoomStyle);
+        setButtonStyle(sod.buttonZoomStyle);
         setOrganStyle(sod.zoomStyle);
       }
     }
@@ -49,7 +52,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
-      <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} />
+      <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
       {sod && ac.organ !== "nose" &&
         <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
     </div>
