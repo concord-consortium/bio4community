@@ -75,6 +75,9 @@
   "SIMRESULTSHEADER": "Results:",
   "SIMRESULTSSUB": "Response over time",
 
+  "SILHOUETTEINSTRUCTIONS": "Click on the ORGAN to zoom in",
+  "SILHOUETTETITLE": "ORGAN View",
+
   "STRESSTITLE": "Stress Input",
   "LOWSTRESSINTRO": "A possible low stress situation may be something like:",
   "LOWSTRESSEXAMPLE": "Phone running out of battery",

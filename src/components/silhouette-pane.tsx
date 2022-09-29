@@ -1,11 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { clsx } from "clsx";
 
+import { PaneTitle } from "./pane-title";
 import { AppContext } from "../hooks/use-app-context";
 import { ISilhouetteData, ISilhouetteOrganData, silhouetteData, silhouetteOrganData }
   from "../assets/app-data/silhouette-data";
 
 import "./silhouette-pane.scss";
+
+const zoomDuration = 2000;
 
 interface ISilhouettePane {
   ac: AppContext;
@@ -16,6 +19,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   const [silhouetteStyle, setSilhouetteStyle] = useState<Record<string, any>>({});
   const [buttonStyle, setButtonStyle] = useState<Record<string, any>>({});
   const [organStyle, setOrganStyle] = useState<Record<string, any>>({});
+  const [zooming, setZooming] = useState(false);
 
   // Determine which silhouette to use
   const sdIndex = useMemo(() => {
@@ -40,21 +44,26 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
 
   const handleClick = (event: any) => {
     if (!hasZoomed) {
-      setHasZoomed(true);
+      setZooming(true);
       if (sod) {
         setSilhouetteStyle(sod.silhouetteZoomStyle);
         setButtonStyle(sod.buttonZoomStyle);
         setOrganStyle(sod.zoomStyle);
       }
+      setTimeout(() => { setHasZoomed(true); }, zoomDuration);
     }
   };
 
+  const instructionsMessage = ac.t("SILHOUETTEINSTRUCTIONS").replace("ORGAN", ac.organ);
+  const title = ac.t("SILHOUETTETITLE").replace("ORGAN", ac.organ[0].toUpperCase() + ac.organ.slice(1));
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
       <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
       {sod && ac.organ !== "nose" &&
         <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
+      {!zooming && <PaneTitle extraClass="instruction-title" title={instructionsMessage} />}
+      {hasZoomed && <PaneTitle extraClass="silhouette-title" title={title} />}
     </div>
   );
 };

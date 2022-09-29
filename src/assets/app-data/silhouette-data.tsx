@@ -111,7 +111,7 @@ const brainButtonZoomStyle = {
 const brainSilhouetteZoomStyle = {
   height: "900px",
   left: "-240px",
-  top: "-5px"
+  top: "10px"
 };
 const brainStartStyle = {
   height: "35px",
@@ -121,7 +121,7 @@ const brainStartStyle = {
 const brainZoomStyle = {
   height: "140px",
   left: "6px",
-  top: "30px"
+  top: "45px"
 };
 export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
   "heart": [
