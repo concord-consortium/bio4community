@@ -97,9 +97,9 @@ const noseSilhouetteZoomStyle = {
 const brainButtonStartStyle = {
   opacity: 1,
   width: "59px",
-  height: "51px",
+  height: "46px",
   left: "69px",
-  top: "2px"
+  top: "5px"
 };
 const brainButtonZoomStyle = {
   opacity: 0,
