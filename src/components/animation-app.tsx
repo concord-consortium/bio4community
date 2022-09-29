@@ -53,6 +53,8 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       <div className="silhouette-pane">
         {sd && <img src={sd.image} className="silhouette-profile" />}
         <button className={clsx("silhouette-button", ac.organ)} />
+        {sod && ac.organ !== "nose" &&
+          <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} />}
       </div>
     );
   };
