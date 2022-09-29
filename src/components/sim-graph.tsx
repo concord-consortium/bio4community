@@ -13,11 +13,13 @@ export interface Range {
   min: number;
   max: number;
 }
+// Returns the min and max values for the given axis of the given data
 const getRange = (data: Coord[], coord: "x" | "y") => ({
   min: Math.min(...data.map(d => d[coord])),
   max: Math.max(...data.map(d => d[coord]))
 });
 
+// Pale gray lines creating a grid as the graph background
 interface IGrid {
   color?: string;
   height: number;
@@ -48,6 +50,7 @@ const Grid = ({ color, height, hLines, vLines, width }: IGrid) => {
   );
 };
 
+// A dark border for the left and bottom of the graph
 interface IHalfBorder {
   height: number;
   width: number;
@@ -59,6 +62,7 @@ const HalfBorder = ({ height, width }: IHalfBorder) => (
   </>
 );
 
+// Converts a list of coordinates into a string in graph space that can be passed to a polyline element
 const polylinePoints = (data: Coord[], convertX: (x: number) => number, convertY: (y: number) => number) => {
   return data.map((coord: Coord) => `${convertX(coord.x)},${convertY(coord.y)}`).join(" ");
 };
