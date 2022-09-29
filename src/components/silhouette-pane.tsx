@@ -8,8 +8,10 @@ import "./silhouette-pane.scss";
 
 interface ISilhouettePane {
   ac: AppContext;
+  hasZoomed: boolean;
+  setHasZoomed: (val: boolean) => void;
 }
-export const SilhouettePane = ({ ac }: ISilhouettePane) => {
+export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane) => {
   // Determine which silhouette to use
   const sdIndex = useMemo(() => {
     const index = Math.floor(Math.random() * silhouetteData.length);
@@ -22,10 +24,16 @@ export const SilhouettePane = ({ ac }: ISilhouettePane) => {
     setSod(silhouetteOrganData[ac.organ][sdIndex]);
   }, [ac, sdIndex]);
 
+  const handleClick = (event: any) => {
+    if (!hasZoomed) {
+      setHasZoomed(true);
+    }
+  };
+
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" />}
-      <button className={clsx("silhouette-button", ac.organ)} />
+      <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} />
       {sod && ac.organ !== "nose" &&
         <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} />}
     </div>
