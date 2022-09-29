@@ -29,15 +29,6 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
   const [control3, setControl3] = useState(false);
-  useEffect(() => {
-    console.log(`${ac.o("SIMCONTROL1LABEL")}: ${ac.o(control1 ? "SIMCONTROL1OPTION2" : "SIMCONTROL1OPTION1")}`);
-  }, [ac, control1]);
-  useEffect(() => {
-    console.log(`${ac.o("SIMCONTROL2LABEL")}: ${ac.o(control2 ? "SIMCONTROL2OPTION2" : "SIMCONTROL2OPTION1")}`);
-  }, [ac, control2]);
-  useEffect(() => {
-    console.log(`${ac.o("SIMCONTROL3LABEL")}: ${ac.o(control3 ? "SIMCONTROL3OPTION2" : "SIMCONTROL3OPTION1")}`);
-  }, [ac, control3]);
 
   // Mark the video as incomplete whenever a control changes
   useEffect(() => {
