@@ -1,5 +1,8 @@
 @use './vars';
 
+$transition-duration: 10s;
+$transition: height $transition-duration, left $transition-duration, top $transition-duration;
+
 .silhouette-pane {
   position: relative;
   display: flex;
@@ -16,7 +19,7 @@
 
 .silhouette-profile {
   position: absolute;
-  height: 216px;
+  transition: $transition;
 }
 
 .silhouette-button {
@@ -50,15 +53,5 @@
 .silhouette-organ {
   position: absolute;
   pointer-events: none;
-
-  &.heart {
-    height: 40px;
-    left: 90px;
-    top: 89px;
-  }
-  &.brain {
-    height: 35px;
-    left: 75px;
-    top: 10px;
-  }
+  transition: $transition;
 }
