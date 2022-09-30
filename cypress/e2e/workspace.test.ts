@@ -62,6 +62,22 @@ context("Test the overall app", () => {
     });
   });
 
+  describe("Animation videos", () => {
+    it(`can't play tissue video until zooming`, () => {
+      visitPage("animation", "heart");
+      getPlayButton(true).should("not.be.visible");
+      cy.get(".app .silhouette-button").click().wait(2500);
+      getPlayButton(true).click();
+      getPlayButton(true).should("have.text", "Pause");
+    });
+    it(`can't play cell video while tissue video is playing`, () => {
+      getPlayButton(false).should("not.be.visible");
+      getPlayButton(true).click();
+      getPlayButton(false).click();
+      getPlayButton(false).should("have.text", "Pause");
+    });
+  });
+
   describe("Animation stress input", () => {
     // Only works for brain animation! Other animations should get the first toggle-control.
     const getStressControl = () => cy.get(".app .toggle-control").last(); 
@@ -104,9 +120,10 @@ context("Test the overall app", () => {
         getKey().should("be.visible");
         // Move the key so it's not blocking the key button
         const targetX = 700;
+        const targetY = 200;
         getKeyTitle()
           .trigger("mousedown", {which: 1})
-          .trigger("mousemove", {clientX: targetX})
+          .trigger("mousemove", {clientX: targetX, clientY: targetY})
           .trigger("mouseup", {force: true});
         getKeyButton().click();
         getKey().should("not.be.visible");

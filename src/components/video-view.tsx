@@ -2,6 +2,8 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
+
+import { PaneTitle } from "./pane-title";
 import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
@@ -9,15 +11,6 @@ import { aniVideos } from "../assets/videos/video-data";
 
 import "./disabled-overlay.scss";
 import "./video-view.scss";
-
-interface IVideoTitle {
-  title: string;
-}
-const VideoTitle = ({ title }: IVideoTitle) => (
-  <div className="video-title">
-    {title}
-  </div>
-);
 
 interface IVideoView {
   ac: AppContext;
@@ -154,7 +147,7 @@ export const VideoView = ({
         >
           <source src={videoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
         </video>
-        <VideoTitle title={title} />
+        <PaneTitle extraClass="video-title" title={title} />
         {disabled && (
           <div className="disabled-overlay">
             {disabledMessage && <div className="disabled-message">{disabledMessage}</div>}

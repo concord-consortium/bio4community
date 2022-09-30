@@ -1,0 +1,51 @@
+@use './vars';
+
+// Make sure to update zoomDuration in silhouette-pane.tsx if you change this.
+$transition-duration: 2s;
+$transition: height $transition-duration, left $transition-duration, top $transition-duration;
+
+.silhouette-pane {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  width: 230px;
+  height: 216px;
+
+  border: vars.$ani-border;
+  border-radius: vars.$ani-radius-normal;
+}
+
+.silhouette-profile {
+  position: absolute;
+  transition: $transition;
+}
+
+$btd: $transition-duration;
+.silhouette-button {
+  position: absolute;
+  cursor: pointer;
+  transition: opacity $btd, height $btd, width $btd, left $btd, top $btd;
+
+  background-color: rgba(255, 255, 255, .25);
+  border-radius: 7px;
+  border: white solid 1.5px;
+  box-shadow: 0 0 0 2px vars.$ani-dark-1, 0 0 0 3.5px white;
+}
+
+.silhouette-organ {
+  position: absolute;
+  pointer-events: none;
+  transition: $transition;
+}
+
+.instruction-title {
+  bottom: 10px;
+  font-size: 13px;
+}
+
+.silhouette-title {
+  top: 10px;
+}

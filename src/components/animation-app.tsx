@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
+import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
+import { VideoView } from "./video-view";
 import { AppContext } from "../hooks/use-app-context";
 import { renderControls } from "../utils/app-data";
 
@@ -16,6 +17,7 @@ interface AnimationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
+  const [hasZoomed, setHasZoomed] = useState(false);
   const [playingTissue, setPlayingTissue] = useState(false);
   const [tPercentComplete, setTPercentComplete] = useState(0);
   const [playingCell, setPlayingCell] = useState(false);
@@ -25,6 +27,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
 
+  // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
   const [highStressExample, setHighStressExample] = useState("");
   interface IStressPane {
@@ -64,11 +67,11 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
 
   const highStress = ac.organ === "brain" ? control2 : control1;
   const tissueTitle = ac.o("LEFTANIMATIONTITLE");
-  const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
+  const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
       <div className="app-row">
-        <div className="silhouette">Silhouette View</div>
+        <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
           <Title ac={ac} text="Controls" />
           { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
@@ -81,6 +84,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
+          disabled={!hasZoomed}
           percentComplete={tPercentComplete}
           playing={playingTissue}
           setPercentComplete={setTPercentComplete}
@@ -94,7 +98,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={playingTissue}
+          disabled={!hasZoomed || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}

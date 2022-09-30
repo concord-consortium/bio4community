@@ -5,18 +5,6 @@
   background-color: vars.$ani-basic;
 }
 
-.silhouette {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 230px;
-  height: 216px;
-
-  border: vars.$ani-border;
-  border-radius: vars.$ani-radius-normal;
-}
-
 .controls-pane {
   display: flex;
   flex-direction: column;
