@@ -26,6 +26,19 @@ import NoseCellCase21 from "./cell/nose/NoseCellCase2Time1.mp4";
 import NoseCellCase22 from "./cell/nose/NoseCellCase2Time2.mp4";
 import NoseCellCase23 from "./cell/nose/NoseCellCase2Time3.mp4";
 
+const BrainCellCase1 = {
+  0: SynapseCase1,
+  .333: SynapseCase2,
+  .667: SynapseCase3,
+  1: SynapseCase4
+};
+const BrainCellCase2 = {
+  0: SynapseCase4,
+  .333: SynapseCase3,
+  .667: SynapseCase2,
+  1: SynapseCase1
+};
+
 const NoseCellCase1 = {
   0: NoseCellCase11,
   .333: NoseCellCase12,
@@ -102,8 +115,8 @@ export const simVideos: any = {
     "brain": [
       [
         [
-          NeuronsCase3,
-          NeuronsCase3
+          NeuronsCase2,
+          NeuronsCase2
         ],
         [
           NeuronsCase3,
@@ -116,8 +129,8 @@ export const simVideos: any = {
           NeuronsCase3
         ],
         [
-          NeuronsCase3,
-          NeuronsCase3
+          NeuronsCase2,
+          NeuronsCase2
         ]
       ]
     ]
@@ -210,62 +223,22 @@ export const simVideos: any = {
     "brain": [
       [
         [
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          },
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          }
+          BrainCellCase2,
+          BrainCellCase2
         ],
         [
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          },
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          }
+          BrainCellCase1,
+          BrainCellCase1
         ]
       ],
       [
         [
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          },
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          }
+          BrainCellCase1,
+          BrainCellCase1
         ],
         [
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          },
-          {
-            0: SynapseCase1,
-            .333: SynapseCase2,
-            .667: SynapseCase3,
-            1: SynapseCase4
-          }
+          BrainCellCase2,
+          BrainCellCase2
         ]
       ]
     ]
@@ -350,32 +323,12 @@ export const aniVideos: any = {
     ],
     "brain": [
       [
-        {
-          0: SynapseCase4,
-          .333: SynapseCase3,
-          .667: SynapseCase2,
-          1: SynapseCase1
-        },
-        {
-          0: SynapseCase1,
-          .333: SynapseCase2,
-          .667: SynapseCase3,
-          1: SynapseCase4
-        }
+        BrainCellCase2,
+        BrainCellCase1
       ],
       [
-        {
-          0: SynapseCase1,
-          .333: SynapseCase2,
-          .667: SynapseCase3,
-          1: SynapseCase4
-        },
-        {
-          0: SynapseCase4,
-          .333: SynapseCase3,
-          .667: SynapseCase2,
-          1: SynapseCase1
-        }
+        BrainCellCase1,
+        BrainCellCase2
       ]
     ]
   }
