@@ -14,11 +14,42 @@ import SynapseCase2 from "./cell/brain/SynapseCase2.mp4";
 import SynapseCase3 from "./cell/brain/SynapseCase3.mp4";
 import SynapseCase4 from "./cell/brain/SynapseCase4.mp4";
 
-import NoseCanals from "./tissue/nose/NoseCanals.mp4";
-import NoseCellCase1 from "./cell/nose/NoseCellCase1.mp4";
-import NoseCellCase2 from "./cell/nose/NoseCellCase2.mp4";
-import NoseCellCase3 from "./cell/nose/NoseCellCase3.mp4";
-import NoseCellCase4 from "./cell/nose/NoseCellCase4.mp4";
+import NoseCase1 from "./tissue/nose/NoseCase1.mp4";
+import NoseCase2 from "./tissue/nose/NoseCase2.mp4";
+import NoseCase3 from "./tissue/nose/NoseCase3.mp4";
+import NoseCase4 from "./tissue/nose/NoseCase4.mp4";
+import NoseCellCase11 from "./cell/nose/NoseCellCase1Time1.mp4";
+import NoseCellCase12 from "./cell/nose/NoseCellCase1Time2.mp4";
+import NoseCellCase13 from "./cell/nose/NoseCellCase1Time3.mp4";
+import NoseCellCase14 from "./cell/nose/NoseCellCase1Time4.mp4";
+import NoseCellCase21 from "./cell/nose/NoseCellCase2Time1.mp4";
+import NoseCellCase22 from "./cell/nose/NoseCellCase2Time2.mp4";
+import NoseCellCase23 from "./cell/nose/NoseCellCase2Time3.mp4";
+
+const NoseCellCase1 = {
+  0: NoseCellCase11,
+  .333: NoseCellCase12,
+  .667: NoseCellCase13,
+  1: NoseCellCase14
+};
+const NoseCellCase2 = {
+  0: NoseCellCase21,
+  .333: NoseCellCase22,
+  .667: NoseCellCase23,
+  1: NoseCellCase14
+};
+const NoseCellCase3 = {
+  0: NoseCellCase11,
+  .333: NoseCellCase22,
+  .667: NoseCellCase22,
+  1: NoseCellCase23
+};
+const NoseCellCase4 = {
+  0: NoseCellCase21,
+  .333: NoseCellCase22,
+  .667: NoseCellCase22,
+  1: NoseCellCase23
+};
 
 // Videos for sims
 // [tissue | cell][organ][control1][control2][control3][time (cell only)]
@@ -49,22 +80,22 @@ export const simVideos: any = {
     "nose": [
       [
         [
-          NoseCanals,
-          NoseCanals
+          NoseCase3,
+          NoseCase4
         ],
         [
-          NoseCanals,
-          NoseCanals
+          NoseCase1,
+          NoseCase2
         ]
       ],
       [
         [
-          NoseCanals,
-          NoseCanals
+          NoseCase3,
+          NoseCase4
         ],
         [
-          NoseCanals,
-          NoseCanals
+          NoseCase1,
+          NoseCase2
         ]
       ]
     ],
@@ -157,62 +188,22 @@ export const simVideos: any = {
     "nose": [
       [
         [
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          },
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          }
+          NoseCellCase3,
+          NoseCellCase4
         ],
         [
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          },
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          }
+          NoseCellCase1,
+          NoseCellCase2
         ]
       ],
       [
         [
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          },
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          }
+          NoseCellCase3,
+          NoseCellCase4
         ],
         [
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          },
-          {
-            0: NoseCellCase1,
-            .333: NoseCellCase2,
-            .667: NoseCellCase3,
-            1: NoseCellCase4
-          }
+          NoseCellCase1,
+          NoseCellCase2
         ]
       ]
     ],
@@ -297,12 +288,12 @@ export const aniVideos: any = {
     ],
     "nose": [
       [
-        NoseCanals,
-        NoseCanals
+        NoseCase1,
+        NoseCase2
       ],
       [
-        NoseCanals,
-        NoseCanals
+        NoseCase3,
+        NoseCase4
       ]
     ],
     "brain": [
@@ -349,32 +340,12 @@ export const aniVideos: any = {
     ],
     "nose": [
       [
-        {
-          0: NoseCellCase1,
-          .333: NoseCellCase2,
-          .667: NoseCellCase3,
-          1: NoseCellCase4
-        },
-        {
-          0: NoseCellCase1,
-          .333: NoseCellCase2,
-          .667: NoseCellCase3,
-          1: NoseCellCase4
-        }
+        NoseCellCase1,
+        NoseCellCase2
       ],
       [
-        {
-          0: NoseCellCase1,
-          .333: NoseCellCase2,
-          .667: NoseCellCase3,
-          1: NoseCellCase4
-        },
-        {
-          0: NoseCellCase1,
-          .333: NoseCellCase2,
-          .667: NoseCellCase3,
-          1: NoseCellCase4
-        }
+        NoseCellCase3,
+        NoseCellCase4
       ],
     ],
     "brain": [
