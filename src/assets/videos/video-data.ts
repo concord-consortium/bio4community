@@ -26,6 +26,25 @@ import NoseCellCase21 from "./cell/nose/NoseCellCase2Time1.mp4";
 import NoseCellCase22 from "./cell/nose/NoseCellCase2Time2.mp4";
 import NoseCellCase23 from "./cell/nose/NoseCellCase2Time3.mp4";
 
+const HeartCellCase1 = {
+  0: BloodCellCase1MP4,
+  .333: BloodCellCase1MP4,
+  .667: BloodCellCase1MP4,
+  1: BloodCellCase2MP4
+};
+const HeartCellCase2 = {
+  0: BloodCellCase1MP4,
+  .333: BloodCellCase1MP4,
+  .667: BloodCellCase2MP4,
+  1: BloodCellCase3MP4
+};
+const HeartCellCase3 = {
+  0: BloodCellCase1MP4,
+  .333: BloodCellCase2MP4,
+  .667: BloodCellCase3MP4,
+  1: BloodCellCase4MP4
+};
+
 const BrainCellCase1 = {
   0: SynapseCase1,
   .333: SynapseCase2,
@@ -139,62 +158,22 @@ export const simVideos: any = {
     "heart": [
       [
         [
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase2MP4,
-            1: BloodCellCase3MP4
-          },
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase2MP4,
-            .667: BloodCellCase3MP4,
-            1: BloodCellCase4MP4
-          }
+          HeartCellCase2,
+          HeartCellCase3
         ],
         [
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase1MP4,
-            1: BloodCellCase2MP4
-          },
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase2MP4,
-            1: BloodCellCase3MP4
-          }
+          HeartCellCase1,
+          HeartCellCase2
         ]
       ],
       [
         [
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase2MP4,
-            1: BloodCellCase3MP4
-          },
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase2MP4,
-            .667: BloodCellCase3MP4,
-            1: BloodCellCase4MP4
-          }
+          HeartCellCase2,
+          HeartCellCase3
         ],
         [
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase1MP4,
-            1: BloodCellCase2MP4
-          },
-          {
-            0: BloodCellCase1MP4,
-            .333: BloodCellCase1MP4,
-            .667: BloodCellCase2MP4,
-            1: BloodCellCase3MP4
-          }
+          HeartCellCase1,
+          HeartCellCase2
         ]
       ]
     ],
@@ -283,32 +262,12 @@ export const aniVideos: any = {
   "cell": {
     "heart": [
       [
-        {
-          0: BloodCellCase1MP4,
-          .333: BloodCellCase1MP4,
-          .667: BloodCellCase1MP4,
-          1: BloodCellCase2MP4
-        },
-        {
-          0: BloodCellCase1MP4,
-          .333: BloodCellCase1MP4,
-          .667: BloodCellCase2MP4,
-          1: BloodCellCase3MP4
-        }
+        HeartCellCase1,
+        HeartCellCase2
       ],
       [
-        {
-          0: BloodCellCase1MP4,
-          .333: BloodCellCase1MP4,
-          .667: BloodCellCase2MP4,
-          1: BloodCellCase3MP4
-        },
-        {
-          0: BloodCellCase1MP4,
-          .333: BloodCellCase2MP4,
-          .667: BloodCellCase3MP4,
-          1: BloodCellCase4MP4
-        }
+        HeartCellCase2,
+        HeartCellCase3
       ]
     ],
     "nose": [
