@@ -46,7 +46,7 @@
   "HEART.SIMCONTROL3LABEL": "Immune Cell Signalling",
   "HEART.SIMCONTROL3OPTION1": "Low",
   "HEART.SIMCONTROL3OPTION2": "High",
-  "NOSE.SIMCONTROL3LABEL": "Amount of Bacteria",
+  "NOSE.SIMCONTROL3LABEL": "Immune Cell Recruitment",
   "NOSE.SIMCONTROL3OPTION1": "Low",
   "NOSE.SIMCONTROL3OPTION2": "High",
 
@@ -111,5 +111,18 @@
   "BRAIN.KEY5": "Label5",
   "BRAIN.KEY6": "Label6",
   "BRAIN.KEY7": "Label7",
-  "BRAIN.KEY8": "Label8"
+  "BRAIN.KEY8": "Label8",
+
+  "HEART.LEFTXLABEL": "Simulated Time (years)",
+  "HEART.LEFTYLABEL": "Plaque Size",
+  "HEART.RIGHTXLABEL": "Simulated Time (years)",
+  "HEART.RIGHTYLABEL": "# of Sticky Proteins",
+  "NOSE.LEFTXLABEL": "Simulated Time (years)",
+  "NOSE.LEFTYLABEL": "Runny Nose",
+  "NOSE.RIGHTXLABEL": "Simulated Time (years)",
+  "NOSE.RIGHTYLABEL": "Mucus Thickness",
+  "BRAIN.LEFTXLABEL": "Simulated Time (years)",
+  "BRAIN.LEFTYLABEL": "# of Connections",
+  "BRAIN.RIGHTXLABEL": "Simulated Time (years)",
+  "BRAIN.RIGHTYLABEL": "Firing of Dendrite"
 }

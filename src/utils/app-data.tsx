@@ -123,6 +123,7 @@ export const getKeyData = (ac: AppContext): [any, string][] => {
   return keyData;
 };
 
+// Data to be plotted in a simulation
 const leftHeartCase1 = [
   {x: 20, y: 1}, {x: 25, y: 1.5}, {x: 30, y: 2}, {x: 35, y: 2.5}, {x: 40, y: 3}, {x: 45, y: 4}, {x: 50, y: 10}
 ];
@@ -148,7 +149,6 @@ const rightHeartCase3 = [
 const rightHeartCase4 = [
   {x: 20, y: 3}, {x: 25, y: 3.5}, {x: 30, y: 4}, {x: 35, y: 5}, {x: 40, y: 6}, {x: 45, y: 7.5}, {x: 50, y: 9}
 ];
-
 export const graphData = {
   "heart": {
     "left": [

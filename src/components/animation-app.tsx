@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
@@ -26,12 +26,6 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
 
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
-  useEffect(() => {
-    console.log(`${ac.o("ANICONTROL1LABEL")}: ${ac.o(control1 ? "ANICONTROL1OPTION2" : "ANICONTROL1OPTION1")}`);
-  }, [ac, control1]);
-  useEffect(() => {
-    console.log(`${ac.o("ANICONTROL2LABEL")}: ${ac.o(control2 ? "ANICONTROL2OPTION2" : "ANICONTROL2OPTION1")}`);
-  }, [ac, control2]);
 
   // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
