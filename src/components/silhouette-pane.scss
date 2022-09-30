@@ -1,5 +1,6 @@
 @use './vars';
 
+// Make sure to update zoomDuration in silhouette-pane.tsx if you change this.
 $transition-duration: 2s;
 $transition: height $transition-duration, left $transition-duration, top $transition-duration;
 
@@ -22,7 +23,7 @@ $transition: height $transition-duration, left $transition-duration, top $transi
   transition: $transition;
 }
 
-$btd: 2s;
+$btd: $transition-duration;
 .silhouette-button {
   position: absolute;
   cursor: pointer;

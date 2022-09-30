@@ -8,6 +8,7 @@ import { ISilhouetteData, ISilhouetteOrganData, silhouetteData, silhouetteOrganD
 
 import "./silhouette-pane.scss";
 
+// Make sure you update $transition-duration in silhouette-pane.scss if you change this.
 const zoomDuration = 2000;
 
 interface ISilhouettePane {
@@ -23,7 +24,6 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
 
   // Determine which silhouette to use
   const sdIndex = useMemo(() => {
-    // return 4;
     const index = Math.floor(Math.random() * silhouetteData.length);
     return index < silhouetteData.length ? index : 0;
   }, []);
