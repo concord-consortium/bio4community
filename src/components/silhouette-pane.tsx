@@ -60,7 +60,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
       <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
-      {sod && ac.organ !== "nose" &&
+      {sod && ac.organ !== "nose" /* Currently missing assets for nose */ &&
         <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
       {!zooming && <PaneTitle extraClass="instruction-title" title={instructionsMessage} />}
       {hasZoomed && <PaneTitle extraClass="silhouette-title" title={title} />}
