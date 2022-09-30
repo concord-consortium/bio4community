@@ -13,11 +13,13 @@ export interface Range {
   min: number;
   max: number;
 }
+// Returns the min and max values for the given axis of the given data
 const getRange = (data: Coord[], coord: "x" | "y") => ({
   min: Math.min(...data.map(d => d[coord])),
   max: Math.max(...data.map(d => d[coord]))
 });
 
+// Pale gray lines creating a grid as the graph background
 interface IGrid {
   color?: string;
   height: number;
@@ -48,6 +50,7 @@ const Grid = ({ color, height, hLines, vLines, width }: IGrid) => {
   );
 };
 
+// A dark border for the left and bottom of the graph
 interface IHalfBorder {
   height: number;
   width: number;
@@ -59,6 +62,7 @@ const HalfBorder = ({ height, width }: IHalfBorder) => (
   </>
 );
 
+// Converts a list of coordinates into a string in graph space that can be passed to a polyline element
 const polylinePoints = (data: Coord[], convertX: (x: number) => number, convertY: (y: number) => number) => {
   return data.map((coord: Coord) => `${convertX(coord.x)},${convertY(coord.y)}`).join(" ");
 };
@@ -67,12 +71,18 @@ interface ISimGraph {
   ac: AppContext;
   data: Coord[];
   percentComplete: number;
+  horizontalLabel?: any;
   horizontalRange?: Range;
+  verticalLabel?: string;
   verticalRange?: Range;
+  videoComplete?: boolean;
 }
-export const SimGraph = ({ ac, data, percentComplete, horizontalRange, verticalRange }: ISimGraph) => {
+export const SimGraph = ({
+  ac, data, percentComplete, horizontalLabel, horizontalRange, verticalLabel, verticalRange, videoComplete
+}: ISimGraph) => {
   const width = 307;
   const height = 95;
+  const plotColor = "#0481a0";
 
   // Determine how to convert between data space and svg space
   const xRange = horizontalRange || getRange(data, "x");
@@ -94,19 +104,22 @@ export const SimGraph = ({ ac, data, percentComplete, horizontalRange, verticalR
 
   return (
     <div className="sim-graph-container">
-      <div className="vertical-label">Vertical Axis</div>
+      <div className="vertical-label">{verticalLabel || "Vertical Axis"}</div>
       <div className="sim-graph-right">
         <div className="sim-graph">
           <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" fill="blue">
             <Grid height={height} hLines={3} vLines={2} width={width} />
-            <HalfBorder height={height} width={width} />
-            <polyline points={polylinePoints(polylineData, convertX, convertY)} fill="none" stroke="#0481a0"
+            {videoComplete && <polyline points={polylinePoints(data, convertX, convertY)} fill="none"
+              stroke={plotColor} strokeWidth={1.5} />}
+            <polyline points={polylinePoints(polylineData, convertX, convertY)} fill="none" stroke={plotColor}
               strokeWidth={3} />
             {percentComplete > 0 &&
-              <circle cx={convertX(currentPoint.x)} cy={convertY(currentPoint.y)} r={6} fill="#0481a0" />}
+              <circle cx={convertX(currentPoint.x)} cy={convertY(currentPoint.y)} r={6} fill={plotColor}
+                stroke="white" strokeWidth={2} />}
+            <HalfBorder height={height} width={width} />
           </svg>
         </div>
-        <div className="horizontal-label">Horizontal Axis</div>
+        <div className="horizontal-label">{horizontalLabel || "Horizontal Axis"}</div>
       </div>
     </div>
   );
