@@ -57,7 +57,7 @@ interface IHalfBorder {
 }
 const HalfBorder = ({ height, width }: IHalfBorder) => (
   <>
-    <line x1="0" y1="0" x2="0" y2={height} stroke="black" stroke-width="4" />
+    <line x1="0" y1="0" x2="0" y2={height} stroke="black" strokeWidth="4" />
     <line x1="0" y1={height} x2={width} y2={height} stroke="black" strokeWidth="4" />
   </>
 );

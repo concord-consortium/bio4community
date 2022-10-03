@@ -31,8 +31,15 @@ export const VideoView = ({
   ac, disabled, disabledMessage, extraClass, loop, percentComplete, playing, setPercentComplete, setPlaying,
   setTargetVideoIndex, timelineMarks, title, videoFile
 }: IVideoView) => {
+  // Basic video state
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
+
+  // The back video is used to prevent the video from flashing when the video file changes
+  const backVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [backVideoFile, setBackVideoFile] = useState<any>();
+  const normalStyle = { left: 2, top: 2 };
+  const [frontStyle, setFrontStyle] = useState<Record<string, any>>(normalStyle);
 
   // Keep percentComplete updated based on the video's state
   useEffect(() => {
@@ -64,6 +71,19 @@ export const VideoView = ({
     }
   }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
+  // Hide the front video when the video file changes
+  useEffect(() => {
+    const loadingStyle = { left: 460, top: 2 };
+    setFrontStyle(loadingStyle);
+    videoFile; // eslint-disable-line no-unused-expressions
+  }, [videoFile]);
+
+  // Show the front video when it's finished loading
+  const handleLoadedData = () => {
+    setFrontStyle(normalStyle);
+    setBackVideoFile(videoFile);
+  };
+
   // Set the duration of the video when its length is known
   const handleLoadedMetadata = () => {
     setDuration(videoRef.current?.duration || 0);
@@ -82,6 +102,19 @@ export const VideoView = ({
     pause();
     videoRef.current?.load();
   }, [pause, videoRef, videoFile]);
+
+  // Reload the back video when its video file changes
+  useEffect(() => {
+    backVideoRef.current?.load();
+  }, [backVideoFile, backVideoRef]);
+
+  // Keep the back video up to date with the front video
+  useEffect(() => {
+    const backVideo = backVideoRef.current;
+    if (backVideo) {
+      backVideo.currentTime = percentComplete * duration;
+    }
+  }, [duration, percentComplete]);
 
   // Pause the video when it becomes disabled
   useEffect(() => {
@@ -140,10 +173,19 @@ export const VideoView = ({
       />
       <div className={clsx("video-pane", ac.mode, extraClass)}>
         <video
+          ref={backVideoRef}
+          className={clsx("video-view-video", extraClass)}
+          style={normalStyle}
+        >
+          <source src={backVideoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
+        </video>
+        <video
           ref={videoRef}
+          onLoadedData={handleLoadedData}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={onEnded}
           className={clsx("video-view-video", extraClass)}
+          style={frontStyle}
         >
           <source src={videoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
         </video>
