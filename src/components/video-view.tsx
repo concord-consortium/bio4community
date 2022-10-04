@@ -34,6 +34,7 @@ export const VideoView = ({
   // Basic video state
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // The back video is used to prevent the video from flashing when the video file changes
   const backVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -72,6 +73,7 @@ export const VideoView = ({
   // Show the front video when it's finished loading
   const handleLoadedData = () => {
     setBackVideoFile(videoFile);
+    setLoading(false);
   };
 
   // Set the duration of the video when its length is known
@@ -91,6 +93,7 @@ export const VideoView = ({
   useEffect(() => {
     pause();
     videoRef.current?.load();
+    setLoading(true);
   }, [pause, videoRef, videoFile]);
 
   // Reload the back video when its video file changes
@@ -101,10 +104,10 @@ export const VideoView = ({
   // Keep the back video up to date with the front video
   useEffect(() => {
     const backVideo = backVideoRef.current;
-    if (backVideo) {
+    if (backVideo && !loading) {
       backVideo.currentTime = percentComplete * duration;
     }
-  }, [duration, percentComplete]);
+  }, [duration, loading, percentComplete]);
 
   // Pause the video when it becomes disabled
   useEffect(() => {

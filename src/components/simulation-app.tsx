@@ -73,7 +73,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         { renderControls({ ac, disabled: disableControls,
           onChanges: [
             delayControl(setControl1, setDisableControls),
-            delayControl(setControl2, setDisableControls, 5000),
+            delayControl(setControl2, setDisableControls),
             delayControl(setControl3, setDisableControls)
           ] }) }
         <div />
