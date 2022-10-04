@@ -9,17 +9,20 @@ interface IProps {
   ac: AppContext;
   className?: string;
   dataTest?: string;
+  disabled?: boolean;
   initialValue?: boolean;
   onChange?: (value: boolean) => void;
   title?: string;
 }
 
-const ToggleControl: React.FC<IProps> = ({ ac, className, dataTest, initialValue, onChange, title }) => {
+const ToggleControl: React.FC<IProps> = ({ ac, className, dataTest, disabled, initialValue, onChange, title }) => {
   const [value, setValue] = useState(initialValue || false);
 
   const handleClick = () => {
-    onChange?.(!value);
-    setValue(!value);
+    if (!disabled) {
+      onChange?.(!value);
+      setValue(!value);
+    }
   };
 
   const onClass = value ? "toggle-on" : "";
