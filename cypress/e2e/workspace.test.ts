@@ -98,10 +98,10 @@ context("Test the overall app", () => {
       getTextArea().type(exampleText);
       getTextArea().blur();
       getTextArea().should("have.text", exampleText);
-      getStressControl().click();
+      getStressControl().click().wait(760);
       getTextArea().should("have.text", "");
       getTextArea().type(exampleText2);
-      getStressControl().click();
+      getStressControl().click().wait(760);
       getTextArea().should("have.text", exampleText);
       getStressControl().click();
       getTextArea().should("have.text", exampleText2);
