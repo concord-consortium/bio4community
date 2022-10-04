@@ -38,8 +38,6 @@ export const VideoView = ({
   // The back video is used to prevent the video from flashing when the video file changes
   const backVideoRef = useRef<HTMLVideoElement | null>(null);
   const [backVideoFile, setBackVideoFile] = useState<any>();
-  const normalStyle = { left: 2, top: 2 };
-  const [frontStyle, setFrontStyle] = useState<Record<string, any>>(normalStyle);
 
   // Keep percentComplete updated based on the video's state
   useEffect(() => {
@@ -48,10 +46,10 @@ export const VideoView = ({
         const pc = videoRef.current.currentTime / duration;
         setPercentComplete(pc);
       }
-      return () => {
-        clearInterval(tickInterval);
-      };
     }, 30);
+    return () => {
+      clearInterval(tickInterval);
+    };
   }, [duration, setPercentComplete]);
 
   // Update the target index (timelineMark) to be the closest to the percent complete
@@ -71,16 +69,8 @@ export const VideoView = ({
     }
   }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
-  // Hide the front video when the video file changes
-  useEffect(() => {
-    const loadingStyle = { left: 460, top: 2 };
-    setFrontStyle(loadingStyle);
-    videoFile; // eslint-disable-line no-unused-expressions
-  }, [videoFile]);
-
   // Show the front video when it's finished loading
   const handleLoadedData = () => {
-    setFrontStyle(normalStyle);
     setBackVideoFile(videoFile);
   };
 
@@ -175,7 +165,6 @@ export const VideoView = ({
         <video
           ref={backVideoRef}
           className={clsx("video-view-video", extraClass)}
-          style={normalStyle}
         >
           <source src={backVideoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
         </video>
@@ -185,7 +174,6 @@ export const VideoView = ({
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={onEnded}
           className={clsx("video-view-video", extraClass)}
-          style={frontStyle}
         >
           <source src={videoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
         </video>
