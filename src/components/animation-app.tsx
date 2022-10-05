@@ -5,7 +5,7 @@ import { AppContainer } from "./app-container";
 import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
-import { aniVideos } from "../data/video-data";
+import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
 import { renderControls } from "../utils/app-data";
@@ -95,7 +95,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           setPercentComplete={setTPercentComplete}
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
-          timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
+          timelineMarks={timelines[ac.mode].tissue[ac.organ][+control1][+control2][0]}
           title={tissueTitle}
           videoFile={(
             aniVideos.tissue as Record<string, any[][]>)[ac.organ][+control1][+control2]
@@ -110,6 +110,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           playing={playingCell}
           setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
+          timelineMarks={timelines[ac.mode].cell[ac.organ][+control1][+control2][0]}
           title={ac.o("RIGHTANIMATIONTITLE")}
           videoFile={
             (aniVideos.cell as

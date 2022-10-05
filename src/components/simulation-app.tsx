@@ -6,7 +6,7 @@ import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { SimGraph } from "./sim-graph";
 import { Coord, graphData, graphRanges, Range } from "../data/graph-data";
-import { simVideos } from "../data/video-data";
+import { simVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
 import { renderControls } from "../utils/app-data";
@@ -90,7 +90,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
           title={tissueTitle}
-          timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
+          timelineMarks={timelines[ac.mode].tissue[ac.organ][+control1][+control2][+control3]}
           videoFile={(simVideos.tissue as
             Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3]
           }
@@ -105,7 +105,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}
-          timelineMarks={{ 0: " ", 1: " " }}
+          timelineMarks={timelines[ac.mode].cell[ac.organ][+control1][+control2][+control3]}
           videoFile={(simVideos.cell as
             Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3][targetVideoIndex]
           }
