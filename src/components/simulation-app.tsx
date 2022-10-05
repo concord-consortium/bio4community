@@ -6,11 +6,11 @@ import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { SimGraph } from "./sim-graph";
 import { Coord, graphData, graphRanges, Range } from "../data/graph-data";
+import { simVideos } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
 import { renderControls } from "../utils/app-data";
 
-import { simVideos } from "../assets/videos/video-data";
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
 import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 

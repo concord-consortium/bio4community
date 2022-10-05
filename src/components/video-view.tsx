@@ -7,7 +7,7 @@ import { PaneTitle } from "./pane-title";
 import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
-import { aniVideos } from "../assets/videos/video-data";
+import { aniVideos } from "../data/video-data";
 
 import "./disabled-overlay.scss";
 import "./video-view.scss";
