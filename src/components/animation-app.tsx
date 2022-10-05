@@ -5,10 +5,10 @@ import { AppContainer } from "./app-container";
 import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
+import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
-import { renderControls } from "../utils/app-data";
 
 import "./animation-app.scss";
 

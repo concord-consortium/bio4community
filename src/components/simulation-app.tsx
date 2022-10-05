@@ -5,11 +5,11 @@ import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { SimGraph } from "./sim-graph";
+import { renderControls } from "../data/control-data";
 import { graphData, graphRanges } from "../data/graph-data";
 import { simVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
-import { renderControls } from "../utils/app-data";
 
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
 import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
