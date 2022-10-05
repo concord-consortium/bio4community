@@ -1,8 +1,8 @@
 import React from "react";
 
+import { keyImages } from "./image-data";
 import { AppContext } from "../hooks/use-app-context";
 
-import { keyImages } from "../assets/images/image-data";
 import CloseIcon from "../assets/icons/close-icon.svg";
 
 interface IKeyImage {
