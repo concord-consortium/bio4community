@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 
 import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
-import { getKeyData } from "../utils/app-data";
+import { getKeyData } from "../data/key-data";
 
 import "./app-key.scss";
 

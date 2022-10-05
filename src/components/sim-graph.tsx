@@ -1,18 +1,11 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
 import React from "react";
+import { Coord, Range } from "../data/graph-data";
 import { AppContext } from "../hooks/use-app-context";
 
 import "./sim-graph.scss";
 
-export interface Coord {
-  x: number;
-  y: number;
-}
-export interface Range {
-  min: number;
-  max: number;
-}
 // Returns the min and max values for the given axis of the given data
 const getRange = (data: Coord[], coord: "x" | "y") => ({
   min: Math.min(...data.map(d => d[coord])),

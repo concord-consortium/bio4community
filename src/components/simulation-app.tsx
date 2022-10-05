@@ -4,12 +4,13 @@ import { clsx } from "clsx";
 import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-import { Coord, SimGraph } from "./sim-graph";
+import { SimGraph } from "./sim-graph";
+import { renderControls } from "../data/control-data";
+import { graphData, graphRanges } from "../data/graph-data";
+import { simVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
-import { graphData, renderControls } from "../utils/app-data";
 
-import { simVideos } from "../assets/videos/video-data";
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
 import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
@@ -65,7 +66,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
 
   const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
-  const horizontalLabel = <><span className="bold">Simulated Time</span>&nbsp;(years)</>;
+  const hLabel = (bold: string, regular: string) => <><span className="bold">{bold}</span>&nbsp;{regular}</>;
+  const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
+  const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="options-row">
@@ -87,10 +90,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setPlaying={setPlayingTissue}
           setTargetVideoIndex={setTargetVideoIndex}
           title={tissueTitle}
-          timelineMarks={{ 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" }}
-          videoFile={(simVideos.tissue as
-            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3]
-          }
+          timelineMarks={timelines[ac.mode].tissue[ac.organ][+control1][+control2][+control3]}
+          videoFile={simVideos.tissue[ac.organ][+control1][+control2][+control3]}
         />
         <VideoView
           ac={ac}
@@ -102,10 +103,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           title={ac.o("RIGHTSIMULATIONTITLE")}
-          timelineMarks={{ 0: " ", 1: " " }}
-          videoFile={(simVideos.cell as
-            Record<string, Record<number, any>[][][]>)[ac.organ][+control1][+control2][+control3][targetVideoIndex]
-          }
+          timelineMarks={timelines[ac.mode].cell[ac.organ][+control1][+control2][+control3]}
+          videoFile={simVideos.cell[ac.organ][+control1][+control2][+control3][targetVideoIndex]}
         />
       </div>
       <div className="options-row">
@@ -116,22 +115,20 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         />
         <SimGraph
           ac={ac}
-          data={(graphData as
-            Record<string, Record<string, Coord[][][][]>>)[ac.organ].left[+control1][+control2][+control3]}
+          data={graphData[ac.organ].left[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={horizontalLabel}
+          horizontalLabel={leftHLabel}
           verticalLabel={ac.o("LEFTYLABEL")}
-          verticalRange={{min: 0, max: 100}}
+          verticalRange={graphRanges[ac.organ].left[+control1][+control2][+control3]}
           videoComplete={tissueComplete}
         />
         <SimGraph
           ac={ac}
-          data={(graphData as
-            Record<string, Record<string, Coord[][][][]>>)[ac.organ].right[+control1][+control2][+control3]}
+          data={graphData[ac.organ].right[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={horizontalLabel}
+          horizontalLabel={rightHLabel}
           verticalLabel={ac.o("RIGHTYLABEL")}
-          verticalRange={{min: 0, max: 10}}
+          verticalRange={graphRanges[ac.organ].right[+control1][+control2][+control3]}
           videoComplete={tissueComplete}
         />
         <div className={clsx("divider", ac.mode)} style={{height: 141}} />
