@@ -5,6 +5,6 @@ export const delayControl =
     (controlVal: boolean) => {
       setDisableControls(true);
       setControl(controlVal);
-      setTimeout(() => setDisableControls(false), delay || 750);
+      setTimeout(() => setDisableControls(false), delay || 600);
     }
   );

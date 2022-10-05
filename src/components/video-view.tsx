@@ -70,7 +70,7 @@ export const VideoView = ({
     }
   }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
-  // Show the front video when it's finished loading
+  // Update the back video after the front video is finished loading
   const handleLoadedData = () => {
     setBackVideoFile(videoFile);
     setLoading(false);
@@ -152,6 +152,7 @@ export const VideoView = ({
     }
   };
 
+  const kDefaultVideo = aniVideos.tissue.heart[0][0];
   return (
     <div className={clsx("video-view", extraClass)}>
       <VideoControls
@@ -169,7 +170,7 @@ export const VideoView = ({
           ref={backVideoRef}
           className={clsx("video-view-video", extraClass)}
         >
-          <source src={backVideoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
+          <source src={backVideoFile || kDefaultVideo} type={"video/mp4"} />
         </video>
         <video
           ref={videoRef}
@@ -178,7 +179,7 @@ export const VideoView = ({
           onEnded={onEnded}
           className={clsx("video-view-video", extraClass)}
         >
-          <source src={videoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
+          <source src={videoFile || kDefaultVideo} type={"video/mp4"} />
         </video>
         <PaneTitle extraClass="video-title" title={title} />
         {disabled && (
