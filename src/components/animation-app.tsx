@@ -6,6 +6,7 @@ import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
 import { AppContext } from "../hooks/use-app-context";
+import { delayControl } from "../utils/app-common";
 import { renderControls } from "../utils/app-data";
 
 import { aniVideos } from "../assets/videos/video-data";
@@ -26,6 +27,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
 
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
+  const [disableControls, setDisableControls] = useState(false);
 
   // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
@@ -74,7 +76,11 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
           <Title ac={ac} text="Controls" />
-          { renderControls({ ac, onChanges: [setControl1, setControl2] }) }
+          { renderControls({ ac, disabled: disableControls,
+            onChanges: [
+              delayControl(setControl1, setDisableControls),
+              delayControl(setControl2, setDisableControls)
+            ] }) }
           <div className="key-box animation">
             <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
           </div>

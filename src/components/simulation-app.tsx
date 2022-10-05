@@ -6,6 +6,7 @@ import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { Coord, SimGraph } from "./sim-graph";
 import { AppContext } from "../hooks/use-app-context";
+import { delayControl } from "../utils/app-common";
 import { graphData, renderControls } from "../utils/app-data";
 
 import { simVideos } from "../assets/videos/video-data";
@@ -29,6 +30,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
   const [control3, setControl3] = useState(false);
+  const [disableControls, setDisableControls] = useState(false);
 
   // Mark the video as incomplete whenever a control changes
   useEffect(() => {
@@ -68,7 +70,12 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
-        { renderControls({ ac, onChanges: [setControl1, setControl2, setControl3] }) }
+        { renderControls({ ac, disabled: disableControls,
+          onChanges: [
+            delayControl(setControl1, setDisableControls),
+            delayControl(setControl2, setDisableControls),
+            delayControl(setControl3, setDisableControls)
+          ] }) }
         <div />
       </div>
       <div className="app-row">

@@ -37,7 +37,7 @@ $border-gray: #949494;
     border-radius: 50%;
     border: 2px solid $border-gray;
     transition-property: transform;
-    transition-duration: .25s;
+    transition-duration: .6s;
 
     &.animation {
       background-color: vars.$ani-light-7;

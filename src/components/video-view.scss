@@ -6,6 +6,8 @@
 
   .video-pane {
     position: relative;
+    overflow: hidden;
+
     width: 456px;
     height: 284px;
     padding: 2px;
@@ -54,8 +56,10 @@
     }
 
     .video-view-video {
+      position: absolute;
+      left: 2px;
+      top: 3px;
       width: 456px;
-      margin-top: 1px;
     }
 
     .video-title {

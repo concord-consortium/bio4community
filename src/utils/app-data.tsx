@@ -58,9 +58,10 @@ const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => 
 };
 interface IRenderControls {
   ac: AppContext;
+  disabled?: boolean;
   onChanges?: ((value: boolean) => void)[]; // A list of change functions that will be assigned to the controls in order
 }
-export const renderControls = ({ ac, onChanges }: IRenderControls) => {
+export const renderControls = ({ ac, disabled, onChanges }: IRenderControls) => {
   const Divider = () => <div className={clsx("divider", ac.mode)} />;
 
   let onChangeIndex = 0;
@@ -69,6 +70,7 @@ export const renderControls = ({ ac, onChanges }: IRenderControls) => {
       ? <Divider key={control} />
       : <ControlOption
         ac={ac}
+        disabled={disabled}
         key={control.label}
         label={control.label}
         onChange={onChanges && onChangeIndex < onChanges.length ? onChanges[onChangeIndex++] : undefined}

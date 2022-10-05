@@ -31,8 +31,14 @@ export const VideoView = ({
   ac, disabled, disabledMessage, extraClass, loop, percentComplete, playing, setPercentComplete, setPlaying,
   setTargetVideoIndex, timelineMarks, title, videoFile
 }: IVideoView) => {
+  // Basic video state
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  // The back video is used to prevent the video from flashing when the video file changes
+  const backVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [backVideoFile, setBackVideoFile] = useState<any>();
 
   // Keep percentComplete updated based on the video's state
   useEffect(() => {
@@ -41,10 +47,10 @@ export const VideoView = ({
         const pc = videoRef.current.currentTime / duration;
         setPercentComplete(pc);
       }
-      return () => {
-        clearInterval(tickInterval);
-      };
     }, 30);
+    return () => {
+      clearInterval(tickInterval);
+    };
   }, [duration, setPercentComplete]);
 
   // Update the target index (timelineMark) to be the closest to the percent complete
@@ -64,6 +70,12 @@ export const VideoView = ({
     }
   }, [percentComplete, setTargetVideoIndex, timelineMarks]);
 
+  // Update the back video after the front video is finished loading
+  const handleLoadedData = () => {
+    setBackVideoFile(videoFile);
+    setLoading(false);
+  };
+
   // Set the duration of the video when its length is known
   const handleLoadedMetadata = () => {
     setDuration(videoRef.current?.duration || 0);
@@ -81,7 +93,21 @@ export const VideoView = ({
   useEffect(() => {
     pause();
     videoRef.current?.load();
+    setLoading(true);
   }, [pause, videoRef, videoFile]);
+
+  // Reload the back video when its video file changes
+  useEffect(() => {
+    backVideoRef.current?.load();
+  }, [backVideoFile, backVideoRef]);
+
+  // Keep the back video up to date with the front video
+  useEffect(() => {
+    const backVideo = backVideoRef.current;
+    if (backVideo && !loading) {
+      backVideo.currentTime = percentComplete * duration;
+    }
+  }, [duration, loading, percentComplete]);
 
   // Pause the video when it becomes disabled
   useEffect(() => {
@@ -126,6 +152,7 @@ export const VideoView = ({
     }
   };
 
+  const kDefaultVideo = aniVideos.tissue.heart[0][0];
   return (
     <div className={clsx("video-view", extraClass)}>
       <VideoControls
@@ -140,12 +167,19 @@ export const VideoView = ({
       />
       <div className={clsx("video-pane", ac.mode, extraClass)}>
         <video
+          ref={backVideoRef}
+          className={clsx("video-view-video", extraClass)}
+        >
+          <source src={backVideoFile || kDefaultVideo} type={"video/mp4"} />
+        </video>
+        <video
           ref={videoRef}
+          onLoadedData={handleLoadedData}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={onEnded}
           className={clsx("video-view-video", extraClass)}
         >
-          <source src={videoFile || aniVideos.tissue.heart[0][0]} type={"video/mp4"} />
+          <source src={videoFile || kDefaultVideo} type={"video/mp4"} />
         </video>
         <PaneTitle extraClass="video-title" title={title} />
         {disabled && (
