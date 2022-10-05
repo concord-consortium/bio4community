@@ -1,3 +1,13 @@
+
+export interface Coord {
+  x: number;
+  y: number;
+}
+export interface Range {
+  min: number;
+  max: number;
+}
+
 // Data to be plotted in a simulation
 const leftHeartCase1 = [
   {x: 20, y: 1}, {x: 25, y: 1.5}, {x: 30, y: 2}, {x: 35, y: 2.5}, {x: 40, y: 3}, {x: 45, y: 4}, {x: 50, y: 10}
@@ -206,6 +216,149 @@ export const graphData = {
         [
           rightHeartCase1,
           rightHeartCase1
+        ]
+      ]
+    ]
+  }
+};
+
+const zeroHundred = {min: 0, max: 100};
+const zeroTen = {min: 0, max: 10};
+export const graphRanges = {
+  "heart": {
+    "left": [
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ],
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          zeroTen,
+          zeroTen
+        ],
+        [
+          zeroTen,
+          zeroTen
+        ]
+      ],
+      [
+        [
+          zeroTen,
+          zeroTen
+        ],
+        [
+          zeroTen,
+          zeroTen
+        ]
+      ]
+    ]
+  },
+  "nose": {
+    "left": [
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ],
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ],
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ]
+    ]
+  },
+  "brain": {
+    "left": [
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ],
+      [
+        [
+          zeroHundred,
+          zeroHundred
+        ],
+        [
+          zeroHundred,
+          zeroHundred
+        ]
+      ]
+    ],
+    "right": [
+      [
+        [
+          zeroTen,
+          zeroTen
+        ],
+        [
+          zeroTen,
+          zeroTen
+        ]
+      ],
+      [
+        [
+          zeroTen,
+          zeroTen
+        ],
+        [
+          zeroTen,
+          zeroTen
         ]
       ]
     ]
