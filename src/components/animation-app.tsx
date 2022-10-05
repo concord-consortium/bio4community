@@ -74,7 +74,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       <div className="app-row">
         <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
-          <Title ac={ac} text="Controls" />
+          <Title ac={ac} text={ac.t("CONTROLTITLE")} />
           { renderControls({ ac, disabled: disableControls,
             onChanges: [
               delayControl(setControl1, setDisableControls),
