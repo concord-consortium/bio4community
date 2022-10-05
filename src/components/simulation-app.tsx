@@ -5,9 +5,10 @@ import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { Coord, SimGraph } from "./sim-graph";
+import { graphData } from "../data/graph-data";
 import { AppContext } from "../hooks/use-app-context";
 import { delayControl } from "../utils/app-common";
-import { graphData, renderControls } from "../utils/app-data";
+import { renderControls } from "../utils/app-data";
 
 import { simVideos } from "../assets/videos/video-data";
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
