@@ -66,7 +66,9 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
 
   const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
-  const horizontalLabel = <><span className="bold">Simulated Time</span>&nbsp;(years)</>;
+  const hLabel = (bold: string, regular: string) => <><span className="bold">{bold}</span>&nbsp;{regular}</>;
+  const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
+  const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="options-row">
@@ -115,7 +117,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           ac={ac}
           data={graphData[ac.organ].left[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={horizontalLabel}
+          horizontalLabel={leftHLabel}
           verticalLabel={ac.o("LEFTYLABEL")}
           verticalRange={graphRanges[ac.organ].left[+control1][+control2][+control3]}
           videoComplete={tissueComplete}
@@ -124,7 +126,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           ac={ac}
           data={graphData[ac.organ].right[+control1][+control2][+control3]}
           percentComplete={tPercentComplete}
-          horizontalLabel={horizontalLabel}
+          horizontalLabel={rightHLabel}
           verticalLabel={ac.o("RIGHTYLABEL")}
           verticalRange={graphRanges[ac.organ].right[+control1][+control2][+control3]}
           videoComplete={tissueComplete}
