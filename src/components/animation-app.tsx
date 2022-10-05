@@ -71,7 +71,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
-      <div className="app-row">
+      <div className="app-row ani-row">
         <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
           <Title ac={ac} text={ac.t("CONTROLTITLE")} />
