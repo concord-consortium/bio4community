@@ -81,7 +81,7 @@ const rightNoseCase6 = rightNoseCase2;
 const rightNoseCase7 = rightNoseCase3;
 const rightNoseCase8 = rightNoseCase4;
 
-export const graphData = {
+export const graphData: Record<string, Record<string, Coord[][][][]>> = {
   "heart": {
     "left": [
       [
@@ -224,7 +224,7 @@ export const graphData = {
 
 const zeroHundred = {min: 0, max: 100};
 const zeroTen = {min: 0, max: 10};
-export const graphRanges = {
+export const graphRanges: Record<string, Record<string, Range[][][]>> = {
   "heart": {
     "left": [
       [

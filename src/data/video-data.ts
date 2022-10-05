@@ -85,7 +85,7 @@ const NoseCellCase4 = {
 
 // Videos for sims
 // [tissue | cell][organ][control1][control2][control3][time (cell only)]
-export const simVideos: any = {
+export const simVideos: Record<string, Record<string, Record<number, any>[][][]>> = {
   "tissue": {
     "heart": [
       [
@@ -226,7 +226,7 @@ export const simVideos: any = {
 
 // Videos for animations
 // [tissue | cell][organ][control1][control2][time (cell only)]
-export const aniVideos: any = {
+export const aniVideos: Record<string, Record<string, any[][]>> = {
   "tissue": {
     "heart": [
       [

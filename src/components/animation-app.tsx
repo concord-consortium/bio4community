@@ -97,9 +97,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           setTargetVideoIndex={setTargetVideoIndex}
           timelineMarks={timelines[ac.mode].tissue[ac.organ][+control1][+control2][0]}
           title={tissueTitle}
-          videoFile={(
-            aniVideos.tissue as Record<string, any[][]>)[ac.organ][+control1][+control2]
-          }
+          videoFile={aniVideos.tissue[ac.organ][+control1][+control2]}
         />
         <VideoView
           ac={ac}
@@ -112,10 +110,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           setPlaying={setPlayingCell}
           timelineMarks={timelines[ac.mode].cell[ac.organ][+control1][+control2][0]}
           title={ac.o("RIGHTANIMATIONTITLE")}
-          videoFile={
-            (aniVideos.cell as
-              Record<string, Record<number, any>[][]>)[ac.organ][+control1][+control2][targetVideoIndex]
-          }
+          videoFile={aniVideos.cell[ac.organ][+control1][+control2][targetVideoIndex]}
         />
       </div>
     </AppContainer>
