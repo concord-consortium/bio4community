@@ -1,3 +1,5 @@
+@use "./vars.scss";
+
 .control-option {
   display: flex;
   flex-direction: row;
@@ -8,12 +10,18 @@
   .control-option-label {
     display: flex;
     justify-content: flex-end;
-    font-weight: 700;
+    font-family: vars.$font-regular;
+    font-weight: bold;
+    text-align: center;
   }
 
   .control-option-main {
     display: flex;
     align-items: center;
     gap: 6px;
+
+    .control-option-option {
+      text-align: center;
+    }
   }
 }

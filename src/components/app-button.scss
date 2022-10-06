@@ -10,6 +10,10 @@
   margin: 0 8px;
   padding-left: 0px;
 
+  font-size: 14px;
+  font-family: vars.$font-clean;
+  font-weight: bold;
+
   &.key-button {
     &.animation {
       width: min-content;
@@ -38,11 +42,9 @@
 
       &.play-button-icon {
         left: 4px;
-        top: -1px;
       }
       &.pause-button-icon {
         left: 2px;
-        top: -1px;
       }
       &.show-button-icon {
         left: 5px;

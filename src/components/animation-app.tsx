@@ -8,6 +8,8 @@ import { VideoView } from "./video-view";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
+import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
 
 import "./animation-app.scss";
@@ -17,16 +19,12 @@ interface AnimationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
+  const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
+    control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
-  const [playingTissue, setPlayingTissue] = useState(false);
-  const [tPercentComplete, setTPercentComplete] = useState(0);
-  const [playingCell, setPlayingCell] = useState(false);
-  const [cPercentComplete, setCPercentComplete] = useState(0);
-  const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
-  const [control1, setControl1] = useState(false);
-  const [control2, setControl2] = useState(false);
-  const [disableControls, setDisableControls] = useState(false);
+  const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
@@ -71,10 +69,10 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
-      <div className="app-row">
+      <div className="app-row ani-row">
         <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
-          <Title ac={ac} text="Controls" />
+          <Title ac={ac} text={ac.t("CONTROLTITLE")} />
           { renderControls({ ac, disabled: disableControls,
             onChanges: [
               delayControl(setControl1, setDisableControls),
@@ -101,7 +99,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={!hasZoomed || playingTissue}
+          disabled={!hasZoomed || !initialPause || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}

@@ -5,13 +5,19 @@
   background-color: vars.$ani-basic;
 }
 
+.ani-row {
+  gap: 5px;
+  margin: 5px 0;
+}
+
 .controls-pane {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
 
-  width: 300px;
+  width: 320px;
+  height: 220px;
 }
 
 .key-box.animation {
@@ -22,6 +28,10 @@
   background-color: vars.$ani-light-8;
   border-radius: vars.$ani-radius-normal;
   padding: 10px;
+}
+
+.stress-pane {
+  width: 450px;
 }
 
 .details-pane {
@@ -35,7 +45,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  height: 163px;
+  height: 168px;
   background-color: vars.$ani-light-8;
   border-radius: vars.$ani-radius-normal;
   padding: 10px;
@@ -45,7 +55,7 @@
     margin: 0 10px;
 
     &.stress-example {
-      margin: 0 20px;
+      margin: 0 18px;
     }
   }
 }

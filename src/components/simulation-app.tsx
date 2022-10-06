@@ -9,6 +9,8 @@ import { renderControls } from "../data/control-data";
 import { graphData, graphRanges } from "../data/graph-data";
 import { simVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
+import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
 
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
@@ -21,17 +23,12 @@ interface SimulationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
-  const [playingTissue, setPlayingTissue] = useState(false);
-  const [tPercentComplete, setTPercentComplete] = useState(0);
+  const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
+    control2, setControl2, control3, setControl3, disableControls, setDisableControls } = useCommonState();
   const [tissueComplete, setTissueComplete] = useState(false);
-  const [playingCell, setPlayingCell] = useState(false);
-  const [cPercentComplete, setCPercentComplete] = useState(0);
-  const [targetVideoIndex, setTargetVideoIndex] = useState(0);
 
-  const [control1, setControl1] = useState(false);
-  const [control2, setControl2] = useState(false);
-  const [control3, setControl3] = useState(false);
-  const [disableControls, setDisableControls] = useState(false);
+  const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   // Mark the video as incomplete whenever a control changes
   useEffect(() => {
@@ -95,7 +92,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={playingTissue}
+          disabled={!initialPause || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}
