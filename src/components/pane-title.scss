@@ -1,7 +1,12 @@
+@use "./vars.scss";
+
 .pane-title {
   position: absolute;
 
   background: rgba(255, 255, 255, .8);
   border-radius: 14px;
   padding: 5px 15px;
+
+  font-family: vars.$font-regular;
+  font-weight: bold;
 }

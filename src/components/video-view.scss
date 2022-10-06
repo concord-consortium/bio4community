@@ -18,6 +18,11 @@
 
     .disabled-overlay {
       top: -.5px;
+
+      .disabled-message {
+        font-family: vars.$font-clean;
+        font-weight: bold;
+      }
     }
 
     &.animation {
