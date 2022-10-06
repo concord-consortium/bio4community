@@ -8,6 +8,7 @@ import { VideoView } from "./video-view";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
 import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
 
@@ -18,16 +19,10 @@ interface AnimationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
+  const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
+    control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
-  const [playingTissue, setPlayingTissue] = useState(false);
-  const [tPercentComplete, setTPercentComplete] = useState(0);
-  const [playingCell, setPlayingCell] = useState(false);
-  const [cPercentComplete, setCPercentComplete] = useState(0);
-  const [targetVideoIndex, setTargetVideoIndex] = useState(0);
-
-  const [control1, setControl1] = useState(false);
-  const [control2, setControl2] = useState(false);
-  const [disableControls, setDisableControls] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
