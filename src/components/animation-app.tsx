@@ -8,6 +8,7 @@ import { VideoView } from "./video-view";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
+import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
 
 import "./animation-app.scss";
@@ -27,6 +28,8 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const [control1, setControl1] = useState(false);
   const [control2, setControl2] = useState(false);
   const [disableControls, setDisableControls] = useState(false);
+
+  const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   // State and components for stress pane
   const [lowStressExample, setLowStressExample] = useState("");
@@ -101,7 +104,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={!hasZoomed || playingTissue}
+          disabled={!hasZoomed || !initialPause || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}

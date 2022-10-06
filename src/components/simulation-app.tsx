@@ -9,6 +9,7 @@ import { renderControls } from "../data/control-data";
 import { graphData, graphRanges } from "../data/graph-data";
 import { simVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
+import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
 
 import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
@@ -32,6 +33,8 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const [control2, setControl2] = useState(false);
   const [control3, setControl3] = useState(false);
   const [disableControls, setDisableControls] = useState(false);
+
+  const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   // Mark the video as incomplete whenever a control changes
   useEffect(() => {
@@ -95,7 +98,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={playingTissue}
+          disabled={!initialPause || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}
