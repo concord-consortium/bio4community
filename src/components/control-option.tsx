@@ -18,9 +18,9 @@ export const ControlOption = ({ ac, disabled, label, onChange, options }: Contro
     <div className="control-option">
       <div className="control-option-label">{`${label}:`}</div>
       <div className="control-option-main">
-        {options[0]}
+        <div className="control-option-option">{options[0]}</div>
         <ToggleControl ac={ac} disabled={disabled} onChange={onChange} />
-        {options[1]}
+        <div className="control-option-option">{options[1]}</div>
       </div>
     </div>
   );
