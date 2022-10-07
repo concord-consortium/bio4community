@@ -5,6 +5,7 @@ import { AppContainer } from "./app-container";
 import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
+import { ZoomLayer } from "./zoom-layer";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { AppContext } from "../hooks/use-app-context";
@@ -111,6 +112,12 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           videoFile={aniVideos.cell[ac.organ][+control1][+control2][targetVideoIndex]}
         />
       </div>
+      <ZoomLayer
+        ac={ac}
+        control1={control1}
+        control2={control2}
+        showSilhouetteZoom={true}
+      />
     </AppContainer>
   );
 };

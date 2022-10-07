@@ -1,0 +1,10 @@
+@use "vars.scss";
+
+.zoom-layer {
+  .silhouette-box {
+    position: absolute;
+    border-radius: 7px;
+    border: white solid 1.5px;
+    box-shadow: 0 0 0 2px vars.$ani-dark-1, 0 0 0 3.5px white;
+  }
+}
