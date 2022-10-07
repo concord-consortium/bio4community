@@ -1,6 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from "react";
+import { clsx } from "clsx";
 
 import { initialFadeIn, firstPause, zoomSwipe, videoFadeIn, secondPause, zoomFadeOut,
   silhouetteZoomData } from "../data/zoom-data";
@@ -101,7 +102,7 @@ export const ZoomLayer = ({ ac, control1, control2, control3, setTissueEnabled, 
           <polygon points={polygonPoints(silhouetteBackPoints)} className="silhouette-background" />
         </svg>
       </div>
-      {showSilhouetteZoom && <div className="silhouette-box" style={silhouetteBoxStyle}></div>}
+      {showSilhouetteZoom && <div className={clsx("silhouette-box", ac.organ)} style={silhouetteBoxStyle}></div>}
       <div className="svg-container" style={silhouetteMaskStyle} >
         <svg viewBox={`0 0 ${totalWidth} ${totalHeight}`} xmlns="http://www.w3.org/2000/svg">
           <polyline points={polygonPoints(silhouetteLeftPoints)} className="silhouette-line-back" />

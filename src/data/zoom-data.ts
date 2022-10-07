@@ -35,6 +35,8 @@ const basicZoomInfo: ZoomInfo = {
   target2X: 20,
   target2Y: 20
 };
+
+// Basic silhouette info
 const aniTissueX1 = 12;
 const aniTissueX2 = 460;
 const aniTissueY = 266;
@@ -44,21 +46,43 @@ const basicSilhouetteInfo = {
   target2X: aniTissueX2,
   target2Y: aniTissueY
 };
+const makeSilhouetteInfo = (boxX: number, boxY: number, boxWidth: number, boxHeight: number) => (
+  {
+    ...basicSilhouetteInfo,
+    boxX,
+    boxY,
+    boxWidth,
+    boxHeight,
+    start1X: boxX + 2,
+    start1Y: boxY,
+    start2X: boxX + boxWidth,
+    start2Y: boxY
+  }
+);
+
+// Heart silhouette data
 const hsbx = 84;
 const hsby = 140;
 const hsbw = 41;
 const hsbh = 24;
-const heartSilhouetteInfo: ZoomInfo = {
-  ...basicSilhouetteInfo,
-  boxX: hsbx,
-  boxY: hsby,
-  boxWidth: hsbw,
-  boxHeight: hsbh,
-  start1X: hsbx + 2,
-  start1Y: hsby,
-  start2X: hsbx + hsbw,
-  start2Y: hsby
-};
+const heartSilhouetteInfo = makeSilhouetteInfo(hsbx, hsby, hsbw, hsbh);
+
+// Nose silhouette data
+const nsbx = 72;
+const nsby = 112;
+const nsbw = 48;
+const nsbh = 30;
+const noseSilhouetteInfo = makeSilhouetteInfo(nsbx, nsby, nsbw, nsbh);
+
+// Brain silhouette data
+const bsbx1 = 54;
+const bsby1 = 128;
+const bsbw = 15;
+const bsbh = 7;
+const brainSilhouetteInfo1 = makeSilhouetteInfo(bsbx1, bsby1, bsbw, bsbh);
+const bsbx2 = 102;
+const bsby2 = 158;
+const brainSilhouetteInfo2 = makeSilhouetteInfo(bsbx2, bsby2, bsbw, bsbh);
 export const silhouetteZoomData: Record<string, ZoomInfo[][]> = {
   "heart": [
     [
@@ -72,22 +96,22 @@ export const silhouetteZoomData: Record<string, ZoomInfo[][]> = {
   ],
   "nose": [
     [
-      basicZoomInfo,
-      basicZoomInfo
+      noseSilhouetteInfo,
+      noseSilhouetteInfo
     ],
     [
-      basicZoomInfo,
-      basicZoomInfo
+      noseSilhouetteInfo,
+      noseSilhouetteInfo
     ]
   ],
   "brain": [
     [
-      basicZoomInfo,
-      basicZoomInfo
+      brainSilhouetteInfo1,
+      brainSilhouetteInfo1
     ],
     [
-      basicZoomInfo,
-      basicZoomInfo
+      brainSilhouetteInfo2,
+      brainSilhouetteInfo2
     ]
   ]
 };
