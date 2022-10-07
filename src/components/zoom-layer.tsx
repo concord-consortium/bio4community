@@ -2,7 +2,8 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from "react";
 
-import { silhouetteZoomData } from "../data/zoom-data";
+import { initialFadeIn, firstPause, zoomSwipe, videoFadeIn, secondPause, zoomFadeOut,
+  silhouetteZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
 
 import "./zoom-layer.scss";
@@ -14,14 +15,6 @@ const polygonPoints = (points: number[][]) => {
 // App size
 const totalWidth = 940;
 const totalHeight = 598;
-
-// Transition times
-const initialFadeIn = .5;
-const firstPause = .5;
-const zoomSwipe = .75;
-const videoFadeIn = .5;
-const secondPause = .75;
-const zoomFadeOut = .5;
 
 interface IZoomLayer {
   ac: AppContext;

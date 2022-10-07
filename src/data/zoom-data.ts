@@ -1,4 +1,12 @@
 
+// Transition times
+export const initialFadeIn = .5;
+export const firstPause = .5;
+export const zoomSwipe = .75;
+export const videoFadeIn = .5;
+export const secondPause = .75;
+export const zoomFadeOut = .5;
+
 interface ZoomInfo {
   boxX: number;
   boxY: number;
