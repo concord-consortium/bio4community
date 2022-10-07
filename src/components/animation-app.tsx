@@ -24,6 +24,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
     control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
+  const [tissueEnabled, setTissueEnabled] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
@@ -88,7 +89,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
-          disabled={!hasZoomed}
+          disabled={!tissueEnabled}
           percentComplete={tPercentComplete}
           playing={playingTissue}
           setPercentComplete={setTPercentComplete}
@@ -116,7 +117,8 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         ac={ac}
         control1={control1}
         control2={control2}
-        showSilhouetteZoom={true}
+        setTissueEnabled={setTissueEnabled}
+        showSilhouetteZoom={hasZoomed}
       />
     </AppContainer>
   );
