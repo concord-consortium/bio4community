@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
+import { StressPane } from "./stress-pane";
 import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
@@ -29,44 +30,6 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
-  // State and components for stress pane
-  const [lowStressExample, setLowStressExample] = useState("");
-  const [highStressExample, setHighStressExample] = useState("");
-  interface IStressPane {
-    high: boolean;
-  }
-  const StressPane = ({ high }: IStressPane) => {
-    const id = `${high ? "high" : "low"}-stress-input`;
-    return (
-      <div className="stress-pane">
-        <Title ac={ac} text={ac.t("STRESSTITLE")} />
-        <div className="details-box">
-          <div>{ ac.t(high ? "HIGHSTRESSINTRO" : "LOWSTRESSINTRO") }</div>
-          <div className="stress-example">{ ac.t(high ? "HIGHSTRESSEXAMPLE" : "LOWSTRESSEXAMPLE") }</div>
-          <div className="stress-prompt">
-            <label htmlFor={id}>
-              { ac.t(high ? "HIGHSTRESSPROMPT" : "LOWSTRESSPROMPT") }
-            </label>
-          </div>
-          <textarea
-            className="stress-entry"
-            id={id}
-            cols={54}
-            rows={3}
-            onBlur={(event: any) => {
-              if (high) {
-                setHighStressExample(event.target.value);
-              } else {
-                setLowStressExample(event.target.value);
-              }
-            }}
-            defaultValue={high ? highStressExample : lowStressExample}
-          />
-        </div>
-      </div>
-    );
-  };
-
   const highStress = ac.organ === "brain" ? control2 : control1;
   const tissueTitle = ac.o("LEFTANIMATIONTITLE");
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
@@ -85,7 +48,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
             <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
           </div>
         </div>
-        <StressPane high={highStress} />
+        <StressPane ac={ac} high={highStress} />
       </div>
       <div className="app-row">
         <VideoView
