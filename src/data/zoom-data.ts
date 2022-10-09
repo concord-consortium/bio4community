@@ -13,7 +13,7 @@ interface PartialZoomInfo {
   target2X: number;
   target2Y: number;
 }
-export interface ZoomInfo {
+export interface ZoomInfo extends PartialZoomInfo {
   boxX: number;
   boxY: number;
   boxWidth: number;
@@ -22,25 +22,7 @@ export interface ZoomInfo {
   start1Y: number;
   start2X: number;
   start2Y: number;
-  target1X: number;
-  target1Y: number;
-  target2X: number;
-  target2Y: number;
 }
-const basicZoomInfo: ZoomInfo = {
-  boxX: 10,
-  boxY: 10,
-  boxWidth: 10,
-  boxHeight: 10,
-  start1X: 10,
-  start1Y: 10,
-  start2X: 20,
-  start2Y: 10,
-  target1X: 0,
-  target1Y: 20,
-  target2X: 20,
-  target2Y: 20
-};
 
 // Basic silhouette info
 const aniTissueX1 = 12;
@@ -168,6 +150,17 @@ const babw = 52;
 const babh = 25;
 const brainCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, babx, baby, babw, babh);
 
+// Simulation zooms
+const yDiff = -164;
+const basicCellSimunlationInfo = {
+  ...basicCellAnimationInfo,
+  target1Y: basicCellAnimationInfo.target1Y + yDiff - 2,
+  target2Y: basicCellAnimationInfo.target2Y + yDiff + 1
+};
+const heartCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, habx, haby + yDiff, habw, habh);
+const noseCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, nabx, naby + yDiff, nabw, nabh);
+const brainCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, babx, baby + yDiff, babw, babh);
+
 export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
   "animation": {
     "heart": [
@@ -241,66 +234,66 @@ export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
     "heart": [
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          heartCellSimulationInfo,
+          heartCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          heartCellSimulationInfo,
+          heartCellSimulationInfo
         ]
       ],
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          heartCellSimulationInfo,
+          heartCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          heartCellSimulationInfo,
+          heartCellSimulationInfo
         ]
       ]
     ],
     "nose": [
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          noseCellSimulationInfo,
+          noseCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          noseCellSimulationInfo,
+          noseCellSimulationInfo
         ]
       ],
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          noseCellSimulationInfo,
+          noseCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          noseCellSimulationInfo,
+          noseCellSimulationInfo
         ]
       ]
     ],
     "brain": [
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          brainCellSimulationInfo,
+          brainCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          brainCellSimulationInfo,
+          brainCellSimulationInfo
         ]
       ],
       [
         [
-          basicZoomInfo,
-          basicZoomInfo
+          brainCellSimulationInfo,
+          brainCellSimulationInfo
         ],
         [
-          basicZoomInfo,
-          basicZoomInfo
+          brainCellSimulationInfo,
+          brainCellSimulationInfo
         ]
       ]
     ]

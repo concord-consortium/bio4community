@@ -22,11 +22,10 @@ interface AnimationAppProps {
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
-    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
-    control2, setControl2, disableControls, setDisableControls } = useCommonState();
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
+    control1, setControl1, control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
   const [tissueEnabled, setTissueEnabled] = useState(false);
-  const [cellEnabled, setCellEnabled] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
