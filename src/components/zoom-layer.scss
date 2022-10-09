@@ -3,6 +3,32 @@
 .zoom-layer {
   pointer-events: none;
 
+  &.silhouette {
+    .zoom-line-front {
+      stroke: vars.$ani-dark-1;
+    }
+    .zoom-box {
+      box-shadow: 0 0 0 2px vars.$ani-dark-1, 0 0 0 3.5px white;
+
+      &.heart {
+        border-radius: 7px;
+      }
+    }
+  }
+
+  &.cell {
+    .zoom-line-front {
+      stroke: vars.$cell-orange;
+    }
+    .zoom-box {
+      box-shadow: 0 0 0 2px vars.$cell-orange, 0 0 0 3.5px white;
+
+    &.heart {
+      border-radius: 5px;
+    }
+    }
+  }
+
   .svg-container {
     position: absolute;
     left: 0;
@@ -10,31 +36,30 @@
     overflow: hidden;
     transition: height .75s, width .75s, opacity .5s;
 
-    .silhouette-background {
+    .svg {
+      width: vars.$app-width;
+    }
+
+    .zoom-background {
       fill: rgba(255, 255, 255, .5);
     }
 
-    .silhouette-line-back {
+    .zoom-line-back {
       stroke: white;
       stroke-width: 5px;
     }
 
-    .silhouette-line-front {
-      stroke: vars.$ani-dark-1;
+    .zoom-line-front {
       stroke-width: 2px;
       stroke-dasharray: 6 2;
     }
   }
 
-  .silhouette-box {
+  .zoom-box {
     position: absolute;
     border: white solid 1.5px;
-    box-shadow: 0 0 0 2px vars.$ani-dark-1, 0 0 0 3.5px white;
     transition: opacity .5s;
 
-    &.heart {
-      border-radius: 7px;
-    }
     &.nose {
       border-radius: 7px;
     }

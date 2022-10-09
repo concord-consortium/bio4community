@@ -8,6 +8,7 @@ import { VideoView } from "./video-view";
 import { ZoomLayer } from "./zoom-layer";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
+import { silhouetteZoomData, cellZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 import { useInitialPause } from "../hooks/use-initial-pause";
@@ -25,6 +26,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
     control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
   const [tissueEnabled, setTissueEnabled] = useState(false);
+  const [cellEnabled, setCellEnabled] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
@@ -101,7 +103,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={!hasZoomed || !initialPause || playingTissue}
+          disabled={!hasZoomed || !cellEnabled || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}
@@ -115,10 +117,17 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
       </div>
       <ZoomLayer
         ac={ac}
-        control1={control1}
-        control2={control2}
-        setTissueEnabled={setTissueEnabled}
-        showSilhouetteZoom={hasZoomed}
+        setVideoEnabled={setCellEnabled}
+        show={initialPause}
+        type="cell"
+        zoomInfo={cellZoomData.animation[ac.organ][+control1][+control2][0]}
+      />
+      <ZoomLayer
+        ac={ac}
+        setVideoEnabled={setTissueEnabled}
+        show={hasZoomed}
+        type="silhouette"
+        zoomInfo={silhouetteZoomData[ac.organ][+control1][+control2]}
       />
     </AppContainer>
   );
