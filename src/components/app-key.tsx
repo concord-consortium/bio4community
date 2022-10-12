@@ -5,6 +5,9 @@ import { Title } from "./title";
 import { AppContext } from "../hooks/use-app-context";
 import { getKeyData } from "../data/key-data";
 
+import noseKeyImage from "../assets/images/nose/immune-response-key-content@2x.png";
+import brainKeyImage from "../assets/images/brain/focus-key-content@2x.png";
+
 import "./app-key.scss";
 
 interface IAppKey {
@@ -43,6 +46,13 @@ export const AppKey = ({ ac, handleClose, position, setDragging, setOffset, visi
     );
   };
 
+  const keyContent = ac.organ === "heart"
+    ? <div className="key-rows">
+        { getKeyData(ac).map(([image, text]) => <KeyRow image={image} key={text} text={text} />) }
+      </div>
+    : ac.organ === "nose"
+    ? <img src={noseKeyImage} className="key-image" />
+    : <img src={brainKeyImage} className="key-image" />;
   return (
     <div
       className={clsx("app-key", ac.mode)}
@@ -55,7 +65,7 @@ export const AppKey = ({ ac, handleClose, position, setDragging, setOffset, visi
       }}
     >
       <Title ac={ac} handleClose={handleClose} text="Key" />
-      { getKeyData(ac).map(([image, text]) => <KeyRow image={image} key={text} text={text} />) }
+      { keyContent }
     </div>
   );
 };
