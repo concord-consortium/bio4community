@@ -19,12 +19,12 @@ const getRange = (data: Coord[], coord: "x" | "y") => ({
 });
 
 // White rectangle and pale gray lines creating a grid as the graph background
-interface IGraphBackground {
+interface IGraphBackgroundGrid {
   color?: string;
   hLines: number;
   vLines: number;
 }
-const GraphBackground = ({ color, hLines, vLines }: IGraphBackground) => {
+const GraphBackgroundGrid = ({ color, hLines, vLines }: IGraphBackgroundGrid) => {
   const hStep = height / (hLines + 1);
   const hArray = [...Array(hLines).keys()]; // Like range(hLines) in python
   const vStep = width / (vLines + 1);
@@ -101,7 +101,7 @@ export const SimGraph = ({
       <div className="sim-graph-right">
         <div className="sim-graph">
           <svg viewBox={`0 0 ${width + 2 * graphMargin} ${height + graphMargin}`} xmlns="http://www.w3.org/2000/svg" fill="white">
-            <GraphBackground hLines={3} vLines={2} />
+            <GraphBackgroundGrid hLines={3} vLines={2} />
             {videoComplete && <polyline points={polylinePoints(data, convertX, convertY)} fill="none"
               stroke={plotColor} strokeWidth={1.5} />}
             <polyline points={polylinePoints(polylineData, convertX, convertY)} fill="none" stroke={plotColor}
