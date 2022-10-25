@@ -22,10 +22,11 @@
     }
     .zoom-box {
       box-shadow: 0 0 0 2px vars.$cell-orange, 0 0 0 3.5px white;
+      pointer-events: auto;
 
-    &.heart {
-      border-radius: 5px;
-    }
+      &.heart {
+        border-radius: 5px;
+      }
     }
   }
 

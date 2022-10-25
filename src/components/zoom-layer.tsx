@@ -26,9 +26,16 @@ interface IZoomLayer {
 }
 export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLayer) => {
   // Mask
+  const initialWidth = type === "cell" ? zoomInfo.boxX - 2 : totalWidth;
+  const finalWidth = type === "cell" ? zoomInfo.target1X + 2 : totalWidth;
+  const initialHeight = type === "cell" ? totalHeight : zoomInfo.boxY - 2;
+  const finalHeight = type === "cell" ? totalHeight : zoomInfo.target1Y + 2;
+  const normalTransition = "height .75s, width .75s, opacity .5s";
+  const resetTransition = "height 0s, width 0s, opacity 0s";
   const [maskStyle, setMaskStyle] = useState({
-    width: type === "cell" ? zoomInfo.boxX - 2 : totalWidth,
-    height: type === "cell" ? totalHeight : zoomInfo.boxY - 2,
+    width: initialWidth,
+    height: initialHeight,
+    transition: normalTransition,
     opacity: 1
   });
 
@@ -61,12 +68,20 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
   };
 
   const [status, setStatus] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const [running, setRunning] = useState(false);
   useEffect(() => {
     if (show) {
       if (status === 0) {
-        // Fade in box
-        setTimeout(() => setBoxOpacity(1), 10);
-        setTimeout(() => setStatus(1), initialFadeIn * 1000 + 10);
+        setRunning(true);
+        if (!finished) {
+          // Fade in box
+          setTimeout(() => setBoxOpacity(1), 10);
+          setTimeout(() => setStatus(1), initialFadeIn * 1000 + 10);
+        } else {
+          // Skip fade in if the box is already visible
+          setStatus(1);
+        }
       } else if (status === 1) {
         // Wait
         setTimeout(() => setStatus(2), firstPause * 1000);
@@ -74,8 +89,8 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
         // Reveal zoom
         setMaskStyle((style: any) => ({
           ...style,
-          height: type === "cell" ? totalHeight : zoomInfo.target1Y + 2,
-          width: type === "cell" ? zoomInfo.target1X + 2 : totalWidth
+          height: finalHeight,
+          width: finalWidth
         }));
         setTimeout(() => setStatus(3), zoomSwipe * 1000);
       } else if (status === 3) {
@@ -91,10 +106,30 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
           ...style,
           opacity: 0
         }));
-        setTimeout(() => setStatus(6), zoomFadeOut * 1000);
+        setTimeout(() => {
+          setStatus(6);
+          setFinished(true);
+          setRunning(false);
+        }, zoomFadeOut * 1000);
       }
     }
-  }, [setVideoEnabled, show, status, type, zoomInfo]);
+  }, [finalHeight, finalWidth, finished, setVideoEnabled, show, status, type, zoomInfo]);
+
+  const reset = () => {
+    if (finished && !running) {
+      setStatus(0);
+      setMaskStyle((style: any) => ({
+        height: initialHeight,
+        width: initialWidth,
+        opacity: 1,
+        transition: resetTransition
+      }));
+      setTimeout(() => setMaskStyle((style: any) => ({
+        ...style,
+        transition: normalTransition
+      })));
+    }
+  };
 
   return (
     <div className={clsx("zoom-layer", type)} >
@@ -103,7 +138,11 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
           <polygon points={polygonPoints(backPoints)} className="zoom-background" />
         </svg>
       </div>
-      {show && <div className={clsx("zoom-box", ac.organ)} style={boxStyle}></div>}
+      {show && <div
+        className={clsx("zoom-box", ac.organ)}
+        onClick={reset}
+        style={boxStyle}
+      />}
       <div className="svg-container" style={maskStyle} >
         <svg viewBox={`0 0 ${totalWidth} ${totalHeight}`} xmlns="http://www.w3.org/2000/svg" className="svg" >
           <polyline points={polygonPoints(firstPoints)} className="zoom-line-back" />
