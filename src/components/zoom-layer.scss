@@ -35,7 +35,6 @@
     left: 0;
     top: 0;
     overflow: hidden;
-    transition: height .75s, width .75s, opacity .5s;
 
     .svg {
       width: vars.$app-width;
@@ -60,6 +59,7 @@
     position: absolute;
     border: white solid 1.5px;
     transition: opacity .5s;
+    pointer-events: all;
 
     &.nose {
       border-radius: 7px;
