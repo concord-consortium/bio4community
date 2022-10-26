@@ -81,6 +81,24 @@ const rightNoseCase6 = rightNoseCase2;
 const rightNoseCase7 = rightNoseCase3;
 const rightNoseCase8 = rightNoseCase4;
 
+const leftBrainCase1 = [
+  {x: 0, y: 90}, {x: 2, y: 90}, {x: 4, y: 70}, {x: 6, y: 60}, {x: 8, y: 57.5}, {x: 10, y: 55}, {x: 12, y: 52.5}
+];
+const leftBrainCase2 = [
+  {x: 0, y: 52.5}, {x: 2, y: 55}, {x: 4, y: 57.5}, {x: 6, y: 60}, {x: 8, y: 70}, {x: 10, y: 80}, {x: 12, y: 90}
+];
+const leftBrainCase3 = leftBrainCase1;
+const leftBrainCase4 = leftBrainCase2;
+
+const rightBrainCase1 = [
+  {x: 0, y: 100}, {x: 2, y: 90}, {x: 4, y: 70}, {x: 6, y: 60}, {x: 8, y: 50}, {x: 10, y: 0}, {x: 12, y: 0}
+];
+const rightBrainCase2 = [
+  {x: 0, y: 0}, {x: 2, y: 0}, {x: 4, y: 40}, {x: 6, y: 60}, {x: 8, y: 70}, {x: 10, y: 90}, {x: 12, y: 100}
+];
+const rightBrainCase3 = rightBrainCase1;
+const rightBrainCase4 = rightBrainCase2;
+
 export const graphData: Record<string, Record<string, Coord[][][][]>> = {
   "heart": {
     "left": [
@@ -178,44 +196,44 @@ export const graphData: Record<string, Record<string, Coord[][][][]>> = {
     "left": [
       [
         [
-          leftHeartCase1,
-          leftHeartCase1
+          leftBrainCase2,
+          leftBrainCase2
         ],
         [
-          leftHeartCase1,
-          leftHeartCase1
+          leftBrainCase1,
+          leftBrainCase1
         ]
       ],
       [
         [
-          leftHeartCase1,
-          leftHeartCase1
+          leftBrainCase4,
+          leftBrainCase4
         ],
         [
-          leftHeartCase1,
-          leftHeartCase1
+          leftBrainCase3,
+          leftBrainCase3
         ]
       ]
     ],
     "right": [
       [
         [
-          rightHeartCase1,
-          rightHeartCase1
+          rightBrainCase2,
+          rightBrainCase2
         ],
         [
-          rightHeartCase1,
-          rightHeartCase1
+          rightBrainCase1,
+          rightBrainCase1
         ]
       ],
       [
         [
-          rightHeartCase1,
-          rightHeartCase1
+          rightBrainCase4,
+          rightBrainCase4
         ],
         [
-          rightHeartCase1,
-          rightHeartCase1
+          rightBrainCase3,
+          rightBrainCase3
         ]
       ]
     ]
@@ -343,22 +361,22 @@ export const graphRanges: Record<string, Record<string, Range[][][]>> = {
     "right": [
       [
         [
-          zeroTen,
-          zeroTen
+          zeroHundred,
+          zeroHundred
         ],
         [
-          zeroTen,
-          zeroTen
+          zeroHundred,
+          zeroHundred
         ]
       ],
       [
         [
-          zeroTen,
-          zeroTen
+          zeroHundred,
+          zeroHundred
         ],
         [
-          zeroTen,
-          zeroTen
+          zeroHundred,
+          zeroHundred
         ]
       ]
     ]

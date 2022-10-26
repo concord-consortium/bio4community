@@ -128,9 +128,9 @@
   "NOSE.RIGHTXLABEL2": "(days)",
   "NOSE.RIGHTYLABEL": "Mucus Thickness",
   "BRAIN.LEFTXLABEL1": "Simulated Time",
-  "BRAIN.LEFTXLABEL2": "(years)",
-  "BRAIN.LEFTYLABEL": "# of Connections",
+  "BRAIN.LEFTXLABEL2": "(weeks)",
+  "BRAIN.LEFTYLABEL": "Network Connections",
   "BRAIN.RIGHTXLABEL1": "Simulated Time",
-  "BRAIN.RIGHTXLABEL2": "(years)",
-  "BRAIN.RIGHTYLABEL": "Firing of Dendrite"
+  "BRAIN.RIGHTXLABEL2": "(weeks)",
+  "BRAIN.RIGHTYLABEL": "Signals Transmitted"
 }
