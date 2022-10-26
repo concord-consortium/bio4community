@@ -19,6 +19,7 @@ interface IVideoView {
   disabledMessage?: string;
   extraClass?: string;
   loop?: boolean; // If true, video restarts when it reaches the end
+  overlay?: any; // A component to display over the video
   percentComplete: number;
   playing: boolean;
   setPercentComplete: (percent: number) => void;
@@ -29,7 +30,7 @@ interface IVideoView {
   videoFile?: any;
 }
 export const VideoView = ({
-  ac, disabled, disabledMessage, extraClass, loop, percentComplete, playing, setPercentComplete, setPlaying,
+  ac, disabled, disabledMessage, extraClass, loop, overlay, percentComplete, playing, setPercentComplete, setPlaying,
   setTargetVideoIndex, timelineMarks, title, videoFile
 }: IVideoView) => {
   // Basic video state
@@ -196,6 +197,7 @@ export const VideoView = ({
           <source src={videoFile || kDefaultVideo} type={"video/mp4"} />
         </video>
         <PaneTitle extraClass="video-title" title={title} />
+        {overlay}
         {(disabled || !initialFadeIn) && (
           <div className="disabled-overlay" style={overlayStyle} >
             {disabledMessage && <div className="disabled-message">{disabledMessage}</div>}
