@@ -295,7 +295,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
 
 const heartTimeline = { 0: "20 years", .333: "30 years", .667: "40 years", 1: "50 years" };
 const noseTimeline = { 0: "0 days", .333: "8 days", .667: "16 days", 1: "24 days" };
-const brainTimeline = heartTimeline;
+const brainTimeline = { 0: "0 weeks", .333: "4 weeks", .667: "8 weeks", 1: "12 weeks" };
 const cellTimeline = { 0: " ", 1: " " };
 export const timelines: Record<string, Record<string, Record<string, Record<number, string>[][][]>>> = {
   "simulation": {
