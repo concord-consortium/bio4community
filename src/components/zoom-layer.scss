@@ -60,12 +60,20 @@
     border: white solid 1.5px;
     transition: opacity .5s;
     pointer-events: all;
+    cursor: pointer;
 
     &.nose {
       border-radius: 7px;
     }
     &.brain {
       border-radius: 4px;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, .5);
+    }
+    &:active {
+      background-color: rgba(255, 255, 255, .5);
     }
   }
 }
