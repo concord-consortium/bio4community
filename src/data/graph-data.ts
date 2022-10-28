@@ -241,6 +241,7 @@ export const graphData: Record<string, Record<string, Coord[][][][]>> = {
 };
 
 const zeroHundred = {min: 0, max: 100};
+const zeroHundredTen = {min: 0, max: 110};
 const zeroTen = {min: 0, max: 10};
 export const graphRanges: Record<string, Record<string, Range[][][]>> = {
   "heart": {
@@ -361,22 +362,22 @@ export const graphRanges: Record<string, Record<string, Range[][][]>> = {
     "right": [
       [
         [
-          zeroHundred,
-          zeroHundred
+          zeroHundredTen,
+          zeroHundredTen
         ],
         [
-          zeroHundred,
-          zeroHundred
+          zeroHundredTen,
+          zeroHundredTen
         ]
       ],
       [
         [
-          zeroHundred,
-          zeroHundred
+          zeroHundredTen,
+          zeroHundredTen
         ],
         [
-          zeroHundred,
-          zeroHundred
+          zeroHundredTen,
+          zeroHundredTen
         ]
       ]
     ]
