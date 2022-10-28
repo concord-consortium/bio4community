@@ -56,9 +56,12 @@ const heartButtonZoomStyle = {
   top: "-35px"
 };
 const heartSilhouetteZoomStyle = {
-  height: "1010px",
-  left: "-320px",
-  top: "-450px"
+  width: "345px",
+  left: "-58px",
+  top: "-58px"
+  // height: "1010px",
+  // left: "-320px",
+  // top: "-450px"
 };
 const heartStartStyle = {
   height: "40px",
