@@ -6,10 +6,15 @@ import BloodVesselCase1MP4 from "../assets/videos/tissue/heart/BloodVesselCase1.
 import BloodVesselCase2MP4 from "../assets/videos/tissue/heart/BloodVesselCase2.mp4";
 import BloodVesselCase3MP4 from "../assets/videos/tissue/heart/BloodVesselCase3.mp4";
 import BloodVesselCase4MP4 from "../assets/videos/tissue/heart/BloodVesselCase4.mp4";
-import BloodCellCase1MP4 from "../assets/videos/cell/heart/BloodCellCase1Time1.mp4";
-import BloodCellCase2MP4 from "../assets/videos/cell/heart/BloodCellCase1Time2.mp4";
-import BloodCellCase3MP4 from "../assets/videos/cell/heart/BloodCellCase1Time3.mp4";
-import BloodCellCase4MP4 from "../assets/videos/cell/heart/BloodCellCase1Time4.mp4";
+import BloodCell11 from "../assets/videos/cell/heart/BloodCellCase1Time1.mp4";
+import BloodCell14 from "../assets/videos/cell/heart/BloodCellCase1Time4.mp4";
+import BloodCell21 from "../assets/videos/cell/heart/BloodCell_Case2Time1.mp4";
+import BloodCell22 from "../assets/videos/cell/heart/BloodCell_Case2Time2.mp4";
+import BloodCell24 from "../assets/videos/cell/heart/BloodCell_Case2Time4.mp4";
+import BloodCell33 from "../assets/videos/cell/heart/BloodCell_Case3Time3.mp4";
+import BloodCell34 from "../assets/videos/cell/heart/BloodCell_Case3Time4.mp4";
+import BloodCell43 from "../assets/videos/cell/heart/BloodCell_Case4Time3.mp4";
+import BloodCell44 from "../assets/videos/cell/heart/BloodCell_Case4Time4.mp4";
 
 import NeuronsCase2 from "../assets/videos/tissue/brain/NeuronsCase2.mp4";
 import NeuronsCase3 from "../assets/videos/tissue/brain/NeuronsCase3.mp4";
@@ -31,22 +36,28 @@ import NoseCellCase22 from "../assets/videos/cell/nose/NoseCellCase2Time2.mp4";
 import NoseCellCase23 from "../assets/videos/cell/nose/NoseCellCase2Time3.mp4";
 
 const HeartCellCase1 = {
-  0: BloodCellCase1MP4,
-  .333: BloodCellCase1MP4,
-  .667: BloodCellCase1MP4,
-  1: BloodCellCase2MP4
+  0: BloodCell11,
+  .333: BloodCell11,
+  .667: BloodCell11,
+  1: BloodCell14
 };
 const HeartCellCase2 = {
-  0: BloodCellCase1MP4,
-  .333: BloodCellCase1MP4,
-  .667: BloodCellCase2MP4,
-  1: BloodCellCase3MP4
+  0: BloodCell21,
+  .333: BloodCell22,
+  .667: BloodCell22,
+  1: BloodCell24
 };
 const HeartCellCase3 = {
-  0: BloodCellCase1MP4,
-  .333: BloodCellCase2MP4,
-  .667: BloodCellCase3MP4,
-  1: BloodCellCase4MP4
+  0: BloodCell11,
+  .333: BloodCell14,
+  .667: BloodCell33,
+  1: BloodCell34
+};
+const HeartCellCase4 = {
+  0: BloodCell21,
+  .333: BloodCell22,
+  .667: BloodCell43,
+  1: BloodCell44
 };
 
 const BrainCellCase1 = {
@@ -163,21 +174,21 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
       [
         [
           HeartCellCase2,
-          HeartCellCase3
+          HeartCellCase4
         ],
         [
           HeartCellCase1,
-          HeartCellCase2
+          HeartCellCase3
         ]
       ],
       [
         [
           HeartCellCase2,
-          HeartCellCase3
+          HeartCellCase4
         ],
         [
           HeartCellCase1,
-          HeartCellCase2
+          HeartCellCase3
         ]
       ]
     ],
@@ -270,8 +281,8 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         HeartCellCase2
       ],
       [
-        HeartCellCase2,
-        HeartCellCase3
+        HeartCellCase3,
+        HeartCellCase4
       ]
     ],
     "nose": [
