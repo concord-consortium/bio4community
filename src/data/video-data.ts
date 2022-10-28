@@ -48,6 +48,7 @@ import NoseCellCase14 from "../assets/videos/cell/nose/NoseCellCase1Time4.mp4";
 import NoseCellCase21 from "../assets/videos/cell/nose/NoseCellCase2Time1.mp4";
 import NoseCellCase22 from "../assets/videos/cell/nose/NoseCellCase2Time2.mp4";
 import NoseCellCase23 from "../assets/videos/cell/nose/NoseCellCase2Time3.mp4";
+import NoseCellCase44 from "../assets/videos/cell/nose/NoseCellCase4Time4.mp4";
 
 const HeartCellCase1 = {
   0: BloodCell11,
@@ -120,8 +121,8 @@ const NoseCellCase3 = {
 const NoseCellCase4 = {
   0: NoseCellCase21,
   .333: NoseCellCase22,
-  .667: NoseCellCase22,
-  1: NoseCellCase23
+  .667: NoseCellCase23,
+  1: NoseCellCase44
 };
 
 // Videos for sims
