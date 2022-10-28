@@ -16,12 +16,26 @@ import BloodCell34 from "../assets/videos/cell/heart/BloodCell_Case3Time4.mp4";
 import BloodCell43 from "../assets/videos/cell/heart/BloodCell_Case4Time3.mp4";
 import BloodCell44 from "../assets/videos/cell/heart/BloodCell_Case4Time4.mp4";
 
-import NeuronsCase2 from "../assets/videos/tissue/brain/NeuronsCase2.mp4";
-import NeuronsCase3 from "../assets/videos/tissue/brain/NeuronsCase3.mp4";
-import SynapseCase1 from "../assets/videos/cell/brain/SynapseCase1Faster.mp4";
-import SynapseCase2 from "../assets/videos/cell/brain/SynapseCase2.mp4";
-import SynapseCase3 from "../assets/videos/cell/brain/SynapseCase3.mp4";
-import SynapseCase4 from "../assets/videos/cell/brain/SynapseCase4.mp4";
+import BrainTissue1 from "../assets/videos/tissue/brain/NeuronsCase1.mp4";
+import BrainTissue2 from "../assets/videos/tissue/brain/NeuronsCase2.mp4";
+import BrainTissue3 from "../assets/videos/tissue/brain/NeuronsCase3.mp4";
+import BrainTissue4 from "../assets/videos/tissue/brain/NeuronsCase4.mp4";
+import BrainCell11 from "../assets/videos/cell/brain/Synapse-Case1Time1.mp4";
+import BrainCell12 from "../assets/videos/cell/brain/Synapse-Case1Time2.mp4";
+import BrainCell13 from "../assets/videos/cell/brain/Synapse-Case1Time3.mp4";
+import BrainCell14 from "../assets/videos/cell/brain/Synapse-Case1Time4.mp4";
+import BrainCell21 from "../assets/videos/cell/brain/Synapse-Case2Time1.mp4";
+import BrainCell22 from "../assets/videos/cell/brain/Synapse-Case2Time2.mp4";
+import BrainCell23 from "../assets/videos/cell/brain/Synapse-Case2Time3.mp4";
+import BrainCell24 from "../assets/videos/cell/brain/Synapse-Case2Time4.mp4";
+import BrainCell31 from "../assets/videos/cell/brain/Synapse-Case3Time1.mp4";
+import BrainCell32 from "../assets/videos/cell/brain/Synapse-Case3Time2.mp4";
+import BrainCell33 from "../assets/videos/cell/brain/Synapse-Case3Time3.mp4";
+import BrainCell34 from "../assets/videos/cell/brain/Synapse-Case3Time4.mp4";
+import BrainCell41 from "../assets/videos/cell/brain/Synapse-Case4Time1.mp4";
+import BrainCell42 from "../assets/videos/cell/brain/Synapse-Case4Time2.mp4";
+import BrainCell43 from "../assets/videos/cell/brain/Synapse-Case4Time3.mp4";
+import BrainCell44 from "../assets/videos/cell/brain/Synapse-Case4Time4.mp4";
 
 import NoseCase1 from "../assets/videos/tissue/nose/NoseCase1.mp4";
 import NoseCase2 from "../assets/videos/tissue/nose/NoseCase2.mp4";
@@ -61,16 +75,28 @@ const HeartCellCase4 = {
 };
 
 const BrainCellCase1 = {
-  0: SynapseCase1,
-  .333: SynapseCase2,
-  .667: SynapseCase3,
-  1: SynapseCase4
+  0: BrainCell11,
+  .333: BrainCell12,
+  .667: BrainCell13,
+  1: BrainCell14
 };
 const BrainCellCase2 = {
-  0: SynapseCase4,
-  .333: SynapseCase3,
-  .667: SynapseCase2,
-  1: SynapseCase1
+  0: BrainCell21,
+  .333: BrainCell22,
+  .667: BrainCell23,
+  1: BrainCell24
+};
+const BrainCellCase3 = {
+  0: BrainCell31,
+  .333: BrainCell32,
+  .667: BrainCell33,
+  1: BrainCell34
+};
+const BrainCellCase4 = {
+  0: BrainCell41,
+  .333: BrainCell42,
+  .667: BrainCell43,
+  1: BrainCell44
 };
 
 const NoseCellCase1 = {
@@ -149,22 +175,22 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
     "brain": [
       [
         [
-          NeuronsCase2,
-          NeuronsCase2
+          BrainTissue2,
+          BrainTissue2
         ],
         [
-          NeuronsCase3,
-          NeuronsCase3
+          BrainTissue1,
+          BrainTissue1
         ]
       ],
       [
         [
-          NeuronsCase3,
-          NeuronsCase3
+          BrainTissue4,
+          BrainTissue4
         ],
         [
-          NeuronsCase2,
-          NeuronsCase2
+          BrainTissue3,
+          BrainTissue3
         ]
       ]
     ]
@@ -227,12 +253,12 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
       ],
       [
         [
-          BrainCellCase1,
-          BrainCellCase1
+          BrainCellCase4,
+          BrainCellCase4
         ],
         [
-          BrainCellCase2,
-          BrainCellCase2
+          BrainCellCase3,
+          BrainCellCase3
         ]
       ]
     ]
@@ -265,12 +291,12 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
     ],
     "brain": [
       [
-        NeuronsCase2,
-        NeuronsCase3
+        BrainTissue2,
+        BrainTissue1
       ],
       [
-        NeuronsCase3,
-        NeuronsCase2
+        BrainTissue4,
+        BrainTissue3
       ]
     ]
   },
@@ -301,8 +327,8 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         BrainCellCase1
       ],
       [
-        BrainCellCase1,
-        BrainCellCase2
+        BrainCellCase4,
+        BrainCellCase3
       ]
     ]
   }
