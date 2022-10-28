@@ -1,3 +1,4 @@
+import HeartAnimationCase1 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case1.mp4";
 import BloodVesselCase1MP4 from "../assets/videos/tissue/heart/BloodVesselCase1.mp4";
 import BloodVesselCase2MP4 from "../assets/videos/tissue/heart/BloodVesselCase2.mp4";
 import BloodVesselCase3MP4 from "../assets/videos/tissue/heart/BloodVesselCase3.mp4";
@@ -230,7 +231,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
   "tissue": {
     "heart": [
       [
-        BloodVesselCase1MP4,
+        HeartAnimationCase1,
         BloodVesselCase2MP4
       ],
       [
