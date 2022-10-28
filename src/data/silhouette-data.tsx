@@ -1,18 +1,17 @@
-import profile1Image from "../images/silhouettes/Profile1.png";
-import profile2Image from "../images/silhouettes/Profile2.png";
-import profile3Image from "../images/silhouettes/Profile3.png";
-import profile4Image from "../images/silhouettes/Profile4.png";
-import profile5Image from "../images/silhouettes/Profile5.png";
-import heartImage from "../images/silhouettes/Heart.png";
-import brainImage from "../images/silhouettes/Brain.png";
+import profile1Image from "../assets/images/silhouettes/profile-1@2x.png";
+import profile2Image from "../assets/images/silhouettes/profile-3@2x.png";
+import profile3Image from "../assets/images/silhouettes/profile-4@2x.png";
+import profile4Image from "../assets/images/silhouettes/profile-5@2x.png";
+import heartImage from "../assets/images/silhouettes/Heart.png";
+import brainImage from "../assets/images/silhouettes/Brain.png";
 
 export interface ISilhouetteData {
   image: any;
   startStyle: Record<string, any>;
 }
 const silhouetteStartStyle = {
-  height: "216px",
-  left: "17px",
+  width: "230px",
+  left: 0,
   top: 0
 };
 export const silhouetteData: ISilhouetteData[] = [
@@ -30,10 +29,6 @@ export const silhouetteData: ISilhouetteData[] = [
   },
   {
     image: profile4Image,
-    startStyle: silhouetteStartStyle
-  },
-  {
-    image: profile5Image,
     startStyle: silhouetteStartStyle
   }
 ];

@@ -2,7 +2,7 @@
 
 // Make sure to update zoomDuration in silhouette-pane.tsx if you change this.
 $transition-duration: 2s;
-$transition: height $transition-duration, left $transition-duration, top $transition-duration;
+$transition: height $transition-duration, left $transition-duration, top $transition-duration, opacity $transition-duration;
 
 .silhouette-pane {
   position: relative;

@@ -4,7 +4,9 @@ import { clsx } from "clsx";
 import { PaneTitle } from "./pane-title";
 import { AppContext } from "../hooks/use-app-context";
 import { ISilhouetteData, ISilhouetteOrganData, silhouetteData, silhouetteOrganData }
-  from "../assets/app-data/silhouette-data";
+  from "../data/silhouette-data";
+
+import InternalOrgans from "../assets/images/silhouettes/internal-organs-with-brain@2x.png";
 
 import "./silhouette-pane.scss";
 
@@ -59,9 +61,10 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
+      {sd && <img src={InternalOrgans} className="silhouette-profile" style={silhouetteStyle} />}
       <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
-      {sod && ac.organ !== "nose" /* Currently missing assets for nose */ &&
-        <img src={sod.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
+      {sod && ac.organ !== "nose" && false /* Currently missing assets for nose */ &&
+        <img src={sod?.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
       {!zooming && <PaneTitle extraClass="instruction-title" title={instructionsMessage} />}
       {hasZoomed && <PaneTitle extraClass="silhouette-title" title={title} />}
     </div>
