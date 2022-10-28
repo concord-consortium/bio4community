@@ -7,6 +7,7 @@ import { PaneTitle } from "./pane-title";
 import { VideoControls } from "./video-controls";
 import { AppContext } from "../hooks/use-app-context";
 
+import { videoFadeIn } from "../data/zoom-data";
 import { aniVideos } from "../data/video-data";
 
 import "./disabled-overlay.scss";
@@ -39,6 +40,19 @@ export const VideoView = ({
   // The back video is used to prevent the video from flashing when the video file changes
   const backVideoRef = useRef<HTMLVideoElement | null>(null);
   const [backVideoFile, setBackVideoFile] = useState<any>();
+
+  // Make the overlay fade out the first time it disappears, but just the first time
+  const [initialFadeIn, setInitialFadeIn] = useState(false);
+  const [overlayStyle, setOverlayStyle] = useState({ opacity: 1 });
+  useEffect(() => {
+    if (!initialFadeIn && !disabled) {
+      setOverlayStyle({ opacity: 0 });
+      setTimeout(() => {
+        setOverlayStyle({ opacity: 1 });
+        setInitialFadeIn(true);
+      }, videoFadeIn * 1000);
+    }
+  }, [disabled, initialFadeIn]);
 
   // Keep percentComplete updated based on the video's state
   useEffect(() => {
@@ -182,8 +196,8 @@ export const VideoView = ({
           <source src={videoFile || kDefaultVideo} type={"video/mp4"} />
         </video>
         <PaneTitle extraClass="video-title" title={title} />
-        {disabled && (
-          <div className="disabled-overlay">
+        {(disabled || !initialFadeIn) && (
+          <div className="disabled-overlay" style={overlayStyle} >
             {disabledMessage && <div className="disabled-message">{disabledMessage}</div>}
           </div>
         )}

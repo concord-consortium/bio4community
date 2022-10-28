@@ -2,11 +2,14 @@ import React, { useState } from "react";
 
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
+import { StressPane } from "./stress-pane";
 import { SilhouettePane } from "./silhouette-pane";
 import { Title } from "./title";
 import { VideoView } from "./video-view";
+import { ZoomLayer } from "./zoom-layer";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
+import { silhouetteZoomData, cellZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 import { useInitialPause } from "../hooks/use-initial-pause";
@@ -20,49 +23,12 @@ interface AnimationAppProps {
 }
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
-    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
-    control2, setControl2, disableControls, setDisableControls } = useCommonState();
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
+    control1, setControl1, control2, setControl2, disableControls, setDisableControls } = useCommonState();
   const [hasZoomed, setHasZoomed] = useState(false);
+  const [tissueEnabled, setTissueEnabled] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
-
-  // State and components for stress pane
-  const [lowStressExample, setLowStressExample] = useState("");
-  const [highStressExample, setHighStressExample] = useState("");
-  interface IStressPane {
-    high: boolean;
-  }
-  const StressPane = ({ high }: IStressPane) => {
-    const id = `${high ? "high" : "low"}-stress-input`;
-    return (
-      <div className="stress-pane">
-        <Title ac={ac} text={ac.t("STRESSTITLE")} />
-        <div className="details-box">
-          <div>{ ac.t(high ? "HIGHSTRESSINTRO" : "LOWSTRESSINTRO") }</div>
-          <div className="stress-example">{ ac.t(high ? "HIGHSTRESSEXAMPLE" : "LOWSTRESSEXAMPLE") }</div>
-          <div className="stress-prompt">
-            <label htmlFor={id}>
-              { ac.t(high ? "HIGHSTRESSPROMPT" : "LOWSTRESSPROMPT") }
-            </label>
-          </div>
-          <textarea
-            className="stress-entry"
-            id={id}
-            cols={54}
-            rows={3}
-            onBlur={(event: any) => {
-              if (high) {
-                setHighStressExample(event.target.value);
-              } else {
-                setLowStressExample(event.target.value);
-              }
-            }}
-            defaultValue={high ? highStressExample : lowStressExample}
-          />
-        </div>
-      </div>
-    );
-  };
 
   const highStress = ac.organ === "brain" ? control2 : control1;
   const tissueTitle = ac.o("LEFTANIMATIONTITLE");
@@ -82,12 +48,12 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
             <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
           </div>
         </div>
-        <StressPane high={highStress} />
+        <StressPane ac={ac} high={highStress} />
       </div>
       <div className="app-row">
         <VideoView
           ac={ac}
-          disabled={!hasZoomed}
+          disabled={!tissueEnabled}
           percentComplete={tPercentComplete}
           playing={playingTissue}
           setPercentComplete={setTPercentComplete}
@@ -99,7 +65,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={!hasZoomed || !initialPause || playingTissue}
+          disabled={!hasZoomed || !cellEnabled || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}
@@ -111,6 +77,20 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           videoFile={aniVideos.cell[ac.organ][+control1][+control2][targetVideoIndex]}
         />
       </div>
+      <ZoomLayer
+        ac={ac}
+        setVideoEnabled={setCellEnabled}
+        show={initialPause}
+        type="cell"
+        zoomInfo={cellZoomData.animation[ac.organ][+control1][+control2][0]}
+      />
+      <ZoomLayer
+        ac={ac}
+        setVideoEnabled={setTissueEnabled}
+        show={hasZoomed}
+        type="silhouette"
+        zoomInfo={silhouetteZoomData[ac.organ][+control1][+control2]}
+      />
     </AppContainer>
   );
 };

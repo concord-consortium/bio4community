@@ -18,6 +18,7 @@
 
     .disabled-overlay {
       top: -.5px;
+      transition: opacity .5s;
 
       .disabled-message {
         font-family: vars.$font-clean;

@@ -5,9 +5,11 @@ import { VideoView } from "./video-view";
 import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { SimGraph } from "./sim-graph";
+import { ZoomLayer } from "./zoom-layer";
 import { renderControls } from "../data/control-data";
 import { graphData, graphRanges } from "../data/graph-data";
 import { simVideos, timelines } from "../data/video-data";
+import { cellZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 import { useInitialPause } from "../hooks/use-initial-pause";
@@ -24,8 +26,9 @@ interface SimulationAppProps {
 }
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
-    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, control1, setControl1,
-    control2, setControl2, control3, setControl3, disableControls, setDisableControls } = useCommonState();
+    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
+    control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls }
+    = useCommonState();
   const [tissueComplete, setTissueComplete] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
@@ -92,7 +95,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         />
         <VideoView
           ac={ac}
-          disabled={!initialPause || playingTissue}
+          disabled={!cellEnabled || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
           percentComplete={cPercentComplete}
@@ -133,6 +136,13 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
           <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
         </div>
       </div>
+      <ZoomLayer
+        ac={ac}
+        setVideoEnabled={setCellEnabled}
+        show={initialPause}
+        type="cell"
+        zoomInfo={cellZoomData.simulation[ac.organ][+control1][+control2][0]}
+      />
     </AppContainer>
   );
 };
