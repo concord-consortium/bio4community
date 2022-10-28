@@ -2,8 +2,8 @@ import profile1Image from "../assets/images/silhouettes/profile-1@2x.png";
 import profile2Image from "../assets/images/silhouettes/profile-3@2x.png";
 import profile3Image from "../assets/images/silhouettes/profile-4@2x.png";
 import profile4Image from "../assets/images/silhouettes/profile-5@2x.png";
-import heartImage from "../assets/images/silhouettes/Heart.png";
-import brainImage from "../assets/images/silhouettes/Brain.png";
+import heartImage from "../assets/images/silhouettes/heart-close-up@2x.png";
+import brainImage from "../assets/images/silhouettes/brain-close-up@2x.png";
 
 export interface ISilhouetteData {
   image: any;
