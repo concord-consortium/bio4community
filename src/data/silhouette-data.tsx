@@ -3,6 +3,7 @@ import profile2Image from "../assets/images/silhouettes/profile-3.png";
 import profile3Image from "../assets/images/silhouettes/profile-4.png";
 import profile4Image from "../assets/images/silhouettes/profile-5.png";
 import heartImage from "../assets/images/silhouettes/heart-close-up.png";
+import noseImage from "../assets/images/silhouettes/nasal-passages-close-up.png";
 import brainImage from "../assets/images/silhouettes/brain-close-up.png";
 
 export interface ISilhouetteData {
@@ -38,8 +39,6 @@ export interface ISilhouetteOrganData {
   buttonStartStyle: Record<string, any>;
   buttonZoomStyle: Record<string, any>;
   silhouetteZoomStyle: Record<string, any>;
-  startStyle: Record<string, any>;
-  zoomStyle: Record<string, any>;
 }
 const heartButtonStartStyle = {
   opacity: 1,
@@ -59,19 +58,6 @@ const heartSilhouetteZoomStyle = {
   width: "1019px",
   left: "-420px",
   top: "-475px"
-  // height: "1010px",
-  // left: "-320px",
-  // top: "-450px"
-};
-const heartStartStyle = {
-  height: "40px",
-  left: "90px",
-  top: "89px"
-};
-const heartZoomStyle = {
-  height: "200px",
-  left: "30px",
-  top: "6px"
 };
 const noseButtonStartStyle = {
   opacity: 1,
@@ -89,8 +75,8 @@ const noseButtonZoomStyle = {
 };
 const noseSilhouetteZoomStyle = {
   width: "1162px",
-  left: "-340px",
-  top: "-150px"
+  left: "-352px",
+  top: "-190px"
 };
 const brainButtonStartStyle = {
   opacity: 1,
@@ -111,99 +97,69 @@ const brainSilhouetteZoomStyle = {
   left: "-315px",
   top: "-20px"
 };
-const brainStartStyle = {
-  height: "35px",
-  left: "75px",
-  top: "10px"
-};
-const brainZoomStyle = {
-  height: "140px",
-  left: "6px",
-  top: "45px"
-};
 export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
   "heart": [
     {
       image: heartImage,
       buttonStartStyle: heartButtonStartStyle,
       buttonZoomStyle: heartButtonZoomStyle,
-      silhouetteZoomStyle: heartSilhouetteZoomStyle,
-      startStyle: heartStartStyle,
-      zoomStyle: heartZoomStyle
+      silhouetteZoomStyle: heartSilhouetteZoomStyle
     },
     {
       image: heartImage,
       buttonStartStyle: heartButtonStartStyle,
       buttonZoomStyle: heartButtonZoomStyle,
-      silhouetteZoomStyle: heartSilhouetteZoomStyle,
-      startStyle: heartStartStyle,
-      zoomStyle: heartZoomStyle
+      silhouetteZoomStyle: heartSilhouetteZoomStyle
     },
     {
       image: heartImage,
       buttonStartStyle: heartButtonStartStyle,
       buttonZoomStyle: heartButtonZoomStyle,
-      silhouetteZoomStyle: heartSilhouetteZoomStyle,
-      startStyle: heartStartStyle,
-      zoomStyle: heartZoomStyle
+      silhouetteZoomStyle: heartSilhouetteZoomStyle
     },
     {
       image: heartImage,
       buttonStartStyle: heartButtonStartStyle,
       buttonZoomStyle: heartButtonZoomStyle,
-      silhouetteZoomStyle: heartSilhouetteZoomStyle,
-      startStyle: heartStartStyle,
-      zoomStyle: heartZoomStyle
+      silhouetteZoomStyle: heartSilhouetteZoomStyle
     },
     {
       image: heartImage,
       buttonStartStyle: heartButtonStartStyle,
       buttonZoomStyle: heartButtonZoomStyle,
-      silhouetteZoomStyle: heartSilhouetteZoomStyle,
-      startStyle: heartStartStyle,
-      zoomStyle: heartZoomStyle
+      silhouetteZoomStyle: heartSilhouetteZoomStyle
     }
   ],
   "nose": [
     {
-      image: heartImage,
+      image: noseImage,
       buttonStartStyle: noseButtonStartStyle,
       buttonZoomStyle: noseButtonZoomStyle,
-      silhouetteZoomStyle: noseSilhouetteZoomStyle,
-      startStyle: {},
-      zoomStyle: {}
+      silhouetteZoomStyle: noseSilhouetteZoomStyle
     },
     {
-      image: heartImage,
+      image: noseImage,
       buttonStartStyle: noseButtonStartStyle,
       buttonZoomStyle: noseButtonZoomStyle,
-      silhouetteZoomStyle: noseSilhouetteZoomStyle,
-      startStyle: {},
-      zoomStyle: {}
+      silhouetteZoomStyle: noseSilhouetteZoomStyle
     },
     {
-      image: heartImage,
+      image: noseImage,
       buttonStartStyle: noseButtonStartStyle,
       buttonZoomStyle: noseButtonZoomStyle,
-      silhouetteZoomStyle: noseSilhouetteZoomStyle,
-      startStyle: {},
-      zoomStyle: {}
+      silhouetteZoomStyle: noseSilhouetteZoomStyle
     },
     {
-      image: heartImage,
+      image: noseImage,
       buttonStartStyle: noseButtonStartStyle,
       buttonZoomStyle: noseButtonZoomStyle,
-      silhouetteZoomStyle: noseSilhouetteZoomStyle,
-      startStyle: {},
-      zoomStyle: {}
+      silhouetteZoomStyle: noseSilhouetteZoomStyle
     },
     {
-      image: heartImage,
+      image: noseImage,
       buttonStartStyle: noseButtonStartStyle,
       buttonZoomStyle: noseButtonZoomStyle,
-      silhouetteZoomStyle: noseSilhouetteZoomStyle,
-      startStyle: {},
-      zoomStyle: {}
+      silhouetteZoomStyle: noseSilhouetteZoomStyle
     }
   ],
   "brain": [
@@ -211,41 +167,31 @@ export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
       image: brainImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
-      silhouetteZoomStyle: brainSilhouetteZoomStyle,
-      startStyle: brainStartStyle,
-      zoomStyle: brainZoomStyle
+      silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
       image: brainImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
-      silhouetteZoomStyle: brainSilhouetteZoomStyle,
-      startStyle: brainStartStyle,
-      zoomStyle: brainZoomStyle
+      silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
       image: brainImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
-      silhouetteZoomStyle: brainSilhouetteZoomStyle,
-      startStyle: brainStartStyle,
-      zoomStyle: brainZoomStyle
+      silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
       image: brainImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
-      silhouetteZoomStyle: brainSilhouetteZoomStyle,
-      startStyle: brainStartStyle,
-      zoomStyle: brainZoomStyle
+      silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
       image: brainImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
-      silhouetteZoomStyle: brainSilhouetteZoomStyle,
-      startStyle: brainStartStyle,
-      zoomStyle: brainZoomStyle
+      silhouetteZoomStyle: brainSilhouetteZoomStyle
     }
   ]
 };

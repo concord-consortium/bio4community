@@ -42,7 +42,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
       setSilhouetteStyle(sd.startStyle);
       setInternalOrgansStyle({ ...sd.startStyle, opacity: 1 });
       setButtonStyle(sod.buttonStartStyle);
-      setOrganStyle(sod.startStyle);
+      setOrganStyle({ ...sd.startStyle, opacity: 0 });
     }
   }, [hasZoomed, sd, sod]);
 
@@ -53,7 +53,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
         setSilhouetteStyle(sod.silhouetteZoomStyle);
         setInternalOrgansStyle({ ...sod.silhouetteZoomStyle, opacity: 0 });
         setButtonStyle(sod.buttonZoomStyle);
-        setOrganStyle(sod.zoomStyle);
+        setOrganStyle({ ...sod.silhouetteZoomStyle, opacity: 1 });
       }
       setTimeout(() => { setHasZoomed(true); }, zoomDuration);
     }
@@ -66,8 +66,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
       {sd && <img src={InternalOrgans} className="silhouette-profile" style={internalOrgansStyle} />}
       <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
-      {sod && ac.organ !== "nose" && false /* Currently missing assets for nose */ &&
-        <img src={sod?.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
+      {sod && <img src={sod?.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
       {!zooming && <PaneTitle extraClass="instruction-title" title={instructionsMessage} />}
       {hasZoomed && <PaneTitle extraClass="silhouette-title" title={title} />}
     </div>
