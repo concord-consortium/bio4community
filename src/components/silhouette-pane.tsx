@@ -6,7 +6,7 @@ import { AppContext } from "../hooks/use-app-context";
 import { ISilhouetteData, ISilhouetteOrganData, silhouetteData, silhouetteOrganData }
   from "../data/silhouette-data";
 
-import InternalOrgans from "../assets/images/silhouettes/internal-organs-with-brain@2x.png";
+import InternalOrgans from "../assets/images/silhouettes/internal-organs-with-brain.png";
 
 import "./silhouette-pane.scss";
 
@@ -20,6 +20,7 @@ interface ISilhouettePane {
 }
 export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane) => {
   const [silhouetteStyle, setSilhouetteStyle] = useState<Record<string, any>>({});
+  const [internalOrgansStyle, setInternalOrgansStyle] = useState<Record<string, any>>({});
   const [buttonStyle, setButtonStyle] = useState<Record<string, any>>({});
   const [organStyle, setOrganStyle] = useState<Record<string, any>>({});
   const [zooming, setZooming] = useState(false);
@@ -39,6 +40,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   useEffect(() => {
     if (!hasZoomed && sd && sod) {
       setSilhouetteStyle(sd.startStyle);
+      setInternalOrgansStyle({ ...sd.startStyle, opacity: 1 });
       setButtonStyle(sod.buttonStartStyle);
       setOrganStyle(sod.startStyle);
     }
@@ -49,6 +51,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
       setZooming(true);
       if (sod) {
         setSilhouetteStyle(sod.silhouetteZoomStyle);
+        setInternalOrgansStyle({ ...sod.silhouetteZoomStyle, opacity: 0 });
         setButtonStyle(sod.buttonZoomStyle);
         setOrganStyle(sod.zoomStyle);
       }
@@ -61,7 +64,7 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
-      {sd && <img src={InternalOrgans} className="silhouette-profile" style={silhouetteStyle} />}
+      {sd && <img src={InternalOrgans} className="silhouette-profile" style={internalOrgansStyle} />}
       <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />
       {sod && ac.organ !== "nose" && false /* Currently missing assets for nose */ &&
         <img src={sod?.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}

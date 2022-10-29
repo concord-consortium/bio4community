@@ -2,8 +2,8 @@ import profile1Image from "../assets/images/silhouettes/profile-1.png";
 import profile2Image from "../assets/images/silhouettes/profile-3.png";
 import profile3Image from "../assets/images/silhouettes/profile-4.png";
 import profile4Image from "../assets/images/silhouettes/profile-5.png";
-import heartImage from "../assets/images/silhouettes/heart-close-up@2x.png";
-import brainImage from "../assets/images/silhouettes/brain-close-up@2x.png";
+import heartImage from "../assets/images/silhouettes/heart-close-up.png";
+import brainImage from "../assets/images/silhouettes/brain-close-up.png";
 
 export interface ISilhouetteData {
   image: any;
@@ -56,9 +56,9 @@ const heartButtonZoomStyle = {
   top: "-35px"
 };
 const heartSilhouetteZoomStyle = {
-  width: "345px",
-  left: "-58px",
-  top: "-58px"
+  width: "1019px",
+  left: "-420px",
+  top: "-475px"
   // height: "1010px",
   // left: "-320px",
   // top: "-450px"
@@ -88,9 +88,9 @@ const noseButtonZoomStyle = {
   top: "-35px"
 };
 const noseSilhouetteZoomStyle = {
-  height: "1010px",
-  left: "-150px",
-  top: "-130px"
+  width: "1162px",
+  left: "-340px",
+  top: "-150px"
 };
 const brainButtonStartStyle = {
   opacity: 1,
@@ -107,9 +107,9 @@ const brainButtonZoomStyle = {
   top: "-10px"
 };
 const brainSilhouetteZoomStyle = {
-  height: "900px",
-  left: "-240px",
-  top: "10px"
+  width: "856px",
+  left: "-315px",
+  top: "-20px"
 };
 const brainStartStyle = {
   height: "35px",
