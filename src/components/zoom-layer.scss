@@ -1,0 +1,79 @@
+@use "vars.scss";
+
+.zoom-layer {
+  pointer-events: none;
+
+  &.silhouette {
+    .zoom-line-front {
+      stroke: vars.$ani-dark-1;
+    }
+    .zoom-box {
+      box-shadow: 0 0 0 2px vars.$ani-dark-1, 0 0 0 3.5px white;
+
+      &.heart {
+        border-radius: 7px;
+      }
+    }
+  }
+
+  &.cell {
+    .zoom-line-front {
+      stroke: vars.$cell-orange;
+    }
+    .zoom-box {
+      box-shadow: 0 0 0 2px vars.$cell-orange, 0 0 0 3.5px white;
+      pointer-events: auto;
+
+      &.heart {
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .svg-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+
+    .svg {
+      width: vars.$app-width;
+    }
+
+    .zoom-background {
+      fill: rgba(255, 255, 255, .5);
+    }
+
+    .zoom-line-back {
+      stroke: white;
+      stroke-width: 5px;
+    }
+
+    .zoom-line-front {
+      stroke-width: 2px;
+      stroke-dasharray: 6 2;
+    }
+  }
+
+  .zoom-box {
+    position: absolute;
+    border: white solid 1.5px;
+    transition: opacity .5s;
+    pointer-events: all;
+    cursor: pointer;
+
+    &.nose {
+      border-radius: 7px;
+    }
+    &.brain {
+      border-radius: 4px;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, .5);
+    }
+    &:active {
+      background-color: rgba(255, 255, 255, .5);
+    }
+  }
+}
