@@ -1,7 +1,7 @@
-import profile1Image from "../assets/images/silhouettes/profile-1@2x.png";
-import profile2Image from "../assets/images/silhouettes/profile-3@2x.png";
-import profile3Image from "../assets/images/silhouettes/profile-4@2x.png";
-import profile4Image from "../assets/images/silhouettes/profile-5@2x.png";
+import profile1Image from "../assets/images/silhouettes/profile-1.png";
+import profile2Image from "../assets/images/silhouettes/profile-3.png";
+import profile3Image from "../assets/images/silhouettes/profile-4.png";
+import profile4Image from "../assets/images/silhouettes/profile-5.png";
 import heartImage from "../assets/images/silhouettes/heart-close-up@2x.png";
 import brainImage from "../assets/images/silhouettes/brain-close-up@2x.png";
 
