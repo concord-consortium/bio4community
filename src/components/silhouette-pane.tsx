@@ -3,10 +3,12 @@ import { clsx } from "clsx";
 
 import { PaneTitle } from "./pane-title";
 import { AppContext } from "../hooks/use-app-context";
-import { ISilhouetteData, ISilhouetteOrganData, silhouetteData, silhouetteOrganData }
-  from "../data/silhouette-data";
+import { brainStartStyle, brainEndStyle, ISilhouetteData, ISilhouetteOrganData, silhouetteData,
+  silhouetteOrganData } from "../data/silhouette-data";
 
 import InternalOrgans from "../assets/images/silhouettes/internal-organs-with-brain.png";
+import BrainPFC from "../assets/images/silhouettes/brainAnim_PFC.gif";
+// import BrainAmygdala from "../assets/images/silhouettes/brainAnim_Amygdala.gif";
 
 import "./silhouette-pane.scss";
 
@@ -42,9 +44,10 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
       setSilhouetteStyle(sd.startStyle);
       setInternalOrgansStyle({ ...sd.startStyle, opacity: 1 });
       setButtonStyle(sod.buttonStartStyle);
-      setOrganStyle({ ...sd.startStyle, opacity: 0 });
+      const startStyle = ac.organ === "brain" ? brainStartStyle : sd.startStyle;
+      setOrganStyle({ ...startStyle, opacity: 0 });
     }
-  }, [hasZoomed, sd, sod]);
+  }, [ac.organ, hasZoomed, sd, sod]);
 
   const handleClick = (event: any) => {
     if (!hasZoomed) {
@@ -53,19 +56,23 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
         setSilhouetteStyle(sod.silhouetteZoomStyle);
         setInternalOrgansStyle({ ...sod.silhouetteZoomStyle, opacity: 0 });
         setButtonStyle(sod.buttonZoomStyle);
-        setOrganStyle({ ...sod.silhouetteZoomStyle, opacity: 1 });
+        const zoomStyle = ac.organ === "brain" ? brainEndStyle : sod.silhouetteZoomStyle;
+        setOrganStyle({ ...zoomStyle, opacity: 1 });
       }
       setTimeout(() => { setHasZoomed(true); }, zoomDuration);
     }
   };
 
+  const organImage = ac.organ === "brain"
+    ? BrainPFC
+    : sod?.image;
   const instructionsMessage = ac.t("SILHOUETTEINSTRUCTIONS").replace("ORGAN", ac.organ);
   const title = ac.t("SILHOUETTETITLE").replace("ORGAN", ac.organ[0].toUpperCase() + ac.organ.slice(1));
   return (
     <div className="silhouette-pane">
       {sd && <img src={sd.image} className="silhouette-profile" style={silhouetteStyle} />}
       {sd && <img src={InternalOrgans} className="silhouette-profile" style={internalOrgansStyle} />}
-      {sod && <img src={sod?.image} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
+      {sod && <img src={organImage} className={clsx("silhouette-organ", ac.organ)} style={organStyle} />}
       {!hasZoomed &&
         <button className={clsx("silhouette-button", ac.organ)} onClick={handleClick} style={buttonStyle} />}
       {!zooming && <PaneTitle extraClass="instruction-title" title={instructionsMessage} />}

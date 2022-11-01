@@ -4,7 +4,6 @@ import profile3Image from "../assets/images/silhouettes/profile-4.png";
 import profile4Image from "../assets/images/silhouettes/profile-5.png";
 import heartImage from "../assets/images/silhouettes/heart-close-up.png";
 import noseImage from "../assets/images/silhouettes/nasal-passages-close-up.png";
-import brainImage from "../assets/images/silhouettes/brain-close-up.png";
 
 export interface ISilhouetteData {
   image: any;
@@ -103,6 +102,7 @@ const brainSilhouetteZoomStyle = {
   left: "-315px",
   top: "-20px"
 };
+// There is a set of data for each of the five silhouettes
 export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
   "heart": [
     {
@@ -170,34 +170,46 @@ export const silhouetteOrganData: Record<string, ISilhouetteOrganData[]> = {
   ],
   "brain": [
     {
-      image: brainImage,
+      image: heartImage, // The brain uses a special image format
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
       silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
-      image: brainImage,
+      image: heartImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
       silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
-      image: brainImage,
+      image: heartImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
       silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
-      image: brainImage,
+      image: heartImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
       silhouetteZoomStyle: brainSilhouetteZoomStyle
     },
     {
-      image: brainImage,
+      image: heartImage,
       buttonStartStyle: brainButtonStartStyle,
       buttonZoomStyle: brainButtonZoomStyle,
       silhouetteZoomStyle: brainSilhouetteZoomStyle
     }
   ]
+};
+
+// Used for brain gifs, which are different than other organ closeups
+export const brainStartStyle = {
+  width: "62px",
+  left: 84,
+  top: 0
+};
+export const brainEndStyle = {
+  width: "220px",
+  left: -4,
+  top: -5
 };
