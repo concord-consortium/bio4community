@@ -40,17 +40,19 @@ export interface ISilhouetteOrganData {
   buttonZoomStyle: Record<string, any>;
   silhouetteZoomStyle: Record<string, any>;
 }
+const hbw = 48;
+const hbh = 50;
 const heartButtonStartStyle = {
   opacity: 1,
-  width: "58px",
-  height: "54px",
-  left: "75px",
-  top: "82px"
+  width: `${hbw}px`,
+  height: `${hbh}px`,
+  left: "95px",
+  top: "107px"
 };
 const heartButtonZoomStyle = {
   opacity: 0,
-  width: "290px",
-  height: "270px",
+  width: `${hbw * 6}px`,
+  height: `${hbh * 6}px`,
   left: "-50px",
   top: "-35px"
 };
@@ -59,17 +61,19 @@ const heartSilhouetteZoomStyle = {
   left: "-420px",
   top: "-475px"
 };
+const nbw = 33;
+const nbh = 34;
 const noseButtonStartStyle = {
   opacity: 1,
-  width: "29px",
-  height: "27px",
-  left: "56px",
-  top: "31px"
+  width: `${nbw}px`,
+  height: `${nbh}px`,
+  left: "65px",
+  top: "41px"
 };
 const noseButtonZoomStyle = {
   opacity: 0,
-  width: "290px",
-  height: "270px",
+  width: `${nbw * 8}px`,
+  height: `${nbh * 8}px`,
   left: "-50px",
   top: "-35px"
 };
@@ -78,17 +82,19 @@ const noseSilhouetteZoomStyle = {
   left: "-352px",
   top: "-190px"
 };
+const bbw = 56;
+const bbh = 58;
 const brainButtonStartStyle = {
   opacity: 1,
-  width: "59px",
-  height: "46px",
-  left: "69px",
-  top: "5px"
+  width: `${bbw}px`,
+  height: `${bbh}px`,
+  left: "86px",
+  top: "8px"
 };
 const brainButtonZoomStyle = {
   opacity: 0,
-  width: "295px",
-  height: "255px",
+  width: `${bbw * 6}px`,
+  height: `${bbh * 6}px`,
   left: "-52px",
   top: "-10px"
 };
