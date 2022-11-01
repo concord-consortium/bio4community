@@ -8,7 +8,7 @@ import { brainStartStyle, brainEndStyle, ISilhouetteData, ISilhouetteOrganData, 
 
 import InternalOrgans from "../assets/images/silhouettes/internal-organs-with-brain.png";
 import BrainPFC from "../assets/images/silhouettes/brainAnim_PFC.gif";
-// import BrainAmygdala from "../assets/images/silhouettes/brainAnim_Amygdala.gif";
+import BrainAmygdala from "../assets/images/silhouettes/brainAnim_Amygdala.gif";
 
 import "./silhouette-pane.scss";
 
@@ -17,10 +17,11 @@ const zoomDuration = 2000;
 
 interface ISilhouettePane {
   ac: AppContext;
+  control1?: boolean; // Used to determine which brain gif to use
   hasZoomed: boolean;
   setHasZoomed: (val: boolean) => void;
 }
-export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane) => {
+export const SilhouettePane = ({ ac, control1, hasZoomed, setHasZoomed }: ISilhouettePane) => {
   const [silhouetteStyle, setSilhouetteStyle] = useState<Record<string, any>>({});
   const [internalOrgansStyle, setInternalOrgansStyle] = useState<Record<string, any>>({});
   const [buttonStyle, setButtonStyle] = useState<Record<string, any>>({});
@@ -63,9 +64,8 @@ export const SilhouettePane = ({ ac, hasZoomed, setHasZoomed }: ISilhouettePane)
     }
   };
 
-  const organImage = ac.organ === "brain"
-    ? BrainPFC
-    : sod?.image;
+  // The brain uses a gif based on the first control option rather than a normal organ image
+  const organImage = ac.organ === "brain" ? (control1 ? BrainAmygdala : BrainPFC) : sod?.image;
   const instructionsMessage = ac.t("SILHOUETTEINSTRUCTIONS").replace("ORGAN", ac.organ);
   const title = ac.t("SILHOUETTETITLE").replace("ORGAN", ac.organ[0].toUpperCase() + ac.organ.slice(1));
   return (
