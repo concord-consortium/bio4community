@@ -49,17 +49,17 @@ const makeSilhouetteInfo = (boxX: number, boxY: number, boxWidth: number, boxHei
 );
 
 // Heart silhouette data
-const hsbx = 84;
-const hsby = 140;
-const hsbw = 41;
+const hsbx = 87;
+const hsby = 147;
+const hsbw = 39;
 const hsbh = 24;
 const heartSilhouetteInfo = makeSilhouetteInfo(hsbx, hsby, hsbw, hsbh);
 
 // Nose silhouette data
-const nsbx = 72;
-const nsby = 112;
-const nsbw = 48;
-const nsbh = 30;
+const nsbx = 46;
+const nsby = 93;
+const nsbw = 150;
+const nsbh = 93;
 const noseSilhouetteInfo = makeSilhouetteInfo(nsbx, nsby, nsbw, nsbh);
 
 // Brain silhouette data
