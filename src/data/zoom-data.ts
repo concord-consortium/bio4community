@@ -130,23 +130,23 @@ const makeCellInfo = (basicInfo: PartialZoomInfo, boxX: number, boxY: number, bo
 );
 
 // Heart cell animation info
-const habx = 32;
-const haby = 452;
-const habw = 40;
+const habx = 31;
+const haby = 451;
+const habw = 41;
 const habh = 25;
 const heartCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, habx, haby, habw, habh);
 
 // Nose cell animation info
-const nabx = 170;
-const naby = 500;
-const nabw = 44;
-const nabh = 26;
+const nabx = 242;
+const naby = 407;
+const nabw = 41;
+const nabh = 25;
 const noseCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, nabx, naby, nabw, nabh);
 
 // Brain cell animation info
-const babx = 210;
+const babx = 215;
 const baby = 436;
-const babw = 52;
+const babw = 41;
 const babh = 25;
 const brainCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, babx, baby, babw, babh);
 
