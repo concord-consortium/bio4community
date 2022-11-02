@@ -14,7 +14,8 @@ $transition: width $transition-duration, left $transition-duration, top $transit
   width: 230px;
   height: 216px;
 
-  border: vars.$ani-border;
+  border: white solid 2px;
+  box-shadow: 0 0 0 2px vars.$ani-dark-1;
   border-radius: vars.$ani-radius-normal;
 }
 
