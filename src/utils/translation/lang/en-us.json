@@ -13,6 +13,7 @@
   "BRAIN.LEFTANIMATIONTITLE": "Attention Network View",
   "BRAIN.ALTERNATEANIMATIONTITLE": "Fear Network View",
   "BRAIN.RIGHTANIMATIONTITLE": "Prefrontal Cortex Neurons View",
+  "BRAIN.ALTERNATERIGHTANIMATIONTITLE": "Amygdala Neurons View",
 
   "HEART.SIMULATIONTITLE": "Plaque Model Simulator",
   "NOSE.SIMULATIONTITLE": "Immune Response Model Simulator",
