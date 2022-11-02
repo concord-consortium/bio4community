@@ -11,6 +11,7 @@
   "NOSE.LEFTANIMATIONTITLE": "Inside of Nose View",
   "NOSE.RIGHTANIMATIONTITLE": "Cell View",
   "BRAIN.LEFTANIMATIONTITLE": "Attention Network View",
+  "BRAIN.ALTERNATEANIMATIONTITLE": "Fear Network View",
   "BRAIN.RIGHTANIMATIONTITLE": "Prefrontal Cortex Neurons View",
 
   "HEART.SIMULATIONTITLE": "Plaque Model Simulator",
@@ -20,7 +21,8 @@
   "HEART.RIGHTSIMULATIONTITLE": "Simulated Cells",
   "NOSE.LEFTSIMULATIONTITLE": "Simulated Inside of Nose",
   "NOSE.RIGHTSIMULATIONTITLE": "Simulated Cells",
-  "BRAIN.LEFTSIMULATIONTITLE": "Simulated Amygdala",
+  "BRAIN.LEFTSIMULATIONTITLE": "Simulated Prefrontal Cortex",
+  "BRAIN.ALTERNATESIMULATIONTITLE": "Simulated Amygdala",
   "BRAIN.RIGHTSIMULATIONTITLE": "Simulated Cell Network",
 
   "HEART.SIMCONTROL1LABEL": "Cortisol Level",
@@ -128,9 +130,9 @@
   "NOSE.RIGHTXLABEL2": "(days)",
   "NOSE.RIGHTYLABEL": "Mucus Thickness",
   "BRAIN.LEFTXLABEL1": "Simulated Time",
-  "BRAIN.LEFTXLABEL2": "(years)",
-  "BRAIN.LEFTYLABEL": "# of Connections",
+  "BRAIN.LEFTXLABEL2": "(weeks)",
+  "BRAIN.LEFTYLABEL": "Network Connections",
   "BRAIN.RIGHTXLABEL1": "Simulated Time",
-  "BRAIN.RIGHTXLABEL2": "(years)",
-  "BRAIN.RIGHTYLABEL": "Firing of Dendrite"
+  "BRAIN.RIGHTXLABEL2": "(weeks)",
+  "BRAIN.RIGHTYLABEL": "Signals Transmitted"
 }

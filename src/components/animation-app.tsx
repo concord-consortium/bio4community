@@ -32,12 +32,12 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   const highStress = ac.organ === "brain" ? control2 : control1;
-  const tissueTitle = ac.o("LEFTANIMATIONTITLE");
+  const tissueTitle = ac.organ === "brain" && control1 ? ac.o("ALTERNATEANIMATIONTITLE") : ac.o("LEFTANIMATIONTITLE");
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
       <div className="app-row ani-row">
-        <SilhouettePane ac={ac} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
+        <SilhouettePane ac={ac} control1={control1} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
           <Title ac={ac} text={ac.t("CONTROLTITLE")} />
           { renderControls({ ac, disabled: disableControls,
