@@ -63,13 +63,13 @@ const nsbh = 93;
 const noseSilhouetteInfo = makeSilhouetteInfo(nsbx, nsby, nsbw, nsbh);
 
 // Brain silhouette data
-const bsbx1 = 54;
-const bsby1 = 128;
-const bsbw = 15;
-const bsbh = 7;
+const bsbx1 = 48;
+const bsby1 = 131;
+const bsbw = 17;
+const bsbh = 10;
 const brainSilhouetteInfo1 = makeSilhouetteInfo(bsbx1, bsby1, bsbw, bsbh);
-const bsbx2 = 102;
-const bsby2 = 158;
+const bsbx2 = 106;
+const bsby2 = 166;
 const brainSilhouetteInfo2 = makeSilhouetteInfo(bsbx2, bsby2, bsbw, bsbh);
 export const silhouetteZoomData: Record<string, ZoomInfo[][]> = {
   "heart": [
@@ -144,11 +144,14 @@ const nabh = 25;
 const noseCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, nabx, naby, nabw, nabh);
 
 // Brain cell animation info
-const babx = 215;
-const baby = 436;
-const babw = 41;
-const babh = 25;
-const brainCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, babx, baby, babw, babh);
+const babx1 = 240;
+const baby1 = 440;
+const babw = 28;
+const babh = 18;
+const brainCellAnimationInfo1 = makeCellInfo(basicCellAnimationInfo, babx1, baby1, babw, babh);
+const babx2 = 204;
+const baby2 = 359;
+const brainCellAnimationInfo2 = makeCellInfo(basicCellAnimationInfo, babx2, baby2, babw, babh);
 
 // Simulation zooms
 const yDiff = -164;
@@ -159,7 +162,8 @@ const basicCellSimunlationInfo = {
 };
 const heartCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, habx, haby + yDiff, habw, habh);
 const noseCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, nabx, naby + yDiff, nabw, nabh);
-const brainCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, babx, baby + yDiff, babw, babh);
+const brainCellSimulationInfo1 = makeCellInfo(basicCellSimunlationInfo, babx1, baby1 + yDiff, babw, babh);
+const brainCellSimulationInfo2 = makeCellInfo(basicCellSimunlationInfo, babx2, baby2 + yDiff, babw, babh);
 
 export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
   "animation": {
@@ -210,22 +214,22 @@ export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
     "brain": [
       [
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo1,
+          brainCellAnimationInfo1
         ],
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo1,
+          brainCellAnimationInfo1
         ]
       ],
       [
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo2,
+          brainCellAnimationInfo2
         ],
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo2,
+          brainCellAnimationInfo2
         ]
       ]
     ]
@@ -278,22 +282,22 @@ export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
     "brain": [
       [
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo1,
+          brainCellSimulationInfo1
         ],
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo1,
+          brainCellSimulationInfo1
         ]
       ],
       [
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo2,
+          brainCellSimulationInfo2
         ],
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo2,
+          brainCellSimulationInfo2
         ]
       ]
     ]
