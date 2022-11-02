@@ -33,6 +33,8 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
 
   const highStress = ac.organ === "brain" ? control2 : control1;
   const tissueTitle = ac.organ === "brain" && control1 ? ac.o("ALTERNATEANIMATIONTITLE") : ac.o("LEFTANIMATIONTITLE");
+  const cellTitle = ac.organ === "brain" && control1
+    ? ac.o("ALTERNATERIGHTANIMATIONTITLE") : ac.o("RIGHTANIMATIONTITLE");
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
     <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
@@ -74,7 +76,7 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           setPercentComplete={setCPercentComplete}
           setPlaying={setPlayingCell}
           timelineMarks={timelines[ac.mode].cell[ac.organ][+control1][+control2][0]}
-          title={ac.o("RIGHTANIMATIONTITLE")}
+          title={cellTitle}
           videoFile={aniVideos.cell[ac.organ][+control1][+control2][targetVideoIndex]}
         />
       </div>
