@@ -49,27 +49,27 @@ const makeSilhouetteInfo = (boxX: number, boxY: number, boxWidth: number, boxHei
 );
 
 // Heart silhouette data
-const hsbx = 84;
-const hsby = 140;
-const hsbw = 41;
+const hsbx = 87;
+const hsby = 147;
+const hsbw = 39;
 const hsbh = 24;
 const heartSilhouetteInfo = makeSilhouetteInfo(hsbx, hsby, hsbw, hsbh);
 
 // Nose silhouette data
-const nsbx = 72;
-const nsby = 112;
-const nsbw = 48;
-const nsbh = 30;
+const nsbx = 46;
+const nsby = 93;
+const nsbw = 150;
+const nsbh = 93;
 const noseSilhouetteInfo = makeSilhouetteInfo(nsbx, nsby, nsbw, nsbh);
 
 // Brain silhouette data
-const bsbx1 = 54;
-const bsby1 = 128;
-const bsbw = 15;
-const bsbh = 7;
+const bsbx1 = 48;
+const bsby1 = 131;
+const bsbw = 17;
+const bsbh = 10;
 const brainSilhouetteInfo1 = makeSilhouetteInfo(bsbx1, bsby1, bsbw, bsbh);
-const bsbx2 = 102;
-const bsby2 = 158;
+const bsbx2 = 106;
+const bsby2 = 166;
 const brainSilhouetteInfo2 = makeSilhouetteInfo(bsbx2, bsby2, bsbw, bsbh);
 export const silhouetteZoomData: Record<string, ZoomInfo[][]> = {
   "heart": [
@@ -130,25 +130,28 @@ const makeCellInfo = (basicInfo: PartialZoomInfo, boxX: number, boxY: number, bo
 );
 
 // Heart cell animation info
-const habx = 32;
-const haby = 452;
-const habw = 40;
+const habx = 31;
+const haby = 451;
+const habw = 41;
 const habh = 25;
 const heartCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, habx, haby, habw, habh);
 
 // Nose cell animation info
-const nabx = 170;
-const naby = 500;
-const nabw = 44;
-const nabh = 26;
+const nabx = 242;
+const naby = 407;
+const nabw = 41;
+const nabh = 25;
 const noseCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, nabx, naby, nabw, nabh);
 
 // Brain cell animation info
-const babx = 210;
-const baby = 436;
-const babw = 52;
-const babh = 25;
-const brainCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, babx, baby, babw, babh);
+const babx1 = 240;
+const baby1 = 440;
+const babw = 28;
+const babh = 18;
+const brainCellAnimationInfo1 = makeCellInfo(basicCellAnimationInfo, babx1, baby1, babw, babh);
+const babx2 = 204;
+const baby2 = 359;
+const brainCellAnimationInfo2 = makeCellInfo(basicCellAnimationInfo, babx2, baby2, babw, babh);
 
 // Simulation zooms
 const yDiff = -164;
@@ -159,7 +162,8 @@ const basicCellSimunlationInfo = {
 };
 const heartCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, habx, haby + yDiff, habw, habh);
 const noseCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, nabx, naby + yDiff, nabw, nabh);
-const brainCellSimulationInfo = makeCellInfo(basicCellSimunlationInfo, babx, baby + yDiff, babw, babh);
+const brainCellSimulationInfo1 = makeCellInfo(basicCellSimunlationInfo, babx1, baby1 + yDiff, babw, babh);
+const brainCellSimulationInfo2 = makeCellInfo(basicCellSimunlationInfo, babx2, baby2 + yDiff, babw, babh);
 
 export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
   "animation": {
@@ -210,22 +214,22 @@ export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
     "brain": [
       [
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo1,
+          brainCellAnimationInfo1
         ],
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo1,
+          brainCellAnimationInfo1
         ]
       ],
       [
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo2,
+          brainCellAnimationInfo2
         ],
         [
-          brainCellAnimationInfo,
-          brainCellAnimationInfo
+          brainCellAnimationInfo2,
+          brainCellAnimationInfo2
         ]
       ]
     ]
@@ -278,22 +282,22 @@ export const cellZoomData: Record<string, Record<string, ZoomInfo[][][]>> = {
     "brain": [
       [
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo1,
+          brainCellSimulationInfo1
         ],
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo1,
+          brainCellSimulationInfo1
         ]
       ],
       [
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo2,
+          brainCellSimulationInfo2
         ],
         [
-          brainCellSimulationInfo,
-          brainCellSimulationInfo
+          brainCellSimulationInfo2,
+          brainCellSimulationInfo2
         ]
       ]
     ]

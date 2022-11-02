@@ -64,7 +64,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
     </div>
   );
 
-  const tissueTitle = ac.o("LEFTSIMULATIONTITLE");
+  const tissueTitle = ac.organ === "brain" && control1 ? ac.o("ALTERNATESIMULATIONTITLE") : ac.o("LEFTSIMULATIONTITLE");
   const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
   const hLabel = (bold: string, regular: string) => <><span className="bold">{bold}</span>&nbsp;{regular}</>;
   const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
