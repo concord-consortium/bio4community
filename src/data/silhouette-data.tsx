@@ -45,8 +45,8 @@ const heartButtonStartStyle = {
   opacity: 1,
   width: `${hbw}px`,
   height: `${hbh}px`,
-  left: "95px",
-  top: "107px"
+  left: "85px",
+  top: "96px"
 };
 const heartButtonZoomStyle = {
   opacity: 0,
@@ -66,8 +66,8 @@ const noseButtonStartStyle = {
   opacity: 1,
   width: `${nbw}px`,
   height: `${nbh}px`,
-  left: "65px",
-  top: "41px"
+  left: "59px",
+  top: "38px"
 };
 const noseButtonZoomStyle = {
   opacity: 0,
@@ -81,14 +81,14 @@ const noseSilhouetteZoomStyle = {
   left: "-352px",
   top: "-190px"
 };
-const bbw = 56;
-const bbh = 58;
+const bbw = 54;
+const bbh = 56;
 const brainButtonStartStyle = {
   opacity: 1,
   width: `${bbw}px`,
   height: `${bbh}px`,
-  left: "86px",
-  top: "8px"
+  left: "77.5px",
+  top: "6px"
 };
 const brainButtonZoomStyle = {
   opacity: 0,
