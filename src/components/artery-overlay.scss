@@ -1,0 +1,10 @@
+@use './vars';
+
+.artery-overlay {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: vars.$video-width;
+  height: vars.$video-height;
+}

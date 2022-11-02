@@ -27,8 +27,8 @@ interface SimulationAppProps {
 export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
-    control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls }
-    = useCommonState();
+    control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls,
+    tissueOverlay } = useCommonState(ac);
   const [tissueComplete, setTissueComplete] = useState(false);
 
   const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
@@ -84,6 +84,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
       <div className="app-row">
         <VideoView
           ac={ac}
+          overlay={tissueOverlay}
           percentComplete={tPercentComplete}
           playing={playingTissue}
           setPercentComplete={setTPercentComplete}

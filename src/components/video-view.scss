@@ -8,8 +8,8 @@
     position: relative;
     overflow: hidden;
 
-    width: 456px;
-    height: 284px;
+    width: vars.$video-width;
+    height: vars.$video-height;
     padding: 2px;
 
     display: flex;
