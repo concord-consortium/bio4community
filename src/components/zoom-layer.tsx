@@ -33,8 +33,8 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
   const smoothTransition = "height .75s, width .75s, opacity .5s";
   const immediateTransition = "height 0s, width 0s, opacity 0s";
   const [maskStyle, setMaskStyle] = useState({
-    width: initialWidth,
-    height: initialHeight,
+    width: 0,
+    height: 0,
     transition: immediateTransition,
     opacity: 1
   });
@@ -69,25 +69,17 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
 
   // status is used to keep track of the animation progression
   const [status, setStatus] = useState(0);
-  // Make the mask hide the zoom lines even as the initial position changes
-  // Necessary because the zoom position of the brain can change based on controls
-  useEffect(() => {
-    if (status < 2) {
-      setMaskStyle({
-        ...maskStyle,
-        width: initialWidth,
-        height: initialHeight
-      });
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialHeight, initialWidth, status]);
-
   const [finished, setFinished] = useState(false);
   const [running, setRunning] = useState(false);
   useEffect(() => {
     if (show) {
       if (status === 0) {
         setRunning(true);
+        setMaskStyle({
+          ...maskStyle,
+          width: initialWidth,
+          height: initialHeight
+        });
         if (!finished) {
           // Fade in box
           setTimeout(() => setBoxOpacity(1), 10);
@@ -128,7 +120,8 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
         }, zoomFadeOut * 1000);
       }
     }
-  }, [finalHeight, finalWidth, finished, setVideoEnabled, show, status, type]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalHeight, finalWidth, finished, initialHeight, initialWidth, setVideoEnabled, show, status, type]);
 
   const reset = () => {
     if (finished && !running) {
