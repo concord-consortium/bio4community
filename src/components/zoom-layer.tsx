@@ -86,7 +86,7 @@ export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLa
           setTimeout(() => setStatus(1), initialFadeIn * 1000 + 10);
         } else {
           // Skip fade in if the box is already visible
-          setStatus(1);
+          setStatus(2);
         }
       } else if (status === 1) {
         // Wait

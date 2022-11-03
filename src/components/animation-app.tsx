@@ -24,7 +24,7 @@ interface AnimationAppProps {
 export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
-    control1, setControl1, control2, setControl2, disableControls, setDisableControls, tissueOverlay }
+    control1, setControl1, control2, setControl2, disableControls, setDisableControls }
     = useCommonState(ac);
   const [hasZoomed, setHasZoomed] = useState(false);
   const [tissueEnabled, setTissueEnabled] = useState(false);
@@ -57,7 +57,6 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         <VideoView
           ac={ac}
           disabled={!tissueEnabled}
-          overlay={tissueOverlay}
           percentComplete={tPercentComplete}
           playing={playingTissue}
           setPercentComplete={setTPercentComplete}

@@ -14,7 +14,8 @@ $transition: width $transition-duration, left $transition-duration, top $transit
   width: 230px;
   height: 216px;
 
-  border: vars.$ani-border;
+  border: white solid 2px;
+  box-shadow: 0 0 0 2px vars.$ani-dark-1;
   border-radius: vars.$ani-radius-normal;
 }
 
@@ -49,7 +50,8 @@ $btd: $transition-duration;
 }
 
 .instruction-title {
-  bottom: 10px;
+  bottom: 19px;
+  height: 18px;
   font-size: 13px;
   background-color: white;
   border-radius: 5px;
@@ -58,5 +60,5 @@ $btd: $transition-duration;
 }
 
 .silhouette-title {
-  top: 10px;
+  top: 6px;
 }

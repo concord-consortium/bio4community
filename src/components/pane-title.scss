@@ -2,6 +2,9 @@
 
 .pane-title {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: rgba(255, 255, 255, .8);
   border-radius: 14px;

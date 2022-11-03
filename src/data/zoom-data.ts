@@ -63,13 +63,13 @@ const nsbh = 93;
 const noseSilhouetteInfo = makeSilhouetteInfo(nsbx, nsby, nsbw, nsbh);
 
 // Brain silhouette data
-const bsbx1 = 48;
-const bsby1 = 131;
-const bsbw = 17;
-const bsbh = 10;
+const bsbx1 = 30;
+const bsby1 = 140;
+const bsbw = 21;
+const bsbh = 12;
 const brainSilhouetteInfo1 = makeSilhouetteInfo(bsbx1, bsby1, bsbw, bsbh);
-const bsbx2 = 106;
-const bsby2 = 166;
+const bsbx2 = 88;
+const bsby2 = 176;
 const brainSilhouetteInfo2 = makeSilhouetteInfo(bsbx2, bsby2, bsbw, bsbh);
 export const silhouetteZoomData: Record<string, ZoomInfo[][]> = {
   "heart": [
