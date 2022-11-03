@@ -206,12 +206,12 @@ export const graphData: Record<string, Record<string, Coord[][][][]>> = {
       ],
       [
         [
-          leftBrainCase4,
-          leftBrainCase4
-        ],
-        [
           leftBrainCase3,
           leftBrainCase3
+        ],
+        [
+          leftBrainCase4,
+          leftBrainCase4
         ]
       ]
     ],
@@ -228,12 +228,12 @@ export const graphData: Record<string, Record<string, Coord[][][][]>> = {
       ],
       [
         [
-          rightBrainCase4,
-          rightBrainCase4
-        ],
-        [
           rightBrainCase3,
           rightBrainCase3
+        ],
+        [
+          rightBrainCase4,
+          rightBrainCase4
         ]
       ]
     ]
