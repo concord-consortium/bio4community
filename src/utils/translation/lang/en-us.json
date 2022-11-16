@@ -24,7 +24,7 @@
   "NOSE.RIGHTSIMULATIONTITLE": "Simulated Cells",
   "BRAIN.LEFTSIMULATIONTITLE": "Simulated Prefrontal Cortex",
   "BRAIN.ALTERNATESIMULATIONTITLE": "Simulated Amygdala",
-  "BRAIN.RIGHTSIMULATIONTITLE": "Simulated Cell Network",
+  "BRAIN.RIGHTSIMULATIONTITLE": "Simulated Cells",
 
   "HEART.SIMCONTROL1LABEL": "Cortisol Level",
   "HEART.SIMCONTROL1OPTION1": "Low",
