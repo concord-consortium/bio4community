@@ -138,9 +138,9 @@ const heartCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, habx, haby, 
 
 // Nose cell animation info
 const nabx = 280;
-const naby = 437;
-const nabw = 22;
-const nabh = 13;
+const naby = 441;
+const nabw = 16;
+const nabh = 10;
 const noseCellAnimationInfo = makeCellInfo(basicCellAnimationInfo, nabx, naby, nabw, nabh);
 
 // Brain cell animation info
