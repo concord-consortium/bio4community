@@ -12,6 +12,7 @@
     .simulation-settings {
       border: vars.$sim-border;
       border-radius: vars.$sim-radius-settings;
+      box-sizing: border-box;
       height: 293px;
       width: 379px;
     }
