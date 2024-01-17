@@ -75,7 +75,9 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
       <div className="simulation-body">
         <div className="control-column">
           <div className="simulation-settings">
-            Settings
+            <div className="settings-header">
+              Simulation Settings
+            </div>
           </div>
           <div className="simulation-graphs">
             Graphs

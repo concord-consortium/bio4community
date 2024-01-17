@@ -2,8 +2,9 @@
 
 .simulation-body {
   display: flex;
+  height: 627px;
   justify-content: space-between;
-  margin: 10px 7px 0 7px;
+  margin: 10px 7px;
 
   .control-column {
     display: flex;
@@ -11,10 +12,27 @@
 
     .simulation-settings {
       border: vars.$sim-border;
-      border-radius: vars.$sim-radius-settings;
+      border-radius: 9px 9px vars.$sim-radius-settings vars.$sim-radius-settings;
+      // border-bottom-right-radius: vars.$sim-radius-settings;
+      // border-top-left-radius: 9px;
+      // border-top-right-radius: 
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
       height: 293px;
       width: 379px;
+
+      .settings-header {
+        align-items: center;
+        background-color: vars.$sim-dark-1;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        color: white;
+        display: flex;
+        height: 26px;
+        justify-content: center;
+        width: 100%;
+      }
     }
 
     .simulation-graphs {
@@ -28,9 +46,11 @@
     align-items: center;
     background-color: vars.$sim-transparent-background;
     border-radius: vars.$sim-radius-video-column;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 9px;
+    height: 603px;
     padding: 17px;
 
     .video {
@@ -44,7 +64,7 @@
 .simulation-footer {
   display: flex;
   gap: 10px;
-  margin: 0 12px 16px 16px;
+  margin: 0 5px 9px 9px;
 
   .outcome-area {
     align-items: center;
