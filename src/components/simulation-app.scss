@@ -13,9 +13,6 @@
     .simulation-settings {
       border: vars.$sim-border;
       border-radius: 9px 9px vars.$sim-radius-settings vars.$sim-radius-settings;
-      // border-bottom-right-radius: vars.$sim-radius-settings;
-      // border-top-left-radius: 9px;
-      // border-top-right-radius: 
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -85,48 +82,4 @@
     height: 54px;
     width: 55px;
   }
-}
-
-.options-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.row-header {
-  display: flex;
-  align-items: center;
-
-  width: 80px;
-}
-
-.options-header {
-  height: 60px;
-}
-
-.row-header-text {
-  position: absolute;
-  width: 54px;
-  padding-left: 10px;
-
-  font-family: vars.$font-clean;
-  font-weight: bold;
-  font-size: 14px;
-
-  .row-header-text-sub {
-    font-size: 12px;
-  }
-}
-
-.key-box.simulation {
-  width: 65px;
-  height: 141px;
-  background-color: vars.$sim-light-8;
-  padding-top: 8px;
-}
-
-.divider.simulation {
-  width: 1px;
-  height: 40px;
-  background-color: vars.$sim-basic;
 }
