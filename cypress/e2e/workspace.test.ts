@@ -39,7 +39,8 @@ context("Test the overall app", () => {
     });
   });
 
-  describe("Simulation tissue video", () => {
+  // TODO: Turn this back on when the new simulation videos have been set up
+  describe.skip("Simulation tissue video", () => {
     beforeEach(() => {
       visitPage("simulation", "heart");
     });
@@ -113,7 +114,9 @@ context("Test the overall app", () => {
     const getKey = () => cy.get(".app .app-key");
     const getKeyTitle = () => cy.get(".app .app-key .title-box");
     const getCloseKeyButton = () => cy.get(".app .title-close-button");
-    modePages.forEach(({ mode, organ }: PageInfo) => {
+    // TODO: Use this line after the new simulation key has been set up
+    // modePages.forEach(({ mode, organ }: PageInfo) => {
+    [{ mode: "animation", organ: "heart", title: "Plaque Animation" }].forEach(({ mode, organ }: PageInfo) => {
       it(`${mode} key can be displayed and hidden`, () => {
         visitPage(mode, organ);
         getKeyButton().click();
