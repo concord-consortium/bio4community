@@ -1,0 +1,45 @@
+@use "./vars.scss";
+
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-header {
+  display: flex;
+  align-items: center;
+
+  width: 80px;
+}
+
+.options-header {
+  height: 60px;
+}
+
+.row-header-text {
+  position: absolute;
+  width: 54px;
+  padding-left: 10px;
+
+  font-family: vars.$font-clean;
+  font-weight: bold;
+  font-size: 14px;
+
+  .row-header-text-sub {
+    font-size: 12px;
+  }
+}
+
+.key-box.simulation {
+  width: 65px;
+  height: 141px;
+  background-color: vars.$sim-light-8;
+  padding-top: 8px;
+}
+
+.divider.simulation {
+  width: 1px;
+  height: 40px;
+  background-color: vars.$sim-basic;
+}
