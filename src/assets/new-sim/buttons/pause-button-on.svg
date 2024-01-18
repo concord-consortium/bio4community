@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>8143BB02-A58D-4D94-98AA-A84ACA12002D</title>
+    <g id="Bio4Community-Design-v2-forZeplin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bio4Community-Design-v2" transform="translate(-119, -1409)">
+            <g id="Play-Button-States" transform="translate(92, 1271)">
+                <g id="Play-Button" transform="translate(27, 0)">
+                    <g id="pauseButton_on" transform="translate(0, 138)">
+                        <circle id="Oval" stroke="#898989" stroke-width="3" fill="#FFFFFF" cx="24" cy="24" r="22.5"></circle>
+                        <path d="M20.9785608,13.801 L15.256334,13.801 C14.7981095,13.801 14.398,14.2011095 14.398,14.659334 L14.398,33.942666 C14.398,34.4008905 14.7981095,34.801 15.256334,34.801 L21.0369275,34.801 C21.495152,34.801 21.8952615,34.4008905 21.8952615,33.942666 L21.8952615,14.659334 C21.8371466,14.2011095 21.495152,13.801 20.9787897,13.801 L20.9785608,13.801 Z" id="Path" fill="#898989" fill-rule="nonzero"></path>
+                        <path d="M33.1119704,13.801 L27.3897436,13.801 C26.9315192,13.801 26.5314096,14.2011095 26.5314096,14.659334 L26.5314096,33.942666 C26.5314096,34.4008905 26.9315192,34.801 27.3897436,34.801 L33.1703371,34.801 C33.6285616,34.801 34.0286711,34.4008905 34.0286711,33.942666 L34.026436,14.659334 C33.9705545,14.2011095 33.6263265,13.801 33.1121959,13.801 L33.1119704,13.801 Z" id="Path" fill="#898989" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

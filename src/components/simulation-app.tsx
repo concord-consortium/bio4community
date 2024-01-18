@@ -13,6 +13,7 @@ import { AppContext } from "../hooks/use-app-context";
 import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
+import { SimulationSettings } from "./simulation-settings";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -75,11 +76,7 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="simulation-body">
         <div className="control-column">
-          <div className="simulation-settings">
-            <div className="settings-header">
-              Simulation Settings
-            </div>
-          </div>
+          <SimulationSettings ac={ac} />
           <div className="simulation-graphs">
             <div className="graphs-header">
               {ac.o("SIMGRAPHTITLE")}

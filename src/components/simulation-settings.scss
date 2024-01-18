@@ -1,0 +1,30 @@
+@use "./vars.scss";
+
+.simulation-settings {
+  border: vars.$sim-border;
+  border-radius: vars.$sim-radius-settings-top vars.$sim-radius-settings-top vars.$sim-radius-settings-bottom vars.$sim-radius-settings-bottom;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 306px;
+  position: relative;
+  width: 379px;
+
+  .settings-header {
+    align-items: center;
+    background-color: vars.$sim-dark-1;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    height: 26px;
+    justify-content: center;
+    padding-bottom: 4px;
+    width: 100%;
+  }
+
+  .person {
+    position: absolute;
+  }
+}
