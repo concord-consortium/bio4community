@@ -1,6 +1,7 @@
 import React from "react";
 
 import { AppContext } from "../hooks/use-app-context";
+import { ButtonToggle } from "./button-toggle";
 
 import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
 import HeartPerson from "../assets/new-sim/people/person-artery.svg";
@@ -37,6 +38,14 @@ export function SimulationSettings({ ac }: ISimulationSettingsProps) {
           </button>
         </div>
       </div>
+      <ButtonToggle
+        ac={ac}
+        title={ac.o("SIMCONTROL1LABEL")}
+      />
+      <ButtonToggle
+        ac={ac}
+        title={ac.o("SIMCONTROL2LABEL")}
+      />
       <Person className="person" style={personStyle} />
     </div>
   );
