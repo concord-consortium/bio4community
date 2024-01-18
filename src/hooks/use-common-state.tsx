@@ -10,9 +10,24 @@ export const useCommonState = (ac: AppContext) => {
   const [targetVideoIndex, setTargetVideoIndex] = useState(0);
   const [cellEnabled, setCellEnabled] = useState(false);
 
-  const [control1, setControl1] = useState(false);
-  const [control2, setControl2] = useState(false);
-  const [control3, setControl3] = useState(false);
+  // Some simulation controls start true
+  const startControl = (controlNumber: number) => {
+    if (ac.mode === "simulation") {
+      if (ac.organ === "brain") {
+        if (controlNumber === 2) {
+          return true;
+        }
+      } else {
+        if (controlNumber === 1) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+  const [control1, setControl1] = useState(startControl(1));
+  const [control2, setControl2] = useState(startControl(2));
+  const [control3, setControl3] = useState(startControl(3));
   const [disableControls, setDisableControls] = useState(false);
 
   const tissueOverlay = ac.organ === "heart" ? <ArteryOverlay /> : "";
