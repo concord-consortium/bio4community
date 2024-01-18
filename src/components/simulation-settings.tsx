@@ -7,7 +7,7 @@ import { ButtonToggle } from "./button-toggle";
 import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
 import HeartPerson from "../assets/new-sim/people/person-artery.svg";
 import NosePerson from "../assets/new-sim/people/person-nose.svg";
-// import PrefrontalCortexPerson from "../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
+import PrefrontalCortexPerson from "../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
 
 // import PauseButton from "../assets/new-sim/buttons/pause-button-on.svg";
 // import PauseButtonHover from "../assets/new-sim/buttons/pause-button-hover.svg";
@@ -21,12 +21,13 @@ interface ISimulationSettingsProps {
 }
 export function SimulationSettings({ ac }: ISimulationSettingsProps) {
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
+  const isBrain = ac.organ === "brain";
   const Person = ac.organ === "heart" ? HeartPerson
     : ac.organ === "nose" ? NosePerson
-    : AmygdalaPerson;
-  const personStyle = ["heart", "nose"].includes(ac.organ)
-    ? { bottom: "84px", right: "32px" }
-    : { bottom: "21px", right: "30px" };
+    : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
+  const personStyle = isBrain
+    ? { bottom: "21px", right: "30px" }
+    : { bottom: "84px", right: "32px" };
   return (
     <div className="simulation-settings">
       <div className="settings-header">
@@ -44,6 +45,8 @@ export function SimulationSettings({ ac }: ISimulationSettingsProps) {
         ac={ac}
         controlPrefix={"SIMCONTROL1"}
         invert={["heart", "nose"].includes(ac.organ)}
+        leftClass={isBrain && "brain1"}
+        rightClass={isBrain && "brain2"}
         setValue={setControl1}
         twoLines={true}
         value={control1}

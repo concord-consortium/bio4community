@@ -29,6 +29,22 @@
       &:hover {
         background-color: #265f74;
       }
+
+      &.brain1 {
+        background-color: #9137a8;
+
+        &:hover {
+          background-color: #612975;
+        }
+      }
+
+      &.brain2 {
+        background-color: #dd4141;
+
+        &:hover {
+          background-color: #983833;
+        }
+      }
     }
   }
 }
