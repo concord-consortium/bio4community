@@ -80,7 +80,9 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
             </div>
           </div>
           <div className="simulation-graphs">
-            Graphs
+            <div className="graphs-header">
+              {ac.o("SIMGRAPHTITLE")}
+            </div>
           </div>
         </div>
         <div className="video-column">

@@ -53,6 +53,10 @@
   "NOSE.SIMCONTROL3OPTION1": "Low",
   "NOSE.SIMCONTROL3OPTION2": "High",
 
+  "HEART.SIMGRAPHTITLE": "Results: Plaque Size Over Time",
+  "NOSE.SIMGRAPHTITLE": "Results: Mucus Generation Over Time",
+  "BRAIN.SIMGRAPHTITLE": "Results: Connections Over Time",
+
   "HEART.ANICONTROL1LABEL": "Stress Level",
   "HEART.ANICONTROL1OPTION1": "Low",
   "HEART.ANICONTROL1OPTION2": "High",

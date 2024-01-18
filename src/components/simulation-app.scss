@@ -16,7 +16,7 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      height: 293px;
+      height: 306px;
       width: 379px;
 
       .settings-header {
@@ -33,9 +33,16 @@
     }
 
     .simulation-graphs {
-      border: 1px solid lightgray;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
       height: 45%;
+      margin-top: 17px;
       width: 100%;
+
+      .graphs-header {
+        font-weight: bold;
+      }
     }
   }
 
