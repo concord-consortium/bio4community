@@ -1,6 +1,7 @@
 import React from "react";
 
 import { AppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
 import { ButtonToggle } from "./button-toggle";
 
 import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
@@ -19,6 +20,7 @@ interface ISimulationSettingsProps {
   ac: AppContext;
 }
 export function SimulationSettings({ ac }: ISimulationSettingsProps) {
+  const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const Person = ac.organ === "heart" ? HeartPerson
     : ac.organ === "nose" ? NosePerson
     : AmygdalaPerson;
@@ -40,11 +42,18 @@ export function SimulationSettings({ ac }: ISimulationSettingsProps) {
       </div>
       <ButtonToggle
         ac={ac}
-        title={ac.o("SIMCONTROL1LABEL")}
+        controlPrefix={"SIMCONTROL1"}
+        invert={["heart", "nose"].includes(ac.organ)}
+        setValue={setControl1}
+        twoLines={true}
+        value={control1}
       />
       <ButtonToggle
         ac={ac}
-        title={ac.o("SIMCONTROL2LABEL")}
+        controlPrefix={"SIMCONTROL2"}
+        invert={ac.organ === "brain"}
+        setValue={setControl2}
+        value={control2}
       />
       <Person className="person" style={personStyle} />
     </div>

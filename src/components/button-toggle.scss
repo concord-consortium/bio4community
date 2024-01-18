@@ -13,6 +13,10 @@
     height: 42px;
     width: 100px;
 
+    &.two-lines {
+      padding: 0 15px;
+    }
+
     &:hover {
       background-color: #f7f7f8;
     }
