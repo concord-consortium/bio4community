@@ -24,6 +24,27 @@
     width: 100%;
   }
 
+  .setting {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0 0 19px;
+    width: 208px;
+
+    .setting-title {
+      font-weight: bold;
+    }
+
+    .video-control-row {
+      margin-top: 8.5px;
+
+      .play-button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+      }
+    }
+  }
+
   .person {
     position: absolute;
   }
