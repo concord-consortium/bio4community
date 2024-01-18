@@ -1,11 +1,6 @@
 import React/*, { useEffect, useState }*/ from "react";
 import { clsx } from "clsx";
 
-// import { VideoView } from "./video-view";
-// import { KeyButton } from "./app-button";
-import { AppContainer } from "./app-container";
-// import { SimGraph } from "./sim-graph";
-// import { ZoomLayer } from "./zoom-layer";
 // import { renderControls } from "../data/control-data";
 // import { graphData, graphRanges } from "../data/graph-data";
 // import { simVideos, timelines } from "../data/video-data";
@@ -14,6 +9,12 @@ import { AppContext } from "../hooks/use-app-context";
 // import { useCommonState } from "../hooks/use-common-state";
 // import { useInitialPause } from "../hooks/use-initial-pause";
 // import { delayControl } from "../utils/app-common";
+// import { KeyButton } from "./app-button";
+import { AppContainer } from "./app-container";
+import { PaneTitle } from "./pane-title";
+// import { SimGraph } from "./sim-graph";
+// import { VideoView } from "./video-view";
+// import { ZoomLayer } from "./zoom-layer";
 
 // import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
@@ -86,8 +87,12 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           </div>
         </div>
         <div className="video-column">
-          <div className="video" />
-          <div className="video" />
+          <div className="video">
+            <PaneTitle title={ac.o("LEFTSIMULATIONTITLE")} />
+          </div>
+          <div className="video">
+            <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
+          </div>
         </div>
       </div>
       <div className="simulation-footer">

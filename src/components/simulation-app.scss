@@ -58,9 +58,18 @@
     padding: 17px;
 
     .video {
+      align-items: center;
       background-color: black;
+      display: flex;
+      flex-direction: column;
       height: 280px;
+      position: relative;
       width: 448px;
+
+      .pane-title {
+        background-color: white;
+        margin-top: 10px;
+      }
     }
   }
 }
