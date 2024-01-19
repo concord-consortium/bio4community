@@ -3,8 +3,6 @@ import Slider from "rc-slider";
 import React from "react";
 
 import { AppContext } from "../hooks/use-app-context";
-import { useCommonState } from "../hooks/use-common-state";
-import { useSimulationState } from "../hooks/use-simulation-state";
 import { ButtonToggle } from "./button-toggle";
 
 import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
@@ -16,11 +14,18 @@ import "./simulation-settings.scss";
 
 interface ISimulationSettingsProps {
   ac: AppContext;
+  control1: boolean;
+  setControl1: (val: boolean) => void;
+  control2: boolean;
+  setControl2: (val: boolean) => void;
+  playingVideo: boolean;
+  setPlayingVideo: (val: boolean) => void;
+  simulationTime: number;
+  setSimulationTime: (val: number) => void;
 }
-export function SimulationSettings({ ac }: ISimulationSettingsProps) {
-  const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
-  const { playingVideo, setPlayingVideo, setSimulationTime, simulationTime } = useSimulationState(ac);
-
+export function SimulationSettings({
+  ac, control1, setControl1, control2, setControl2, playingVideo, setPlayingVideo, simulationTime, setSimulationTime
+}: ISimulationSettingsProps) {
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) return;
@@ -68,6 +73,7 @@ export function SimulationSettings({ ac }: ISimulationSettingsProps) {
         controlPrefix={"SIMCONTROL1"}
         invert={["heart", "nose"].includes(ac.organ)}
         leftClass={isBrain && "brain1"}
+        playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
         setValue={setControl1}
         twoLines={true}
@@ -77,6 +83,7 @@ export function SimulationSettings({ ac }: ISimulationSettingsProps) {
         ac={ac}
         controlPrefix={"SIMCONTROL2"}
         invert={ac.organ === "brain"}
+        playVideo={() => setPlayingVideo(true)}
         setValue={setControl2}
         value={control2}
       />

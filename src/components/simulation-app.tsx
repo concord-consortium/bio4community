@@ -1,4 +1,4 @@
-import React/*, { useEffect, useState }*/ from "react";
+import React, { useState } from "react";
 import { clsx } from "clsx";
 
 // import { renderControls } from "../data/control-data";
@@ -6,7 +6,7 @@ import { clsx } from "clsx";
 // import { simVideos, timelines } from "../data/video-data";
 // import { cellZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
-// import { useCommonState } from "../hooks/use-common-state";
+import { useCommonState } from "../hooks/use-common-state";
 // import { useInitialPause } from "../hooks/use-initial-pause";
 // import { delayControl } from "../utils/app-common";
 // import { KeyButton } from "./app-button";
@@ -27,6 +27,9 @@ interface SimulationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
 export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => {
+  const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
+  const [simulationTime, setSimulationTime] = useState(0);
+  const [playingVideo, setPlayingVideo] = useState(false);
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -76,7 +79,17 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
       <div className="simulation-body">
         <div className="control-column">
-          <SimulationSettings ac={ac} />
+          <SimulationSettings
+            ac={ac}
+            control1={control1}
+            setControl1={setControl1}
+            control2={control2}
+            setControl2={setControl2}
+            playingVideo={playingVideo}
+            setPlayingVideo={setPlayingVideo}
+            simulationTime={simulationTime}
+            setSimulationTime={setSimulationTime}
+          />
           <div className="simulation-graphs">
             <div className="graphs-header">
               {ac.o("SIMGRAPHTITLE")}

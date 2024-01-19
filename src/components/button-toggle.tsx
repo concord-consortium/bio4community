@@ -10,18 +10,23 @@ interface IButtonToggleProps {
   controlPrefix: string; // Used to generate keys for labels
   invert?: boolean; // Set to true when the order of the boolean value should switch (true on the left)
   leftClass?: string | boolean;
+  playVideo: () => void;
   rightClass?: string | boolean;
   setValue: (value: boolean) => void;
   twoLines?: boolean; // Set to true to force the button's label to render as two lines
   value: boolean;
 }
 export function ButtonToggle({
-  ac, controlPrefix, invert, leftClass, rightClass, setValue, twoLines, value
+  ac, controlPrefix, invert, leftClass, playVideo, rightClass, setValue, twoLines, value
 }: IButtonToggleProps) {
   const leftSelected = invert ? value : !value;
   const rightSelected = invert ? !value : value;
-  const leftOnClick = () => setValue(!!invert);
-  const rightOnClick = () => setValue(!invert);
+  const handleButtonClick = (val: boolean) => {
+    playVideo();
+    setValue(val);
+  };
+  const leftOnClick = () => handleButtonClick(!!invert);
+  const rightOnClick = () => handleButtonClick(!invert);
   const falseLabel = ac.o(controlPrefix + "OPTION1");
   const trueLabel = ac.o(controlPrefix + "OPTION2");
   const leftLabel = invert ? trueLabel : falseLabel;
