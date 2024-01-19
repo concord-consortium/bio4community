@@ -39,8 +39,23 @@
       margin: 8.5px 0 5px;
 
       .play-button {
+        background-image: url("../assets/new-sim/buttons/play-button-on.svg");
         background-color: rgba(0, 0, 0, 0);
         border: none;
+        height: 48px;
+        width: 48px;
+
+        &:hover {
+          background-image: url("../assets/new-sim/buttons/play-button-hover.svg");
+        }
+
+        &.playing {
+          background-image: url("../assets/new-sim/buttons/pause-button-on.svg");
+
+          &:hover {
+            background-image: url("../assets/new-sim/buttons/pause-button-hover.svg");
+          }
+        }
       }
     }
   }
