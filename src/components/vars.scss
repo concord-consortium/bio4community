@@ -26,13 +26,17 @@ $sim-light-4: #b7e2ec;
 $sim-light-5: #cdebf2;
 $sim-light-7: #e2f4f8;
 $sim-light-8: #f0f9fb;
+$sim-transparent-background: rgba(205, 235, 242, 0.39);
 
-$sim-border: 2px solid $sim-dark-1;
+$sim-border: 4px solid $sim-dark-1;
 
 $sim-radius-button: 5px;
-$sim-radius-container: 5px;
 $sim-radius-cell: 10px;
+$sim-radius-container: 5px;
+$sim-radius-settings-bottom: 20px;
+$sim-radius-settings-top: 9px;
 $sim-radius-video: 7px;
+$sim-radius-video-column: 12px;
 
 $cell-orange: #ff8415;
 $cell-border: 2px solid $cell-orange;

@@ -1,45 +1,101 @@
 @use "./vars.scss";
 
-.options-row {
+.simulation-body {
   display: flex;
+  height: 627px;
   justify-content: space-between;
-  align-items: center;
-}
+  margin: 10px 7px;
 
-.row-header {
-  display: flex;
-  align-items: center;
+  .control-column {
+    display: flex;
+    flex-direction: column;
 
-  width: 80px;
-}
+    .simulation-settings {
+      border: vars.$sim-border;
+      border-radius: vars.$sim-radius-settings-top vars.$sim-radius-settings-top vars.$sim-radius-settings-bottom vars.$sim-radius-settings-bottom;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      height: 306px;
+      width: 379px;
 
-.options-header {
-  height: 60px;
-}
+      .settings-header {
+        align-items: center;
+        background-color: vars.$sim-dark-1;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        color: white;
+        display: flex;
+        height: 26px;
+        justify-content: center;
+        width: 100%;
+      }
+    }
 
-.row-header-text {
-  position: absolute;
-  width: 54px;
-  padding-left: 10px;
+    .simulation-graphs {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 45%;
+      margin-top: 17px;
+      width: 100%;
 
-  font-family: vars.$font-clean;
-  font-weight: bold;
-  font-size: 14px;
+      .graphs-header {
+        font-weight: bold;
+      }
+    }
+  }
 
-  .row-header-text-sub {
-    font-size: 12px;
+  .video-column {
+    align-items: center;
+    background-color: vars.$sim-transparent-background;
+    border-radius: vars.$sim-radius-video-column;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    height: 603px;
+    padding: 17px;
+
+    .video {
+      align-items: center;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      height: 280px;
+      position: relative;
+      width: 448px;
+
+      .pane-title {
+        background-color: white;
+        margin-top: 10px;
+      }
+    }
   }
 }
 
-.key-box.simulation {
-  width: 65px;
-  height: 141px;
-  background-color: vars.$sim-light-8;
-  padding-top: 8px;
-}
+.simulation-footer {
+  display: flex;
+  gap: 10px;
+  margin: 0 5px 9px 9px;
 
-.divider.simulation {
-  width: 1px;
-  height: 40px;
-  background-color: vars.$sim-basic;
+  .outcome-area {
+    align-items: center;
+    background-color: vars.$sim-transparent-background;
+    border-radius: 6px;
+    display: flex;
+    font-size: 18px;
+    height: 54px;
+    justify-content: center;
+    margin-right: 2px;
+    width: 740px;
+  }
+
+  .simulation-button {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 6px;
+    height: 54px;
+    width: 55px;
+  }
 }

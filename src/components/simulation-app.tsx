@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React/*, { useEffect, useState }*/ from "react";
 import { clsx } from "clsx";
 
-import { VideoView } from "./video-view";
-import { KeyButton } from "./app-button";
-import { AppContainer } from "./app-container";
-import { SimGraph } from "./sim-graph";
-import { ZoomLayer } from "./zoom-layer";
-import { renderControls } from "../data/control-data";
-import { graphData, graphRanges } from "../data/graph-data";
-import { simVideos, timelines } from "../data/video-data";
-import { cellZoomData } from "../data/zoom-data";
+// import { renderControls } from "../data/control-data";
+// import { graphData, graphRanges } from "../data/graph-data";
+// import { simVideos, timelines } from "../data/video-data";
+// import { cellZoomData } from "../data/zoom-data";
 import { AppContext } from "../hooks/use-app-context";
-import { useCommonState } from "../hooks/use-common-state";
-import { useInitialPause } from "../hooks/use-initial-pause";
-import { delayControl } from "../utils/app-common";
+// import { useCommonState } from "../hooks/use-common-state";
+// import { useInitialPause } from "../hooks/use-initial-pause";
+// import { delayControl } from "../utils/app-common";
+// import { KeyButton } from "./app-button";
+import { AppContainer } from "./app-container";
+import { PaneTitle } from "./pane-title";
+// import { SimGraph } from "./sim-graph";
+// import { VideoView } from "./video-view";
+// import { ZoomLayer } from "./zoom-layer";
 
-import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
-import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
+// import OptionsLabelBack from "../assets/backgrounds/options-label-back.svg";
+// import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
 
@@ -24,54 +25,84 @@ interface SimulationAppProps {
   ac: AppContext;
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
-  const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
-    cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
-    control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
-  } = useCommonState(ac);
-  const [tissueComplete, setTissueComplete] = useState(false);
+export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => {
+  // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
+  //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
+  //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
+  // } = useCommonState(ac);
+  // const [tissueComplete, setTissueComplete] = useState(false);
 
-  const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
+  // const initialPause = useInitialPause({ percentComplete: tPercentComplete, playing: playingTissue });
 
   // Mark the video as incomplete whenever a control changes
-  useEffect(() => {
-    setTissueComplete(false);
-  }, [control1, control2, control3]);
+  // useEffect(() => {
+  //   setTissueComplete(false);
+  // }, [control1, control2, control3]);
 
   // Track whether the tissue video has been completed
-  useEffect(() => {
-    if (tPercentComplete === 1) {
-      setTissueComplete(true);
-    }
-  }, [tPercentComplete]);
+  // useEffect(() => {
+  //   if (tPercentComplete === 1) {
+  //     setTissueComplete(true);
+  //   }
+  // }, [tPercentComplete]);
 
-  interface IRowHeader {
-    backgroundSvg: any;
-    headerText: string;
-    headerTextSub?: string;
-  }
-  const RowHeader = ({ backgroundSvg, headerText, headerTextSub }: IRowHeader) => (
-    <div className="row-header">
-      {backgroundSvg}
-      <div className="row-header-text">
-        {headerText}
-        {headerTextSub && (
-          <div className="row-header-text-sub">
-            {headerTextSub}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  // interface IRowHeader {
+  //   backgroundSvg: any;
+  //   headerText: string;
+  //   headerTextSub?: string;
+  // }
+  // const RowHeader = ({ backgroundSvg, headerText, headerTextSub }: IRowHeader) => (
+  //   <div className="row-header">
+  //     {backgroundSvg}
+  //     <div className="row-header-text">
+  //       {headerText}
+  //       {headerTextSub && (
+  //         <div className="row-header-text-sub">
+  //           {headerTextSub}
+  //         </div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
 
-  const tissueTitle = ac.organ === "brain" && control1 ? ac.o("ALTERNATESIMULATIONTITLE") : ac.o("LEFTSIMULATIONTITLE");
-  const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
-  const hLabel = (bold: string, regular: string) => <><span className="bold">{bold}</span>&nbsp;{regular}</>;
-  const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
-  const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
+  // const tissueTitle = ac.organ === "brain" && control1
+  //   ? ac.o("ALTERNATESIMULATIONTITLE") : ac.o("LEFTSIMULATIONTITLE");
+  // const disabledMessage = ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle);
+  // const hLabel = (bold: string, regular: string) => <><span className="bold">{bold}</span>&nbsp;{regular}</>;
+  // const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
+  // const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
     <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
-      <div className="options-row">
+      <div className="simulation-body">
+        <div className="control-column">
+          <div className="simulation-settings">
+            <div className="settings-header">
+              Simulation Settings
+            </div>
+          </div>
+          <div className="simulation-graphs">
+            <div className="graphs-header">
+              {ac.o("SIMGRAPHTITLE")}
+            </div>
+          </div>
+        </div>
+        <div className="video-column">
+          <div className="video">
+            <PaneTitle title={ac.o("LEFTSIMULATIONTITLE")} />
+          </div>
+          <div className="video">
+            <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
+          </div>
+        </div>
+      </div>
+      <div className="simulation-footer">
+        <div className="outcome-area">
+          Outcome
+        </div>
+        <button className={clsx("simulation-button", "reset")}>Reset</button>
+        <button className={clsx("simulation-button", "key")}>Key</button>
+      </div>
+      {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
         { renderControls({ ac, disabled: disableControls,
           onChanges: [
@@ -142,7 +173,7 @@ export const SimulationApp = ({ ac, setKeyVisible }: SimulationAppProps) => {
         show={initialPause}
         type="cell"
         zoomInfo={cellZoomData.simulation[ac.organ][+control1][+control2][0]}
-      />
+      /> */}
     </AppContainer>
   );
 };

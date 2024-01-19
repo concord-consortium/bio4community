@@ -23,13 +23,19 @@
   height: 598px;
   background-color: white;
   padding: 5px;
+
   &.animation {
     border: vars.$ani-border;
     border-radius: vars.$ani-radius-container;
   }
+
   &.simulation {
     border: vars.$sim-border;
-    border-radius: vars.$sim-radius-container;
+    box-sizing: border-box;
+    height: 750px;
+    justify-content: flex-start;
+    padding: 3px;
+    width: 900px;
   }
 
   .app-row {
