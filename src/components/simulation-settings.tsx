@@ -22,9 +22,11 @@ interface ISimulationSettingsProps {
   setPlayingVideo: (val: boolean) => void;
   simulationTime: number;
   setSimulationTime: (val: number) => void;
+  title: string;
 }
 export function SimulationSettings({
-  ac, control1, setControl1, control2, setControl2, playingVideo, setPlayingVideo, simulationTime, setSimulationTime
+  ac, control1, setControl1, control2, setControl2,
+  playingVideo, setPlayingVideo, simulationTime, setSimulationTime, title
 }: ISimulationSettingsProps) {
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
@@ -41,13 +43,13 @@ export function SimulationSettings({
     : ac.organ === "nose" ? NosePerson
     : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
   const personStyle = isBrain
-    ? { bottom: "21px", right: "30px" }
-    : { bottom: "84px", right: "32px" };
+    ? { bottom: "80px", right: "31" }
+    : { bottom: "107px", right: "25px" };
 
   return (
     <div className="simulation-settings">
       <div className="settings-header">
-        Simulation Settings
+        <span className="title">{title}</span>: Settings
       </div>
       <div className="setting video-control">
         <div className="setting-title">Simulation Time</div>
@@ -88,6 +90,8 @@ export function SimulationSettings({
         value={control2}
       />
       <Person className="person" style={personStyle} />
+      <button className="simulation-button reset">Reset</button>
+      <button className="simulation-button key">Key</button>
     </div>
   );
 }

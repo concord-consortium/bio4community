@@ -22,13 +22,17 @@
     justify-content: center;
     padding-bottom: 4px;
     width: 100%;
+
+    .title {
+      font-weight: bold;
+    }
   }
 
   .setting {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 13.5px 0 0 19px;
+    margin: 13.5px 0 0 14px;
     width: 208px;
 
     .setting-title {
@@ -169,5 +173,23 @@
 
   .person {
     position: absolute;
+  }
+
+  .simulation-button {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 6px;
+    bottom: 11px;
+    height: 54px;
+    position: absolute;
+    width: 55px;
+
+    &.reset {
+      right: 76px;
+    }
+
+    &.key {
+      right: 11px;
+    }
   }
 }

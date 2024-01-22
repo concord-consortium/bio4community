@@ -77,7 +77,7 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
   // const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
   // const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
-    <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
+    <AppContainer ac={ac}>
       <div className="simulation-body">
         <div className="control-column">
           <SimulationSettings
@@ -90,6 +90,7 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
+            title={ac.o("SIMULATIONTITLE")}
           />
           <div className="simulation-graphs">
             <div className="graphs-header">
