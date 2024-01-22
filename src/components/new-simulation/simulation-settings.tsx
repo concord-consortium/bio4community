@@ -22,11 +22,10 @@ interface ISimulationSettingsProps {
   setPlayingVideo: (val: boolean) => void;
   simulationTime: number;
   setSimulationTime: (val: number) => void;
-  title: string;
 }
 export function SimulationSettings({
   ac, control1, setControl1, control2, setControl2,
-  playingVideo, setPlayingVideo, simulationTime, setSimulationTime, title
+  playingVideo, setPlayingVideo, simulationTime, setSimulationTime
 }: ISimulationSettingsProps) {
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
@@ -49,10 +48,10 @@ export function SimulationSettings({
   return (
     <div className="simulation-settings">
       <div className="settings-header">
-        <span className="title">{title}</span>: Settings
+        <span className="title">{ac.o("SIMULATIONTITLE")}</span>{ac.t("SIMSETTINGSPOSTFIX")}
       </div>
       <div className="setting video-control">
-        <div className="setting-title">Simulation Time</div>
+        <div className="setting-title">{ac.t("SIMSETTINGSTIMETITLE")}</div>
         <div className="video-control-row">
           <button
             className={clsx("play-button", { playing: playingVideo })}

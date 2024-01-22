@@ -90,7 +90,6 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
-            title={ac.o("SIMULATIONTITLE")}
           />
           <div className="simulation-graphs">
             <div className="graphs-header">
@@ -104,7 +103,11 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           </div>
           <div className="video">
             <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
-            <SimulationOutcome ac={ac} message="Outcome" />
+            <SimulationOutcome
+              ac={ac}
+              control1={control1}
+              control2={control2}
+            />
           </div>
         </div>
       </div>
