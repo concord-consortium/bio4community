@@ -1,5 +1,14 @@
 import textDict from "../../src/utils/translation/lang/en-us.json";
-import { Modes, Organs } from "../../src/utils/app-common";
+
+enum Modes {
+  animation = "animation",
+  simulation = "simulation"
+}
+enum Organs {
+  brain = "brain",
+  heart = "heart",
+  nose = "nose"
+}
 
 context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
