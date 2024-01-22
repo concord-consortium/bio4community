@@ -1,11 +1,11 @@
 import React from "react";
 import { clsx } from "clsx";
 import { ControlOption, PartialControlOptionProps } from "../components/control-option";
-import { AppContext } from "../hooks/use-app-context";
+import { IAppContext } from "../hooks/use-app-context";
 
 // Returns a list of control options and strings (which render as dividers)
 // Used by renderControls(), which is how components should access this information
-const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => {
+const getControls = (ac: IAppContext): (PartialControlOptionProps | string)[] => {
   let controls: (PartialControlOptionProps | string)[] = [];
   if (ac.mode === "simulation") {
     if (["heart", "nose"].includes(ac.organ)) {
@@ -54,7 +54,7 @@ const getControls = (ac: AppContext): (PartialControlOptionProps | string)[] => 
   return controls;
 };
 interface IRenderControls {
-  ac: AppContext;
+  ac: IAppContext;
   disabled?: boolean;
   onChanges?: ((value: boolean) => void)[]; // A list of change functions that will be assigned to the controls in order
 }

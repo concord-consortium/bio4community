@@ -1,6 +1,6 @@
 import React from "react";
 import ToggleControl from "./toggle-control";
-import { AppContext } from "../hooks/use-app-context";
+import { IAppContext } from "../hooks/use-app-context";
 
 import "./control-option.scss";
 
@@ -9,7 +9,7 @@ export interface PartialControlOptionProps {
   options: [string, string];
 }
 export interface ControlOptionProps extends PartialControlOptionProps{
-  ac: AppContext;
+  ac: IAppContext;
   disabled?: boolean;
   onChange?: (value: boolean) => void;
 }

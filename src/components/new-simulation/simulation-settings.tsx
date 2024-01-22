@@ -2,7 +2,8 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import React from "react";
 
-import { AppContext } from "../../hooks/use-app-context";
+import { useAppContext } from "../../hooks/use-app-context";
+import { Organs } from "../../utils/app-constants";
 import { ButtonToggle } from "./button-toggle";
 
 import AmygdalaPerson from "../../assets/new-sim/people/person-brain-amygdala.svg";
@@ -13,7 +14,6 @@ import PrefrontalCortexPerson from "../../assets/new-sim/people/person-brain-pre
 import "./simulation-settings.scss";
 
 interface ISimulationSettingsProps {
-  ac: AppContext;
   control1: boolean;
   setControl1: (val: boolean) => void;
   control2: boolean;
@@ -24,9 +24,11 @@ interface ISimulationSettingsProps {
   setSimulationTime: (val: number) => void;
 }
 export function SimulationSettings({
-  ac, control1, setControl1, control2, setControl2,
+  control1, setControl1, control2, setControl2,
   playingVideo, setPlayingVideo, simulationTime, setSimulationTime
 }: ISimulationSettingsProps) {
+  const ac = useAppContext();
+
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) return;
@@ -37,13 +39,10 @@ export function SimulationSettings({
   timePoints.forEach(time => marks[time] = simulationTime === time ? ac.o(`SIMTIMELABEL${time}`) : " ");
 
   // Set up person image
-  const isBrain = ac.organ === "brain";
-  const Person = ac.organ === "heart" ? HeartPerson
-    : ac.organ === "nose" ? NosePerson
+  const isBrain = ac.organ === Organs.brain;
+  const Person = ac.organ === Organs.heart ? HeartPerson
+    : ac.organ === Organs.nose ? NosePerson
     : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
-  const personStyle = isBrain
-    ? { bottom: "80px", right: "31" }
-    : { bottom: "107px", right: "25px" };
 
   return (
     <div className="simulation-settings">
@@ -70,25 +69,20 @@ export function SimulationSettings({
         </div>
       </div>
       <ButtonToggle
-        ac={ac}
-        controlPrefix={"SIMCONTROL1"}
-        invert={["heart", "nose"].includes(ac.organ)}
+        controlNumber={1}
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
         setValue={setControl1}
-        twoLines={true}
         value={control1}
       />
       <ButtonToggle
-        ac={ac}
-        controlPrefix={"SIMCONTROL2"}
-        invert={ac.organ === "brain"}
+        controlNumber={2}
         playVideo={() => setPlayingVideo(true)}
         setValue={setControl2}
         value={control2}
       />
-      <Person className="person" style={personStyle} />
+      <Person className={clsx("person", ac.organ)} />
       <button className="simulation-button reset" />
       <button className="simulation-button key" />
     </div>

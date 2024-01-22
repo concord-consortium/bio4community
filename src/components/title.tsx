@@ -1,17 +1,17 @@
 import React from "react";
 import { clsx } from "clsx";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 import CloseIcon from "../assets/icons/close-icon.svg";
 
 import "./title.scss";
 
 interface TitleProps {
-  ac: AppContext;
   handleClose?: () => void;
   text: string;
 }
-export const Title = ({ ac, handleClose, text }: TitleProps) => {
+export const Title = ({ handleClose, text }: TitleProps) => {
+  const ac = useAppContext();
   return (
     <div className={ clsx("title-box", ac.mode) }>
       <div className="title-close-box" />

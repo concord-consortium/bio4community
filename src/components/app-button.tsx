@@ -1,7 +1,7 @@
 import React from "react";
 import { clsx } from "clsx";
 
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 import PauseIcon from "../assets/icons/pause-icon.svg";
 import PlayIcon from "../assets/icons/play-icon.svg";
@@ -35,10 +35,10 @@ export const AppButton = ({ buttonClass, icon, iconClass, label, labelClass, onC
 };
 
 interface IKeyButton {
-  ac: AppContext;
   onClick: (event: any) => void;
 }
-export const KeyButton = ({ ac, onClick }: IKeyButton) => {
+export const KeyButton = ({ onClick }: IKeyButton) => {
+  const ac = useAppContext();
   return (
     <AppButton
       buttonClass={clsx("app-button", "key-button", ac.mode)}
@@ -50,11 +50,11 @@ export const KeyButton = ({ ac, onClick }: IKeyButton) => {
 };
 
 interface IPlayButton {
-  ac: AppContext;
   playing: boolean;
   onClick: (event: any) => void;
 }
-export const PlayButton = ({ ac, playing, onClick }: IPlayButton) => {
+export const PlayButton = ({ playing, onClick }: IPlayButton) => {
+  const ac = useAppContext();
   const icon = playing
     ? <PauseIcon className="button-icon pause-button-icon" />
     : <PlayIcon className="button-icon play-button-icon" />;

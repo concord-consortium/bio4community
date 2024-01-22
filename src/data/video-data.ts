@@ -1,3 +1,5 @@
+import { Modes, Organs } from "../utils/app-constants";
+
 import HeartAnimationCase1 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case1.mp4";
 import HeartAnimationCase2 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case2.mp4";
 import HeartAnimationCase3 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case3.mp4";
@@ -129,7 +131,7 @@ const NoseCellCase4 = {
 // [tissue | cell][organ][control1][control2][control3][time (cell only)]
 export const simVideos: Record<string, Record<string, Record<number, any>[][][]>> = {
   "tissue": {
-    "heart": [
+    [Organs.heart]: [
       [
         [
           BloodVesselCase2MP4,
@@ -151,7 +153,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
         ]
       ]
     ],
-    "nose": [
+    [Organs.nose]: [
       [
         [
           NoseCase3,
@@ -173,7 +175,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
         ]
       ]
     ],
-    "brain": [
+    [Organs.brain]: [
       [
         [
           BrainTissue2,
@@ -197,7 +199,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
     ]
   },
   "cell": {
-    "heart": [
+    [Organs.heart]: [
       [
         [
           HeartCellCase2,
@@ -219,7 +221,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
         ]
       ]
     ],
-    "nose": [
+    [Organs.nose]: [
       [
         [
           NoseCellCase3,
@@ -241,7 +243,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
         ]
       ]
     ],
-    "brain": [
+    [Organs.brain]: [
       [
         [
           BrainCellCase2,
@@ -270,7 +272,7 @@ export const simVideos: Record<string, Record<string, Record<number, any>[][][]>
 // [tissue | cell][organ][control1][control2][time (cell only)]
 export const aniVideos: Record<string, Record<string, any[][]>> = {
   "tissue": {
-    "heart": [
+    [Organs.heart]: [
       [
         HeartAnimationCase1,
         HeartAnimationCase2
@@ -280,7 +282,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         HeartAnimationCase4
       ]
     ],
-    "nose": [
+    [Organs.nose]: [
       [
         NoseCase1,
         NoseCase2
@@ -290,7 +292,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         NoseCase4
       ]
     ],
-    "brain": [
+    [Organs.brain]: [
       [
         BrainTissue2,
         BrainTissue1
@@ -302,7 +304,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
     ]
   },
   "cell": {
-    "heart": [
+    [Organs.heart]: [
       [
         HeartCellCase1,
         HeartCellCase2
@@ -312,7 +314,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         HeartCellCase4
       ]
     ],
-    "nose": [
+    [Organs.nose]: [
       [
         NoseCellCase1,
         NoseCellCase2
@@ -322,7 +324,7 @@ export const aniVideos: Record<string, Record<string, any[][]>> = {
         NoseCellCase4
       ],
     ],
-    "brain": [
+    [Organs.brain]: [
       [
         BrainCellCase2,
         BrainCellCase1
@@ -340,9 +342,9 @@ const noseTimeline = { 0: "0 days", .333: "8 days", .667: "16 days", 1: "24 days
 const brainTimeline = { 0: "0 weeks", .333: "4 weeks", .667: "8 weeks", 1: "12 weeks" };
 const cellTimeline = { 0: " ", 1: " " };
 export const timelines: Record<string, Record<string, Record<string, Record<number, string>[][][]>>> = {
-  "simulation": {
+  [Modes.simulation]: {
     "tissue": {
-      "heart": [
+      [Organs.heart]: [
         [
           [
             heartTimeline,
@@ -364,7 +366,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "nose": [
+      [Organs.nose]: [
         [
           [
             noseTimeline,
@@ -386,7 +388,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "brain": [
+      [Organs.brain]: [
         [
           [
             brainTimeline,
@@ -410,7 +412,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
       ]
     },
     "cell": {
-      "heart": [
+      [Organs.heart]: [
         [
           [
             cellTimeline,
@@ -432,7 +434,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "nose": [
+      [Organs.nose]: [
         [
           [
             cellTimeline,
@@ -454,7 +456,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "brain": [
+      [Organs.brain]: [
         [
           [
             cellTimeline,
@@ -478,9 +480,9 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
       ]
     }
   },
-  "animation": {
+  [Modes.animation]: {
     "tissue": {
-      "heart": [
+      [Organs.heart]: [
         [
           [
             heartTimeline,
@@ -502,7 +504,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "nose": [
+      [Organs.nose]: [
         [
           [
             noseTimeline,
@@ -524,7 +526,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "brain": [
+      [Organs.brain]: [
         [
           [
             brainTimeline,
@@ -548,7 +550,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
       ]
     },
     "cell": {
-      "heart": [
+      [Organs.heart]: [
         [
           [
             cellTimeline,
@@ -570,7 +572,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "nose": [
+      [Organs.nose]: [
         [
           [
             cellTimeline,
@@ -592,7 +594,7 @@ export const timelines: Record<string, Record<string, Record<string, Record<numb
           ]
         ]
       ],
-      "brain": [
+      [Organs.brain]: [
         [
           [
             cellTimeline,

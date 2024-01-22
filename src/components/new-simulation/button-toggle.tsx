@@ -1,24 +1,26 @@
 import { clsx } from "clsx";
 import React from "react";
 
-import { AppContext } from "../../hooks/use-app-context";
+import { useAppContext } from "../../hooks/use-app-context";
+import { invertedControl } from "../../hooks/use-common-state";
 
 import "./button-toggle.scss";
 
 interface IButtonToggleProps {
-  ac: AppContext;
-  controlPrefix: string; // Used to generate keys for labels
-  invert?: boolean; // Set to true when the order of the boolean value should switch (true on the left)
+  controlNumber: number; // 1 for the top control, 2 for the bottom control
   leftClass?: string | boolean;
   playVideo: () => void;
   rightClass?: string | boolean;
   setValue: (value: boolean) => void;
-  twoLines?: boolean; // Set to true to force the button's label to render as two lines
   value: boolean;
 }
 export function ButtonToggle({
-  ac, controlPrefix, invert, leftClass, playVideo, rightClass, setValue, twoLines, value
+  controlNumber, leftClass, playVideo, rightClass, setValue, value
 }: IButtonToggleProps) {
+  const ac = useAppContext();
+  // Some controls are rendered inverted (true is on the left)
+  // This is necessary to maintain backwards compatibility with the old animations
+  const invert = invertedControl(ac, controlNumber);
   const leftSelected = invert ? value : !value;
   const rightSelected = invert ? !value : value;
   const handleButtonClick = (val: boolean) => {
@@ -27,10 +29,12 @@ export function ButtonToggle({
   };
   const leftOnClick = () => handleButtonClick(!!invert);
   const rightOnClick = () => handleButtonClick(!invert);
+  const controlPrefix = `SIMCONTROL${controlNumber}`;
   const falseLabel = ac.o(controlPrefix + "OPTION1");
   const trueLabel = ac.o(controlPrefix + "OPTION2");
   const leftLabel = invert ? trueLabel : falseLabel;
   const rightLabel = invert ? falseLabel : trueLabel;
+  const twoLines = controlNumber === 1; // The top button set has longer labels that need to take two lines
   const leftClasses = clsx("toggle-button", leftClass, { selected: leftSelected, "two-lines": twoLines });
   const rightClasses = clsx("toggle-button", rightClass, { selected: rightSelected, "two-lines": twoLines });
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { clsx } from "clsx";
 
 import { PaneTitle } from "./pane-title";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { brainStartStyle, brainEndStyle, ISilhouetteData, ISilhouetteOrganData, silhouetteData,
   silhouetteOrganData } from "../data/silhouette-data";
 
@@ -16,12 +16,12 @@ import "./silhouette-pane.scss";
 const zoomDuration = 2000;
 
 interface ISilhouettePane {
-  ac: AppContext;
   control1?: boolean; // Used to determine which brain gif to use
   hasZoomed: boolean;
   setHasZoomed: (val: boolean) => void;
 }
-export const SilhouettePane = ({ ac, control1, hasZoomed, setHasZoomed }: ISilhouettePane) => {
+export const SilhouettePane = ({ control1, hasZoomed, setHasZoomed }: ISilhouettePane) => {
+  const ac = useAppContext();
   const [silhouetteStyle, setSilhouetteStyle] = useState<Record<string, any>>({});
   const [internalOrgansStyle, setInternalOrgansStyle] = useState<Record<string, any>>({});
   const [buttonStyle, setButtonStyle] = useState<Record<string, any>>({});

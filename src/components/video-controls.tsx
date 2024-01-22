@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 
 import { PlayButton } from "./app-button";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 import "./disabled-overlay.scss";
 import "./video-controls.scss";
@@ -51,7 +51,6 @@ const TimeTrack = ({ jumpToPosition, percentComplete, marks }: ITimeTrack) => {
 };
 
 interface IVideoControls {
-  ac: AppContext;
   disabled?: boolean;
   extraClass?: string;
   jumpToPosition: (pos: number) => void;
@@ -61,14 +60,16 @@ interface IVideoControls {
   timelineMarks?: Record<number, string>;
 }
 export const VideoControls = ({
-  ac, disabled, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
+  disabled, extraClass, jumpToPosition, onPlayButtonClick, percentComplete, playing, timelineMarks
 }: IVideoControls) => {
+  const ac = useAppContext();
+
   // Default including marks at the end of the timeline
   const marks = timelineMarks || { 0: " ", 1: " " };
 
   return (
     <div className={clsx("video-controls", ac.mode, extraClass)}>
-      <PlayButton playing={playing} onClick={onPlayButtonClick} ac={ac} />
+      <PlayButton playing={playing} onClick={onPlayButtonClick} />
       <div className="vertical-divider" />
       <TimeTrack
         jumpToPosition={jumpToPosition}

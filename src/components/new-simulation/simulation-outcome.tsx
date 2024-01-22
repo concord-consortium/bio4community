@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import { AppContext } from "../../hooks/use-app-context";
+import { useAppContext } from "../../hooks/use-app-context";
 
 import "./simulation-outcome.scss";
 
 interface ISimulationOutcomeProps {
-  ac: AppContext;
   control1: boolean;
   control2: boolean;
 }
-export function SimulationOutcome({ ac, control1, control2 }: ISimulationOutcomeProps) {
+export function SimulationOutcome({ control1, control2 }: ISimulationOutcomeProps) {
+  const ac = useAppContext();
   const [hidden, setHidden] = useState(false);
   let message = "OUTCOMEHEALTHY";
   if (ac.organ === "brain") {
