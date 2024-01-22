@@ -32,8 +32,25 @@ export const useCommonState = (ac: AppContext) => {
 
   const tissueOverlay = ac.organ === "heart" ? <ArteryOverlay /> : "";
 
+  /**
+   * Return a list of all of the control combinations that are legal in the current context.
+   * @returns an array of objects like `{ option1: false, option2: true }`.
+   */
+  function getAllExperiments() {
+    const result = [];
+    for (const opt1 of [false, true]) {
+      for (const opt2 of [false, true]) {
+        result.push({
+          option1: opt1,
+          option2: opt2
+        });
+      }
+    }
+    return result;
+  }
+
   return { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
     control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls,
-    tissueOverlay };
+    tissueOverlay, getAllExperiments };
 };

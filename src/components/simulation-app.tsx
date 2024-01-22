@@ -15,6 +15,7 @@ import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
 import { SimulationSettings } from "./simulation-settings";
+import { SimulationGraphs } from "./simulation-graphs";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -91,11 +92,9 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
           />
-          <div className="simulation-graphs">
-            <div className="graphs-header">
-              {ac.o("SIMGRAPHTITLE")}
-            </div>
-          </div>
+          <SimulationGraphs
+            ac={ac}
+          />
         </div>
         <div className="video-column">
           <div className="video">

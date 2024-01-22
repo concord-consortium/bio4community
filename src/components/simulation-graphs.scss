@@ -1,0 +1,38 @@
+@use "./vars.scss";
+
+.graphs-header {
+  margin-bottom: 26px;
+}
+
+.checkbox-row {
+  width: 275px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  label {
+    margin-left: 6px;
+    font-weight: bold;
+    line-height: 1.86;
+    color: vars.$sim-dark-1;
+  }
+}
+
+svg {
+
+  &.line-style-ff line {
+    stroke-dasharray: none;
+  }
+
+  &.line-style-ft line {
+    stroke-dasharray: 8 2;
+  }
+
+  &.line-style-tf line {
+    stroke-dasharray: 2 2;
+  }
+
+  &.line-style-tt line {
+    stroke-dasharray: 13 2;
+  }
+}
