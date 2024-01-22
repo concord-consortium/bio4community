@@ -110,11 +110,6 @@
             touch-action: pan-x;
             z-index: 2;
       
-            &:focus {
-              outline: none;
-              box-shadow: none;
-            }
-      
             &:active {
               cursor: grabbing;
             }
