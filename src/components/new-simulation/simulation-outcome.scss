@@ -1,0 +1,32 @@
+@use "../vars.scss";
+
+.outcome-area {
+  align-items: center;
+  background-color: vars.$sim-light-7;
+  border-radius: 6px;
+  bottom: 25px;
+  box-sizing: border-box;
+  color: black;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 54px;
+  justify-content: center;
+  margin-right: 2px;
+  padding: 0 30px;
+  position: absolute;
+  text-align: center;
+  width: 398px;
+
+  .hide-button {
+    background-color: rgba(0,0,0,0);
+    background-image: url(../../assets/new-sim/buttons/close-icon.svg);
+    border: none;
+    cursor: pointer;
+    height: 24px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 24px;
+  }
+}

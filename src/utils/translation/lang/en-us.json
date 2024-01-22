@@ -92,6 +92,9 @@
   "SIMRESULTSHEADER": "Results:",
   "SIMRESULTSSUB": "Response over time",
 
+  "SIMSETTINGSPOSTFIX": ": Settings",
+  "SIMSETTINGSTIMETITLE": "Simulation Time",
+
   "SILHOUETTEINSTRUCTIONS": "Click on the ORGAN to zoom in",
   "SILHOUETTETITLE": "ORGAN View",
 
@@ -149,5 +152,14 @@
   "BRAIN.LEFTYLABEL": "Network Connections",
   "BRAIN.RIGHTXLABEL1": "Simulated Time",
   "BRAIN.RIGHTXLABEL2": "(weeks)",
-  "BRAIN.RIGHTYLABEL": "Signals Transmitted"
+  "BRAIN.RIGHTYLABEL": "Signals Transmitted",
+
+  "HEART.OUTCOMEHEALTHY": "A person would have a low risk of blocked blood vessels in the heart.",
+  "HEART.OUTCOMEINTERMEDIATE": "A person would have a medium risk of blocked blood vessels in the heart.",
+  "HEART.OUTCOMECHRONIC": "A person would have a high risk of blocked blood vessels in the heart.",
+  "NOSE.OUTCOMEHEALTHY": "A person would feel well, even while the immune system is clearing the infection.",
+  "NOSE.OUTCOMEINTERMEDIATE": "A person would feel ill while the immune system is clearing out the infection.",
+  "NOSE.OUTCOMECHRONIC": "A person would continue to feel ill even after the infection is gone.",
+  "BRAIN.OUTCOMEHEALTHY": "A person would be able to focus their attention easily.",
+  "BRAIN.OUTCOMECHRONIC": "A person would be distracted and unable to focus their attention."
 }

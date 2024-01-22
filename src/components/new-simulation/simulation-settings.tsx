@@ -2,13 +2,13 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import React from "react";
 
-import { AppContext } from "../hooks/use-app-context";
+import { AppContext } from "../../hooks/use-app-context";
 import { ButtonToggle } from "./button-toggle";
 
-import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
-import HeartPerson from "../assets/new-sim/people/person-artery.svg";
-import NosePerson from "../assets/new-sim/people/person-nose.svg";
-import PrefrontalCortexPerson from "../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
+import AmygdalaPerson from "../../assets/new-sim/people/person-brain-amygdala.svg";
+import HeartPerson from "../../assets/new-sim/people/person-artery.svg";
+import NosePerson from "../../assets/new-sim/people/person-nose.svg";
+import PrefrontalCortexPerson from "../../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
 
 import "./simulation-settings.scss";
 
@@ -24,7 +24,8 @@ interface ISimulationSettingsProps {
   setSimulationTime: (val: number) => void;
 }
 export function SimulationSettings({
-  ac, control1, setControl1, control2, setControl2, playingVideo, setPlayingVideo, simulationTime, setSimulationTime
+  ac, control1, setControl1, control2, setControl2,
+  playingVideo, setPlayingVideo, simulationTime, setSimulationTime
 }: ISimulationSettingsProps) {
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
@@ -41,16 +42,16 @@ export function SimulationSettings({
     : ac.organ === "nose" ? NosePerson
     : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
   const personStyle = isBrain
-    ? { bottom: "21px", right: "30px" }
-    : { bottom: "84px", right: "32px" };
+    ? { bottom: "80px", right: "31" }
+    : { bottom: "107px", right: "25px" };
 
   return (
     <div className="simulation-settings">
       <div className="settings-header">
-        Simulation Settings
+        <span className="title">{ac.o("SIMULATIONTITLE")}</span>{ac.t("SIMSETTINGSPOSTFIX")}
       </div>
       <div className="setting video-control">
-        <div className="setting-title">Simulation Time</div>
+        <div className="setting-title">{ac.t("SIMSETTINGSTIMETITLE")}</div>
         <div className="video-control-row">
           <button
             className={clsx("play-button", { playing: playingVideo })}
@@ -88,6 +89,8 @@ export function SimulationSettings({
         value={control2}
       />
       <Person className="person" style={personStyle} />
+      <button className="simulation-button reset" />
+      <button className="simulation-button key" />
     </div>
   );
 }
