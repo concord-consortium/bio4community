@@ -173,6 +173,13 @@
   }
 
   .person {
+    bottom: 107px;
     position: absolute;
+    right: 25px;
+
+    &.brain {
+      bottom: 80px;
+      right: 31px;
+    }
   }
 }

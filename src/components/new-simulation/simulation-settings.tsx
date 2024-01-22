@@ -43,9 +43,6 @@ export function SimulationSettings({
   const Person = ac.organ === Organs.heart ? HeartPerson
     : ac.organ === Organs.nose ? NosePerson
     : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
-  const personStyle = isBrain
-    ? { bottom: "80px", right: "31" }
-    : { bottom: "107px", right: "25px" };
 
   return (
     <div className="simulation-settings">
@@ -88,7 +85,7 @@ export function SimulationSettings({
         setValue={setControl2}
         value={control2}
       />
-      <Person className="person" style={personStyle} />
+      <Person className={clsx("person", ac.organ)} />
       <button className="simulation-button reset" />
       <button className="simulation-button key" />
     </div>
