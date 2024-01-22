@@ -1,7 +1,7 @@
 import React from "react";
 
 import { keyImages } from "./image-data";
-import { AppContext } from "../hooks/use-app-context";
+import { IAppContext } from "../hooks/use-app-context";
 
 import CloseIcon from "../assets/icons/close-icon.svg";
 
@@ -11,7 +11,7 @@ interface IKeyImage {
 const KeyImage = ({ src }: IKeyImage) => <img src={src} />;
 const pair = (label: string, src: any): [any, string] => [<KeyImage src={src} key={label} />, label];
 // Returns a list of [image, label] to display in the key
-export const getKeyData = (ac: AppContext): [any, string][] => {
+export const getKeyData = (ac: IAppContext): [any, string][] => {
   let keyData: [any, string][] = [];
   const dummy = <CloseIcon />;
   if (ac.organ === "heart") {

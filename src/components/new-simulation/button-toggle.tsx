@@ -1,12 +1,11 @@
 import { clsx } from "clsx";
 import React from "react";
 
-import { AppContext } from "../../hooks/use-app-context";
+import { useAppContext } from "../../hooks/use-app-context";
 
 import "./button-toggle.scss";
 
 interface IButtonToggleProps {
-  ac: AppContext;
   controlPrefix: string; // Used to generate keys for labels
   invert?: boolean; // Set to true when the order of the boolean value should switch (true on the left)
   leftClass?: string | boolean;
@@ -17,8 +16,9 @@ interface IButtonToggleProps {
   value: boolean;
 }
 export function ButtonToggle({
-  ac, controlPrefix, invert, leftClass, playVideo, rightClass, setValue, twoLines, value
+  controlPrefix, invert, leftClass, playVideo, rightClass, setValue, twoLines, value
 }: IButtonToggleProps) {
+  const ac = useAppContext();
   const leftSelected = invert ? value : !value;
   const rightSelected = invert ? !value : value;
   const handleButtonClick = (val: boolean) => {

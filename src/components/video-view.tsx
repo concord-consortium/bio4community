@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 
 import { PaneTitle } from "./pane-title";
 import { VideoControls } from "./video-controls";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 import { videoFadeIn } from "../data/zoom-data";
 import { aniVideos } from "../data/video-data";
@@ -14,7 +14,6 @@ import "./disabled-overlay.scss";
 import "./video-view.scss";
 
 interface IVideoView {
-  ac: AppContext;
   disabled?: boolean;
   disabledMessage?: string;
   extraClass?: string;
@@ -30,9 +29,11 @@ interface IVideoView {
   videoFile?: any;
 }
 export const VideoView = ({
-  ac, disabled, disabledMessage, extraClass, loop, overlay, percentComplete, playing, setPercentComplete, setPlaying,
+  disabled, disabledMessage, extraClass, loop, overlay, percentComplete, playing, setPercentComplete, setPlaying,
   setTargetVideoIndex, timelineMarks, title, videoFile
 }: IVideoView) => {
+  const ac = useAppContext();
+
   // Basic video state
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
@@ -171,7 +172,6 @@ export const VideoView = ({
   return (
     <div className={clsx("video-view", extraClass)}>
       <VideoControls
-        ac={ac}
         disabled={disabled}
         extraClass={extraClass}
         jumpToPosition={jumpToPosition}

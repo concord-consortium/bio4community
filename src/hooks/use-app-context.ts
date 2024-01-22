@@ -1,7 +1,7 @@
-import { useCallback, useMemo } from "react";
+import { createContext, useContext } from "react";
 import translate from "../utils/translation/translate";
 
-export interface AppContext {
+export interface IAppContext {
   mode: string;
   organ: string;
   t: (code: string) => string; // Translates generic text
@@ -11,18 +11,18 @@ interface IUseAppContext {
   mode: string;
   organ: string;
 }
-export const useAppContext = ({ mode, organ }: IUseAppContext) => {
-  const t = useCallback((textCode) => {
-    return translate(textCode);
-  }, []);
+export const getAppContext = ({ mode, organ }: IUseAppContext) => {
+  const t = (textCode: string) => translate(textCode);
 
-  const o = useCallback((textCode) => {
-    return translate(`${organ.toUpperCase()}.${textCode}`);
-  }, [organ]);
+  const o = (textCode: string) => translate(`${organ.toUpperCase()}.${textCode}`);
 
-  const appContext: AppContext = useMemo(() => {
-    return { mode, organ, t, o};
-  }, [mode, organ, t, o]);
+  const appContext: IAppContext = { mode, organ, t, o};
 
   return appContext;
 };
+
+export const AppContext = createContext<IAppContext>(getAppContext({ mode: "animation", organ: "heart" }));
+
+export function useAppContext() {
+  return useContext(AppContext);
+}

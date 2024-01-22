@@ -1,17 +1,17 @@
 import React from "react";
 import { clsx } from "clsx";
 import { Title } from "./title";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 interface AppContainerProps {
-  ac: AppContext;
   title?: string;
   children: any;
 }
-export const AppContainer = ({ ac, title, children }: AppContainerProps) => {
+export const AppContainer = ({ title, children }: AppContainerProps) => {
+  const ac = useAppContext();
   return (
     <div className={clsx("app-container", ac.mode)}>
-      {title && <Title ac={ac} text={title} />}
+      {title && <Title text={title} />}
       {children}
     </div>
   );

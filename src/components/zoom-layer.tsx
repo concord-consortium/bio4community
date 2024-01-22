@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 
 import { initialFadeIn, firstPause, zoomSwipe, videoFadeIn, secondPause, zoomFadeOut,
   ZoomInfo } from "../data/zoom-data";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 
 import "./zoom-layer.scss";
 
@@ -18,13 +18,14 @@ const totalWidth = 940;
 const totalHeight = 598;
 
 interface IZoomLayer {
-  ac: AppContext;
   setVideoEnabled?: (val: boolean) => void;
   show?: boolean;
   type: "silhouette" | "cell";
   zoomInfo: ZoomInfo;
 }
-export const ZoomLayer = ({ ac, setVideoEnabled, show, type, zoomInfo }: IZoomLayer) => {
+export const ZoomLayer = ({ setVideoEnabled, show, type, zoomInfo }: IZoomLayer) => {
+  const ac = useAppContext();
+
   // Mask
   const initialWidth = type === "cell" ? zoomInfo.boxX - 2 : totalWidth;
   const finalWidth = type === "cell" ? zoomInfo.target1X + 2 : totalWidth;

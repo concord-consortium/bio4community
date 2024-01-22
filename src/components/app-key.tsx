@@ -2,7 +2,7 @@ import React from "react";
 import { clsx } from "clsx";
 
 import { Title } from "./title";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { getKeyData } from "../data/key-data";
 
 import noseKeyImage from "../assets/images/nose/immune-response-key-content@2x.png";
@@ -11,14 +11,14 @@ import brainKeyImage from "../assets/images/brain/focus-key-content@2x.png";
 import "./app-key.scss";
 
 interface IAppKey {
-  ac: AppContext;
   handleClose?: () => void;
   position: number[];
   setDragging: (dragging: boolean) => void;
   setOffset: (offset: number[]) => void;
   visible: boolean;
 }
-export const AppKey = ({ ac, handleClose, position, setDragging, setOffset, visible }: IAppKey) => {
+export const AppKey = ({ handleClose, position, setDragging, setOffset, visible }: IAppKey) => {
+  const ac = useAppContext();
 
   const handleMouseDown = (event: any) => {
     setOffset([event.clientX - position[0], event.clientY - position[1]]);
@@ -64,7 +64,7 @@ export const AppKey = ({ ac, handleClose, position, setDragging, setOffset, visi
         top: position[1]
       }}
     >
-      <Title ac={ac} handleClose={handleClose} text="Key" />
+      <Title handleClose={handleClose} text="Key" />
       { keyContent }
     </div>
   );

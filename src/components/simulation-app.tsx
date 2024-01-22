@@ -5,7 +5,7 @@ import React, { useState } from "react";
 // import { graphData, graphRanges } from "../data/graph-data";
 // import { simVideos, timelines } from "../data/video-data";
 // import { cellZoomData } from "../data/zoom-data";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 // import { useInitialPause } from "../hooks/use-initial-pause";
 // import { delayControl } from "../utils/app-common";
@@ -24,10 +24,10 @@ import "./simulation-app.scss";
 import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
-  ac: AppContext;
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => {
+export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
+  const ac = useAppContext();
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
@@ -77,11 +77,10 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
   // const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
   // const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
-    <AppContainer ac={ac}>
+    <AppContainer>
       <div className="simulation-body">
         <div className="control-column">
           <SimulationSettings
-            ac={ac}
             control1={control1}
             setControl1={setControl1}
             control2={control2}
@@ -104,7 +103,6 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           <div className="video">
             <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
             <SimulationOutcome
-              ac={ac}
               control1={control1}
               control2={control2}
             />

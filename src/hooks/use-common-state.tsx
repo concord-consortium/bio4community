@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { AppContext } from "./use-app-context";
+import { IAppContext } from "./use-app-context";
 import { ArteryOverlay } from "../components/artery-overlay";
 
-export const useCommonState = (ac: AppContext) => {
+export const useCommonState = (ac: IAppContext) => {
   const [playingTissue, setPlayingTissue] = useState(false);
   const [tPercentComplete, setTPercentComplete] = useState(0);
   const [playingCell, setPlayingCell] = useState(false);
