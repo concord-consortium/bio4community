@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import { clsx } from "clsx";
 
 // import { renderControls } from "../data/control-data";
 // import { graphData, graphRanges } from "../data/graph-data";
@@ -14,7 +13,7 @@ import { useCommonState } from "../hooks/use-common-state";
 import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
-import { SimulationSettings } from "./simulation-settings";
+import { SimulationSettings } from "./new-simulation/simulation-settings";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -22,6 +21,7 @@ import { SimulationSettings } from "./simulation-settings";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
+import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
   ac: AppContext;
@@ -77,7 +77,7 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
   // const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
   // const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
-    <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
+    <AppContainer ac={ac}>
       <div className="simulation-body">
         <div className="control-column">
           <SimulationSettings
@@ -103,15 +103,13 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           </div>
           <div className="video">
             <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
+            <SimulationOutcome
+              ac={ac}
+              control1={control1}
+              control2={control2}
+            />
           </div>
         </div>
-      </div>
-      <div className="simulation-footer">
-        <div className="outcome-area">
-          Outcome
-        </div>
-        <button className={clsx("simulation-button", "reset")}>Reset</button>
-        <button className={clsx("simulation-button", "key")}>Key</button>
       </div>
       {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />

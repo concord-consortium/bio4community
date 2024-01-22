@@ -34,7 +34,11 @@ context("Test the overall app", () => {
     allPages.forEach(({ mode, organ, title }: PageInfo) => {
       it(`renders the title for the ${organ} ${mode}`, () => {
         visitPage(mode, organ);
-        cy.get(".app .title-box").first().should("have.text", title);
+        if (mode === "animation") {
+          cy.get(".app .title-box").first().should("have.text", title);
+        } else {
+          cy.get(".app .simulation-settings .settings-header").first().should("have.text", `${title}: Settings`);
+        }
       });
     });
   });

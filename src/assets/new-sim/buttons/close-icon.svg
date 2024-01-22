@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>D1E3A846-5C48-4437-AD05-8E5A89D01537</title>
+    <g id="Bio4Community-Design-v2-forZeplin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bio4Community-Design-v2" transform="translate(-761, -1225)">
+            <g id="Close-Button-States" transform="translate(759, 1176)">
+                <g id="Default" transform="translate(0, 47)">
+                    <g id="Close-ICON" transform="translate(2, 2)">
+                        <polygon id="Close-back" points="0 0 24 0 24 24 0 24"></polygon>
+                        <polygon fill="#707070" points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
