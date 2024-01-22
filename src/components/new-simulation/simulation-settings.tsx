@@ -69,18 +69,15 @@ export function SimulationSettings({
         </div>
       </div>
       <ButtonToggle
-        controlPrefix={"SIMCONTROL1"}
-        invert={!isBrain}
+        controlNumber={1}
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
         setValue={setControl1}
-        twoLines={true}
         value={control1}
       />
       <ButtonToggle
-        controlPrefix={"SIMCONTROL2"}
-        invert={isBrain}
+        controlNumber={2}
         playVideo={() => setPlayingVideo(true)}
         setValue={setControl2}
         value={control2}
