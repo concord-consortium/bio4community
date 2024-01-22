@@ -1,7 +1,8 @@
 import React from "react";
 
-import { keyImages } from "./image-data";
 import { IAppContext } from "../hooks/use-app-context";
+import { Organs } from "../utils/app-constants";
+import { keyImages } from "./image-data";
 
 import CloseIcon from "../assets/icons/close-icon.svg";
 
@@ -14,7 +15,7 @@ const pair = (label: string, src: any): [any, string] => [<KeyImage src={src} ke
 export const getKeyData = (ac: IAppContext): [any, string][] => {
   let keyData: [any, string][] = [];
   const dummy = <CloseIcon />;
-  if (ac.organ === "heart") {
+  if (ac.organ === Organs.heart) {
     keyData = [
       pair(ac.o("KEY1"), keyImages.h[0]),
       pair(ac.o("KEY2"), keyImages.h[1]),
@@ -25,7 +26,7 @@ export const getKeyData = (ac: IAppContext): [any, string][] => {
       pair(ac.o("KEY7"), keyImages.h[6]),
       pair(ac.o("KEY8"), keyImages.h[7])
     ];
-  } else if (ac.organ === "nose") {
+  } else if (ac.organ === Organs.nose) {
     keyData = [
       [dummy, ac.o("KEY1")],
       [dummy, ac.o("KEY2")],
@@ -36,7 +37,7 @@ export const getKeyData = (ac: IAppContext): [any, string][] => {
       [dummy, ac.o("KEY7")],
       [dummy, ac.o("KEY8")]
     ];
-  } else if (ac.organ === "brain") {
+  } else if (ac.organ === Organs.brain) {
     keyData = [
       [dummy, ac.o("KEY1")],
       [dummy, ac.o("KEY2")],

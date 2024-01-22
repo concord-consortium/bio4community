@@ -3,6 +3,7 @@ import Slider from "rc-slider";
 import React from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
+import { Organs } from "../../utils/app-constants";
 import { ButtonToggle } from "./button-toggle";
 
 import AmygdalaPerson from "../../assets/new-sim/people/person-brain-amygdala.svg";
@@ -38,9 +39,9 @@ export function SimulationSettings({
   timePoints.forEach(time => marks[time] = simulationTime === time ? ac.o(`SIMTIMELABEL${time}`) : " ");
 
   // Set up person image
-  const isBrain = ac.organ === "brain";
-  const Person = ac.organ === "heart" ? HeartPerson
-    : ac.organ === "nose" ? NosePerson
+  const isBrain = ac.organ === Organs.brain;
+  const Person = ac.organ === Organs.heart ? HeartPerson
+    : ac.organ === Organs.nose ? NosePerson
     : control1 ? AmygdalaPerson : PrefrontalCortexPerson;
   const personStyle = isBrain
     ? { bottom: "80px", right: "31" }
@@ -72,7 +73,7 @@ export function SimulationSettings({
       </div>
       <ButtonToggle
         controlPrefix={"SIMCONTROL1"}
-        invert={["heart", "nose"].includes(ac.organ)}
+        invert={!isBrain}
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
@@ -82,7 +83,7 @@ export function SimulationSettings({
       />
       <ButtonToggle
         controlPrefix={"SIMCONTROL2"}
-        invert={ac.organ === "brain"}
+        invert={isBrain}
         playVideo={() => setPlayingVideo(true)}
         setValue={setControl2}
         value={control2}

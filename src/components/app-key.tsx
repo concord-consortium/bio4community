@@ -1,12 +1,13 @@
 import React from "react";
 import { clsx } from "clsx";
 
-import { Title } from "./title";
-import { useAppContext } from "../hooks/use-app-context";
+import { Organs } from "../utils/app-constants";
 import { getKeyData } from "../data/key-data";
+import { useAppContext } from "../hooks/use-app-context";
+import { Title } from "./title";
 
-import noseKeyImage from "../assets/images/nose/immune-response-key-content@2x.png";
 import brainKeyImage from "../assets/images/brain/focus-key-content@2x.png";
+import noseKeyImage from "../assets/images/nose/immune-response-key-content@2x.png";
 
 import "./app-key.scss";
 
@@ -46,7 +47,7 @@ export const AppKey = ({ handleClose, position, setDragging, setOffset, visible 
     );
   };
 
-  const keyContent = ac.organ === "heart"
+  const keyContent = ac.organ === Organs.heart
     ? <div className="key-rows">
         { getKeyData(ac).map(([image, text]) => <KeyRow image={image} key={text} text={text} />) }
       </div>

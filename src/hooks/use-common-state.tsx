@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { IAppContext } from "./use-app-context";
+
 import { ArteryOverlay } from "../components/artery-overlay";
+import { Modes, Organs } from "../utils/app-constants";
+import { IAppContext } from "./use-app-context";
 
 export const useCommonState = (ac: IAppContext) => {
   const [playingTissue, setPlayingTissue] = useState(false);
@@ -12,8 +14,8 @@ export const useCommonState = (ac: IAppContext) => {
 
   // Some simulation controls start true
   const startControl = (controlNumber: number) => {
-    if (ac.mode === "simulation") {
-      if (ac.organ === "brain") {
+    if (ac.mode === Modes.simulation) {
+      if (ac.organ === Organs.brain) {
         if (controlNumber === 2) {
           return true;
         }
@@ -30,7 +32,7 @@ export const useCommonState = (ac: IAppContext) => {
   const [control3, setControl3] = useState(startControl(3));
   const [disableControls, setDisableControls] = useState(false);
 
-  const tissueOverlay = ac.organ === "heart" ? <ArteryOverlay /> : "";
+  const tissueOverlay = ac.organ === Organs.heart ? <ArteryOverlay /> : "";
 
   return { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
