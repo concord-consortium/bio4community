@@ -4,6 +4,13 @@
   margin-bottom: 26px;
 }
 
+.sim-graph {
+  .axis {
+    stroke: #000000;
+    stroke-width: 2;
+  }
+}
+
 .checkbox-row {
   width: 275px;
   display: flex;
@@ -11,6 +18,8 @@
   align-items: center;
 
   label {
+    font-family: Lato;
+    font-size: 14px;
     margin-left: 6px;
     font-weight: bold;
     line-height: 1.86;
