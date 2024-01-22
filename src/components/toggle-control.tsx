@@ -1,12 +1,12 @@
 // Taken and modified from the CLUE codebase
 import React, { useState } from "react";
 import { clsx } from "clsx";
-import { AppContext } from "../hooks/use-app-context";
+import { IAppContext } from "../hooks/use-app-context";
 
 import "./toggle-control.scss";
 
 interface IProps {
-  ac: AppContext;
+  ac: IAppContext;
   className?: string;
   dataTest?: string;
   disabled?: boolean;

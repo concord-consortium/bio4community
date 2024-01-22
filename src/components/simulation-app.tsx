@@ -1,18 +1,19 @@
-import React/*, { useEffect, useState }*/ from "react";
-import { clsx } from "clsx";
+
+import React, { useState } from "react";
 
 // import { renderControls } from "../data/control-data";
 // import { graphData, graphRanges } from "../data/graph-data";
 // import { simVideos, timelines } from "../data/video-data";
 // import { cellZoomData } from "../data/zoom-data";
-import { AppContext } from "../hooks/use-app-context";
-// import { useCommonState } from "../hooks/use-common-state";
+import { useAppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
 // import { useInitialPause } from "../hooks/use-initial-pause";
 // import { delayControl } from "../utils/app-common";
 // import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
+import { SimulationSettings } from "./new-simulation/simulation-settings";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -20,12 +21,16 @@ import { PaneTitle } from "./pane-title";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
+import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
-  ac: AppContext;
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => {
+export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
+  const ac = useAppContext();
+  const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
+  const [simulationTime, setSimulationTime] = useState(0);
+  const [playingVideo, setPlayingVideo] = useState(false);
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -72,14 +77,19 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
   // const leftHLabel = hLabel(ac.o("LEFTXLABEL1"), ac.o("LEFTXLABEL2"));
   // const rightHLabel = hLabel(ac.o("RIGHTXLABEL1"), ac.o("RIGHTXLABEL2"));
   return (
-    <AppContainer ac={ac} title={ac.o("SIMULATIONTITLE")}>
+    <AppContainer>
       <div className="simulation-body">
         <div className="control-column">
-          <div className="simulation-settings">
-            <div className="settings-header">
-              Simulation Settings
-            </div>
-          </div>
+          <SimulationSettings
+            control1={control1}
+            setControl1={setControl1}
+            control2={control2}
+            setControl2={setControl2}
+            playingVideo={playingVideo}
+            setPlayingVideo={setPlayingVideo}
+            simulationTime={simulationTime}
+            setSimulationTime={setSimulationTime}
+          />
           <div className="simulation-graphs">
             <div className="graphs-header">
               {ac.o("SIMGRAPHTITLE")}
@@ -92,15 +102,12 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           </div>
           <div className="video">
             <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
+            <SimulationOutcome
+              control1={control1}
+              control2={control2}
+            />
           </div>
         </div>
-      </div>
-      <div className="simulation-footer">
-        <div className="outcome-area">
-          Outcome
-        </div>
-        <button className={clsx("simulation-button", "reset")}>Reset</button>
-        <button className={clsx("simulation-button", "key")}>Key</button>
       </div>
       {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />

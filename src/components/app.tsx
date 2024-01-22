@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+
+import { AppContext, getAppContext } from "../hooks/use-app-context";
+import { modeFromString, Modes, organFromString } from "../utils/app-constants";
 import { AnimationApp } from "./animation-app";
 import { AppKey } from "./app-key";
 import { SimulationApp } from "./simulation-app";
-import { useAppContext } from "../hooks/use-app-context";
 
 import "./app.scss";
 
 export const App = () => {
   const params = new URLSearchParams(window.location.search);
-  const mode: string = params.get("mode") || "animation";
-  const organ: string = params.get("organ") || "heart";
-  const ac = useAppContext({ mode, organ });
+  const mode = modeFromString(params.get("mode"));
+  const organ = organFromString(params.get("organ"));
+  const ac = getAppContext({ mode, organ });
 
   // Key state
   const [keyVisible, setKeyVisible] = useState(false);
@@ -27,21 +29,22 @@ export const App = () => {
   };
 
   return (
-    <div
-      className="app"
-      onMouseMove={handleMouseMove}
-    >
-      { mode === "animation" ? <AnimationApp ac={ac} setKeyVisible={setKeyVisible} />
-        : mode === "simulation" ? <SimulationApp ac={ac} setKeyVisible={setKeyVisible} />
-        : <div>Unknown mode.</div> }
-      <AppKey
-        ac={ac}
-        handleClose={() => setKeyVisible(false)}
-        position={keyPosition}
-        setDragging={setKeyDragging}
-        setOffset={setKeyOffset}
-        visible={keyVisible}
-      />
-    </div>
+    <AppContext.Provider value={ac}>
+      <div
+        className="app"
+        onMouseMove={handleMouseMove}
+      >
+        { mode === Modes.animation ? <AnimationApp setKeyVisible={setKeyVisible} />
+          : mode === Modes.simulation ? <SimulationApp setKeyVisible={setKeyVisible} />
+          : <div>Unknown mode.</div> }
+        <AppKey
+          handleClose={() => setKeyVisible(false)}
+          position={keyPosition}
+          setDragging={setKeyDragging}
+          setOffset={setKeyOffset}
+          visible={keyVisible}
+        />
+      </div>
+    </AppContext.Provider>
   );
 };

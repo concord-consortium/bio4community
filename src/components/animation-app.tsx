@@ -10,7 +10,7 @@ import { ZoomLayer } from "./zoom-layer";
 import { renderControls } from "../data/control-data";
 import { aniVideos, timelines } from "../data/video-data";
 import { silhouetteZoomData, cellZoomData } from "../data/zoom-data";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 import { useInitialPause } from "../hooks/use-initial-pause";
 import { delayControl } from "../utils/app-common";
@@ -18,10 +18,10 @@ import { delayControl } from "../utils/app-common";
 import "./animation-app.scss";
 
 interface AnimationAppProps {
-  ac: AppContext;
   setKeyVisible: (func: (value: boolean) => boolean) => void;
 }
-export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
+export const AnimationApp = ({ setKeyVisible }: AnimationAppProps) => {
+  const ac = useAppContext();
   const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
     control1, setControl1, control2, setControl2, disableControls, setDisableControls }
@@ -37,25 +37,24 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
     ? ac.o("ALTERNATERIGHTANIMATIONTITLE") : ac.o("RIGHTANIMATIONTITLE");
   const disabledMessage = hasZoomed ? ac.t("DISABLEDCELLMESSAGE").replace("VIDEOTITLE", tissueTitle) : "";
   return (
-    <AppContainer ac={ac} title={ac.o("ANIMATIONTITLE")}>
+    <AppContainer title={ac.o("ANIMATIONTITLE")}>
       <div className="app-row ani-row">
-        <SilhouettePane ac={ac} control1={control1} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
+        <SilhouettePane control1={control1} hasZoomed={hasZoomed} setHasZoomed={setHasZoomed} />
         <div className="controls-pane">
-          <Title ac={ac} text={ac.t("CONTROLTITLE")} />
+          <Title text={ac.t("CONTROLTITLE")} />
           { renderControls({ ac, disabled: disableControls,
             onChanges: [
               delayControl(setControl1, setDisableControls),
               delayControl(setControl2, setDisableControls)
             ] }) }
           <div className="key-box animation">
-            <KeyButton ac={ac} onClick={() => setKeyVisible(state => !state)} />
+            <KeyButton onClick={() => setKeyVisible(state => !state)} />
           </div>
         </div>
-        <StressPane ac={ac} high={highStress} />
+        <StressPane high={highStress} />
       </div>
       <div className="app-row">
         <VideoView
-          ac={ac}
           disabled={!tissueEnabled}
           percentComplete={tPercentComplete}
           playing={playingTissue}
@@ -67,7 +66,6 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
           videoFile={aniVideos.tissue[ac.organ][+control1][+control2]}
         />
         <VideoView
-          ac={ac}
           disabled={!hasZoomed || !cellEnabled || playingTissue}
           disabledMessage={disabledMessage}
           extraClass="cell-view"
@@ -81,14 +79,12 @@ export const AnimationApp = ({ ac, setKeyVisible }: AnimationAppProps) => {
         />
       </div>
       <ZoomLayer
-        ac={ac}
         setVideoEnabled={setCellEnabled}
         show={initialPause}
         type="cell"
         zoomInfo={cellZoomData.animation[ac.organ][+control1][+control2][0]}
       />
       <ZoomLayer
-        ac={ac}
         setVideoEnabled={setTissueEnabled}
         show={hasZoomed}
         type="silhouette"

@@ -1,5 +1,15 @@
 import textDict from "../../src/utils/translation/lang/en-us.json";
 
+enum Modes {
+  animation = "animation",
+  simulation = "simulation"
+}
+enum Organs {
+  brain = "brain",
+  heart = "heart",
+  nose = "nose"
+}
+
 context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
@@ -19,22 +29,26 @@ context("Test the overall app", () => {
     title: string;
   }
   const allPages: PageInfo[] = [
-    {mode: "animation", organ: "heart", title: "Plaque Animation"},
-    {mode: "animation", organ: "nose", title: "Immune Response Animation"},
-    {mode: "animation", organ: "brain", title: "Focus Animation"},
-    {mode: "simulation", organ: "heart", title: "Plaque Model Simulator"},
-    {mode: "simulation", organ: "nose", title: "Immune Response Model Simulator"},
-    {mode: "simulation", organ: "brain", title: "Focus Model Simulator"},
+    {mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation"},
+    {mode: Modes.animation, organ: Organs.nose, title: "Immune Response Animation"},
+    {mode: Modes.animation, organ: Organs.brain, title: "Focus Animation"},
+    {mode: Modes.simulation, organ: Organs.heart, title: "Plaque Model Simulator"},
+    {mode: Modes.simulation, organ: Organs.nose, title: "Immune Response Model Simulator"},
+    {mode: Modes.simulation, organ: Organs.brain, title: "Focus Model Simulator"},
   ];
   const modePages: PageInfo[] = [
-    {mode: "animation", organ: "heart", title: "Plaque Animation"},
-    {mode: "simulation", organ: "heart", title: "Plaque Model Simulator"}
+    {mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation"},
+    {mode: Modes.simulation, organ: Organs.heart, title: "Plaque Model Simulator"}
   ];
   describe("Titles are correct", () => {
     allPages.forEach(({ mode, organ, title }: PageInfo) => {
       it(`renders the title for the ${organ} ${mode}`, () => {
         visitPage(mode, organ);
-        cy.get(".app .title-box").first().should("have.text", title);
+        if (mode === Modes.animation) {
+          cy.get(".app .title-box").first().should("have.text", title);
+        } else {
+          cy.get(".app .simulation-settings .settings-header").first().should("have.text", `${title}: Settings`);
+        }
       });
     });
   });
@@ -116,7 +130,7 @@ context("Test the overall app", () => {
     const getCloseKeyButton = () => cy.get(".app .title-close-button");
     // TODO: Use this line after the new simulation key has been set up
     // modePages.forEach(({ mode, organ }: PageInfo) => {
-    [{ mode: "animation", organ: "heart", title: "Plaque Animation" }].forEach(({ mode, organ }: PageInfo) => {
+    [{ mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation" }].forEach(({ mode, organ }: PageInfo) => {
       it(`${mode} key can be displayed and hidden`, () => {
         visitPage(mode, organ);
         getKeyButton().click();

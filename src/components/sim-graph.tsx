@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import React from "react";
 import { Coord, Range } from "../data/graph-data";
-import { AppContext } from "../hooks/use-app-context";
+import { IAppContext } from "../hooks/use-app-context";
 
 import "./sim-graph.scss";
 
@@ -63,7 +63,7 @@ const polylinePoints = (data: Coord[], convertX: (x: number) => number, convertY
 };
 
 interface ISimGraph {
-  ac: AppContext;
+  ac: IAppContext;
   data: Coord[];
   percentComplete: number;
   horizontalLabel?: any;

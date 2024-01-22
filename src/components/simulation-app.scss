@@ -4,7 +4,7 @@
   display: flex;
   height: 627px;
   justify-content: space-between;
-  margin: 10px 7px;
+  margin: 7px;
 
   .control-column {
     display: flex;
@@ -72,30 +72,42 @@
       }
     }
   }
-}
-
-.simulation-footer {
-  display: flex;
-  gap: 10px;
-  margin: 0 5px 9px 9px;
-
-  .outcome-area {
-    align-items: center;
-    background-color: vars.$sim-transparent-background;
-    border-radius: 6px;
-    display: flex;
-    font-size: 18px;
-    height: 54px;
-    justify-content: center;
-    margin-right: 2px;
-    width: 740px;
-  }
 
   .simulation-button {
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 6px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    bottom: 11px;
+    cursor: pointer;
     height: 54px;
+    position: absolute;
     width: 55px;
+
+    &.reset {
+      background-image: url("../assets/new-sim/buttons/reset-button.svg");
+      right: 76px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/reset-button-hover.svg");
+      }
+    }
+
+    &.key {
+      background-image: url("../assets/new-sim/buttons/key-button.svg");
+      right: 11px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/key-button-hover.svg");
+      }
+    }
+
+    &.result {
+      background-image: url("../assets/new-sim/buttons/result-button.svg");
+      bottom: 25px;
+      left: 25px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/result-button-hover.svg");
+      }
+    }
   }
 }
