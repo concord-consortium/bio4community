@@ -8,12 +8,12 @@ import "./simulation-graphs.scss";
 
 interface ISimulationGraphsProps {
   ac: AppContext;
+  control1: boolean;
+  control2: boolean;
 }
 
-export function SimulationGraphs({ ac }: ISimulationGraphsProps) {
-  const { 
-    // control1, control2, control3,
-    getAllExperiments } = useCommonState(ac);
+export function SimulationGraphs({ ac, control1, control2 }: ISimulationGraphsProps) {
+  const { getAllExperiments } = useCommonState(ac);
 
   return (
     <div className="simulation-graphs">
@@ -22,12 +22,14 @@ export function SimulationGraphs({ ac }: ISimulationGraphsProps) {
       </div>
       <SimulationGraph
         ac={ac}
-        // data={graphData[ac.organ].left[+control1][+control2][+control3]}
-        // percentComplete={0}
-      />
+        control1={control1}
+        control2={control2}
+        />
       <SimulationGraphsCheckboxes
         ac={ac}
         experiments={getAllExperiments()}
+        control1={control1}
+        control2={control2}
       />
     </div>
   );

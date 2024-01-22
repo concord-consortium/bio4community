@@ -9,6 +9,12 @@
     stroke: #000000;
     stroke-width: 2;
   }
+
+  .data {
+    stroke-width: 2;
+    stroke: vars.$sim-dark-1;
+    fill: none;
+  }
 }
 
 .checkbox-row {
@@ -16,6 +22,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &.selected {
+    background: vars.$sim-light-5;
+    border-radius: 8px;
+  }
 
   label {
     font-family: Lato;
@@ -27,21 +38,18 @@
   }
 }
 
-svg {
+.line-style-ff {
+  stroke-dasharray: none;
+}
 
-  &.line-style-ff line {
-    stroke-dasharray: none;
-  }
+.line-style-ft {
+  stroke-dasharray: 8 2;
+}
 
-  &.line-style-ft line {
-    stroke-dasharray: 8 2;
-  }
+.line-style-tf {
+  stroke-dasharray: 2 2;
+}
 
-  &.line-style-tf line {
-    stroke-dasharray: 2 2;
-  }
-
-  &.line-style-tt line {
-    stroke-dasharray: 13 2;
-  }
+.line-style-tt {
+  stroke-dasharray: 13 2;
 }

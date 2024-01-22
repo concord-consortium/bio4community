@@ -94,6 +94,8 @@ export const SimulationApp = ({ ac/*, setKeyVisible*/ }: SimulationAppProps) => 
           />
           <SimulationGraphs
             ac={ac}
+            control1={control1}
+            control2={control2}
           />
         </div>
         <div className="video-column">
