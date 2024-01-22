@@ -74,20 +74,40 @@
   }
 
   .simulation-button {
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 6px;
+    background-color: rgba(0,0,0,0);
+    border: none;
     bottom: 11px;
+    cursor: pointer;
     height: 54px;
     position: absolute;
     width: 55px;
 
     &.reset {
+      background-image: url("../assets/new-sim/buttons/reset-button.svg");
       right: 76px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/reset-button-hover.svg");
+      }
     }
 
     &.key {
+      background-image: url("../assets/new-sim/buttons/key-button.svg");
       right: 11px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/key-button-hover.svg");
+      }
+    }
+
+    &.result {
+      background-image: url("../assets/new-sim/buttons/result-button.svg");
+      bottom: 25px;
+      left: 25px;
+
+      &:hover {
+        background-image: url("../assets/new-sim/buttons/result-button-hover.svg");
+      }
     }
   }
 }

@@ -90,8 +90,8 @@ export function SimulationSettings({
         value={control2}
       />
       <Person className="person" style={personStyle} />
-      <button className="simulation-button reset">Reset</button>
-      <button className="simulation-button key">Key</button>
+      <button className="simulation-button reset" />
+      <button className="simulation-button key" />
     </div>
   );
 }
