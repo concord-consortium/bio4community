@@ -2,13 +2,13 @@ import { clsx } from "clsx";
 import Slider from "rc-slider";
 import React from "react";
 
-import { AppContext } from "../hooks/use-app-context";
+import { AppContext } from "../../hooks/use-app-context";
 import { ButtonToggle } from "./button-toggle";
 
-import AmygdalaPerson from "../assets/new-sim/people/person-brain-amygdala.svg";
-import HeartPerson from "../assets/new-sim/people/person-artery.svg";
-import NosePerson from "../assets/new-sim/people/person-nose.svg";
-import PrefrontalCortexPerson from "../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
+import AmygdalaPerson from "../../assets/new-sim/people/person-brain-amygdala.svg";
+import HeartPerson from "../../assets/new-sim/people/person-artery.svg";
+import NosePerson from "../../assets/new-sim/people/person-nose.svg";
+import PrefrontalCortexPerson from "../../assets/new-sim/people/person-brain-prefrontal-cortex.svg";
 
 import "./simulation-settings.scss";
 

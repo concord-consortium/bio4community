@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import React from "react";
 
-import { AppContext } from "../hooks/use-app-context";
+import { AppContext } from "../../hooks/use-app-context";
 
 import "./button-toggle.scss";
 

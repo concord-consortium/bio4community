@@ -1,0 +1,17 @@
+@use "../vars.scss";
+
+.outcome-area {
+  align-items: center;
+  background-color: vars.$sim-light-7;
+  border-radius: 6px;
+  bottom: 25px;
+  color: black;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 54px;
+  justify-content: center;
+  margin-right: 2px;
+  position: absolute;
+  width: 398px;
+}
