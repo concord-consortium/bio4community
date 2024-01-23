@@ -1,10 +1,14 @@
 
 import React, { useState } from "react";
 
+import React, { useState } from "react";
+
 // import { renderControls } from "../data/control-data";
 // import { graphData, graphRanges } from "../data/graph-data";
 // import { simVideos, timelines } from "../data/video-data";
 // import { cellZoomData } from "../data/zoom-data";
+import { useAppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
 import { useAppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 // import { useInitialPause } from "../hooks/use-initial-pause";
@@ -22,6 +26,7 @@ import { SimulationGraphs } from "./simulation-graphs";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
+import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
@@ -117,6 +122,10 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
           </div>
           <div className="video">
             <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
+            <SimulationOutcome
+              control1={control1}
+              control2={control2}
+            />
             <SimulationOutcome
               control1={control1}
               control2={control2}
