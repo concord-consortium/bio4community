@@ -33,6 +33,11 @@
   &.selected {
     background: vars.$sim-light-5;
     border-radius: 8px;
+
+    label {
+      color: vars.$sim-dark-1;
+      font-weight: bold;
+    }
   }
 
   label {
@@ -41,7 +46,7 @@
     margin-left: 6px;
     font-weight: bold;
     line-height: 1.86;
-    color: vars.$sim-dark-1;
+    color: vars.$text-grey;
   }
 
 }

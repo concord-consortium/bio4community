@@ -32,6 +32,18 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
+  const [experimentsRun, setExperimentsRun] = useState([[false, false], [false, false]]);
+  // TODO remove this once videos are implemented
+  // Set default state so that graph is enabled
+  experimentsRun[+control1][+control2] = true;
+
+  function setExperimentIsRun(c1: boolean, c2: boolean) {
+    // Make a new copy of the array so React will definitely know it has changed.
+    const newArray = { ...experimentsRun };
+    newArray[+c1][+c2] = true;
+    setExperimentsRun(newArray);
+  }
+  
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -90,11 +102,13 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
+            setExperimentIsRun={setExperimentIsRun}
           />
           <SimulationGraphs
             control1={control1}
             control2={control2}
             simulationTime={simulationTime}
+            experimentsRun={experimentsRun}
           />
         </div>
         <div className="video-column">

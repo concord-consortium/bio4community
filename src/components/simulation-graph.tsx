@@ -18,9 +18,10 @@ interface ISimulationGraphProps {
   control1: boolean;
   control2: boolean;
   simulationTime: number;
+  graphsShowing: boolean[][];
 }
 
-export const SimulationGraph = ({ control1, control2, simulationTime }: ISimulationGraphProps) => {
+export const SimulationGraph = ({ control1, control2, simulationTime, graphsShowing }: ISimulationGraphProps) => {
   const ac = useAppContext();
   const { organ } = ac;
   const lineClass = "line-style-" + (control1 ? "t" : "f") + (control2 ? "t" : "f");

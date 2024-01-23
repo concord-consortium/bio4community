@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCommonState } from "../hooks/use-common-state";
 import { useAppContext } from "../hooks/use-app-context";
 import { SimulationGraphsCheckboxes } from "./simulation-graphs-checkboxes";
@@ -10,11 +10,22 @@ interface ISimulationGraphsProps {
   control1: boolean;
   control2: boolean;
   simulationTime: number;
+  experimentsRun: boolean[][];
 }
 
-export function SimulationGraphs({ control1, control2, simulationTime }: ISimulationGraphsProps) {
+export function SimulationGraphs({ control1, control2, simulationTime, experimentsRun }: ISimulationGraphsProps) {
   const ac = useAppContext();
   const { getAllExperiments } = useCommonState(ac);
+
+  // Which checkboxes are checked
+  const [graphsShowing, setGraphsShowing] = useState([[false, false], [false, false]]);
+  graphsShowing[+control1][+control2] = true;
+
+  function setGraphIsShowing(c1: boolean, c2: boolean, value: boolean) {
+    const newArray = [ ... graphsShowing ];
+    newArray[+c1][+c2] = value;
+    setGraphsShowing(newArray);
+  }
 
   return (
     <div className="simulation-graphs">
@@ -25,11 +36,15 @@ export function SimulationGraphs({ control1, control2, simulationTime }: ISimula
         control1={control1}
         control2={control2}
         simulationTime={simulationTime}
+        graphsShowing={graphsShowing}
         />
       <SimulationGraphsCheckboxes
         experiments={getAllExperiments(ac)}
         control1={control1}
         control2={control2}
+        experimentsRun={experimentsRun}
+        graphsShowing={graphsShowing}
+        setGraphIsShowing={setGraphIsShowing}
       />
     </div>
   );
