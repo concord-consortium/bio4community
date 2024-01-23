@@ -11,9 +11,10 @@ import { useCommonState } from "../hooks/use-common-state";
 // import { delayControl } from "../utils/app-common";
 // import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-import { PaneTitle } from "./pane-title";
+// import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
+import { SimulationVideo } from "./new-simulation/simulation-video";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -21,7 +22,6 @@ import { SimulationSettings } from "./new-simulation/simulation-settings";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
-import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
   setKeyVisible: (func: (value: boolean) => boolean) => void;
@@ -96,18 +96,12 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             </div>
           </div>
         </div>
-        <div className="video-column">
-          <div className="video">
-            <PaneTitle title={ac.o("LEFTSIMULATIONTITLE")} />
-          </div>
-          <div className="video">
-            <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
-            <SimulationOutcome
-              control1={control1}
-              control2={control2}
-            />
-          </div>
-        </div>
+        <SimulationVideo
+          control1={control1}
+          control2={control2}
+          playing={playingVideo}
+          simulationTime={simulationTime}
+        />
       </div>
       {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />
