@@ -33,12 +33,6 @@ export const SimulationVideo = ({
   const backVideoRef = useRef<HTMLVideoElement | null>(null);
   const [backVideoFile, setBackVideoFile] = useState<any>();
 
-  // Update the back video after the front video is finished loading
-  const handleLoadedData = () => {
-    setBackVideoFile(videoFile);
-    setLoading(false);
-  };
-
   // pause() and play() are callbacks so they can be used in effects
   const pause = useCallback(() => {
     if (videoRef.current) {
@@ -51,6 +45,13 @@ export const SimulationVideo = ({
       videoRef.current.play();
     }
   }, [videoRef]);
+
+  // Update the back video after the front video is finished loading
+  const handleLoadedData = () => {
+    setBackVideoFile(videoFile);
+    setLoading(false);
+    if (playing) play();
+  };
 
   // Reload the video when it changes
   useEffect(() => {
