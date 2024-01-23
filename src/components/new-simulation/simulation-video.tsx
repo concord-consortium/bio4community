@@ -1,7 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { clsx } from "clsx";
 
 import { useAppContext } from "../../hooks/use-app-context";
 import { PaneTitle } from "../pane-title";
@@ -15,12 +14,13 @@ import "./simulation-video.scss";
 interface ISimulationVideo {
   control1: boolean;
   control2: boolean;
-  extraClass?: string;
+  displayOutcome: boolean;
   playing: boolean;
+  setDisplayOutcome: (val: boolean) => void;
   simulationTime: number;
 }
 export const SimulationVideo = ({
-  control1, control2, extraClass, playing, simulationTime
+  control1, control2, displayOutcome, playing, setDisplayOutcome, simulationTime
 }: ISimulationVideo) => {
   const ac = useAppContext();
   const videoFile = simVideos[ac.organ][+control1][+control2][simulationTime] ?? simVideos.heart[0][0][0];
@@ -86,13 +86,15 @@ export const SimulationVideo = ({
       videoRef.current.currentTime = 0;
       play();
     }
+    // Reveal the outcome when the final video is finished
+    if (simulationTime === 2 && !displayOutcome) setDisplayOutcome(true);
   };
 
   return (
-    <div className={clsx("video-area", extraClass)}>
+    <div className="video-area">
       <video
         ref={backVideoRef}
-        className={clsx("simulation-video", extraClass)}
+        className="simulation-video"
       >
         <source src={backVideoFile} type={"video/mp4"} />
       </video>
@@ -100,16 +102,16 @@ export const SimulationVideo = ({
         ref={videoRef}
         onLoadedData={handleLoadedData}
         onEnded={onEnded}
-        className={clsx("simulation-video", extraClass)}
+        className="simulation-video"
       >
         <source src={videoFile} type={"video/mp4"} />
       </video>
       <PaneTitle extraClass="video-title top-video-title" title={ac.o("LEFTSIMULATIONTITLE")} />
       <PaneTitle extraClass="video-title bottom-video-title" title={ac.o("RIGHTSIMULATIONTITLE")} />
-      <SimulationOutcome
+      {displayOutcome && <SimulationOutcome
         control1={control1}
         control2={control2}
-      />
+      />}
     </div>
   );
 };

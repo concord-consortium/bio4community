@@ -31,6 +31,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
+  const [displayOutcome, setDisplayOutcome] = useState(false);
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -99,7 +100,9 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
         <SimulationVideo
           control1={control1}
           control2={control2}
+          displayOutcome={displayOutcome}
           playing={playingVideo}
+          setDisplayOutcome={setDisplayOutcome}
           simulationTime={simulationTime}
         />
       </div>
