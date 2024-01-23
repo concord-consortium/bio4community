@@ -173,16 +173,16 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         HeartLowIgnoreYear50
       ],
       [
-        HeartHighIgnoreYear20,
-        HeartHighIgnoreYear35,
-        HeartHighIgnoreYear50
+        HeartLowRespondYear20,
+        HeartLowRespondYear35,
+        HeartLowRespondYear50
       ]
     ],
     [
       [
-        HeartLowRespondYear20,
-        HeartLowRespondYear35,
-        HeartLowRespondYear50
+        HeartHighIgnoreYear20,
+        HeartHighIgnoreYear35,
+        HeartHighIgnoreYear50
       ],
       [
         HeartHighRespondYear20,
@@ -199,16 +199,16 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         NoseLowIgnoreDay16
       ],
       [
-        NoseHighIgnoreDay0,
-        NoseHighIgnoreDay8,
-        NoseHighIgnoreDay16
+        NoseLowRespondDay0,
+        NoseLowRespondDay8,
+        NoseLowRespondDay16
       ]
     ],
     [
       [
-        NoseLowRespondDay0,
-        NoseLowRespondDay8,
-        NoseLowRespondDay16
+        NoseHighIgnoreDay0,
+        NoseHighIgnoreDay8,
+        NoseHighIgnoreDay16
       ],
       [
         NoseHighRespondDay0,
@@ -225,16 +225,16 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         BrainAttentionLowWeek12
       ],
       [
-        BrainFearLowWeek0,
-        BrainFearLowWeek6,
-        BrainFearLowWeek12
+        BrainAttentionHighWeek0,
+        BrainAttentionHighWeek6,
+        BrainAttentionHighWeek12
       ]
     ],
     [
       [
-        BrainAttentionHighWeek0,
-        BrainAttentionHighWeek6,
-        BrainAttentionHighWeek12
+        BrainFearLowWeek0,
+        BrainFearLowWeek6,
+        BrainFearLowWeek12
       ],
       [
         BrainFearHighWeek0,
