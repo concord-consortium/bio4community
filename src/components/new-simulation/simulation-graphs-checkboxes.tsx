@@ -1,8 +1,8 @@
 import React from "react";
 import { clsx } from "clsx";
-import { useAppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../../hooks/use-app-context";
 
-import KeyLine from "../assets/new-sim/key-line.svg";
+import KeyLine from "../../assets/new-sim/key-line.svg";
 
 interface ISimulationGraphsCheckboxesProps {
   experiments: { option1: boolean, option2: boolean }[];

@@ -2,8 +2,8 @@
 /* eslint-disable react/no-unknown-property */
 import React, { ReactElement } from "react";
 import { clsx } from "clsx";
-import { useAppContext } from "../hooks/use-app-context";
-import { useCommonState } from "../hooks/use-common-state";
+import { useAppContext } from "../../hooks/use-app-context";
+import { useCommonState } from "../../hooks/use-common-state";
 import { getData, getSVGPath } from "./simulation-data";
 
 const 

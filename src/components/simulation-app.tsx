@@ -13,7 +13,7 @@ import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
-import { SimulationGraphs } from "./simulation-graphs";
+import { SimulationResults } from "./new-simulation/simulation-results";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -103,7 +103,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setSimulationTime={setSimulationTime}
             setExperimentIsRun={setExperimentIsRun}
           />
-          <SimulationGraphs
+          <SimulationResults
             control1={control1}
             control2={control2}
             simulationTime={simulationTime}
