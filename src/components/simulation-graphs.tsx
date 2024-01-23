@@ -1,18 +1,18 @@
 import React from "react";
 import { useCommonState } from "../hooks/use-common-state";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { SimulationGraphsCheckboxes } from "./simulation-graphs-checkboxes";
 import { SimulationGraph } from "./simulation-graph";
 
 import "./simulation-graphs.scss";
 
 interface ISimulationGraphsProps {
-  ac: AppContext;
   control1: boolean;
   control2: boolean;
 }
 
-export function SimulationGraphs({ ac, control1, control2 }: ISimulationGraphsProps) {
+export function SimulationGraphs({ control1, control2 }: ISimulationGraphsProps) {
+  const ac = useAppContext();
   const { getAllExperiments } = useCommonState(ac);
 
   return (
@@ -21,12 +21,10 @@ export function SimulationGraphs({ ac, control1, control2 }: ISimulationGraphsPr
         {ac.o("SIMGRAPHTITLE")}
       </div>
       <SimulationGraph
-        ac={ac}
         control1={control1}
         control2={control2}
         />
       <SimulationGraphsCheckboxes
-        ac={ac}
         experiments={getAllExperiments()}
         control1={control1}
         control2={control2}

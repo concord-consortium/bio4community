@@ -1,21 +1,21 @@
 import React from "react";
 import { clsx } from "clsx";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 // import { useCommonState } from "../hooks/use-common-state";
 
 import KeyLine from "../assets/new-sim/key-line.svg";
 
 
 interface ISimulationGraphsCheckboxesProps {
-  ac: AppContext;
   experiments: { option1: boolean, option2: boolean }[];
   control1: boolean;
   control2: boolean;
 }
 
 
-export function SimulationGraphsCheckboxes({ ac, experiments, control1, control2 }: 
-  ISimulationGraphsCheckboxesProps) {
+export function SimulationGraphsCheckboxes({ experiments, control1, control2 }: 
+    ISimulationGraphsCheckboxesProps) {
+  const ac = useAppContext();
 
   function optionLabel(optionNumber: number, optionValue: boolean) {
     return ac.o(`SIMCONTROL${optionNumber}OPTION${optionValue ? 2 : 1}`);

@@ -92,7 +92,6 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setSimulationTime={setSimulationTime}
           />
           <SimulationGraphs
-            ac={ac}
             control1={control1}
             control2={control2}
           />

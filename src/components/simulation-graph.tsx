@@ -1,7 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
 import React from "react";
-import { AppContext } from "../hooks/use-app-context";
+import { useAppContext } from "../hooks/use-app-context";
 import { getSVGPath } from "./simulation-data";
 
 const 
@@ -13,12 +13,12 @@ const
 
 
 interface ISimulationGraphProps {
-  ac: AppContext;
   control1: boolean;
   control2: boolean;
 }
 
-export const SimulationGraph = ({ ac, control1, control2 }: ISimulationGraphProps) => {
+export const SimulationGraph = ({ control1, control2 }: ISimulationGraphProps) => {
+  const ac = useAppContext();
   const { organ } = ac;
   const lineClass = "line-style-" + (control1 ? "t" : "f") + (control2 ? "t" : "f");
 
