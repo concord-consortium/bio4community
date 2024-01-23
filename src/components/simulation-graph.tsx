@@ -1,7 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-unknown-property */
-import React from "react";
+import React, { ReactElement } from "react";
+import { clsx } from "clsx";
 import { useAppContext } from "../hooks/use-app-context";
+import { useCommonState } from "../hooks/use-common-state";
 import { getData, getSVGPath } from "./simulation-data";
 
 const 
@@ -23,8 +25,9 @@ interface ISimulationGraphProps {
 
 export const SimulationGraph = ({ control1, control2, simulationTime, graphsShowing }: ISimulationGraphProps) => {
   const ac = useAppContext();
+  const { getAllExperiments } = useCommonState(ac);
+
   const { organ } = ac;
-  const lineClass = "line-style-" + (control1 ? "t" : "f") + (control2 ? "t" : "f");
 
   const data = getData(organ, control1, control2);
   const dotLoc =
@@ -32,28 +35,50 @@ export const SimulationGraph = ({ control1, control2, simulationTime, graphsShow
     simulationTime === 1 ? data?.mid :
     data?.end;
 
-  let dataPlot = null;  
+  // Generate the SVG code for each visible graph.
+  // Keep the selected one separate so that it can be displayed in the foreground.
+  let selectedDataPlot = null;
+  const backgroundDataPlots: ReactElement[] = [];
   if (dotLoc) {
-    dataPlot = 
+    getAllExperiments(ac).forEach((e, index) => {
+      const showing = graphsShowing[+e.option1][+e.option2];
+      if (!showing) return null;
+
+      const selected = e.option1===control1 && e.option2===control2;
+      const key = "" + (e.option1 ? "t" : "f") + (e.option2 ? "t" : "f");
+      const classForOptions = "line-style-" + index;
+      const lineClasses = clsx("data", classForOptions, { selected });
+      
       // Use a transform to make a nice coordinate space for the data with origin at the lower left
       // Define a clip are (left part of graph, with blue background). Then draw:
       //  * The blue background
       //  * A lighter line all the way across
       //  * A darker line to the time point
       //  * A dot at the time point
-      <g transform={`translate(${yLabelWidth}, ${topMargin + dataHeight}) scale(1, -1)`}>
-        {/* Blue background and darker line are clipped to the region representing elapsed time */}
-        <clipPath id="clip">
-          <rect x="0" y="0" width={dotLoc[0]} height={dataHeight} />
-        </clipPath>
-        <rect x="0" y="0" width={dataWidth} height={dataHeight} fill="#cdebf263" clipPath="url(#clip)"/>
-        <path d={getSVGPath(organ, control1, control2)} className={`data ${lineClass}`} opacity="0.5"/>
-        <path d={getSVGPath(organ, control1, control2)} className={`data ${lineClass}`} clipPath="url(#clip)"/>
-        <circle cx={dotLoc[0]} cy={dotLoc[1]} r={dotSize} className="data-dot" />
-      </g>;
+      const plot =
+        <g key={key} transform={`translate(${yLabelWidth}, ${topMargin + dataHeight}) scale(1, -1)`}>
+          {/* Blue background and darker line are clipped to the region representing elapsed time */}
+          { selected &&
+            <clipPath id="clip">
+              <rect x="0" y="0" width={dotLoc[0]} height={dataHeight} />
+            </clipPath> }
+          { selected &&
+            <rect x="0" y="0" width={dataWidth} height={dataHeight} fill="#cdebf263" clipPath="url(#clip)"/> }
+          <path d={getSVGPath(organ, e.option1, e.option2)} className={lineClasses} opacity="0.5"/>
+          <path d={getSVGPath(organ, e.option1, e.option2)} className={lineClasses} clipPath="url(#clip)"/>
+          { selected && 
+            <circle cx={dotLoc[0]} cy={dotLoc[1]} r={dotSize} className="data-dot" /> }
+        </g>;
+      
+      if (selected) {
+        selectedDataPlot = plot;
+      } else {
+        backgroundDataPlots.push(plot);
+      }
+    });
   }
 
-    return (
+  return (
     <div className="sim-graph">
       <svg xmlns="http://www.w3.org/2000/svg" 
         height={dataHeight + xLabelHeight + rightMargin} 
@@ -69,7 +94,8 @@ export const SimulationGraph = ({ control1, control2, simulationTime, graphsShow
             <tspan x="0" dy={-fontHeight}>{ac.o("YLABEL1")}</tspan>
             <tspan x="0" dy={fontHeight}>{ac.o("YLABEL2")}</tspan>
           </text>
-          {dataPlot}
+          {backgroundDataPlots}
+          {selectedDataPlot}
       </svg>
     </div>
   );

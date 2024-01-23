@@ -22,7 +22,7 @@ export function SimulationGraphsCheckboxes(
     return ac.o(`SIMCONTROL${optionNumber}OPTION${optionValue ? 2 : 1}`);
   }
 
-  const checkboxList = experiments.map((e) => {
+  const checkboxList = experiments.map((e, index) => {
       const key = "" + (e.option1 ? "t" : "f") + (e.option2 ? "t" : "f");
       const enabled = experimentsRun[+e.option1][+e.option2];
       const selected = e.option1===control1 && e.option2===control2;
@@ -41,7 +41,7 @@ export function SimulationGraphsCheckboxes(
             </label>
           </span>
           {graphsShowing[+e.option1][+e.option2] && 
-            <KeyLine className={"line-style-" + key}/>}
+            <KeyLine className={"line-style-" + index}/>}
         </div>);    
   });
 

@@ -12,8 +12,12 @@
 
   .data {
     stroke-width: 2;
-    stroke: vars.$sim-dark-1;
     fill: none;
+    stroke: vars.$data-grey;
+
+    &.selected {
+      stroke: vars.$sim-dark-1;
+    }
   }
 
   .data-dot {
@@ -38,6 +42,10 @@
       color: vars.$sim-dark-1;
       font-weight: bold;
     }
+
+    svg {
+      stroke: vars.$sim-dark-1;
+    }
   }
 
   label {
@@ -49,20 +57,25 @@
     color: vars.$text-grey;
   }
 
+  svg {
+    stroke: vars.$data-grey;
+    stroke-width: 2;
+  }
+
 }
 
-.line-style-ff {
+.line-style-0 {
   stroke-dasharray: none;
 }
 
-.line-style-ft {
+.line-style-1 {
   stroke-dasharray: 8 2;
 }
 
-.line-style-tf {
+.line-style-2 {
   stroke-dasharray: 2 2;
 }
 
-.line-style-tt {
-  stroke-dasharray: 13 2;
+.line-style-3 {
+  stroke-dasharray: 15 2;
 }
