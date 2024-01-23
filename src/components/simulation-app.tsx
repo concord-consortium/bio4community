@@ -120,10 +120,6 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
               control1={control1}
               control2={control2}
             />
-            <SimulationOutcome
-              control1={control1}
-              control2={control2}
-            />
           </div>
         </div>
       </div>
