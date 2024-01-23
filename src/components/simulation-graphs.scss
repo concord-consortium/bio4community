@@ -15,10 +15,17 @@
     stroke: vars.$sim-dark-1;
     fill: none;
   }
+
+  .data-dot {
+    stroke: none;
+    fill: vars.$sim-dark-1;
+  }
 }
 
 .checkbox-row {
-  width: 275px;
+  width: 270px;
+  margin-left: 35px;
+  padding: 0 8px 0 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +43,7 @@
     line-height: 1.86;
     color: vars.$sim-dark-1;
   }
+
 }
 
 .line-style-ff {

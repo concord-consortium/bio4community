@@ -94,6 +94,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
           <SimulationGraphs
             control1={control1}
             control2={control2}
+            simulationTime={simulationTime}
           />
         </div>
         <div className="video-column">

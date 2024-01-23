@@ -9,9 +9,10 @@ import "./simulation-graphs.scss";
 interface ISimulationGraphsProps {
   control1: boolean;
   control2: boolean;
+  simulationTime: number;
 }
 
-export function SimulationGraphs({ control1, control2 }: ISimulationGraphsProps) {
+export function SimulationGraphs({ control1, control2, simulationTime }: ISimulationGraphsProps) {
   const ac = useAppContext();
   const { getAllExperiments } = useCommonState(ac);
 
@@ -23,6 +24,7 @@ export function SimulationGraphs({ control1, control2 }: ISimulationGraphsProps)
       <SimulationGraph
         control1={control1}
         control2={control2}
+        simulationTime={simulationTime}
         />
       <SimulationGraphsCheckboxes
         experiments={getAllExperiments()}
