@@ -36,12 +36,13 @@ export const useCommonState = (ac: IAppContext) => {
 
   /**
    * Return a list of all of the control combinations that are legal in the current context.
+   * They will be listed in a reasonable display order.
    * @returns an array of objects like `{ option1: false, option2: true }`.
    */
-  function getAllExperiments() {
+  function getAllExperiments(con: IAppContext) {
     const result = [];
-    for (const opt1 of [false, true]) {
-      for (const opt2 of [false, true]) {
+    for (const opt1 of invertedControl(con, 1) ? [true, false] : [false, true]) {
+      for (const opt2 of invertedControl(con, 2) ? [true, false] : [false, true]) {
         result.push({
           option1: opt1,
           option2: opt2

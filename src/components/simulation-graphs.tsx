@@ -27,7 +27,7 @@ export function SimulationGraphs({ control1, control2, simulationTime }: ISimula
         simulationTime={simulationTime}
         />
       <SimulationGraphsCheckboxes
-        experiments={getAllExperiments()}
+        experiments={getAllExperiments(ac)}
         control1={control1}
         control2={control2}
       />
