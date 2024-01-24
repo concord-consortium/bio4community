@@ -163,10 +163,17 @@ const NoseCellCase4 = {
 };
 
 // Videos for sims
+<<<<<<< HEAD
 // [organ][control1][control2][time (cell only)]
 export const simVideos: Record<string, Record<number, any>[][]> = {
   [Organs.heart]: [
     [
+=======
+// [tissue | cell][organ][control1][control2][control3][time (cell only)]
+export const simVideos: Record<string, Record<string, Record<number, any>[][][]>> = {
+  "tissue": {
+    [Organs.heart]: [
+>>>>>>> new-simulation
       [
         HeartLowIgnoreYear20,
         HeartLowIgnoreYear35,
@@ -178,7 +185,11 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         HeartLowRespondYear50
       ]
     ],
+<<<<<<< HEAD
     [
+=======
+    [Organs.nose]: [
+>>>>>>> new-simulation
       [
         HeartHighIgnoreYear20,
         HeartHighIgnoreYear35,
@@ -189,10 +200,15 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         HeartHighRespondYear35,
         HeartHighRespondYear50
       ]
+<<<<<<< HEAD
     ]
   ],
   [Organs.nose]: [
     [
+=======
+    ],
+    [Organs.brain]: [
+>>>>>>> new-simulation
       [
         NoseLowIgnoreDay0,
         NoseLowIgnoreDay8,
@@ -203,8 +219,15 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         NoseLowRespondDay8,
         NoseLowRespondDay16
       ]
+<<<<<<< HEAD
     ],
     [
+=======
+    ]
+  },
+  "cell": {
+    [Organs.heart]: [
+>>>>>>> new-simulation
       [
         NoseHighIgnoreDay0,
         NoseHighIgnoreDay8,
@@ -215,10 +238,15 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         NoseHighRespondDay8,
         NoseHighRespondDay16
       ]
+<<<<<<< HEAD
     ]
   ],
   [Organs.brain]: [
     [
+=======
+    ],
+    [Organs.nose]: [
+>>>>>>> new-simulation
       [
         BrainAttentionLowWeek0,
         BrainAttentionLowWeek6,
@@ -230,7 +258,11 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
         BrainAttentionHighWeek12
       ]
     ],
+<<<<<<< HEAD
     [
+=======
+    [Organs.brain]: [
+>>>>>>> new-simulation
       [
         BrainFearLowWeek0,
         BrainFearLowWeek6,

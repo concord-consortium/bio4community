@@ -2,9 +2,15 @@ import { clsx } from "clsx";
 import React from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
+<<<<<<< HEAD
 
 import "./button-toggle.scss";
 import { invertedControl } from "../../hooks/use-common-state";
+=======
+import { invertedControl } from "../../hooks/use-common-state";
+
+import "./button-toggle.scss";
+>>>>>>> new-simulation
 
 interface IButtonToggleProps {
   controlNumber: number; // 1 for the top control, 2 for the bottom control
