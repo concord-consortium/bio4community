@@ -70,16 +70,10 @@ context("Test the overall app", () => {
       getSimulationPlayButton().should("have.class", "playing");
       getSimulationPlayButton().click();
       getSimulationPlayButton().should("not.have.class", "playing");
+      // The video should start playing when the user changes the simulation time
       cy.get(".app .simulation-settings .rc-slider").click("right");
       getSimulationPlayButton().should("have.class", "playing");
     });
-    // it(`can skip by clicking timeline mark label`, () => {
-    //   const getLastLabel = () => cy.get(".app .video-view").first().find(".rc-slider-mark-text").last();
-    //   getAnimationPlayButton(true).click();
-    //   getAnimationPlayButton(true).should("have.text", "Pause");
-    //   getLastLabel().click();
-    //   getAnimationPlayButton(true).should("have.text", "Play");
-    // });
     it(`brain videos switch and start playing when brain region changes`, () => {
       visitPage("simulation", "brain");
       topVideoTitle().should("have.text", "Simulated Prefrontal Cortex");
