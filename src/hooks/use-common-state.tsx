@@ -1,23 +1,8 @@
 import React, { useState } from "react";
 import { ArteryOverlay } from "../components/artery-overlay";
-import { Modes, Organs } from "../utils/app-constants";
+import { Organs } from "../utils/app-constants";
+import { invertedControl } from "../utils/control-utils";
 import { IAppContext } from "./use-app-context";
-
-// Some simulation controls are inverted. In other words, they start true, and true is the left option.
-export function invertedControl(ac: IAppContext, controlNumber: number) {
-  if (ac.mode === Modes.simulation) {
-    if (ac.organ === Organs.brain) {
-      if (controlNumber === 2) {
-        return true;
-      }
-    } else {
-      if (controlNumber === 1) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
 
 export const useCommonState = (ac: IAppContext) => {
   const [playingTissue, setPlayingTissue] = useState(false);
@@ -33,26 +18,8 @@ export const useCommonState = (ac: IAppContext) => {
 
   const tissueOverlay = ac.organ === Organs.heart ? <ArteryOverlay /> : "";
 
-  /**
-   * Return a list of all of the control combinations that are legal in the current context.
-   * They will be listed in a reasonable display order.
-   * @returns an array of objects like `{ option1: false, option2: true }`.
-   */
-  function getAllExperiments(con: IAppContext) {
-    const result = [];
-    for (const opt1 of invertedControl(con, 1) ? [true, false] : [false, true]) {
-      for (const opt2 of invertedControl(con, 2) ? [true, false] : [false, true]) {
-        result.push({
-          option1: opt1,
-          option2: opt2
-        });
-      }
-    }
-    return result;
-  }
-
   return { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
     cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
     control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls,
-    tissueOverlay, getAllExperiments };
+    tissueOverlay };
 };

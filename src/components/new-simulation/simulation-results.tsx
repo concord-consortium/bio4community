@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useCommonState } from "../../hooks/use-common-state";
 import { useAppContext } from "../../hooks/use-app-context";
 import { SimulationGraphsCheckboxes } from "./simulation-graphs-checkboxes";
 import { SimulationGraph } from "./simulation-graph";
+import { getAllExperiments } from "../../utils/control-utils";
 
 import "./simulation-results.scss";
 
@@ -15,7 +15,6 @@ interface ISimulationResultsProps {
 
 export function SimulationResults({ control1, control2, simulationTime, experimentsRun }: ISimulationResultsProps) {
   const ac = useAppContext();
-  const { getAllExperiments } = useCommonState(ac);
 
   // Which checkboxes are checked
   const [graphsShowing, setGraphsShowing] = useState([[false, false], [false, false]]);

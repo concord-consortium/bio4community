@@ -3,8 +3,8 @@
 import React, { ReactElement } from "react";
 import { clsx } from "clsx";
 import { useAppContext } from "../../hooks/use-app-context";
-import { useCommonState } from "../../hooks/use-common-state";
 import { getData, getSVGPath } from "../../data/graph-data";
+import { getAllExperiments } from "../../utils/control-utils";
 
 const 
   dataWidth = 275,
@@ -25,7 +25,6 @@ interface ISimulationGraphProps {
 
 export const SimulationGraph = ({ control1, control2, simulationTime, graphsShowing }: ISimulationGraphProps) => {
   const ac = useAppContext();
-  const { getAllExperiments } = useCommonState(ac);
 
   const { organ } = ac;
 
