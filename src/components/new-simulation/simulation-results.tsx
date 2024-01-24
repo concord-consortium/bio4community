@@ -17,8 +17,9 @@ export function SimulationResults({ control1, control2, simulationTime, experime
   const ac = useAppContext();
 
   // Which checkboxes are checked
-  const [graphsShowing, setGraphsShowing] = useState([[false, false], [false, false]]);
-  graphsShowing[+control1][+control2] = true;
+  const gs = [[false, false], [false, false]];  
+  gs[+control1][+control2] = true;  
+  const [graphsShowing, setGraphsShowing] = useState(gs);
 
   function setGraphIsShowing(c1: boolean, c2: boolean, value: boolean) {
     const newArray = [ ... graphsShowing ];
