@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAppContext } from "../../hooks/use-app-context";
 import { SimulationGraphsCheckboxes } from "./simulation-graphs-checkboxes";
 import { SimulationGraph } from "./simulation-graph";
@@ -17,15 +17,22 @@ export function SimulationResults({ control1, control2, simulationTime, experime
   const ac = useAppContext();
 
   // Which checkboxes are checked
-  const gs = [[false, false], [false, false]];  
-  gs[+control1][+control2] = true;  
-  const [graphsShowing, setGraphsShowing] = useState(gs);
+  const [graphsShowing, setGraphsShowing] = useState([[false, false], [false, false]]);
 
-  function setGraphIsShowing(c1: boolean, c2: boolean, value: boolean) {
-    const newArray = [ ... graphsShowing ];
-    newArray[+c1][+c2] = value;
-    setGraphsShowing(newArray);
-  }
+  const setGraphIsShowing = useCallback(
+    (c1: boolean, c2: boolean, value: boolean) => {
+      const newArray = [ ... graphsShowing ];
+      newArray[+c1][+c2] = value;
+      setGraphsShowing(newArray);
+    },
+    [graphsShowing]);
+
+  // When selected state changes, the graph must be shown
+  useEffect(() => {
+    if (!graphsShowing[+control1][+control2]) {
+      setGraphIsShowing(control1, control2, true);
+    }
+  }, [control1, control2, graphsShowing, setGraphIsShowing]);
 
   return (
     <div className="simulation-graphs">

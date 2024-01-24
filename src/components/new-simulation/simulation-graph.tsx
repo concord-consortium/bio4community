@@ -10,8 +10,9 @@ const
   dataWidth = 275,
   dataHeight = 115,
   yLabelWidth = 35,
-  xLabelHeight = 17,
+  xLabelHeight = 21,
   fontHeight = 14,
+  lineHeight = fontHeight*1.2,
   rightMargin = 6, // Leaves room for the dot
   topMargin = 6,
   dotSize = 6;
@@ -80,18 +81,18 @@ export const SimulationGraph = ({ control1, control2, simulationTime, graphsShow
   return (
     <div className="sim-graph">
       <svg xmlns="http://www.w3.org/2000/svg" 
-        height={dataHeight + xLabelHeight + rightMargin} 
-        width={dataWidth + yLabelWidth + topMargin}>
+        height={dataHeight + xLabelHeight + topMargin} 
+        width={dataWidth + yLabelWidth + rightMargin}>
           <line x1={yLabelWidth} x2={yLabelWidth} 
                 y1={topMargin} y2={topMargin + dataHeight} className="axis"/>
           <line x1={yLabelWidth} x2={yLabelWidth+dataWidth} 
                 y1={topMargin + dataHeight} y2={topMargin + dataHeight} className="axis"/>
-          <text x={yLabelWidth+dataWidth/2} y={topMargin + dataHeight + fontHeight} textAnchor="middle">
+          <text x={yLabelWidth+dataWidth/2} y={topMargin + dataHeight + lineHeight} textAnchor="middle">
             {ac.o("XLABEL")}
           </text>
-          <text textAnchor="middle" transform={`translate(${yLabelWidth-4}, ${topMargin + dataHeight/2}) rotate(-90)`}>
-            <tspan x="0" dy={-fontHeight}>{ac.o("YLABEL1")}</tspan>
-            <tspan x="0" dy={fontHeight}>{ac.o("YLABEL2")}</tspan>
+          <text textAnchor="middle" transform={`translate(${yLabelWidth-7}, ${topMargin + dataHeight/2}) rotate(-90)`}>
+            <tspan x="0" dy={-lineHeight}>{ac.o("YLABEL1")}</tspan>
+            <tspan x="0" dy={lineHeight}>{ac.o("YLABEL2")}</tspan>
           </text>
           {backgroundDataPlots}
           {selectedDataPlot}

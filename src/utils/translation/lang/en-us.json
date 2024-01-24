@@ -136,8 +136,8 @@
   "BRAIN.KEY8": "Label8",
 
   "HEART.XLABEL": "Simulated Time (years)",
-  "HEART.YLABEL1": "Plaque Size",
-  "HEART.YLABEL2": " ",
+  "HEART.YLABEL1": "Plaque",
+  "HEART.YLABEL2": "Size",
   "NOSE.XLABEL": "Simulated Time (days)",
   "NOSE.YLABEL1": "Mucous",
   "NOSE.YLABEL2": "Thickness",
