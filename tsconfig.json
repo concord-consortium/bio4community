@@ -1,22 +1,25 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./dist/",
     "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "es2018",
-    "allowJs": true,
+    "target": "ES2018",
+    "lib": ["dom", "dom.iterable", "ES2018"],
+    "module": "ESNext",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
     "importHelpers": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "resolveJsonModule": true,
     "strict": true,
+    "experimentalDecorators": true,
     "types": [],
     "jsx": "react",
-    "lib": ["dom", "dom.iterable", "es2018"]
+    "noImplicitAny": true
   },
+
   "include": [
     "./src/**/*"
-  ]
+  ],
+  "exclude": ["**/node_modules", "**/.*/"]
 }
