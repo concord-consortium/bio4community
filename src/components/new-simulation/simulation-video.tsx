@@ -10,6 +10,7 @@ import { simVideos } from "../../data/video-data";
 
 import "../disabled-overlay.scss";
 import "./simulation-video.scss";
+import { Organs } from "../../utils/app-constants";
 
 interface ISimulationVideo {
   control1: boolean;
@@ -90,6 +91,7 @@ export const SimulationVideo = ({
     if (simulationTime === 2 && !displayOutcome) setDisplayOutcome(true);
   };
 
+  const topTitleKey = ac.organ === Organs.brain && control1 ? "ALTERNATESIMULATIONTITLE" : "LEFTSIMULATIONTITLE";
   return (
     <div className="video-area">
       <video
@@ -106,7 +108,7 @@ export const SimulationVideo = ({
       >
         <source src={videoFile} type={"video/mp4"} />
       </video>
-      <PaneTitle extraClass="video-title top-video-title" title={ac.o("LEFTSIMULATIONTITLE")} />
+      <PaneTitle extraClass="video-title top-video-title" title={ac.o(topTitleKey)} />
       <PaneTitle extraClass="video-title bottom-video-title" title={ac.o("RIGHTSIMULATIONTITLE")} />
       {displayOutcome && <SimulationOutcome
         control1={control1}
