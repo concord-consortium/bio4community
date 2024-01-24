@@ -4,8 +4,13 @@ import { useAppContext } from "../../hooks/use-app-context";
 
 import KeyLine from "../../assets/new-sim/key-line.svg";
 
+interface ExperimentDef {
+  option1: boolean;
+  option2: boolean;
+}
+
 interface ISimulationGraphsCheckboxesProps {
-  experiments: { option1: boolean, option2: boolean }[];
+  experiments: ExperimentDef[];
   control1: boolean;
   control2: boolean;
   experimentsRun: boolean[][];
@@ -20,6 +25,11 @@ export function SimulationGraphsCheckboxes(
 
   function optionLabel(optionNumber: number, optionValue: boolean) {
     return ac.o(`SIMCONTROL${optionNumber}OPTION${optionValue ? 2 : 1}`);
+  }
+
+  function optionLabelPair(e: ExperimentDef) {
+    const fullLabel = `${optionLabel(1, e.option1)}, ${optionLabel(2, e.option2)}`;
+    return fullLabel.slice(0, 1).toUpperCase() + fullLabel.slice(1).toLowerCase();
   }
 
   const checkboxList = experiments.map((e, index) => {
@@ -37,7 +47,7 @@ export function SimulationGraphsCheckboxes(
               onChange={(ev) => { setGraphIsShowing(e.option1, e.option2, ev.target.checked); }}
               />
             <label htmlFor={"check" + key}>
-              {optionLabel(1, e.option1)}, {optionLabel(2, e.option2)}
+              {optionLabelPair(e)}
             </label>
           </span>
           {graphsShowing[+e.option1][+e.option2] && 
