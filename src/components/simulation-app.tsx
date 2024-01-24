@@ -13,6 +13,7 @@ import { useCommonState } from "../hooks/use-common-state";
 import { AppContainer } from "./app-container";
 // import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
+import { MagnifyImage } from "./new-simulation/magnify-image";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
 import { SimulationVideo } from "./new-simulation/simulation-video";
 // import { VideoView } from "./video-view";
@@ -105,6 +106,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
           setDisplayOutcome={setDisplayOutcome}
           simulationTime={simulationTime}
         />
+        <MagnifyImage control1={control1} />
       </div>
       {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />

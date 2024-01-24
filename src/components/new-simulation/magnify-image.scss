@@ -1,0 +1,68 @@
+.magnify {
+  pointer-events: none;
+  position: absolute;
+
+  &.window {
+    &.heart {
+      right: 275px;
+      top: 203px;
+    }
+
+    &.nose {
+      right: 180px;
+      top: 169px;
+    }
+
+    &.amygdala {
+      right: 193px;
+      top: 179px;
+    }
+
+    &.prefrontal-cortex {
+      right: 227px;
+      top: 101px;
+    }
+  }
+
+  &.animation {
+    &.heart {
+      right: 177px;
+      top: 207px;
+    }
+
+    &.nose {
+      right: 175px;
+      top: 175px;
+    }
+
+    &.amygdala {
+      right: 177px;
+      top: 183px;
+    }
+
+    &.prefrontal-cortex {
+      right: 179px;
+      top: 107px;
+    }
+  }
+
+  &.path {
+    top: 17px;
+
+    &.heart {
+      left: 310px;
+    }
+
+    &.nose {
+      left: 288px;
+    }
+
+    &.amygdala {
+      left: 307px;
+    }
+
+    &.prefrontal-cortex {
+      left: 289px;
+    }
+  }
+}
