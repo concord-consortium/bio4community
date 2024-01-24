@@ -16,11 +16,11 @@ interface ISimulationVideo {
   control2: boolean;
   displayOutcome: boolean;
   playing: boolean;
-  setDisplayOutcome: (val: boolean) => void;
+  setExperimentIsRun: (v1: boolean, v2: boolean) => void;
   simulationTime: number;
 }
 export const SimulationVideo = ({
-  control1, control2, displayOutcome, playing, setDisplayOutcome, simulationTime
+  control1, control2, displayOutcome, playing, setExperimentIsRun, simulationTime
 }: ISimulationVideo) => {
   const ac = useAppContext();
   const videoFile = simVideos[ac.organ][+control1][+control2][simulationTime] ?? simVideos.heart[0][0][0];
@@ -87,7 +87,7 @@ export const SimulationVideo = ({
       play();
     }
     // Reveal the outcome when the final video is finished
-    if (simulationTime === 2 && !displayOutcome) setDisplayOutcome(true);
+    if (simulationTime === 2 && !displayOutcome) setExperimentIsRun(control1, control2);
   };
 
   const topTitleKey = ac.organ === Organs.brain && control1 ? "ALTERNATESIMULATIONTITLE" : "LEFTSIMULATIONTITLE";

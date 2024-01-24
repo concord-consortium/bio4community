@@ -31,12 +31,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
-  // TODO Remove displayOutcome when we merge this work with the graphs work
-  const [displayOutcome, setDisplayOutcome] = useState(false);
   const [experimentsRun, setExperimentsRun] = useState([[false, false], [false, false]]);
-  // TODO remove this once videos are implemented
-  // Set default state so that graph is enabled
-  experimentsRun[+control1][+control2] = true;
 
   function setExperimentIsRun(c1: boolean, c2: boolean) {
     // Make a new copy of the array so React will definitely know it has changed.
@@ -115,9 +110,9 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
         <SimulationVideo
           control1={control1}
           control2={control2}
-          displayOutcome={displayOutcome}
+          displayOutcome={experimentsRun[+control1][+control2]}
           playing={playingVideo}
-          setDisplayOutcome={setDisplayOutcome}
+          setExperimentIsRun={setExperimentIsRun}
           simulationTime={simulationTime}
         />
         <MagnifyImage control1={control1} />

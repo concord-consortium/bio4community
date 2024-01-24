@@ -75,15 +75,13 @@ export function SimulationSettings({
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
-        // TODO: revert to just {setControl1} after videos are implemented
-        setValue={(v) => { setControl1(v); setExperimentIsRun(v, control2); }}
+        setValue={(v) => setControl1(v)}
         value={control1}
       />
       <ButtonToggle
         controlNumber={2}
         playVideo={() => setPlayingVideo(true)}
-        // TODO: revert to just {setControl1} after videos are implemented
-        setValue={(v) => { setControl2(v); setExperimentIsRun(control1, v); }}
+        setValue={(v) => setControl2(v)}
         value={control2}
       />
       <Person className={clsx("person", ac.organ)} />
