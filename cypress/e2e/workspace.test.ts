@@ -58,11 +58,14 @@ context("Test the overall app", () => {
 
   describe("Simulation video", () => {
     const topVideoTitle = () => cy.get(".app .video-area .video-title.top-video-title");
+    const outcomeArea = () => cy.get(".app .video-area outcome-area");
+    const closeOutcomeButton = outcomeArea().find(".hide-button");
+    const resultButton = () => cy.get(".app .video-area .simulation-button.result");
     beforeEach(() => {
-      visitPage("simulation", "heart");
+      visitPage("simulation", "nose");
     });
     it(`renders the video title`, () => {
-      topVideoTitle().should("have.text", "Simulated Artery");
+      topVideoTitle().should("have.text", "Simulated Inside of Nose");
     });
     it(`play button works`, () => {
       getSimulationPlayButton().should("not.have.class", "playing");
@@ -70,9 +73,19 @@ context("Test the overall app", () => {
       getSimulationPlayButton().should("have.class", "playing");
       getSimulationPlayButton().click();
       getSimulationPlayButton().should("not.have.class", "playing");
-      // The video should start playing when the user changes the simulation time
+    });
+    if('slider starts video and outcome message displays properly')
+      outcomeArea().should("not.exist");
       cy.get(".app .simulation-settings .rc-slider").click("right");
       getSimulationPlayButton().should("have.class", "playing");
+      cy.wait(6000);
+      outcomeArea().should("exist");
+      resultButton().should("not.exist");
+      closeOutcomeButton().should("exist").click();
+      closeOutcomeButton().should("not.exist");
+      resultButton().should("exist").click();
+      resultButton().should("not.exist");
+      closeOutcomeButton().should("exist");
     });
     it(`brain videos switch and start playing when brain region changes`, () => {
       visitPage("simulation", "brain");
