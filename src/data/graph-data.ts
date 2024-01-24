@@ -4,8 +4,8 @@ type Pair = [number, number];
 
 interface dataItem {
   organ: Organs;
-  setting1: boolean;
-  setting2: boolean;
+  control1: boolean;
+  control2: boolean;
   start: Pair;
   mid: Pair;
   bezier1: Pair;
@@ -17,8 +17,8 @@ const data: dataItem[] = [
   {
     // Attention network, low stress
     organ: Organs.brain,
-    setting1: false,
-    setting2: false,
+    control1: false,
+    control2: false,
     start: [0, 40],
     mid: [138, 68],
     bezier1: [114, 44],
@@ -29,8 +29,8 @@ const data: dataItem[] = [
   {
     // Attention network, high stress
     organ: Organs.brain,
-    setting1: false,
-    setting2: true,
+    control1: false,
+    control2: true,
     start: [0, 89],
     mid: [138, 52],
     bezier1: [206, 90],
@@ -41,8 +41,8 @@ const data: dataItem[] = [
   {
     // Fear network, low stress
     organ: Organs.brain,
-    setting1: true,
-    setting2: false,
+    control1: true,
+    control2: false,
     start: [0, 69],
     mid: [138, 32],
     bezier1: [206, 70],
@@ -53,8 +53,8 @@ const data: dataItem[] = [
   {
     // Fear network, high stress
     organ: Organs.brain,
-    setting1: true,
-    setting2: true,
+    control1: true,
+    control2: true,
     start: [0, 20],
     mid: [138, 48],
     bezier1: [114, 23],
@@ -65,8 +65,8 @@ const data: dataItem[] = [
   {
     // Low Cortisol, Ignore
     organ: Organs.heart,
-    setting1: false,
-    setting2: false,
+    control1: false,
+    control2: false,
     start: [0, 14],
     mid: [138, 26],
     bezier1: [108, 23],
@@ -77,8 +77,8 @@ const data: dataItem[] = [
   {
     // Low Cortisol, Respond
     organ: Organs.heart,
-    setting1: false,
-    setting2: true,
+    control1: false,
+    control2: true,
     start: [0, 14],
     mid: [138, 16],
     bezier1: [87, 5],
@@ -88,8 +88,8 @@ const data: dataItem[] = [
   {
     // High Cortisol, Ignore
     organ: Organs.heart,
-    setting1: true,
-    setting2: false,
+    control1: true,
+    control2: false,
     start: [0, 14],
     mid: [138, 34],
     bezier1: [108, 23],
@@ -99,8 +99,8 @@ const data: dataItem[] = [
   {
     // High Cortisol, Respond
     organ: Organs.heart,
-    setting1: true,
-    setting2: true,
+    control1: true,
+    control2: true,
     start: [0, 14],
     mid: [138, 19],
     bezier1: [108, 6],
@@ -110,8 +110,8 @@ const data: dataItem[] = [
   {
     // Low Cortisol, Ignore
     organ: Organs.nose,
-    setting1: false,
-    setting2: false,
+    control1: false,
+    control2: false,
     start: [0, 9],
     mid: [138, 75],
     bezier1: [70, 62],
@@ -121,8 +121,8 @@ const data: dataItem[] = [
   {
     // Low Cortisol, Respond
     organ: Organs.nose,
-    setting1: false,
-    setting2: true,
+    control1: false,
+    control2: true,
     start: [0, 9],
     mid: [138, 24],
     bezier1: [87, 5],
@@ -132,8 +132,8 @@ const data: dataItem[] = [
   {
     // High Cortisol, Ignore
     organ: Organs.nose,
-    setting1: true,
-    setting2: false,
+    control1: true,
+    control2: false,
     start: [0, 9],
     mid: [138, 103],
     bezier1: [104, 58],
@@ -143,8 +143,8 @@ const data: dataItem[] = [
   {
     // High Cortisol, Respond
     organ: Organs.nose,
-    setting1: true,
-    setting2: true,
+    control1: true,
+    control2: true,
     start: [0, 9],
     mid: [138, 59],
     bezier1: [95, 76],
@@ -153,12 +153,12 @@ const data: dataItem[] = [
   }
 ];
 
-export function getData(organ: string, setting1: boolean, setting2: boolean) {
-  return data.find((d) => d.organ===organ && d.setting1===setting1 && d.setting2===setting2);
+export function getData(organ: string, control1: boolean, control2: boolean) {
+  return data.find((d) => d.organ===organ && d.control1===control1 && d.control2===control2);
 }
 
-export function getSVGPath(organ: string, setting1: boolean, setting2: boolean) {
-  const d = getData(organ, setting1, setting2);
+export function getSVGPath(organ: string, control1: boolean, control2: boolean) {
+  const d = getData(organ, control1, control2);
   if (d) {
     return `M ${formatPair(d.start)} C ${formatPair(d.bezier1)} ${formatPair(d.bezier2)} ${formatPair(d.end)}`;
   }
