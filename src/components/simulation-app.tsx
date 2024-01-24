@@ -11,7 +11,6 @@ import { useCommonState } from "../hooks/use-common-state";
 // import { delayControl } from "../utils/app-common";
 // import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-// import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
 import { MagnifyImage } from "./new-simulation/magnify-image";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
@@ -32,6 +31,7 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
+  // TODO Remove displayOutcome when we merge this work with the graphs work
   const [displayOutcome, setDisplayOutcome] = useState(false);
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
