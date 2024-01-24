@@ -1,0 +1,95 @@
+@use "../vars.scss";
+
+.graphs-header {
+  margin-bottom: 11px;
+}
+
+.sim-graph {
+  // By default entire SVG would be centered, but we want just the data area centered.
+  margin-left: -14px;
+  margin-bottom: 10px;
+
+  .axis {
+    stroke: #000000;
+    stroke-width: 2;
+  }
+
+  text {
+    fill: vars.$text-grey;
+  }
+
+  .data {
+    stroke-width: 4;
+    fill: none;
+    stroke: vars.$data-grey;
+
+    &.selected {
+      stroke: vars.$sim-dark-1;
+    }
+  }
+
+  .data-dot {
+    stroke: none;
+    fill: vars.$sim-dark-1;
+  }
+}
+
+.checkbox-row {
+  width: 265px;
+  margin-left: 14px;
+  padding: 0 8px 0 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.selected {
+    background: vars.$sim-light-5;
+    border-radius: 8px;
+
+    label {
+      color: #04708b;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    svg {
+      stroke: vars.$sim-dark-1;
+      stroke-width: 4;
+    }
+  }
+
+  input {
+    position: relative;
+    bottom: -2px;
+  }
+
+  label {
+    font-family: Lato;
+    font-size: 14px;
+    margin-left: 6px;
+    line-height: 1.8;
+    color: vars.$text-grey;
+  }
+
+  svg {
+    stroke: vars.$data-grey;
+    stroke-width: 4;
+  }
+
+}
+
+.line-style-0 {
+  stroke-dasharray: none;
+}
+
+.line-style-1 {
+  stroke-dasharray: 8 4;
+}
+
+.line-style-2 {
+  stroke-dasharray: 4 3;
+}
+
+.line-style-3 {
+  stroke-dasharray: 20 4;
+}

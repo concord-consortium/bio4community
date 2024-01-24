@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-
 // import { renderControls } from "../data/control-data";
 // import { graphData, graphRanges } from "../data/graph-data";
 // import { simVideos, timelines } from "../data/video-data";
@@ -13,6 +12,7 @@ import { useCommonState } from "../hooks/use-common-state";
 import { AppContainer } from "./app-container";
 // import { SimGraph } from "./sim-graph";
 import { MagnifyImage } from "./new-simulation/magnify-image";
+import { SimulationResults } from "./new-simulation/simulation-results";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
 import { SimulationVideo } from "./new-simulation/simulation-video";
 // import { VideoView } from "./video-view";
@@ -33,6 +33,18 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
   const [playingVideo, setPlayingVideo] = useState(false);
   // TODO Remove displayOutcome when we merge this work with the graphs work
   const [displayOutcome, setDisplayOutcome] = useState(false);
+  const [experimentsRun, setExperimentsRun] = useState([[false, false], [false, false]]);
+  // TODO remove this once videos are implemented
+  // Set default state so that graph is enabled
+  experimentsRun[+control1][+control2] = true;
+
+  function setExperimentIsRun(c1: boolean, c2: boolean) {
+    // Make a new copy of the array so React will definitely know it has changed.
+    const newArray = { ...experimentsRun };
+    newArray[+c1][+c2] = true;
+    setExperimentsRun(newArray);
+  }
+
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -91,12 +103,14 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
+            setExperimentIsRun={setExperimentIsRun}
           />
-          <div className="simulation-graphs">
-            <div className="graphs-header">
-              {ac.o("SIMGRAPHTITLE")}
-            </div>
-          </div>
+          <SimulationResults
+            control1={control1}
+            control2={control2}
+            simulationTime={simulationTime}
+            experimentsRun={experimentsRun}
+          />
         </div>
         <SimulationVideo
           control1={control1}
