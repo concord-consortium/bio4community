@@ -33,6 +33,7 @@ export function SimulationSettings({
   const onSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) return;
     setSimulationTime(value);
+    setPlayingVideo(true);
   };
   const timePoints = [0, 1, 2];
   const marks: Record<number, string> = {};

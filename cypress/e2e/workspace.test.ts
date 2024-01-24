@@ -14,13 +14,16 @@ context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
   };
-  const getPlayButton = (first: boolean) => {
+  const getAnimationPlayButton = (first: boolean) => {
     const gpb = () => cy.get(".app .video-view .app-button.play-button");
     if (first) {
       return gpb().first();
     } else {
       return gpb().last();
     }
+  };
+  const getSimulationPlayButton = () => {
+    return cy.get(".app .simulation-settings .play-button");
   };
 
   interface PageInfo {
@@ -53,43 +56,53 @@ context("Test the overall app", () => {
     });
   });
 
-  // TODO: Turn this back on when the new simulation videos have been set up
-  describe.skip("Simulation tissue video", () => {
+  describe("Simulation video", () => {
+    const topVideoTitle = () => cy.get(".app .video-area .video-title.top-video-title");
     beforeEach(() => {
       visitPage("simulation", "heart");
     });
     it(`renders the video title`, () => {
-      cy.get(".app .video-view .video-title").first().should("have.text", "Simulated Artery");
+      topVideoTitle().should("have.text", "Simulated Artery");
     });
     it(`play button works`, () => {
-      getPlayButton(true).should("have.text", "Play");
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Pause");
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Play");
+      getSimulationPlayButton().should("not.have.class", "playing");
+      getSimulationPlayButton().click();
+      getSimulationPlayButton().should("have.class", "playing");
+      getSimulationPlayButton().click();
+      getSimulationPlayButton().should("not.have.class", "playing");
+      cy.get(".app .simulation-settings .rc-slider").click("right");
+      getSimulationPlayButton().should("have.class", "playing");
     });
-    it(`can skip by clicking timeline mark label`, () => {
-      const getLastLabel = () => cy.get(".app .video-view").first().find(".rc-slider-mark-text").last();
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Pause");
-      getLastLabel().click();
-      getPlayButton(true).should("have.text", "Play");
+    // it(`can skip by clicking timeline mark label`, () => {
+    //   const getLastLabel = () => cy.get(".app .video-view").first().find(".rc-slider-mark-text").last();
+    //   getAnimationPlayButton(true).click();
+    //   getAnimationPlayButton(true).should("have.text", "Pause");
+    //   getLastLabel().click();
+    //   getAnimationPlayButton(true).should("have.text", "Play");
+    // });
+    it(`brain videos switch and start playing when brain region changes`, () => {
+      visitPage("simulation", "brain");
+      topVideoTitle().should("have.text", "Simulated Prefrontal Cortex");
+      getSimulationPlayButton().should("not.have.class", "playing");
+      cy.get(".app .simulation-settings .toggle-button").eq(1).click();
+      topVideoTitle().should("have.text", "Simulated Amygdala");
+      getSimulationPlayButton().should("have.class", "playing");
     });
   });
 
   describe("Animation videos", () => {
     it(`can't play tissue video until zooming`, () => {
       visitPage("animation", "heart");
-      getPlayButton(true).should("not.be.visible");
+      getAnimationPlayButton(true).should("not.be.visible");
       cy.get(".app .silhouette-button").click().wait(2500);
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Pause");
+      getAnimationPlayButton(true).click();
+      getAnimationPlayButton(true).should("have.text", "Pause");
     });
     it(`can't play cell video while tissue video is playing`, () => {
-      getPlayButton(false).should("not.be.visible");
-      getPlayButton(true).click();
-      getPlayButton(false).click();
-      getPlayButton(false).should("have.text", "Pause");
+      getAnimationPlayButton(false).should("not.be.visible");
+      getAnimationPlayButton(true).click();
+      getAnimationPlayButton(false).click();
+      getAnimationPlayButton(false).should("have.text", "Pause");
     });
   });
 
