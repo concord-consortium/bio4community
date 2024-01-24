@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { AppContext, getAppContext } from "../hooks/use-app-context";
-import { modeFromString, Modes, organFromString } from "../utils/app-constants";
+import { modeFromString, Modes, organFromString, Organs } from "../utils/app-constants";
 import { AnimationApp } from "./animation-app";
 import { AppKey } from "./app-key";
 import { SimulationApp } from "./simulation-app";
@@ -16,8 +16,14 @@ export const App = () => {
 
   // Key state
   const [keyVisible, setKeyVisible] = useState(false);
-  // Starts approximately centered based on hard coded size of app and key
-  const [keyPosition, setKeyPosition] = useState([(940 - 255) / 2, (598 - 439) / 2]);
+  // Starts horizontally centered for animation or left of center for simulation based on hard coded size of app and key
+  const keyX = ac.mode === Modes.animation ? (window.innerWidth - 255) / 2 : (window.innerWidth - 940) / 2 + 114;
+  // Starts vertically centered based on hard coded height of key
+  const appMiddle = window.innerHeight / 2;
+  const keyY = ac.organ === Organs.heart ? appMiddle - 462 / 2
+    : ac.organ === Organs.nose ? appMiddle - 582 / 2
+    : appMiddle - 428 / 2;
+  const [keyPosition, setKeyPosition] = useState([keyX, keyY]);
   const [keyDragging, setKeyDragging] = useState(false);
   const [keyOffset, setKeyOffset] = useState([0, 0]);
 
