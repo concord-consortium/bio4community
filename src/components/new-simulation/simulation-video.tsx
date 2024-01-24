@@ -2,15 +2,14 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
+import { simVideos } from "../../data/video-data";
 import { useAppContext } from "../../hooks/use-app-context";
+import { Organs } from "../../utils/app-constants";
 import { PaneTitle } from "../pane-title";
 import { SimulationOutcome } from "./simulation-outcome";
 
-import { simVideos } from "../../data/video-data";
-
 import "../disabled-overlay.scss";
 import "./simulation-video.scss";
-import { Organs } from "../../utils/app-constants";
 
 interface ISimulationVideo {
   control1: boolean;
