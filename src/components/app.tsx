@@ -35,7 +35,7 @@ export const App = () => {
         onMouseMove={handleMouseMove}
       >
         { mode === Modes.animation ? <AnimationApp setKeyVisible={setKeyVisible} />
-          : mode === Modes.simulation ? <SimulationApp setKeyVisible={setKeyVisible} />
+          : mode === Modes.simulation ? <SimulationApp keyVisible={keyVisible} setKeyVisible={setKeyVisible} />
           : <div>Unknown mode.</div> }
         <AppKey
           handleClose={() => setKeyVisible(false)}

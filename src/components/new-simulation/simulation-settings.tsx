@@ -18,14 +18,16 @@ interface ISimulationSettingsProps {
   setControl1: (val: boolean) => void;
   control2: boolean;
   setControl2: (val: boolean) => void;
+  keyVisible: boolean;
   playingVideo: boolean;
+  setKeyVisible: (val: boolean) => void;
   setPlayingVideo: (val: boolean) => void;
   simulationTime: number;
   setSimulationTime: (val: number) => void;
 }
 export function SimulationSettings({
-  control1, setControl1, control2, setControl2,
-  playingVideo, setPlayingVideo, simulationTime, setSimulationTime
+  control1, setControl1, control2, setControl2, keyVisible,
+  playingVideo, setKeyVisible, setPlayingVideo, simulationTime, setSimulationTime
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
 
@@ -84,7 +86,11 @@ export function SimulationSettings({
       />
       <Person className={clsx("person", ac.organ)} />
       <button className="simulation-button reset" />
-      <button className="simulation-button key" />
+      <button
+        className="simulation-button key"
+        disabled={keyVisible}
+        onClick={() => setKeyVisible(true)}
+      />
     </div>
   );
 }
