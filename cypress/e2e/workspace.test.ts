@@ -36,7 +36,10 @@ context("Test the overall app", () => {
     {mode: Modes.simulation, organ: Organs.nose, title: "Immune Response Model Simulator"},
     {mode: Modes.simulation, organ: Organs.brain, title: "Focus Model Simulator"},
   ];
-  
+  const modePages: PageInfo[] = [
+    {mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation"},
+    {mode: Modes.simulation, organ: Organs.heart, title: "Plaque Model Simulator"}
+  ];
   describe("Titles are correct", () => {
     allPages.forEach(({ mode, organ, title }: PageInfo) => {
       it(`renders the title for the ${organ} ${mode}`, () => {
