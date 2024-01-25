@@ -40,6 +40,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
             setExperimentIsRun={setExperimentIsRun}
+            clearExperimentsRun={clearExperimentsRun}
           />
           <SimulationResults
             control1={control1}
