@@ -22,10 +22,11 @@ interface ISimulationSettingsProps {
   setPlayingVideo: (val: boolean) => void;
   simulationTime: number;
   setSimulationTime: (val: number) => void;
+  setExperimentIsRun: (c1: boolean, c2: boolean) => void;
 }
 export function SimulationSettings({
   control1, setControl1, control2, setControl2,
-  playingVideo, setPlayingVideo, simulationTime, setSimulationTime
+  playingVideo, setPlayingVideo, simulationTime, setSimulationTime, setExperimentIsRun
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
 
@@ -73,13 +74,15 @@ export function SimulationSettings({
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
-        setValue={setControl1}
+        // TODO: revert to just {setControl1} after videos are implemented
+        setValue={(v) => { setControl1(v); setExperimentIsRun(v, control2); }}
         value={control1}
       />
       <ButtonToggle
         controlNumber={2}
         playVideo={() => setPlayingVideo(true)}
-        setValue={setControl2}
+        // TODO: revert to just {setControl1} after videos are implemented
+        setValue={(v) => { setControl2(v); setExperimentIsRun(control1, v); }}
         value={control2}
       />
       <Person className={clsx("person", ac.organ)} />
