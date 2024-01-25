@@ -74,7 +74,7 @@ context("Test the overall app", () => {
       getSimulationPlayButton().click();
       getSimulationPlayButton().should("not.have.class", "playing");
     });
-    if('slider starts video and outcome message displays properly')
+    it(`slider starts video and outcome message displays properly`, () => {
       outcomeArea().should("not.exist");
       cy.get(".app .simulation-settings .rc-slider").click("right");
       getSimulationPlayButton().should("have.class", "playing");
