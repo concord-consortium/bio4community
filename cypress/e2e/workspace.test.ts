@@ -43,6 +43,7 @@ context("Test the overall app", () => {
     {mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation"},
     {mode: Modes.simulation, organ: Organs.heart, title: "Plaque Model Simulator"}
   ];
+
   describe("Titles are correct", () => {
     allPages.forEach(({ mode, organ, title }: PageInfo) => {
       it(`renders the title for the ${organ} ${mode}`, () => {
@@ -53,6 +54,40 @@ context("Test the overall app", () => {
           cy.get(".app .simulation-settings .settings-header").first().should("have.text", `${title}: Settings`);
         }
       });
+    });
+  });
+
+  describe.only("Reset works", () => {
+    const toggleButtons = () => cy.get(".app .simulation-settings .toggle-button");
+    const resetButton = () => cy.get(".app .simulation-settings .reset");
+    const graphCheckboxes = () => cy.get(".app .simulation-graphs .checkbox-row input");
+
+    const everythingIsDefaults = () => {
+      getSimulationPlayButton().should("not.have.class", "playing");
+      resetButton().should("exist").should("be.disabled");
+      toggleButtons().eq(0).should("have.class", "selected");
+      toggleButtons().eq(1).should("not.have.class", "selected");
+      toggleButtons().eq(2).should("have.class", "selected");
+      toggleButtons().eq(3).should("not.have.class", "selected");
+      graphCheckboxes().eq(0).should("be.checked");
+      graphCheckboxes().eq(1).should("not.be.checked");
+      graphCheckboxes().eq(2).should("not.be.checked");
+      graphCheckboxes().eq(3).should("not.be.checked");
+    };
+
+    it("Resets the settings", () => {
+      visitPage("simulation", "brain");
+      everythingIsDefaults();
+
+      toggleButtons().eq(3).click();
+      toggleButtons().eq(2).should("not.have.class", "selected");
+      toggleButtons().eq(3).should("have.class", "selected");
+      graphCheckboxes().eq(0).should("be.checked");
+      graphCheckboxes().eq(1).should("be.checked");
+      getSimulationPlayButton().should("have.class", "playing");
+
+      resetButton().should("be.enabled").click();
+      everythingIsDefaults();
     });
   });
 
