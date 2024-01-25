@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
 import { clsx } from "clsx";
-import { useAppContext } from "../../hooks/use-app-context";
 import { getData, getSVGPath } from "../../data/graph-data";
+import { useAppContext } from "../../hooks/use-app-context";
+import { ExperimentState } from "../../hooks/use-experiment-state";
 import { getAllExperiments } from "../../utils/control-utils";
 
 const 
@@ -18,11 +19,11 @@ const
 interface ISimulationGraphProps {
   control1: boolean;
   control2: boolean;
+  experimentState: ExperimentState[][];
   simulationTime: number;
-  graphsShowing: boolean[][];
 }
 
-export const SimulationGraph = ({ control1, control2, simulationTime, graphsShowing }: ISimulationGraphProps) => {
+export const SimulationGraph = ({ control1, control2, experimentState, simulationTime }: ISimulationGraphProps) => {
   const ac = useAppContext();
 
   const { organ } = ac;
@@ -39,7 +40,7 @@ export const SimulationGraph = ({ control1, control2, simulationTime, graphsShow
   const backgroundDataPlots: ReactElement[] = [];
   if (dotLoc) {
     getAllExperiments(ac).forEach((e, index) => {
-      const showing = graphsShowing[+e.option1][+e.option2];
+      const showing = experimentState[+e.option1][+e.option2].displayGraph;
       if (!showing) return null;
 
       const selected = e.option1===control1 && e.option2===control2;
