@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable react/no-unknown-property */
 import React from "react";
 import { Coord, Range } from "../data/graph-data";
 import { IAppContext } from "../hooks/use-app-context";
