@@ -1,13 +1,16 @@
 import React from "react";
 import { clsx } from "clsx";
 
-import { Organs } from "../utils/app-constants";
+import { Modes, Organs } from "../utils/app-constants";
 import { getKeyData } from "../data/key-data";
 import { useAppContext } from "../hooks/use-app-context";
 import { Title } from "./title";
 
+import simHeartKeyImage from "../assets/images/heart/heart-key-content@2x.png";
 import brainKeyImage from "../assets/images/brain/focus-key-content@2x.png";
+import simBrainKeyImage from "../assets/images/brain/brain-key-content@2x.png";
 import noseKeyImage from "../assets/images/nose/immune-response-key-content@2x.png";
+import simNoseKeyImage from "../assets/images/nose/nose-key-content@2x.png";
 
 import "./app-key.scss";
 
@@ -47,13 +50,19 @@ export const AppKey = ({ handleClose, position, setDragging, setOffset, visible 
     );
   };
 
-  const keyContent = ac.organ === Organs.heart
-    ? <div className="key-rows">
-        { getKeyData(ac).map(([image, text]) => <KeyRow image={image} key={text} text={text} />) }
-      </div>
-    : ac.organ === "nose"
-    ? <img src={noseKeyImage} className="key-image" />
-    : <img src={brainKeyImage} className="key-image" />;
+  const keyContent = ac.mode === Modes.animation
+    ? ac.organ === Organs.heart
+      ? <div className="key-rows">
+          { getKeyData(ac).map(([image, text]) => <KeyRow image={image} key={text} text={text} />) }
+        </div>
+      : ac.organ === "nose"
+      ? <img src={noseKeyImage} className="key-image" />
+      : <img src={brainKeyImage} className="key-image" />
+    : ac.organ === Organs.heart
+      ? <img src={simHeartKeyImage} className="key-image" />
+      : ac.organ === "nose"
+      ? <img src={simNoseKeyImage} className="key-image" />
+      : <img src={simBrainKeyImage} className="key-image" />;
   return (
     <div
       className={clsx("app-key", ac.mode)}

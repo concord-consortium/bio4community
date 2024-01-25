@@ -12,6 +12,7 @@ import { useCommonState } from "../hooks/use-common-state";
 import { AppContainer } from "./app-container";
 import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
+import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 import { SimulationSettings } from "./new-simulation/simulation-settings";
 import { SimulationResults } from "./new-simulation/simulation-results";
 // import { VideoView } from "./video-view";
@@ -21,12 +22,12 @@ import { SimulationResults } from "./new-simulation/simulation-results";
 // import ResultsLabelBack from "../assets/backgrounds/results-label-back.svg";
 
 import "./simulation-app.scss";
-import { SimulationOutcome } from "./new-simulation/simulation-outcome";
 
 interface SimulationAppProps {
-  setKeyVisible: (func: (value: boolean) => boolean) => void;
+  keyVisible: boolean;
+  setKeyVisible: (value: boolean) => void;
 }
-export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
+export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps) => {
   const ac = useAppContext();
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
@@ -97,7 +98,9 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setControl1={setControl1}
             control2={control2}
             setControl2={setControl2}
+            keyVisible={keyVisible}
             playingVideo={playingVideo}
+            setKeyVisible={setKeyVisible}
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}

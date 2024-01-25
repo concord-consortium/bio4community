@@ -18,12 +18,14 @@
     border: vars.$ani-border;
   }
   &.simulation {
-    border-radius: vars.$sim-radius-container;
     border: vars.$sim-border;
+    border-width: 2px;
+    padding: 3px;
   }
 
   .key-image {
     margin-top: 6px;
+    pointer-events: none;
   }
 
   .key-rows {
