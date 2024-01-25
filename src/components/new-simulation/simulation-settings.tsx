@@ -26,12 +26,12 @@ interface ISimulationSettingsProps {
   simulationTime: number;
   setSimulationTime: (val: number) => void;
   setExperimentIsRun: (c1: boolean, c2: boolean) => void;
-  clearExperimentsRun: () => void;
+  resetExperiments: () => void;
 }
 export function SimulationSettings({
   control1, setControl1, control2, setControl2, keyVisible, setKeyVisible,
   playingVideo, setPlayingVideo, simulationTime, setSimulationTime, 
-  setExperimentIsRun, clearExperimentsRun
+  setExperimentIsRun, resetExperiments
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
   const [anySettingsChanged, setAnySettingsChanged] = useState(false);
@@ -49,8 +49,8 @@ export function SimulationSettings({
     setControl2(invertedControl(ac, 2));
     setSimulationTime(0);
     setPlayingVideo(false);
-    clearExperimentsRun();
     setKeyVisible(false);
+    resetExperiments();
     setAnySettingsChanged(false);
   };
 

@@ -21,7 +21,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
 
-  const { experimentState, setExperimentIsFirstSeen, setExperimentIsRun, setGraphIsShowing }
+  const { experimentState, setExperimentIsFirstSeen, setExperimentIsRun, setGraphIsShowing, resetExperiments }
     = useExperimentState();
 
   return (
@@ -40,7 +40,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
             setExperimentIsRun={setExperimentIsRun}
-            clearExperimentsRun={clearExperimentsRun}
+            resetExperiments={resetExperiments}
           />
           <SimulationResults
             control1={control1}
