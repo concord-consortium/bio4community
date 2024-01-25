@@ -1,8 +1,11 @@
+/* eslint-env node */
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
+    project: true,
+    tsconfigRootDir: __dirname
   },
   plugins: ["@typescript-eslint", "json", "react", "react-hooks"],
   env: {
