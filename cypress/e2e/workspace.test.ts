@@ -58,8 +58,8 @@ context("Test the overall app", () => {
 
   describe("Simulation video", () => {
     const topVideoTitle = () => cy.get(".app .video-area .video-title.top-video-title");
-    const outcomeArea = () => cy.get(".app .video-area outcome-area");
-    const closeOutcomeButton = outcomeArea().find(".hide-button");
+    const outcomeArea = () => cy.get(".app .video-area .outcome-area");
+    const closeOutcomeButton = () => outcomeArea().find(".hide-button");
     const resultButton = () => cy.get(".app .video-area .simulation-button.result");
     beforeEach(() => {
       visitPage("simulation", "nose");
@@ -82,7 +82,7 @@ context("Test the overall app", () => {
       outcomeArea().should("exist");
       resultButton().should("not.exist");
       closeOutcomeButton().should("exist").click();
-      closeOutcomeButton().should("not.exist");
+      outcomeArea().should("not.exist");
       resultButton().should("exist").click();
       resultButton().should("not.exist");
       closeOutcomeButton().should("exist");
