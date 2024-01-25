@@ -24,9 +24,10 @@ import { SimulationVideo } from "./new-simulation/simulation-video";
 import "./simulation-app.scss";
 
 interface SimulationAppProps {
-  setKeyVisible: (func: (value: boolean) => boolean) => void;
+  keyVisible: boolean;
+  setKeyVisible: (value: boolean) => void;
 }
-export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
+export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps) => {
   const ac = useAppContext();
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
@@ -94,7 +95,9 @@ export const SimulationApp = ({ setKeyVisible }: SimulationAppProps) => {
             setControl1={setControl1}
             control2={control2}
             setControl2={setControl2}
+            keyVisible={keyVisible}
             playingVideo={playingVideo}
+            setKeyVisible={setKeyVisible}
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}

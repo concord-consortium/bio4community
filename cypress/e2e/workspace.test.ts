@@ -27,8 +27,8 @@ context("Test the overall app", () => {
   };
 
   interface PageInfo {
-    mode: string;
-    organ: string;
+    mode: Modes;
+    organ: Organs;
     title: string;
   }
   const allPages: PageInfo[] = [
@@ -101,14 +101,19 @@ context("Test the overall app", () => {
     it(`can't play tissue video until zooming`, () => {
       visitPage("animation", "heart");
       getAnimationPlayButton(true).should("not.be.visible");
-      cy.get(".app .silhouette-button").click().wait(2500);
+      cy.get(".app .silhouette-button").click();
+      cy.wait(2500);
       getAnimationPlayButton(true).click();
       getAnimationPlayButton(true).should("have.text", "Pause");
     });
     it(`can't play cell video while tissue video is playing`, () => {
-      getAnimationPlayButton(false).should("not.be.visible");
+      visitPage("animation", "heart");
+      cy.get(".app .silhouette-button").click();
+      getAnimationPlayButton(false).should("not.be.visible"); // can't play cell video
       getAnimationPlayButton(true).click();
-      getAnimationPlayButton(false).click();
+      getAnimationPlayButton(false).should("not.be.visible"); // still can't play cell video
+      getAnimationPlayButton(true).should("have.text", "Pause").click();
+      getAnimationPlayButton(false).should("be.visible").click(); // now you can
       getAnimationPlayButton(false).should("have.text", "Pause");
     });
   });
@@ -144,28 +149,32 @@ context("Test the overall app", () => {
   });
 
   describe("Key works", () => {
-    const getKeyButton = () => cy.get(".app .key-button");
+    const getKeyButton = (mode: Modes) => {
+      if (mode === Modes.animation) return cy.get(".app .key-button");
+      return cy.get(".app .simulation-button.key");
+    };
     const getKey = () => cy.get(".app .app-key");
     const getKeyTitle = () => cy.get(".app .app-key .title-box");
     const getCloseKeyButton = () => cy.get(".app .title-close-button");
-    // TODO: Use this line after the new simulation key has been set up
-    // modePages.forEach(({ mode, organ }: PageInfo) => {
-    [{ mode: Modes.animation, organ: Organs.heart, title: "Plaque Animation" }].forEach(({ mode, organ }: PageInfo) => {
+    modePages.forEach(({ mode, organ }: PageInfo) => {
       it(`${mode} key can be displayed and hidden`, () => {
         visitPage(mode, organ);
-        getKeyButton().click();
+        getKeyButton(mode).click();
         getKey().should("be.visible");
-        // Move the key so it's not blocking the key button
-        const targetX = 700;
-        const targetY = 200;
-        getKeyTitle()
-          .trigger("mousedown", {which: 1})
-          .trigger("mousemove", {clientX: targetX, clientY: targetY})
-          .trigger("mouseup", {force: true});
-        getKeyButton().click();
-        getKey().should("not.be.visible");
-        getKeyButton().click();
-        getKey().should("be.visible");
+          // Test using the key button to hide the key, which only works in the animation
+          if (mode === Modes.animation) {
+          // Move the key so it's not blocking the key button
+          const targetX = 700;
+          const targetY = 200;
+          getKeyTitle()
+            .trigger("mousedown", {which: 1})
+            .trigger("mousemove", {clientX: targetX, clientY: targetY})
+            .trigger("mouseup", {force: true});
+          getKeyButton(mode).click();
+          getKey().should("not.be.visible");
+          getKeyButton(mode).click();
+          getKey().should("be.visible");
+        }
         getCloseKeyButton().click();
         getKey().should("not.be.visible");
       });

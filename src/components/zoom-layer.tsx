@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
