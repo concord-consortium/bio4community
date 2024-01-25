@@ -4,10 +4,10 @@ import { useAppContext } from "../hooks/use-app-context";
 import { useCommonState } from "../hooks/use-common-state";
 import { useExperimentState } from "../hooks/use-experiment-state";
 import { AppContainer } from "./app-container";
-import { PaneTitle } from "./pane-title";
-import { SimulationOutcome } from "./new-simulation/simulation-outcome";
-import { SimulationSettings } from "./new-simulation/simulation-settings";
+import { MagnifyImage } from "./new-simulation/magnify-image";
 import { SimulationResults } from "./new-simulation/simulation-results";
+import { SimulationSettings } from "./new-simulation/simulation-settings";
+import { SimulationVideo } from "./new-simulation/simulation-video";
 
 import "./simulation-app.scss";
 
@@ -50,18 +50,15 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             simulationTime={simulationTime}
           />
         </div>
-        <div className="video-column">
-          <div className="video">
-            <PaneTitle title={ac.o("LEFTSIMULATIONTITLE")} />
-          </div>
-          <div className="video">
-            <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
-            <SimulationOutcome
-              control1={control1}
-              control2={control2}
-            />
-          </div>
-        </div>
+        <SimulationVideo
+          control1={control1}
+          control2={control2}
+          displayOutcome={experimentState[+control1][+control2].complete}
+          playing={playingVideo}
+          setExperimentIsRun={setExperimentIsRun}
+          simulationTime={simulationTime}
+        />
+        <MagnifyImage control1={control1} />
       </div>
     </AppContainer>
   );

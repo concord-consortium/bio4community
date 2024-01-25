@@ -1,14 +1,16 @@
 import React from "react";
 import { clsx } from "clsx";
+
 import { ControlOption, PartialControlOptionProps } from "../components/control-option";
 import { IAppContext } from "../hooks/use-app-context";
+import { Modes, Organs } from "../utils/app-constants";
 
 // Returns a list of control options and strings (which render as dividers)
 // Used by renderControls(), which is how components should access this information
 const getControls = (ac: IAppContext): (PartialControlOptionProps | string)[] => {
   let controls: (PartialControlOptionProps | string)[] = [];
-  if (ac.mode === "simulation") {
-    if (["heart", "nose"].includes(ac.organ)) {
+  if (ac.mode === Modes.simulation) {
+    if ([Organs.heart, Organs.nose].includes(ac.organ)) {
       controls = [
         {
           label: ac.o("SIMCONTROL1LABEL"),

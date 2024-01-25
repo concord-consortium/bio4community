@@ -4,10 +4,6 @@ import HeartAnimationCase1 from "../assets/videos/tissue/heart/BloodVesselAnimat
 import HeartAnimationCase2 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case2.mp4";
 import HeartAnimationCase3 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case3.mp4";
 import HeartAnimationCase4 from "../assets/videos/tissue/heart/BloodVesselAnimation_Case4.mp4";
-import BloodVesselCase1MP4 from "../assets/videos/tissue/heart/BloodVesselCase1.mp4";
-import BloodVesselCase2MP4 from "../assets/videos/tissue/heart/BloodVesselCase2.mp4";
-import BloodVesselCase3MP4 from "../assets/videos/tissue/heart/BloodVesselCase3.mp4";
-import BloodVesselCase4MP4 from "../assets/videos/tissue/heart/BloodVesselCase4.mp4";
 import BloodCell11 from "../assets/videos/cell/heart/BloodCellCase1Time1.mp4";
 import BloodCell14 from "../assets/videos/cell/heart/BloodCellCase1Time4.mp4";
 import BloodCell21 from "../assets/videos/cell/heart/BloodCell_Case2Time1.mp4";
@@ -51,6 +47,45 @@ import NoseCellCase21 from "../assets/videos/cell/nose/NoseCellCase2Time1.mp4";
 import NoseCellCase22 from "../assets/videos/cell/nose/NoseCellCase2Time2.mp4";
 import NoseCellCase23 from "../assets/videos/cell/nose/NoseCellCase2Time3.mp4";
 import NoseCellCase44 from "../assets/videos/cell/nose/NoseCellCase4Time4.mp4";
+
+import HeartHighIgnoreYear20 from "../assets/videos/new-sim/heart/heart_high-ignore_year20.mp4";
+import HeartHighIgnoreYear35 from "../assets/videos/new-sim/heart/heart_high-ignore_year35.mp4";
+import HeartHighIgnoreYear50 from "../assets/videos/new-sim/heart/heart_high-ignore_year50.mp4";
+import HeartHighRespondYear20 from "../assets/videos/new-sim/heart/heart_high-respond_year20.mp4";
+import HeartHighRespondYear35 from "../assets/videos/new-sim/heart/heart_high-respond_year35.mp4";
+import HeartHighRespondYear50 from "../assets/videos/new-sim/heart/heart_high-respond_year50.mp4";
+import HeartLowIgnoreYear20 from "../assets/videos/new-sim/heart/heart_low-ignore_year20.mp4";
+import HeartLowIgnoreYear35 from "../assets/videos/new-sim/heart/heart_low-ignore_year35.mp4";
+import HeartLowIgnoreYear50 from "../assets/videos/new-sim/heart/heart_low-ignore_year50.mp4";
+import HeartLowRespondYear20 from "../assets/videos/new-sim/heart/heart_low-respond_year20.mp4";
+import HeartLowRespondYear35 from "../assets/videos/new-sim/heart/heart_low-respond_year35.mp4";
+import HeartLowRespondYear50 from "../assets/videos/new-sim/heart/heart_low-respond_year50.mp4";
+
+import BrainAttentionHighWeek0 from "../assets/videos/new-sim/brain/brain_attention-network-high-stress_week0.mp4";
+import BrainAttentionHighWeek6 from "../assets/videos/new-sim/brain/brain_attention-network-high-stress_week6.mp4";
+import BrainAttentionHighWeek12 from "../assets/videos/new-sim/brain/brain_attention-network-high-stress_week12.mp4";
+import BrainAttentionLowWeek0 from "../assets/videos/new-sim/brain/brain_attention-network-low-stress_week0.mp4";
+import BrainAttentionLowWeek6 from "../assets/videos/new-sim/brain/brain_attention-network-low-stress_week6.mp4";
+import BrainAttentionLowWeek12 from "../assets/videos/new-sim/brain/brain_attention-network-low-stress_week12.mp4";
+import BrainFearHighWeek0 from "../assets/videos/new-sim/brain/brain_fear-network-high-stress_week0.mp4";
+import BrainFearHighWeek6 from "../assets/videos/new-sim/brain/brain_fear-network-high-stress_week6.mp4";
+import BrainFearHighWeek12 from "../assets/videos/new-sim/brain/brain_fear-network-high-stress_week12.mp4";
+import BrainFearLowWeek0 from "../assets/videos/new-sim/brain/brain_fear-network-low-stress_week0.mp4";
+import BrainFearLowWeek6 from "../assets/videos/new-sim/brain/brain_fear-network-low-stress_week6.mp4";
+import BrainFearLowWeek12 from "../assets/videos/new-sim/brain/brain_fear-network-low-stress_week12.mp4";
+
+import NoseHighIgnoreDay0 from "../assets/videos/new-sim/nose/nose_high-ignore_day0.mp4";
+import NoseHighIgnoreDay8 from "../assets/videos/new-sim/nose/nose_high-ignore_day8.mp4";
+import NoseHighIgnoreDay16 from "../assets/videos/new-sim/nose/nose_high-ignore_day16.mp4";
+import NoseLowIgnoreDay0 from "../assets/videos/new-sim/nose/nose_low-ignore_day0.mp4";
+import NoseLowIgnoreDay8 from "../assets/videos/new-sim/nose/nose_low-ignore_day8.mp4";
+import NoseLowIgnoreDay16 from "../assets/videos/new-sim/nose/nose_low-ignore_day16.mp4";
+import NoseHighRespondDay0 from "../assets/videos/new-sim/nose/nose_high-respond_day0.mp4";
+import NoseHighRespondDay8 from "../assets/videos/new-sim/nose/nose_high-respond_day8.mp4";
+import NoseHighRespondDay16 from "../assets/videos/new-sim/nose/nose_high-respond_day16.mp4";
+import NoseLowRespondDay0 from "../assets/videos/new-sim/nose/nose_low-respond_day0.mp4";
+import NoseLowRespondDay8 from "../assets/videos/new-sim/nose/nose_low-respond_day8.mp4";
+import NoseLowRespondDay16 from "../assets/videos/new-sim/nose/nose_low-respond_day16.mp4";
 
 const HeartCellCase1 = {
   0: BloodCell11,
@@ -128,144 +163,86 @@ const NoseCellCase4 = {
 };
 
 // Videos for sims
-// [tissue | cell][organ][control1][control2][control3][time (cell only)]
-export const simVideos: Record<string, Record<string, Record<number, any>[][][]>> = {
-  "tissue": {
-    [Organs.heart]: [
+// [organ][control1][control2][time]
+export const simVideos: Record<string, Record<number, any>[][]> = {
+  [Organs.heart]: [
+    [
       [
-        [
-          BloodVesselCase2MP4,
-          BloodVesselCase4MP4
-        ],
-        [
-          BloodVesselCase1MP4,
-          BloodVesselCase3MP4
-        ]
+        HeartLowIgnoreYear20,
+        HeartLowIgnoreYear35,
+        HeartLowIgnoreYear50
       ],
       [
-        [
-          BloodVesselCase2MP4,
-          BloodVesselCase4MP4
-        ],
-        [
-          BloodVesselCase1MP4,
-          BloodVesselCase3MP4
-        ]
+        HeartLowRespondYear20,
+        HeartLowRespondYear35,
+        HeartLowRespondYear50
       ]
     ],
-    [Organs.nose]: [
+    [
       [
-        [
-          NoseCase3,
-          NoseCase4
-        ],
-        [
-          NoseCase1,
-          NoseCase2
-        ]
+        HeartHighIgnoreYear20,
+        HeartHighIgnoreYear35,
+        HeartHighIgnoreYear50
       ],
       [
-        [
-          NoseCase3,
-          NoseCase4
-        ],
-        [
-          NoseCase1,
-          NoseCase2
-        ]
+        HeartHighRespondYear20,
+        HeartHighRespondYear35,
+        HeartHighRespondYear50
       ]
     ],
-    [Organs.brain]: [
+  ],
+  [Organs.nose]: [
+    [
       [
-        [
-          BrainTissue2,
-          BrainTissue2
-        ],
-        [
-          BrainTissue1,
-          BrainTissue1
-        ]
+        NoseLowIgnoreDay0,
+        NoseLowIgnoreDay8,
+        NoseLowIgnoreDay16
       ],
       [
-        [
-          BrainTissue4,
-          BrainTissue4
-        ],
-        [
-          BrainTissue3,
-          BrainTissue3
-        ]
+        NoseLowRespondDay0,
+        NoseLowRespondDay8,
+        NoseLowRespondDay16
+      ]
+    ],
+    [
+      [
+        NoseHighIgnoreDay0,
+        NoseHighIgnoreDay8,
+        NoseHighIgnoreDay16
+      ],
+      [
+        NoseHighRespondDay0,
+        NoseHighRespondDay8,
+        NoseHighRespondDay16
       ]
     ]
-  },
-  "cell": {
-    [Organs.heart]: [
+  ],
+  [Organs.brain]: [
+    [
       [
-        [
-          HeartCellCase2,
-          HeartCellCase4
-        ],
-        [
-          HeartCellCase1,
-          HeartCellCase3
-        ]
+        BrainAttentionLowWeek0,
+        BrainAttentionLowWeek6,
+        BrainAttentionLowWeek12
       ],
       [
-        [
-          HeartCellCase2,
-          HeartCellCase4
-        ],
-        [
-          HeartCellCase1,
-          HeartCellCase3
-        ]
+        BrainAttentionHighWeek0,
+        BrainAttentionHighWeek6,
+        BrainAttentionHighWeek12
       ]
     ],
-    [Organs.nose]: [
+    [
       [
-        [
-          NoseCellCase3,
-          NoseCellCase4
-        ],
-        [
-          NoseCellCase1,
-          NoseCellCase2
-        ]
+        BrainFearLowWeek0,
+        BrainFearLowWeek6,
+        BrainFearLowWeek12
       ],
       [
-        [
-          NoseCellCase3,
-          NoseCellCase4
-        ],
-        [
-          NoseCellCase1,
-          NoseCellCase2
-        ]
-      ]
-    ],
-    [Organs.brain]: [
-      [
-        [
-          BrainCellCase2,
-          BrainCellCase2
-        ],
-        [
-          BrainCellCase1,
-          BrainCellCase1
-        ]
-      ],
-      [
-        [
-          BrainCellCase4,
-          BrainCellCase4
-        ],
-        [
-          BrainCellCase3,
-          BrainCellCase3
-        ]
+        BrainFearHighWeek0,
+        BrainFearHighWeek6,
+        BrainFearHighWeek12
       ]
     ]
-  }
+  ]
 };
 
 // Videos for animations
