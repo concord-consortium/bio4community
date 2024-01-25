@@ -14,7 +14,7 @@ context("Test the overall app", () => {
   const visitPage = (mode: string, organ: string) => {
     cy.visit(`/?mode=${mode}&organ=${organ}`);
   };
-  const getPlayButton = (first: boolean) => {
+  const getAnimationPlayButton = (first: boolean) => {
     const gpb = () => cy.get(".app .video-view .app-button.play-button");
     if (first) {
       return gpb().first();
@@ -22,10 +22,13 @@ context("Test the overall app", () => {
       return gpb().last();
     }
   };
+  const getSimulationPlayButton = () => {
+    return cy.get(".app .simulation-settings .play-button");
+  };
 
   interface PageInfo {
-    mode: string;
-    organ: string;
+    mode: Modes;
+    organ: Organs;
     title: string;
   }
   const allPages: PageInfo[] = [
@@ -53,47 +56,65 @@ context("Test the overall app", () => {
     });
   });
 
-  // TODO: Turn this back on when the new simulation videos have been set up
-  describe.skip("Simulation tissue video", () => {
+  describe("Simulation video", () => {
+    const topVideoTitle = () => cy.get(".app .video-area .video-title.top-video-title");
+    const outcomeArea = () => cy.get(".app .video-area .outcome-area");
+    const closeOutcomeButton = () => outcomeArea().find(".hide-button");
+    const resultButton = () => cy.get(".app .video-area .simulation-button.result");
     beforeEach(() => {
-      visitPage("simulation", "heart");
+      visitPage("simulation", "nose");
     });
     it(`renders the video title`, () => {
-      cy.get(".app .video-view .video-title").first().should("have.text", "Simulated Artery");
+      topVideoTitle().should("have.text", "Simulated Inside of Nose");
     });
     it(`play button works`, () => {
-      getPlayButton(true).should("have.text", "Play");
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Pause");
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Play");
+      getSimulationPlayButton().should("not.have.class", "playing");
+      getSimulationPlayButton().click();
+      getSimulationPlayButton().should("have.class", "playing");
+      getSimulationPlayButton().click();
+      getSimulationPlayButton().should("not.have.class", "playing");
     });
-    it(`can skip by clicking timeline mark label`, () => {
-      const getLastLabel = () => cy.get(".app .video-view").first().find(".rc-slider-mark-text").last();
-      getPlayButton(true).click();
-      getPlayButton(true).should("have.text", "Pause");
-      getLastLabel().click();
-      getPlayButton(true).should("have.text", "Play");
+    it(`slider starts video and outcome message displays properly`, () => {
+      outcomeArea().should("not.exist");
+      cy.get(".app .simulation-settings .rc-slider").click("right");
+      getSimulationPlayButton().should("have.class", "playing");
+      cy.wait(6000);
+      outcomeArea().should("exist");
+      resultButton().should("not.exist");
+      closeOutcomeButton().should("exist").click();
+      outcomeArea().should("not.exist");
+      resultButton().should("exist").click();
+      resultButton().should("not.exist");
+      closeOutcomeButton().should("exist");
+    });
+    it(`brain videos switch and start playing when brain region changes`, () => {
+      visitPage("simulation", "brain");
+      topVideoTitle().should("have.text", "Simulated Prefrontal Cortex");
+      getSimulationPlayButton().should("not.have.class", "playing");
+      cy.get(".app .simulation-settings .toggle-button").eq(1).click();
+      topVideoTitle().should("have.text", "Simulated Amygdala");
+      getSimulationPlayButton().should("have.class", "playing");
     });
   });
 
   describe("Animation videos", () => {
     it(`can't play tissue video until zooming`, () => {
       visitPage("animation", "heart");
-      getPlayButton(true).should("not.be.visible");
+      getAnimationPlayButton(true).should("not.be.visible");
       cy.get(".app .silhouette-button").click();
-      getPlayButton(true).should("be.visible").click();
-      getPlayButton(true).should("have.text", "Pause");
+      cy.wait(2500);
+      getAnimationPlayButton(true).click();
+      getAnimationPlayButton(true).should("have.text", "Pause");
     });
     it(`can't play cell video while tissue video is playing`, () => {
       visitPage("animation", "heart");
       cy.get(".app .silhouette-button").click();
-      getPlayButton(false).should("not.be.visible"); // can't play cell video
-      getPlayButton(true).click();
-      getPlayButton(false).should("not.be.visible"); // still can't play cell video
-      getPlayButton(true).should("have.text", "Pause").click();
-      getPlayButton(false).should("be.visible").click(); // now you can
-      getPlayButton(false).should("have.text", "Pause");
+      getAnimationPlayButton(false).should("not.be.visible"); // can't play cell video
+      getAnimationPlayButton(true).click();
+      getAnimationPlayButton(false).should("not.be.visible"); // still can't play cell video
+      getAnimationPlayButton(true).should("have.text", "Pause").click();
+      getAnimationPlayButton(false).should("be.visible").click(); // now you can
+      getAnimationPlayButton(false).should("have.text", "Pause");
     });
   });
 
@@ -128,7 +149,7 @@ context("Test the overall app", () => {
   });
 
   describe("Key works", () => {
-    const getKeyButton = (mode) => {
+    const getKeyButton = (mode: Modes) => {
       if (mode === Modes.animation) return cy.get(".app .key-button");
       return cy.get(".app .simulation-button.key");
     };

@@ -5,6 +5,7 @@
   height: 627px;
   justify-content: space-between;
   margin: 7px;
+  position: relative;
 
   .control-column {
     display: flex;
@@ -122,8 +123,8 @@
 
     &.result {
       background-image: url("../assets/new-sim/buttons/result-button.svg");
-      bottom: 25px;
-      left: 25px;
+      bottom: 42px;
+      left: 42px;
 
       &:hover {
         background-image: url("../assets/new-sim/buttons/result-button-hover.svg");
