@@ -61,6 +61,9 @@ context("Test the overall app", () => {
     const outcomeArea = () => cy.get(".app .video-area .outcome-area");
     const closeOutcomeButton = () => outcomeArea().find(".hide-button");
     const resultButton = () => cy.get(".app .video-area .simulation-button.result");
+    const toggleButtons = () => cy.get(".app .simulation-settings .toggle-button");
+    const graphCheckboxes = () => cy.get(".app .simulation-graphs .checkbox-row input");
+    const graphPaths = () => cy.get(".app .simulation-graphs .sim-graph g");
     beforeEach(() => {
       visitPage("simulation", "nose");
     });
@@ -91,9 +94,27 @@ context("Test the overall app", () => {
       visitPage("simulation", "brain");
       topVideoTitle().should("have.text", "Simulated Prefrontal Cortex");
       getSimulationPlayButton().should("not.have.class", "playing");
-      cy.get(".app .simulation-settings .toggle-button").eq(1).click();
+      toggleButtons().eq(1).click();
       topVideoTitle().should("have.text", "Simulated Amygdala");
       getSimulationPlayButton().should("have.class", "playing");
+    });
+    it(`graphs and checkboxes work correctly`, () => {
+      graphCheckboxes().eq(0).should("be.checked").should("be.enabled");
+      graphCheckboxes().eq(1).should("not.be.checked").should("be.disabled");
+      graphPaths().should("have.length", 1);
+      toggleButtons().eq(3).click();
+      graphCheckboxes().eq(0).should("be.checked").should("be.enabled");
+      graphCheckboxes().eq(1).should("be.checked").should("be.enabled");
+      graphPaths().should("have.length", 2);
+      graphCheckboxes().eq(0).click();
+      graphCheckboxes().eq(0).should("not.be.checked").should("be.enabled");
+      graphPaths().should("have.length", 1);
+      graphCheckboxes().eq(1).click();
+      graphCheckboxes().eq(1).should("be.checked").should("be.enabled");
+      graphPaths().should("have.length", 1);
+      toggleButtons().eq(2).click();
+      graphCheckboxes().eq(0).should("be.checked").should("be.enabled");
+      graphPaths().should("have.length", 2);
     });
   });
 
