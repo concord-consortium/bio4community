@@ -57,7 +57,7 @@ context("Test the overall app", () => {
     });
   });
 
-  describe.only("Reset works", () => {
+  describe("Reset works", () => {
     const toggleButtons = () => cy.get(".app .simulation-settings .toggle-button");
     const resetButton = () => cy.get(".app .simulation-settings .reset");
     const graphCheckboxes = () => cy.get(".app .simulation-graphs .checkbox-row input");
