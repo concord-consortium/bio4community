@@ -69,17 +69,16 @@
         display: flex;
         height: 48px;
         margin-left: 37.5px;
-        width: 80px;
+        width: 106px;
 
         .rc-slider {
           position: relative;
           top: -7px;
           width: 80px;
-          height: 14px;
-          padding: 13px 0;
+          height: 0px;
+          padding: 13px;
           border-radius: 2px;
           touch-action: none;
-          box-sizing: border-box;
           cursor: pointer;
       
           &-rail {
@@ -101,11 +100,10 @@
           &-handle {
             background-color: vars.$sim-dark-1;
             position: absolute;
-            top: -1px;
+            top: 1px;
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            cursor: pointer;
             cursor: grab;
             touch-action: pan-x;
             z-index: 2;

@@ -62,7 +62,7 @@ export function SimulationSettings({
           <div className="slider-container">
             <Slider
               marks={marks}
-              max={timePoints[timePoints.length -1]}
+              max={timePoints[timePoints.length - 1]}
               min={timePoints[0]}
               onChange={onSliderChange}
               step={1}
