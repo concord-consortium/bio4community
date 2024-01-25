@@ -1,10 +1,11 @@
 import { clsx } from "clsx";
 import Slider from "rc-slider";
-import React from "react";
+import React, { useState } from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
 import { Organs } from "../../utils/app-constants";
 import { ButtonToggle } from "./button-toggle";
+import { invertedControl } from "../../utils/control-utils";
 
 import AmygdalaPerson from "../../assets/new-sim/people/person-brain-amygdala.svg";
 import HeartPerson from "../../assets/new-sim/people/person-artery.svg";
@@ -25,19 +26,34 @@ interface ISimulationSettingsProps {
   simulationTime: number;
   setSimulationTime: (val: number) => void;
   setExperimentIsRun: (c1: boolean, c2: boolean) => void;
+  clearExperimentsRun: () => void;
 }
 export function SimulationSettings({
-  control1, setControl1, control2, setControl2, keyVisible,
-  playingVideo, setKeyVisible, setPlayingVideo, simulationTime, setSimulationTime, setExperimentIsRun
+  control1, setControl1, control2, setControl2, keyVisible, setKeyVisible,
+  playingVideo, setPlayingVideo, simulationTime, setSimulationTime, 
+  setExperimentIsRun, clearExperimentsRun
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
+  const [anySettingsChanged, setAnySettingsChanged] = useState(false);
 
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) return;
     setSimulationTime(value);
     setPlayingVideo(true);
+    setAnySettingsChanged(true);
   };
+
+  const onReset = () => {
+    setControl1(invertedControl(ac, 1));
+    setControl2(invertedControl(ac, 2));
+    setSimulationTime(0);
+    setPlayingVideo(false);
+    clearExperimentsRun();
+    setKeyVisible(false);
+    setAnySettingsChanged(false);
+  };
+
   const timePoints = [0, 1, 2];
   const marks: Record<number, string> = {};
   timePoints.forEach(time => marks[time] = simulationTime === time ? ac.o(`SIMTIMELABEL${time}`) : " ");
@@ -77,17 +93,21 @@ export function SimulationSettings({
         leftClass={isBrain && "brain1"}
         playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
-        setValue={(v) => setControl1(v)}
+        setValue={(v) => { setControl1(v); setAnySettingsChanged(true); }}
         value={control1}
       />
       <ButtonToggle
         controlNumber={2}
         playVideo={() => setPlayingVideo(true)}
-        setValue={(v) => setControl2(v)}
+        setValue={(v) => { setControl2(v); setAnySettingsChanged(true); }}
         value={control2}
       />
       <Person className={clsx("person", ac.organ)} />
-      <button className="simulation-button reset" />
+      <button 
+        className="simulation-button reset"
+        disabled={!anySettingsChanged}
+        onClick={onReset} 
+      />
       <button
         className="simulation-button key"
         disabled={keyVisible}

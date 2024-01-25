@@ -41,6 +41,10 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
     setExperimentsRun(newArray);
   }
 
+  function clearExperimentsRun() {
+    setExperimentsRun([[false, false], [false, false]]);
+  }
+
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -102,6 +106,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
             setExperimentIsRun={setExperimentIsRun}
+            clearExperimentsRun={clearExperimentsRun}
           />
           <SimulationResults
             control1={control1}
