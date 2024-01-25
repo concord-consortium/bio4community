@@ -10,11 +10,11 @@ import { useCommonState } from "../hooks/use-common-state";
 // import { delayControl } from "../utils/app-common";
 // import { KeyButton } from "./app-button";
 import { AppContainer } from "./app-container";
-import { PaneTitle } from "./pane-title";
 // import { SimGraph } from "./sim-graph";
-import { SimulationOutcome } from "./new-simulation/simulation-outcome";
-import { SimulationSettings } from "./new-simulation/simulation-settings";
+import { MagnifyImage } from "./new-simulation/magnify-image";
 import { SimulationResults } from "./new-simulation/simulation-results";
+import { SimulationSettings } from "./new-simulation/simulation-settings";
+import { SimulationVideo } from "./new-simulation/simulation-video";
 // import { VideoView } from "./video-view";
 // import { ZoomLayer } from "./zoom-layer";
 
@@ -33,9 +33,6 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
   const [experimentsRun, setExperimentsRun] = useState([[false, false], [false, false]]);
-  // TODO remove this once videos are implemented
-  // Set default state so that graph is enabled
-  experimentsRun[+control1][+control2] = true;
 
   function setExperimentIsRun(c1: boolean, c2: boolean) {
     // Make a new copy of the array so React will definitely know it has changed.
@@ -43,7 +40,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
     newArray[+c1][+c2] = true;
     setExperimentsRun(newArray);
   }
-  
+
   // const { playingTissue, setPlayingTissue, tPercentComplete, setTPercentComplete, playingCell, setPlayingCell,
   //   cPercentComplete, setCPercentComplete, targetVideoIndex, setTargetVideoIndex, cellEnabled, setCellEnabled,
   //   control1, setControl1, control2, setControl2, control3, setControl3, disableControls, setDisableControls
@@ -113,18 +110,15 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             experimentsRun={experimentsRun}
           />
         </div>
-        <div className="video-column">
-          <div className="video">
-            <PaneTitle title={ac.o("LEFTSIMULATIONTITLE")} />
-          </div>
-          <div className="video">
-            <PaneTitle title={ac.o("RIGHTSIMULATIONTITLE")} />
-            <SimulationOutcome
-              control1={control1}
-              control2={control2}
-            />
-          </div>
-        </div>
+        <SimulationVideo
+          control1={control1}
+          control2={control2}
+          displayOutcome={experimentsRun[+control1][+control2]}
+          playing={playingVideo}
+          setExperimentIsRun={setExperimentIsRun}
+          simulationTime={simulationTime}
+        />
+        <MagnifyImage control1={control1} />
       </div>
       {/* <div className="options-row">
         <RowHeader backgroundSvg={<OptionsLabelBack />} headerText={ac.t("SIMOPTIONSHEADER")} />

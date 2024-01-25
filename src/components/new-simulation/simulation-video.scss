@@ -1,0 +1,33 @@
+@use "../vars.scss";
+
+.video-area {
+  align-items: center;
+  background-color: vars.$sim-transparent-background;
+  border-radius: vars.$sim-radius-video-column;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  height: 603px;
+  position: relative;
+  width: 482px;
+
+  .simulation-video {
+    height: 569px;
+    position: absolute;
+    top: 17px;
+    width: 456px;
+  }
+
+  .video-title {
+    background-color: white;
+
+    &.top-video-title {
+      top: 27px;
+    }
+
+    &.bottom-video-title {
+      top: 321px;
+    }
+  }
+}
