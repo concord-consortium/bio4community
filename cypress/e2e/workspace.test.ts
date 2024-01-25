@@ -81,14 +81,18 @@ context("Test the overall app", () => {
     it(`can't play tissue video until zooming`, () => {
       visitPage("animation", "heart");
       getPlayButton(true).should("not.be.visible");
-      cy.get(".app .silhouette-button").click().wait(2500);
-      getPlayButton(true).click();
+      cy.get(".app .silhouette-button").click();
+      getPlayButton(true).should("be.visible").click();
       getPlayButton(true).should("have.text", "Pause");
     });
     it(`can't play cell video while tissue video is playing`, () => {
-      getPlayButton(false).should("not.be.visible");
+      visitPage("animation", "heart");
+      cy.get(".app .silhouette-button").click();
+      getPlayButton(false).should("not.be.visible"); // can't play cell video
       getPlayButton(true).click();
-      getPlayButton(false).click();
+      getPlayButton(false).should("not.be.visible"); // still can't play cell video
+      getPlayButton(true).should("have.text", "Pause").click();
+      getPlayButton(false).should("be.visible").click(); // now you can
       getPlayButton(false).should("have.text", "Pause");
     });
   });

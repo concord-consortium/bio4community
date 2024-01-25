@@ -37,12 +37,9 @@ export function SimulationGraphsCheckboxes(
       const enabled = experimentsRun[+e.option1][+e.option2];
       const selected = e.option1===control1 && e.option2===control2;
       return (
-        // TODO: why is eslint complaining about key here, and checked below?
-        // eslint-disable-next-line react/no-unknown-property
         <div className={clsx("checkbox-row", { enabled, selected })} key={key}>
           <span>
             <input id={"check" + key} type="checkbox" value={"val"+key} disabled={!enabled}
-              // eslint-disable-next-line react/no-unknown-property
               checked={graphsShowing[+e.option1][+e.option2]} 
               onChange={(ev) => { setGraphIsShowing(e.option1, e.option2, ev.target.checked); }}
               />
