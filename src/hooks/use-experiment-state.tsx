@@ -8,12 +8,13 @@ export interface ExperimentState {
 }
 type ExperimentField = "complete" | "displayGraph" | "seen";
 const emptyState = () => ({ complete: false, displayGraph: false, seen: false });
-const initialState: ExperimentState[][] = [
-  [emptyState(), emptyState()],
-  [emptyState(), emptyState()]
-];
+const initialState = () => {
+  return [
+    [emptyState(), emptyState()],
+    [emptyState(), emptyState()]
+  ];};
 export function useExperimentState() {
-  const [experimentState, setExperimentState] = useState(initialState);
+  const [experimentState, setExperimentState] = useState(initialState());
 
   const updateExperimentState = (
     c1: boolean, c2: boolean, updateField: ExperimentField , updateValue: boolean
@@ -40,5 +41,9 @@ export function useExperimentState() {
     }
   };
 
-  return { experimentState, setExperimentIsFirstSeen, setGraphIsShowing, setExperimentIsRun };
+  const resetExperiments = () => {
+    setExperimentState(initialState());
+  };
+
+  return { experimentState, setExperimentIsFirstSeen, setGraphIsShowing, setExperimentIsRun, resetExperiments };
 }
