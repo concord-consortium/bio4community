@@ -107,6 +107,19 @@
             cursor: grab;
             touch-action: pan-x;
             z-index: 2;
+
+            // This hack positions the handle at the end of the slider properly.
+            // It's necessary because of the horizonal padding added to .rc-slider.
+            // This was added to improve clicking the ends of the slider, but it
+            // makes the handle go beyond the end.
+            // This only works because this slider has <= three positions.
+            &[aria-valuenow='0'] {
+              margin-left: 13px;
+            }
+
+            &[aria-valuenow='2'] {
+              margin-left: -13px;
+            }
       
             &:active {
               cursor: grabbing;
