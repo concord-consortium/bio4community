@@ -22,16 +22,16 @@ interface ISimulationSettingsProps {
   keyVisible: boolean;
   playingVideo: boolean;
   setKeyVisible: (val: boolean) => void;
+  setOutcomeHidden: (val: boolean) => void;
   setPlayingVideo: (val: boolean) => void;
   simulationTime: number;
   setSimulationTime: (val: number) => void;
-  setExperimentIsRun: (c1: boolean, c2: boolean) => void;
   resetExperiments: () => void;
 }
 export function SimulationSettings({
   control1, setControl1, control2, setControl2, keyVisible, setKeyVisible,
-  playingVideo, setPlayingVideo, simulationTime, setSimulationTime, 
-  setExperimentIsRun, resetExperiments
+  playingVideo, setOutcomeHidden, setPlayingVideo, simulationTime, setSimulationTime, 
+  resetExperiments
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
   const [anySettingsChanged, setAnySettingsChanged] = useState(false);
@@ -40,6 +40,7 @@ export function SimulationSettings({
   const onSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) return;
     setSimulationTime(value);
+    setOutcomeHidden(value < 2);
     setPlayingVideo(true);
     setAnySettingsChanged(true);
   };

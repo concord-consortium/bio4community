@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
 
@@ -7,10 +7,11 @@ import "./simulation-outcome.scss";
 interface ISimulationOutcomeProps {
   control1: boolean;
   control2: boolean;
+  outcomeHidden: boolean;
+  setOutcomeHidden: (v: boolean) => void;
 }
-export function SimulationOutcome({ control1, control2 }: ISimulationOutcomeProps) {
+export function SimulationOutcome({ control1, control2, outcomeHidden, setOutcomeHidden }: ISimulationOutcomeProps) {
   const ac = useAppContext();
-  const [hidden, setHidden] = useState(false);
   let message = "OUTCOMEHEALTHY";
   if (ac.organ === "brain") {
     if (control2){
@@ -24,13 +25,13 @@ export function SimulationOutcome({ control1, control2 }: ISimulationOutcomeProp
     }
   }
 
-  if (hidden) {
-    return <button className="simulation-button result" onClick={() => setHidden(false)} />;
+  if (outcomeHidden) {
+    return <button className="simulation-button result" onClick={() => setOutcomeHidden(false)} />;
   } else {
     return (
       <div className="outcome-area">
         {ac.o(message)}
-        <button className="hide-button" onClick={() => setHidden(true)} />
+        <button className="hide-button" onClick={() => setOutcomeHidden(true)} />
       </div>
     );
   }

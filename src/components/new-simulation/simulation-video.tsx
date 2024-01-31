@@ -13,12 +13,14 @@ interface ISimulationVideo {
   control1: boolean;
   control2: boolean;
   displayOutcome: boolean;
+  outcomeHidden: boolean;
   playing: boolean;
   setExperimentIsRun: (v1: boolean, v2: boolean) => void;
+  setOutcomeHidden: (v: boolean) => void;
   simulationTime: number;
 }
 export const SimulationVideo = ({
-  control1, control2, displayOutcome, playing, setExperimentIsRun, simulationTime
+  control1, control2, displayOutcome, outcomeHidden, playing, setExperimentIsRun, setOutcomeHidden, simulationTime
 }: ISimulationVideo) => {
   const ac = useAppContext();
   const videoFile = simVideos[ac.organ][+control1][+control2][simulationTime] ?? simVideos.heart[0][0][0];
@@ -110,6 +112,8 @@ export const SimulationVideo = ({
       {displayOutcome && <SimulationOutcome
         control1={control1}
         control2={control2}
+        outcomeHidden={outcomeHidden}
+        setOutcomeHidden={setOutcomeHidden}
       />}
     </div>
   );

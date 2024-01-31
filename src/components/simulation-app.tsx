@@ -20,6 +20,7 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
   const { control1, setControl1, control2, setControl2 } = useCommonState(ac);
   const [simulationTime, setSimulationTime] = useState(0);
   const [playingVideo, setPlayingVideo] = useState(false);
+  const [outcomeHidden, setOutcomeHidden] = useState(false);
 
   const { experimentState, setExperimentIsFirstSeen, setExperimentIsRun, setGraphIsShowing, resetExperiments }
     = useExperimentState();
@@ -36,10 +37,10 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
             keyVisible={keyVisible}
             playingVideo={playingVideo}
             setKeyVisible={setKeyVisible}
+            setOutcomeHidden={setOutcomeHidden}
             setPlayingVideo={setPlayingVideo}
             simulationTime={simulationTime}
             setSimulationTime={setSimulationTime}
-            setExperimentIsRun={setExperimentIsRun}
             resetExperiments={resetExperiments}
           />
           <SimulationResults
@@ -55,8 +56,10 @@ export const SimulationApp = ({ keyVisible, setKeyVisible }: SimulationAppProps)
           control1={control1}
           control2={control2}
           displayOutcome={experimentState[+control1][+control2].complete}
+          outcomeHidden={outcomeHidden}
           playing={playingVideo}
           setExperimentIsRun={setExperimentIsRun}
+          setOutcomeHidden={setOutcomeHidden}
           simulationTime={simulationTime}
         />
         <MagnifyImage control1={control1} />
