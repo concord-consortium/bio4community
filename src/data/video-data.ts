@@ -79,10 +79,8 @@ import NoseHighIgnoreDay8 from "../assets/videos/new-sim/nose/nose_high-ignore_d
 import NoseHighIgnoreDay16 from "../assets/videos/new-sim/nose/nose_high-ignore_day16.mp4";
 import NoseLowIgnoreDay0 from "../assets/videos/new-sim/nose/nose_low-ignore_day0.mp4";
 import NoseLowIgnoreDay8 from "../assets/videos/new-sim/nose/nose_low-ignore_day8.mp4";
-import NoseLowIgnoreDay16 from "../assets/videos/new-sim/nose/nose_low-ignore_day16.mp4";
 import NoseHighRespondDay0 from "../assets/videos/new-sim/nose/nose_high-respond_day0.mp4";
 import NoseHighRespondDay8 from "../assets/videos/new-sim/nose/nose_high-respond_day8.mp4";
-import NoseHighRespondDay16 from "../assets/videos/new-sim/nose/nose_high-respond_day16.mp4";
 import NoseLowRespondDay0 from "../assets/videos/new-sim/nose/nose_low-respond_day0.mp4";
 import NoseLowRespondDay8 from "../assets/videos/new-sim/nose/nose_low-respond_day8.mp4";
 import NoseLowRespondDay16 from "../assets/videos/new-sim/nose/nose_low-respond_day16.mp4";
@@ -196,7 +194,7 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
       [
         NoseLowIgnoreDay0,
         NoseLowIgnoreDay8,
-        NoseLowIgnoreDay16
+        NoseLowRespondDay16
       ],
       [
         NoseLowRespondDay0,
@@ -213,7 +211,7 @@ export const simVideos: Record<string, Record<number, any>[][]> = {
       [
         NoseHighRespondDay0,
         NoseHighRespondDay8,
-        NoseHighRespondDay16
+        NoseLowRespondDay16
       ]
     ]
   ],
