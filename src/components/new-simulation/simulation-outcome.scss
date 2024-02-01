@@ -5,6 +5,7 @@
   background-color: vars.$sim-light-7;
   border-radius: 6px;
   bottom: 42px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: black;
   display: flex;
@@ -17,30 +18,14 @@
   position: absolute;
   text-align: center;
   width: 398px;
-
-  .outcome-border {
-    border: 3px solid vars.$sim-dark-1;
-    border-radius: 3px;
-    box-sizing: border-box;
-    height: 44px;
-    margin: 5px;
+  
+  .outcome-svg {
+    fill: none;
     position: absolute;
-    width: 388px;
 
-    &.line-style-0 {
-      border-style: solid;
-    }
-
-    &.line-style-1 {
-      border-style: dashed;
-    }
-
-    &.line-style-2 {
-      border-style: dotted;
-    }
-
-    &.line-style-3 {
-      border-style: dashed;
+    .outcome-border {
+      stroke: vars.$sim-dark-1;
+      stroke-width: 3; // Keep in sync with strokeWidth in simulation-outcome.tsx
     }
   }
 
