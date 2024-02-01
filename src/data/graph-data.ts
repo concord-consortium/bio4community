@@ -164,7 +164,7 @@ export function getSVGPath(organ: string, control1: boolean, control2: boolean) 
   }
 }
 
-export function formatPair(pair: Pair) {
+function formatPair(pair: Pair) {
   return `${pair[0]},${pair[1]}`;
 }
 
