@@ -181,6 +181,32 @@
               margin-right: -4px;
             }
           }
+
+          .ghost {
+            background-color: rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            height: 26px;
+            pointer-events: none;
+            position: absolute;
+            top: 1px;
+            width: 26px;
+
+            &.ghost0 {
+              left: 0px;
+            }
+
+            &.ghost1 {
+              left: 40px;
+            }
+
+            &.ghost2 {
+              left: 80px;
+            }
+
+            &.visible {
+              background-color: rgba(4, 129, 160, 0.5);
+            }
+          }
         }
       }
     }

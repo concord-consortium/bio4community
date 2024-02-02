@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
 import Slider from "rc-slider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
 import { Organs } from "../../utils/app-constants";
@@ -58,6 +58,42 @@ export function SimulationSettings({
   const timePoints = [0, 1, 2];
   const marks: Record<number, string> = {};
   timePoints.forEach(time => marks[time] = simulationTime === time ? ac.o(`SIMTIMELABEL${time}`) : " ");
+
+  // Set up slider hover ghosts
+  useEffect(() => {
+    const rcSliders = document.getElementsByClassName("rc-slider");
+    if (rcSliders.length > 0) {
+      const rcSlider = rcSliders.item(0);
+
+      const ghosts: HTMLDivElement[] = [];
+      [0, 1, 2].forEach(num => {
+        const ghost = document.createElement("div");
+        ghost.classList.add("ghost");
+        ghost.classList.add(`ghost${num}`);
+        ghosts.push(ghost);
+        rcSlider?.appendChild(ghost);
+      });
+
+      const hideGhosts = () => ghosts.forEach(ghost => ghost.classList.remove("visible"));
+
+      const showGhost = (e: Event) => {
+        hideGhosts();
+        const mouseX = (e as PointerEvent).clientX - (rcSlider?.getBoundingClientRect().left ?? 0);
+        const ghostPos = mouseX <= 26 ? 0 : mouseX < 79 ? 1 : 2;
+        ghosts[ghostPos]?.classList.add("visible");
+      };
+      
+      rcSlider?.addEventListener("mouseover", (e) => {
+        showGhost(e);
+      });
+      rcSlider?.addEventListener("mousemove", (e) => {
+        showGhost(e);
+      });
+      rcSlider?.addEventListener("mouseout", (e) => {
+        hideGhosts();
+      });
+    }
+  }, []);
 
   // Set up person image
   const isBrain = ac.organ === Organs.brain;
