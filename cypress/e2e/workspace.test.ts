@@ -84,7 +84,7 @@ context("Test the overall app", () => {
       toggleButtons().eq(3).should("have.class", "selected");
       graphCheckboxes().eq(0).should("be.checked");
       graphCheckboxes().eq(1).should("be.checked");
-      getSimulationPlayButton().should("have.class", "playing");
+      getSimulationPlayButton().should("not.have.class", "playing");
 
       resetButton().should("be.enabled").click();
       everythingIsDefaults();
@@ -116,7 +116,7 @@ context("Test the overall app", () => {
       outcomeArea().should("not.exist");
       cy.get(".app .simulation-settings .rc-slider").click("right");
       getSimulationPlayButton().should("have.class", "playing");
-      cy.wait(6000);
+      cy.wait(4500);
       outcomeArea().should("exist");
       resultButton().should("not.exist");
       closeOutcomeButton().should("exist").click();
@@ -125,13 +125,13 @@ context("Test the overall app", () => {
       resultButton().should("not.exist");
       closeOutcomeButton().should("exist");
     });
-    it(`brain videos switch and start playing when brain region changes`, () => {
+    it(`brain videos switch when brain region changes`, () => {
       visitPage("simulation", "brain");
       topVideoTitle().should("have.text", "Simulated Prefrontal Cortex");
       getSimulationPlayButton().should("not.have.class", "playing");
       toggleButtons().eq(1).click();
       topVideoTitle().should("have.text", "Simulated Amygdala");
-      getSimulationPlayButton().should("have.class", "playing");
+      getSimulationPlayButton().should("not.have.class", "playing");
     });
     it(`graphs and checkboxes work correctly`, () => {
       graphCheckboxes().eq(0).should("be.checked").should("be.enabled");
