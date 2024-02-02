@@ -8,13 +8,12 @@ import "./button-toggle.scss";
 interface IButtonToggleProps {
   controlNumber: number; // 1 for the top control, 2 for the bottom control
   leftClass?: string | boolean;
-  playVideo: () => void;
   rightClass?: string | boolean;
   setValue: (value: boolean) => void;
   value: boolean;
 }
 export function ButtonToggle({
-  controlNumber, leftClass, playVideo, rightClass, setValue, value
+  controlNumber, leftClass, rightClass, setValue, value
 }: IButtonToggleProps) {
   const ac = useAppContext();
   // Some controls are rendered inverted (true is on the left)
@@ -23,7 +22,6 @@ export function ButtonToggle({
   const leftSelected = invert ? value : !value;
   const rightSelected = invert ? !value : value;
   const handleButtonClick = (val: boolean) => {
-    playVideo();
     setValue(val);
   };
   const leftOnClick = () => handleButtonClick(!!invert);
