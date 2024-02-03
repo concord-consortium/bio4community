@@ -92,14 +92,12 @@ export function SimulationSettings({
       <ButtonToggle
         controlNumber={1}
         leftClass={isBrain && "brain1"}
-        playVideo={() => setPlayingVideo(true)}
         rightClass={isBrain && "brain2"}
         setValue={(v) => { setControl1(v); setAnySettingsChanged(true); }}
         value={control1}
       />
       <ButtonToggle
         controlNumber={2}
-        playVideo={() => setPlayingVideo(true)}
         setValue={(v) => { setControl2(v); setAnySettingsChanged(true); }}
         value={control2}
       />
