@@ -108,7 +108,7 @@
             touch-action: pan-x;
             z-index: 2;
 
-            transition: height .25s, top .25s, width .25s;
+            transition: height .1s, top .1s, width .1s;
 
             // This hack positions the handle at the end of the slider properly.
             // It's necessary because of the horizonal padding added to .rc-slider.
@@ -125,6 +125,12 @@
       
             &:active {
               cursor: grabbing;
+            }
+
+            &-dragging {
+              height: 34px;
+              top: -3px;
+              width: 34px;
             }
 
             &:hover {
