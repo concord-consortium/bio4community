@@ -35,6 +35,7 @@ export function SimulationSettings({
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
   const [anySettingsChanged, setAnySettingsChanged] = useState(false);
+  const [draggingSliderHandle, setDraggingSliderHandle] = useState(false);
 
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
@@ -78,22 +79,37 @@ export function SimulationSettings({
 
       const showGhost = (e: Event) => {
         hideGhosts();
-        const mouseX = (e as PointerEvent).clientX - (rcSlider?.getBoundingClientRect().left ?? 0);
-        const ghostPos = mouseX <= 26 ? 0 : mouseX < 79 ? 1 : 2;
-        ghosts[ghostPos]?.classList.add("visible");
+        if (!draggingSliderHandle) {
+          const mouseX = (e as PointerEvent).clientX - (rcSlider?.getBoundingClientRect().left ?? 0);
+          const ghostPos = mouseX <= 26 ? 0 : mouseX < 79 ? 1 : 2;
+          ghosts[ghostPos]?.classList.add("visible");
+        }
+      };
+
+      const startDragging = () => {
+        hideGhosts();
+        setDraggingSliderHandle(true);
+      };
+
+      const endDragging = () => {
+        setDraggingSliderHandle(false);
       };
       
-      rcSlider?.addEventListener("mouseover", (e) => {
-        showGhost(e);
-      });
-      rcSlider?.addEventListener("mousemove", (e) => {
-        showGhost(e);
-      });
-      rcSlider?.addEventListener("mouseout", (e) => {
-        hideGhosts();
-      });
+      rcSlider?.addEventListener("mouseover", showGhost);
+      rcSlider?.addEventListener("mousemove", showGhost);
+      rcSlider?.addEventListener("mouseout", hideGhosts);
+      rcSlider?.addEventListener("mousedown", startDragging);
+      rcSlider?.addEventListener("mouseup", endDragging);
+
+      return () => {
+        rcSlider?.removeEventListener("mouseover", showGhost);
+        rcSlider?.removeEventListener("mousemove", showGhost);
+        rcSlider?.removeEventListener("mouseout", hideGhosts);
+        rcSlider?.removeEventListener("mousedown", startDragging);
+        rcSlider?.removeEventListener("mouseup", endDragging);
+      };
     }
-  }, []);
+  }, [draggingSliderHandle]);
 
   // Set up person image
   const isBrain = ac.organ === Organs.brain;
