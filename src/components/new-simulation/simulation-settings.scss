@@ -1,5 +1,10 @@
 @use "../vars.scss";
 
+$handle-size: 26px;
+$handle-top: 1px;
+$handle-large-size: 34px;
+$handle-large-top: -3px;
+
 .simulation-settings {
   border: vars.$sim-border;
   border-radius: vars.$sim-radius-settings-top vars.$sim-radius-settings-top vars.$sim-radius-settings-bottom vars.$sim-radius-settings-bottom;
@@ -100,9 +105,9 @@
           &-handle {
             background-color: vars.$sim-dark-1;
             position: absolute;
-            top: 1px;
-            width: 26px;
-            height: 26px;
+            top: $handle-top;
+            width: $handle-size;
+            height: $handle-size;
             border-radius: 50%;
             cursor: grab;
             touch-action: pan-x;
@@ -128,15 +133,15 @@
             }
 
             &-dragging {
-              height: 34px;
-              top: -3px;
-              width: 34px;
+              height: $handle-large-size;
+              top: $handle-large-top;
+              width: $handle-large-size;
             }
 
             &:hover {
-              height: 34px;
-              top: -3px;
-              width: 34px;
+              height: $handle-large-size;
+              top: $handle-large-top;
+              width: $handle-large-size;
             }
           }
       
@@ -191,11 +196,11 @@
           .ghost {
             background-color: rgba(0, 0, 0, 0);
             border-radius: 50%;
-            height: 26px;
+            height: $handle-size;
             pointer-events: none;
             position: absolute;
-            top: 1px;
-            width: 26px;
+            top: $handle-top;
+            width: $handle-size;
 
             &.ghost0 {
               left: 0px;
