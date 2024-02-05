@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
 import Slider from "rc-slider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAppContext } from "../../hooks/use-app-context";
 import { Organs } from "../../utils/app-constants";
@@ -35,6 +35,7 @@ export function SimulationSettings({
 }: ISimulationSettingsProps) {
   const ac = useAppContext();
   const [anySettingsChanged, setAnySettingsChanged] = useState(false);
+  const [draggingSliderHandle, setDraggingSliderHandle] = useState(false);
 
   // Set up slider
   const onSliderChange = (value: number | number[]) => {
@@ -58,6 +59,57 @@ export function SimulationSettings({
   const timePoints = [0, 1, 2];
   const marks: Record<number, string> = {};
   timePoints.forEach(time => marks[time] = simulationTime === time ? ac.o(`SIMTIMELABEL${time}`) : " ");
+
+  // Set up slider hover ghosts
+  useEffect(() => {
+    const rcSliders = document.getElementsByClassName("rc-slider");
+    if (rcSliders.length > 0) {
+      const rcSlider = rcSliders.item(0);
+
+      const ghosts: HTMLDivElement[] = [];
+      [0, 1, 2].forEach(num => {
+        const ghost = document.createElement("div");
+        ghost.classList.add("ghost");
+        ghost.classList.add(`ghost${num}`);
+        ghosts.push(ghost);
+        rcSlider?.appendChild(ghost);
+      });
+
+      const hideGhosts = () => ghosts.forEach(ghost => ghost.classList.remove("visible"));
+
+      const showGhost = (e: Event) => {
+        hideGhosts();
+        if (!draggingSliderHandle) {
+          const mouseX = (e as PointerEvent).clientX - (rcSlider?.getBoundingClientRect().left ?? 0);
+          const ghostPos = mouseX <= 26 ? 0 : mouseX < 79 ? 1 : 2;
+          ghosts[ghostPos]?.classList.add("visible");
+        }
+      };
+
+      const startDragging = () => {
+        hideGhosts();
+        setDraggingSliderHandle(true);
+      };
+
+      const endDragging = () => {
+        setDraggingSliderHandle(false);
+      };
+      
+      rcSlider?.addEventListener("mouseover", showGhost);
+      rcSlider?.addEventListener("mousemove", showGhost);
+      rcSlider?.addEventListener("mouseout", hideGhosts);
+      rcSlider?.addEventListener("mousedown", startDragging);
+      rcSlider?.addEventListener("mouseup", endDragging);
+
+      return () => {
+        rcSlider?.removeEventListener("mouseover", showGhost);
+        rcSlider?.removeEventListener("mousemove", showGhost);
+        rcSlider?.removeEventListener("mouseout", hideGhosts);
+        rcSlider?.removeEventListener("mousedown", startDragging);
+        rcSlider?.removeEventListener("mouseup", endDragging);
+      };
+    }
+  }, [draggingSliderHandle]);
 
   // Set up person image
   const isBrain = ac.organ === Organs.brain;

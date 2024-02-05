@@ -1,5 +1,10 @@
 @use "../vars.scss";
 
+$handle-size: 26px;
+$handle-top: 1px;
+$handle-large-size: 34px;
+$handle-large-top: -3px;
+
 .simulation-settings {
   border: vars.$sim-border;
   border-radius: vars.$sim-radius-settings-top vars.$sim-radius-settings-top vars.$sim-radius-settings-bottom vars.$sim-radius-settings-bottom;
@@ -100,13 +105,15 @@
           &-handle {
             background-color: vars.$sim-dark-1;
             position: absolute;
-            top: 1px;
-            width: 26px;
-            height: 26px;
+            top: $handle-top;
+            width: $handle-size;
+            height: $handle-size;
             border-radius: 50%;
             cursor: grab;
             touch-action: pan-x;
             z-index: 2;
+
+            transition: height .1s, top .1s, width .1s;
 
             // This hack positions the handle at the end of the slider properly.
             // It's necessary because of the horizonal padding added to .rc-slider.
@@ -124,11 +131,23 @@
             &:active {
               cursor: grabbing;
             }
+
+            &-dragging {
+              height: $handle-large-size;
+              top: $handle-large-top;
+              width: $handle-large-size;
+            }
+
+            &:hover {
+              height: $handle-large-size;
+              top: $handle-large-top;
+              width: $handle-large-size;
+            }
           }
       
           &-mark {
             position: absolute;
-            top: 29px;
+            top: 31px;
             left: 13px;
             width: 80px;
           }
@@ -171,6 +190,32 @@
       
             &-reverse {
               margin-right: -4px;
+            }
+          }
+
+          .ghost {
+            background-color: rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            height: $handle-size;
+            pointer-events: none;
+            position: absolute;
+            top: $handle-top;
+            width: $handle-size;
+
+            &.ghost0 {
+              left: 0px;
+            }
+
+            &.ghost1 {
+              left: 40px;
+            }
+
+            &.ghost2 {
+              left: 80px;
+            }
+
+            &.visible {
+              background-color: rgba(4, 129, 160, 0.5);
             }
           }
         }
