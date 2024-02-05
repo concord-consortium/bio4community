@@ -5,6 +5,7 @@
   background-color: vars.$sim-light-7;
   border-radius: 6px;
   bottom: 42px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: black;
   display: flex;
@@ -17,9 +18,19 @@
   position: absolute;
   text-align: center;
   width: 398px;
+  
+  .outcome-svg {
+    fill: none;
+    position: absolute;
+
+    .outcome-border {
+      stroke: vars.$sim-dark-1;
+      stroke-width: 3; // Keep in sync with strokeWidth in simulation-outcome.tsx
+    }
+  }
 
   .hide-button {
-    background-color: rgba(0,0,0,0);
+    background-color: vars.$sim-light-7;
     background-image: url(../../assets/new-sim/buttons/close-icon.svg);
     border: none;
     cursor: pointer;

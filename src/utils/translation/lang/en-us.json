@@ -164,6 +164,7 @@
   "BRAIN.RIGHTXLABEL2": "(weeks)",
   "BRAIN.RIGHTYLABEL": "Signals Transmitted",
 
+  "OUTCOMEPREFIX": "Result: ",
   "HEART.OUTCOMEHEALTHY": "A person would have a low risk of blocked blood vessels in the heart.",
   "HEART.OUTCOMEINTERMEDIATE": "A person would have a medium risk of blocked blood vessels in the heart.",
   "HEART.OUTCOMECHRONIC": "A person would have a high risk of blocked blood vessels in the heart.",
