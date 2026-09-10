@@ -1,5 +1,9 @@
 # Bio4Community
 
+## Deployment
+
+S3 deployment is handled by GitHub Actions using OIDC for AWS authentication. See [deploy-setup.md in starter-projects](https://github.com/concord-consortium/starter-projects/blob/main/doc/deploy-setup.md) for how the AWS side is set up, and [doc/deploy.md](doc/deploy.md) for how deploys work in this repo.
+
 ## Development
 
 ### Copying a starter project
@@ -85,12 +89,7 @@ You *do not* need to build to deploy the code, that is automatic.  See more info
    To ensure that you are open a TypeScript file in VSC and then click on the version number next to
    `TypeScript React` in the status bar and select 'Use Workspace Version' in the popup menu.
 
-## Deployment
-
-Follow the instructions in this
-[Guide](https://docs.google.com/document/d/1EacCSUhaHXaL8ll8xjcd4svyguEO-ipf5aF980-_q8E)
-to setup an S3 & Cloudfront distribution that can be used with Github actions.
-See also `s3_deploy.sh`, and `./github/ci.yml`.
+## Releases
 
 Production releases to S3 are based on the contents of the /dist folder and are built automatically by GitHub Actions
 for each branch pushed to GitHub and each merge into production.
