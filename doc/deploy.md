@@ -1,6 +1,6 @@
 # Deployment
 
-S3 deployment is handled by GitHub Actions. Pushes are deployed to `models-resources/bio4community/` by the `s3-deploy` job in [`ci.yml`](../.github/workflows/ci.yml), and a released version is promoted to the top-level `index.html` by [`release.yml`](../.github/workflows/release.yml) via `workflow_dispatch`.
+S3 deployment is handled by GitHub Actions. Pushes are deployed to `models-resources/bio4community/` by the `s3-deploy` job in [`ci.yml`](../.github/workflows/ci.yml).
 
 ## AWS Access
 

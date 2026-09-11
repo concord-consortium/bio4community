@@ -30,7 +30,7 @@ Alternately, you can run secure without certificates in Chrome:
 ### Building
 
 If you want to build a local version run `npm build`, it will create the files in the `dist` folder.
-You *do not* need to build to deploy the code, that is automatic.  See more info in the Deployment section below.
+You *do not* need to build to deploy the code, that is automatic.  See more info in the Deployment section above.
 
 ### Notes
 
@@ -40,26 +40,22 @@ You *do not* need to build to deploy the code, that is automatic.  See more info
 
 ## Releases
 
-Production releases to S3 are based on the contents of the /dist folder and are built automatically by GitHub Actions
-for each branch pushed to GitHub and each merge into production.
+Every push is built and deployed to S3 by the `s3-deploy` job in
+[`ci.yml`](.github/workflows/ci.yml). You do not need to build or deploy by hand.
 
-Merges into production are deployed to http://starter-projects.concord.org.
+- Pushing a branch deploys it to `models-resources/bio4community/branch/<branch-name>/`.
+- Pushing a tag deploys it to `models-resources/bio4community/version/<tag>/`.
 
-Other branches are deployed to http://starter-projects.concord.org/branch/<name>.
+To make a release:
 
-To deploy a production release:
+1. Increment the version number in `package.json`.
+2. Add an entry to `CHANGELOG.md`. To list the changes since the last release, run
+   `git log --pretty=oneline --reverse <last release tag>...HEAD | grep '#' | grep -v Merge`
+   and edit the results as needed.
+3. Create a `release-<version>` branch with those changes, push it, open a pull request, and merge it.
+4. Create a new release tag at https://github.com/concord-consortium/bio4community/releases
 
-1. Increment version number in package.json
-2. Create new entry in CHANGELOG.md
-3. Run `git log --pretty=oneline --reverse <last release tag>...HEAD | grep '#' | grep -v Merge` and add contents (after edits if needed to CHANGELOG.md)
-4. Run `npm run build`
-5. Copy asset size markdown table from previous release and change sizes to match new sizes in `dist`
-6. Create `release-<version>` branch and commit changes, push to GitHub, create PR and merge
-7. Checkout master and pull
-8. Checkout production
-9. Run `git merge master --no-ff`
-10. Push production to GitHub
-11. Use https://github.com/concord-consortium/starter-projects/releases to create a new release tag
+See [doc/deploy.md](doc/deploy.md) for more about how deploys work.
 
 ### Testing
 
