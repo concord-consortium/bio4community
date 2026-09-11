@@ -1,57 +1,10 @@
 # Bio4Community
 
+## Deployment
+
+S3 deployment is handled by GitHub Actions using OIDC for AWS authentication. See [deploy-setup.md in starter-projects](https://github.com/concord-consortium/starter-projects/blob/main/doc/deploy-setup.md) for how the AWS side is set up, and [doc/deploy.md](doc/deploy.md) for how deploys work in this repo.
+
 ## Development
-
-### Copying a starter project
-
-1. Create a new public repository for your project (e.g. `new-repository`)
-2. Create a clone of the starter repo
-    ```
-    git clone --single-branch https://github.com/concord-consortium/starter-projects.git new-repository
-    ```
-3. Update the starter repo
-
-    First, update and run the starter project:
-    ```
-    cd new-repository
-    npm install
-    npm update
-    npm start
-    ```
-    Then, verify the project works by visiting [localhost:8080](http://localhost:8080) and checking for the words "Hello World".
-    Also verify that the test suite still passes:
-    ```
-    npm run test:full
-    ```
-    If the updates are functional, please commit any changes to `package.json` or `package-lock.json` back to the
-    Starter Projects repository for future use.
-
-4. Next, re-initialize the repo to create a new history
-    ```
-    rm -rf .git
-    git init
-    ```
-5. Create an initial commit for your new project
-    ```
-    git add .
-    git commit -m "Initial commit"
-    ```
-6. Push to your new repository
-    ```
-    git remote add origin https://github.com/concord-consortium/new-repository.git
-    git push -u origin master
-    ```
-7. Open your new repository and update all instances of `starter-projects` to `new-repository` and `Starter Projects` to `New Repository`.
-   Note: this will do some of the configuration for GitHub Actions deployment to S3, but you'll still need to follow
-   the instructions [here](https://docs.google.com/document/d/e/2PACX-1vTpYjbGmUMxk_FswUmapK_RzVyEtm1WdnFcNByp9mqwHnp0nR_EzRUOiubuUCsGwzQgOnut_UiabYOM/pub).
-8. To record the cypress tests results to the cypress dashboard service:
-   - go to https://dashboard.cypress.io
-   - create a new project
-   - go to the settings for the project
-   - in the github integration section choose the github repo to connect this project to
-   - copy the record key, and create a secret in the github repositories settings with the name CYPRESS_RECORD_KEY
-   - copy the Project ID and replace the value of `projectId` in cypress.json
-9. Your new repository is ready! Remove this section of the `README`, and follow the steps below to use it.
 
 ### Initial steps
 
@@ -77,7 +30,7 @@ Alternately, you can run secure without certificates in Chrome:
 ### Building
 
 If you want to build a local version run `npm build`, it will create the files in the `dist` folder.
-You *do not* need to build to deploy the code, that is automatic.  See more info in the Deployment section below.
+You *do not* need to build to deploy the code, that is automatic.  See more info in the Deployment section above.
 
 ### Notes
 
@@ -85,33 +38,24 @@ You *do not* need to build to deploy the code, that is automatic.  See more info
    To ensure that you are open a TypeScript file in VSC and then click on the version number next to
    `TypeScript React` in the status bar and select 'Use Workspace Version' in the popup menu.
 
-## Deployment
+## Releases
 
-Follow the instructions in this
-[Guide](https://docs.google.com/document/d/1EacCSUhaHXaL8ll8xjcd4svyguEO-ipf5aF980-_q8E)
-to setup an S3 & Cloudfront distribution that can be used with Github actions.
-See also `s3_deploy.sh`, and `./github/ci.yml`.
+Every push is built and deployed to S3 by the `s3-deploy` job in
+[`ci.yml`](.github/workflows/ci.yml). You do not need to build or deploy by hand.
 
-Production releases to S3 are based on the contents of the /dist folder and are built automatically by GitHub Actions
-for each branch pushed to GitHub and each merge into production.
+- Pushing a branch deploys it to `models-resources/bio4community/branch/<branch-name>/`.
+- Pushing a tag deploys it to `models-resources/bio4community/version/<tag>/`.
 
-Merges into production are deployed to http://starter-projects.concord.org.
+To make a release:
 
-Other branches are deployed to http://starter-projects.concord.org/branch/<name>.
+1. Increment the version number in `package.json`.
+2. Add an entry to `CHANGELOG.md`. To list the changes since the last release, run
+   `git log --pretty=oneline --reverse <last release tag>...HEAD | grep '#' | grep -v Merge`
+   and edit the results as needed.
+3. Create a `release-<version>` branch with those changes, push it, open a pull request, and merge it.
+4. Create a new release tag at https://github.com/concord-consortium/bio4community/releases
 
-To deploy a production release:
-
-1. Increment version number in package.json
-2. Create new entry in CHANGELOG.md
-3. Run `git log --pretty=oneline --reverse <last release tag>...HEAD | grep '#' | grep -v Merge` and add contents (after edits if needed to CHANGELOG.md)
-4. Run `npm run build`
-5. Copy asset size markdown table from previous release and change sizes to match new sizes in `dist`
-6. Create `release-<version>` branch and commit changes, push to GitHub, create PR and merge
-7. Checkout master and pull
-8. Checkout production
-9. Run `git merge master --no-ff`
-10. Push production to GitHub
-11. Use https://github.com/concord-consortium/starter-projects/releases to create a new release tag
+See [doc/deploy.md](doc/deploy.md) for more about how deploys work.
 
 ### Testing
 
